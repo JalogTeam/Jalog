@@ -1,7 +1,7 @@
 # Jalog
 *An interpreter for a Prolog-like language with Java-like arithmetic written in Java*
 
-**Version** 0.1 2012-03-13 Initial version. Capable of solving Sudoku.
+**Version** 0.2 2012-04-20 Minor corrections. Debug timing disabled.
 ### Authors
 Mikko Levanto<br>
 Ari Okkonen
@@ -18,5 +18,6 @@ See examples in `test` directory for implemented features.
 
 ----------
 ### Version history
+**0.2** 2012-04-20 Minor corrections. Debug timing disabled.
 
 **0.1** 2012-03-13 Initial version. Capable of solving Sudoku.

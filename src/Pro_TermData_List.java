@@ -20,15 +20,12 @@ public class Pro_TermData_List extends Pro_TermData
   {
     int len = iniVal.length;
     Pro_Term rest;
-    Pro_Term current;
     
     rest = tail;
     while(len > 0)
     {
       len = len -1;
-      current = new Pro_Term();
-      current.setData(new Pro_TermData_List(iniVal[len], rest));
-      rest = current;
+      rest = new Pro_Term(new Pro_TermData_List(iniVal[len], rest));
     }
     return (Pro_TermData_List)(rest.getData());
   }

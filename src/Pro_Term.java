@@ -5,17 +5,24 @@ import java.util.Hashtable;
 public class Pro_Term 
 {
   static int debug = 1;
-  static int nextId = 1;
+  static long lastId = 0;
   
   private Pro_TermData data;
 //  public Pro_TermData data;
-  public int Id;
+  public long Id;
   
   
   Pro_Term()
   {
-    Id = nextId;
-    nextId++;
+    lastId++;
+    Id = lastId;
+  }
+
+  Pro_Term(Pro_TermData data)
+  {
+    lastId++;
+    Id = lastId;
+    this.data = data;
   }
 
   public boolean unify(Pro_Term pn2, Pro_Trail pBack, Pro_TrailMark Mark)
@@ -237,9 +244,9 @@ public class Pro_Term
     return getRealNode().data;
   }
 
-  public void setData(Pro_TermData data)
+  public void clearData()
   {
-    this.data = data;
+    data = null;
   }  
   
   static public Pro_Term m_integer(long iniVal)

@@ -46,13 +46,13 @@ public class Database
           name = headcompo.name;
           arity = headcompo.arity;
         } else {
-          System.out.println("assert: wrong head Pro_TermData class: " + 
+          System.out.println("*** Error: assert: wrong head Pro_TermData class: " + 
               headdata.getClass().getName());
         }
 
         Pro_TermData bodydata = body.getData();
         if(!(bodydata instanceof Pro_TermData_List)) {
-          System.out.println("assert: wrong body Pro_TermData class: " + 
+          System.out.println("*** Error: assert: wrong body Pro_TermData class: " + 
               bodydata.getClass().getName());
         }
       }
@@ -76,7 +76,7 @@ public class Database
       }
 
     } else {
-      System.out.println("assert: wrong Pro_TermData class: " + data.getClass().getName());
+      System.out.println("*** Error: assert: wrong Pro_TermData class: " + data.getClass().getName());
     } 
         
   }
@@ -116,8 +116,8 @@ public class Database
   }
 */
 
-  static Pro_Term fetch(Database_FactClass factClass, DB_Cursor prev_item, Pro_Term filter,
-      Pro_TrailMark Mark)
+  static Pro_Term fetch(Database_FactClass factClass, DB_Cursor prev_item,
+      Pro_Term filter, Pro_TrailMark Mark)
   {
 //System.out.println("Database.fetch(" + factClass+ "," + prev_item+ "," + filter+ "," +  Mark+ ")");
     if (prev_item == null) {
@@ -138,12 +138,11 @@ public class Database
         return null;
       } else {
         // New term and copy data to it
-        Pro_Term temp_term = new Pro_Term();
+        Pro_TermData_Compound compo = (Pro_TermData_Compound)
+                (((Fact_Chain_Item) prev_item.current_item).data);
+        Pro_Term temp_term = new Pro_Term(compo);
         Pro_Term head = temp_term;
-        temp_term.setData(((Fact_Chain_Item)prev_item.current_item).data);
 
-        Pro_TermData_Compound compo = 
-            (Pro_TermData_Compound)temp_term.getData();
         String name = compo.name;
         byte arity = compo.arity;
         is_rule = false;
@@ -199,7 +198,7 @@ public class Database
 
       out.close();
     } catch (IOException e) {
-      System.out.println("dump: IOException " + e);
+      System.out.println("*** Error: dump: IOException " + e);
     } 
   }
   

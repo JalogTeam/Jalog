@@ -13,15 +13,15 @@ public class Ops
 
   static Pred first_call(Pro_Term pred_call)
   { // Entered always forward==true
-Debug_times.enter(3);
+// Debug_times.enter(3);
     Pred result = null;
-if(!Pred.forward) System.out.println("*** Ops.call, forward == false");
+if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == false");
 
     Pro_TermData_Compound data = (Pro_TermData_Compound) pred_call.getData();
 
     if(!(data instanceof Pro_TermData_Compound)){
       Pred.forward = false;
-Debug_times.leave(3);
+// Debug_times.leave(3);
       return result;
     }
 
@@ -31,9 +31,9 @@ Debug_times.leave(3);
 
     if(data.name.equals("cut_") && (data.arity == 0)){ 
 // System.out.println("\n--Ops.first_call: cut");
-Debug_times.enter(2);
+// Debug_times.enter(2);
       result = new Pred_cut_();
-Debug_times.leave(2);
+// Debug_times.leave(2);
 
     // write/*
 
@@ -65,17 +65,17 @@ Debug_times.leave(2);
     // =/2
 
     } else if(data.name.equals("=") && (data.arity == 2)){
-Debug_times.enter(2);
+// Debug_times.enter(2);
       result = new Pred__eq_(data);
-Debug_times.leave(2);
+// Debug_times.leave(2);
       result.call();
    
     // foreach_/2
 
     } else if(data.name.equals("foreach_") && (data.arity == 2)){ // foreach_(Variable, List) - (o,i)
-Debug_times.enter(2);
+// Debug_times.enter(2);
       result = new Pred_foreach_(data);
-Debug_times.leave(2);
+// Debug_times.leave(2);
       result.call();
 
    // consult/1
@@ -133,9 +133,9 @@ Debug_times.leave(2);
 
     } else if(data.name.equals("not") && (data.arity == 1)){
       Pro_Term[] items = {data.subterm[0]};
-Debug_times.enter(2);
+// Debug_times.enter(2);
       result = new Pred_not();
-Debug_times.leave(2);
+// Debug_times.leave(2);
 
       result.called_body = Pro_Term.m_list(items);
 
@@ -166,10 +166,10 @@ Debug_times.leave(2);
     // ">"/2
 
     } else if(data.name.equals(">") && (data.arity == 2)){
-Debug_times.enter(2);
+// Debug_times.enter(2);
       Pro_Term tmp1 = new Pro_Term();
       Pro_Term tmp2 = new Pro_Term();
-Debug_times.leave(2);
+// Debug_times.leave(2);
       tmp1.compval(data.subterm[0]);
       tmp2.compval(data.subterm[1]);
 
@@ -189,9 +189,9 @@ Debug_times.leave(2);
     } else if(data.name.equals("trap") && (data.arity == 3)){
       Pro_Term[] items = {data.subterm[0]};
       Pro_Term[] catch_items = {data.subterm[2]};
-Debug_times.enter(2);
+// Debug_times.enter(2);
       result = new Pred_trap();
-Debug_times.leave(2);
+// Debug_times.leave(2);
 
       result.called_body = Pro_Term.m_list(items);
       ((Pred_trap)result).exit_var = data.subterm[1];
@@ -217,15 +217,15 @@ Debug_times.leave(2);
 
     } else {
 // System.out.println("  Ops.call_forward data.name: " + data.name);
-Debug_times.enter(2);
+// Debug_times.enter(2);
       result = new Pred_fetch_(pred_call);
-Debug_times.leave(2);
+// Debug_times.leave(2);
 // System.out.println("  Ops.call_forward 2 " + result);
 //      result.call();
 // System.out.println("  Ops.call_forward 3");
     }
 // System.out.println("  Ops.call_forward EXIT");
-Debug_times.leave(3);
+// Debug_times.leave(3);
     return result;
   }
 }

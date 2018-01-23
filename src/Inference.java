@@ -18,7 +18,7 @@ public class Inference // extends Pred
 
   public void run_body(Pro_Term body)
   {
-Debug_times.enter(1); 
+// Debug_times.enter(1); 
 if(Debug > 0) System.out.println("*** BEGIN Inference: body=" + body);
 //    if(level > 0) System.out.println("** BEGIN Inference: recursion level=" + level);
     level ++;
@@ -54,7 +54,7 @@ if(Debug > 0)        System.out.println("\nInference A: " + Pred.forward +", (nu
       Pro_TermData_List new_body_item_data; 
       ready = false;
 if(Debug > 0) System.out.println("\n Inference (j): ready = " + ready);
-Debug_times.enter(4); 
+// Debug_times.enter(4); 
 
       if(Pred.forward) {
         Pred.cutting = false;
@@ -126,7 +126,7 @@ if(Debug > 0)        System.out.println("\n Inference (d): " + current + ".pcall
 if(Debug > 0) System.out.println("\n Inference (m): ready = " + ready);
         }
       }
-Debug_times.leave(4); 
+// Debug_times.leave(4); 
 
       if (Pred.exception) {
         Pred.forward = false;
@@ -136,10 +136,10 @@ if(Debug > 0) System.out.println("\n Inference (n): ready = " + ready);
       }
 if(Debug > 0)        System.out.println("\n Inference (e): " + current + ".next = " + current.next);
 if(Debug > 0)        System.out.println("\n Inference (e): " + current + ".pcall = " + current.pcall);
-Debug_times.enter(5); 
+// Debug_times.enter(5); 
 
       if ( Pred.forward) { // succeeded
-Debug_times.enter(6); 
+// Debug_times.enter(6); 
         if ( ready ) {
           current = current.up;
 if(Debug > 0) System.out.println("\n Inference 3: current = " + current);
@@ -168,9 +168,9 @@ if(Debug > 0)              System.out.println("\n Inference: primitive called");
             }
 
           } else {               // constructed
-Debug_times.enter(2);
+// Debug_times.enter(2);
             Activation new_activation = new Activation();
-Debug_times.leave(2);
+// Debug_times.leave(2);
 if(Debug > 0)              System.out.println("\n Inference: constructed called");
             current.pcall.sub_activation = new_activation;
             new_activation.up = current;
@@ -180,9 +180,9 @@ if(Debug > 0) System.out.println("\n Inference 4: current = " + current);
             
           }  
         }
-Debug_times.leave(6); 
+// Debug_times.leave(6); 
       } else { // failed
-Debug_times.enter(7); 
+// Debug_times.enter(7); 
         if ( ready ) {
           if(!Pred.exception) {
             current = current.up;
@@ -204,15 +204,15 @@ if(Debug > 0) System.out.println("\n Inference 5: current = " + current);
           if(current != null) {
 if(Debug > 0) System.out.println("\n Inference: post_call " + 
 ((Pro_TermData_List)current.pcall.body_item.getData()).t1);
-Debug_times.enter(10); 
+// Debug_times.enter(10); 
             current.pcall.post_call();
-Debug_times.leave(10); 
+// Debug_times.leave(10); 
             if(Pred.forward) {
-Debug_times.enter(8); 
+// Debug_times.enter(8); 
               if(current.pcall.called_body != null ) {
-Debug_times.enter(2);
+// Debug_times.enter(2);
                 Activation new_activation = new Activation();
-Debug_times.leave(2);
+// Debug_times.leave(2);
 if(Debug > 0)                System.out.println("\n Inference: constructed called 2 ");
                 current.pcall.sub_activation = new_activation;
                 new_activation.up = current;
@@ -221,14 +221,14 @@ if(Debug > 0)                System.out.println("\n Inference: constructed calle
 if(Debug > 0) System.out.println("\n Inference 6: current = " + current);
               
               }
-Debug_times.leave(8); 
+// Debug_times.leave(8); 
 
             } else {
-Debug_times.enter(9); 
+// Debug_times.enter(9); 
               if(current.pcall.called_body != null ) {
-Debug_times.enter(2);
+// Debug_times.enter(2);
                 Activation new_activation = new Activation();
-Debug_times.leave(2);
+// Debug_times.leave(2);
 if(Debug > 0)                System.out.println("\n Inference: constructed called 3 ");
                 current.pcall.sub_activation = new_activation;
                 new_activation.up = current;
@@ -243,21 +243,21 @@ if(Debug > 0) System.out.println("\n Inference 7: current = " + current);
 if(Debug > 0)        System.out.println("\n Inference (f): " + current + ".next = " + current.next);
 if(Debug > 0)        System.out.println("\n Inference (f): " + current + ".pcall = " + current.pcall);
               }
-Debug_times.leave(9); 
+// Debug_times.leave(9); 
             }
 
           }
         }
-Debug_times.leave(7); 
+// Debug_times.leave(7); 
 
       }
-Debug_times.leave(5); 
+// Debug_times.leave(5); 
 
     }
     level --;
 //    if(level > 0) System.out.println("** END Inference: recursion level=" + level);
-Debug_times.leave(1);
-Debug_times.report();
+// Debug_times.leave(1);
+// Debug_times.report();
   }
 }
 

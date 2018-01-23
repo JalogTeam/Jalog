@@ -74,7 +74,7 @@ public class Pred_fetch_ extends Pred
   public void post_call()
   {
     Pro_TermData_Compound data;
-Debug_times.enter(11); 
+// Debug_times.enter(11); 
 
     called_body = null;
 
@@ -86,18 +86,18 @@ Debug_times.enter(11);
       // be happy! - so far
 
     } else { // failed, get next clause
-Debug_times.enter(13); 
+// Debug_times.enter(13); 
       trail.backtrack(Mark);
-Debug_times.leave(13); 
+// Debug_times.leave(13); 
       forward = true;
       if(cutting) {
         unified_clause = null; // no other choices considered
         cutting = false;
 // System.out.println("Pred_fetch_.post_call cutting");
       } else {
-Debug_times.enter(12); 
+// Debug_times.enter(12); 
         unified_clause = Database.fetch(factClass, prev_item, calling_term, Mark);
-Debug_times.leave(12); 
+// Debug_times.leave(12); 
 // System.out.println("Pred_fetch_.post_call unified_clause = " + unified_clause);
       }
 
@@ -127,7 +127,7 @@ Debug_times.leave(12);
       }
 
     }
-Debug_times.leave(11); 
+// Debug_times.leave(11); 
   }
 
 

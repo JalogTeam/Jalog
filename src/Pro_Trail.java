@@ -17,7 +17,7 @@ public class Pro_Trail
   void append(Pro_Term pn)
   {
     Pro_Trail_Item new_top_item;
-Debug_times.enter(22); 
+// Debug_times.enter(22); 
 //    items.add(pn);
     new_top_item = new Pro_Trail_Item();
     new_top_item.prev = top_item;
@@ -25,28 +25,28 @@ Debug_times.enter(22);
     top_item.item = pn;
     currentnum ++;
     if(currentnum > maxnum) maxnum = currentnum;
-Debug_times.leave(22); 
+// Debug_times.leave(22); 
 // System.out.println("Trail.append: " + pn);
   }
   
   void backtrack( /*Pro_Trail pBack,*/ Pro_TrailMark Mark){
     Pro_Term pn2;
-Debug_times.enter(20); 
+// Debug_times.enter(20); 
               // System.out.println("Trail.backtrack mark: " + Mark.marked);
 //	  while((!items.isEmpty()) && ((pn2 = (Pro_Term)items.lastElement()) != Mark.marked))
     while((top_item != null) && (top_item != Mark.marked))      
     {
       pn2 = top_item.item;
 // System.out.println("Trail.backtrack item: " + pn2);
-      pn2.setData(null);  // *undo unification*
-Debug_times.enter(21); 
+      pn2.clearData();  // *undo unification*
+// Debug_times.enter(21); 
       // remove top element
       top_item = top_item.prev;
       currentnum --;
 //      items.removeElement(pn2);
-Debug_times.leave(21); 
+// Debug_times.leave(21); 
     }
-Debug_times.leave(20); 
+// Debug_times.leave(20); 
   }
 
   void dump(String header)

@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Jalog
 {
-  static final String id_string="Jalog 0.1 by Ari Okkonen & Mikko Levanto 2012-02-17";
+  static final String id_string="Jalog 0.2 by Ari Okkonen & Mikko Levanto 2012-04-20";
   public static void main(String args[])
   { 
     int i;
@@ -40,8 +40,9 @@ public class Jalog
 
     if(Command_Line.program_name != null) {
       Consult.run(Command_Line.program_name);
-System.out.println("max trail: " + Pro_Trail.maxnum);
-System.out.println("last trail: " + Pro_Trail.currentnum);
+//System.out.println("created terms total: " + Pro_Term.lastId);
+//System.out.println("max trail: " + Pro_Trail.maxnum);
+//System.out.println("last trail: " + Pro_Trail.currentnum);
       if(Consult.exit_value != null) {
         /* We got exceptional exit */
 //        Pro_TermData exit_data = Consult.exit_value.data;

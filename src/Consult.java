@@ -22,7 +22,7 @@ public class Consult
       try {
         file1 = new RandomAccessFile(FileName,"r");
       } catch (Exception e) {
-        System.out.println(e);
+        System.out.println("*** Error: " + e);
         file1 = null;
         exit_value = Pro_Term.m_integer(1); // File not found
       }
@@ -32,7 +32,7 @@ public class Consult
             line = file1.readLine();
             LineNmbr = LineNmbr + 1;
           } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("*** Error: " + e);
             line = null;
           }
           if (line != null) {
