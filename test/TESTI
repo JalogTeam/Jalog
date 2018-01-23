@@ -1,0 +1,17 @@
+DOMAINS
+  data = x(data)
+  
+DATABASE
+  info(data)
+  
+PREDICATES
+
+GOAL
+  write("1\n"),inkey(_),
+  
+  A = x(B),
+  write("2\n"),inkey(_),
+  A = B,
+  write("3\n"),inkey(_),
+  assert(info(A)),
+  write("joo\n"),inkey(_).

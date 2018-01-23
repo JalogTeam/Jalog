@@ -1,0 +1,25 @@
+Problems
+========
+
+
+
+
+Tarkista
+========
+
+* Tarvitaanko FactClass -> Cursor pointteria?
+
+* Pro_Term.compval - pitäisikö olla lähtötiedon metodi eikä tulostiedon metodi... 
+
+Pitäis tehdä
+============
+
+* Primitive opsien sotkeminen omilla asserteilla ja consulteilla ehkä 
+  pitäisi kieltää.
+
+* Aritmeettiset overflowt pitäisi hoitaa
+
+* Ylipäänsä exception mekanismi
+
+
+
