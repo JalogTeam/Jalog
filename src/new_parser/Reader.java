@@ -1,5 +1,7 @@
 // Reader.java
 import java.io.*;
+import java.util.Stack;
+import java.util.Vector;
 
 public class Reader
 {
@@ -7,10 +9,15 @@ public class Reader
 
   static void run(String FileName)
   {
-    exit_value = null;
-    Parser Pr1 = new Parser(Parser.CLAUSE);
-    Pro_Term T;
+    String action;
+    Stack<Pro_Term> term_stack = new Stack<Pro_Term>();
+    Stack<Vector<Pro_Term>> termList_stack = new Stack<Vector<Pro_Term>>();
+    Vector<Pro_Term> termList = new Vector<Pro_Term>();
+    Pro_Term T, term = null, term_out;
     Pro_Term[] Apu = new Pro_Term[10];
+
+    exit_value = null;
+    JalogParser Pr1 = new JalogParser(JalogSyntax.CLAUSES);
     int ApuCnt = 0;
     String line;
     RandomAccessFile file1;
@@ -35,17 +42,37 @@ public class Reader
             System.out.println("*** Error: " + e);
             line = null;
           }
-          if (line != null) {
   // System.out.println("");
-  // System.out.println("Line: " + line);
-            Pr1.SetString(line);
-          } else {
-            Pr1.SetEOF();
-  // System.out.println("Reader:EOF");
-          }
+   System.out.println("Line: " + line);
+          Pr1.setLine(line);
+          
           do
           {
   // System.out.println("   ---");
+            Pr1.advance();
+            action = Pr1.action;
+     System.out.println("action: " + action);
+     
+            if (action == JalogSyntax.SYM) {
+              term = 
+                  Pro_Term.m_compound(Pr1.sValue(),new Pro_Term[0]);
+     System.out.println("term: " + term);
+     
+            } else if (action == JalogSyntax.BGN_STRUCT) {
+              termList = new Vector();
+              term = 
+                  Pro_Term.m_compound(Pr1.sValue(),new Pro_Term[0]);
+     System.out.println("term: " + term);
+     
+              
+            } else if (action == JalogSyntax.END_CLAUSE) {
+              term_out = Pro_Term.EMPTY_LIST; // !!!!
+              Pro_Term[] operands = {term,term_out};
+              term_out = Pro_Term.m_compound(":-",operands);
+     System.out.println("term: " + term_out);
+
+            }
+  /*
             T = Pr1.NextPart();
             if(Pr1.Error != 0)
             {
@@ -72,7 +99,8 @@ public class Reader
               Apu[ApuCnt] = T;
               ApuCnt++;
             }
-          } while(T != null);
+*/            
+          } while(action != Syntax.EOL && action != Syntax.COMPLETE);
         } while (line != null);
       }
 //System.out.println("Consulted");
