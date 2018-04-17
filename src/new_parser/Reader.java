@@ -2,18 +2,24 @@
 import java.io.*;
 import java.util.Stack;
 import java.util.Vector;
+import java.util.Hashtable;
 
 public class Reader
 {
   static Pro_Term exit_value = null;
+  static Pro_Term[] Pro_Term_empty = new Pro_Term[0];
 
   static void run(String FileName)
   {
     String action;
     Stack<Pro_Term> term_stack = new Stack<Pro_Term>();
+    Pro_Term T, term = null, term_out;
     Stack<Vector<Pro_Term>> termList_stack = new Stack<Vector<Pro_Term>>();
     Vector<Pro_Term> termList = new Vector<Pro_Term>();
-    Pro_Term T, term = null, term_out;
+    Stack<String> functor_stack = new Stack<String>();
+    String functor = "???";
+    Hashtable varSymTab = new Hashtable();
+    String varname;
     Pro_Term[] Apu = new Pro_Term[10];
 
     exit_value = null;
@@ -59,18 +65,43 @@ public class Reader
      System.out.println("term: " + term);
      
             } else if (action == JalogSyntax.BGN_STRUCT) {
+              functor_stack.push(functor);
+              termList_stack.push(termList);
               termList = new Vector();
+              functor = Pr1.sValue();
+            } else if (action == JalogSyntax.END_STRUCT) {
               term = 
-                  Pro_Term.m_compound(Pr1.sValue(),new Pro_Term[0]);
+                  Pro_Term.m_compound(functor, 
+                    termList.toArray(Pro_Term_empty));
      System.out.println("term: " + term);
-     
+              termList = termList_stack.pop();
+              functor = functor_stack.pop();
+            } else if (action == JalogSyntax.BGN_ARG) {
               
+            } else if (action == JalogSyntax.END_ARG) {
+              termList.add(term);
+
+            } else if (action == JalogSyntax.BGN_CLAUSE) {
+              varSymTab.clear();
             } else if (action == JalogSyntax.END_CLAUSE) {
               term_out = Pro_Term.EMPTY_LIST; // !!!!
               Pro_Term[] operands = {term,term_out};
               term_out = Pro_Term.m_compound(":-",operands);
      System.out.println("term: " + term_out);
 
+            } else if (action == JalogSyntax.VARIABLE) {
+              varname = Pr1.sValue();
+              if (varname.equals("_")) {
+                term = Pro_Term.m_open();
+              } else {
+                term = (Pro_Term)varSymTab.get(varname);
+                if (term == null) 
+                {
+                  term = Pro_Term.m_open();
+                  varSymTab.put(varname, term);
+                }
+                
+              }
             }
   /*
             T = Pr1.NextPart();

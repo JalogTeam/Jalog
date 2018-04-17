@@ -1,15 +1,20 @@
-Projektitilanne 2018-02-20
+Projektitilanne 2018-04-17
 
 Vanhan parserin toimiva testiympäristö on
 src\old_parser
 Toimiva testiohjelma on Reader_Test.java
+Esimerkkikäännös
+> javac 
 Esimerkkisuoritus
 > java Reader_Test TestData\TestData3.pro
 Tulokset:
 test_result.txt
 
 Seuraava vaihe:
-1. Uusi testiympäristö: src\new_parser
+1. Testiympäristö: src\new_parser
 2. Sitten vaan editoimaan ja debuggaamaan. Tavoite, että testeri antaa
    muuten saman tuloksen, paitsi hyväksyy jatketun stringin.
+3. Lisätään operaatioita Reader.java komponenttiin puuttuvien actioneitten
+   käsittelemiseen.
+  
    
