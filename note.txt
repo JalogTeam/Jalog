@@ -16,5 +16,8 @@ Seuraava vaihe:
    muuten saman tuloksen, paitsi hyv‰ksyy jatketun stringin.
 3. Lis‰t‰‰n operaatioita Reader.java komponenttiin puuttuvien actioneitten
    k‰sittelemiseen.
-  
    
+4. Nyt tulee clauseen kuuluva :- -operaattori kahdesti.
+  
+5. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
+   toString-operaatiossa. V‰liaikainen ratkaisu.

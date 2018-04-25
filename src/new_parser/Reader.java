@@ -16,11 +16,10 @@ public class Reader
     Pro_Term T, term = null, term_out;
     Stack<Vector<Pro_Term>> termList_stack = new Stack<Vector<Pro_Term>>();
     Vector<Pro_Term> termList = new Vector<Pro_Term>();
-    Stack<String> functor_stack = new Stack<String>();
-    String functor = "???";
     Hashtable varSymTab = new Hashtable();
     String varname;
     Pro_Term[] Apu = new Pro_Term[10];
+    Pro_Term[] operands; 
 
     exit_value = null;
     JalogParser Pr1 = new JalogParser(JalogSyntax.CLAUSES);
@@ -28,6 +27,7 @@ public class Reader
     String line;
     RandomAccessFile file1;
     int LineNmbr = 0;
+    Pro_TermData_Compound tC;
 
     /*try*/ {
     
@@ -61,21 +61,20 @@ public class Reader
      
             if (action == JalogSyntax.SYM) {
               term = 
-                  Pro_Term.m_compound(Pr1.sValue(),new Pro_Term[0]);
+                  Pro_Term.m_compound(Pr1.sValue(),Pro_Term_empty);
      System.out.println("term: " + term);
-     
             } else if (action == JalogSyntax.BGN_STRUCT) {
-              functor_stack.push(functor);
+              term = 
+                  Pro_Term.m_compound(Pr1.sValue(),Pro_Term_empty);
               termList_stack.push(termList);
               termList = new Vector();
-              functor = Pr1.sValue();
+              term_stack.push(term);
             } else if (action == JalogSyntax.END_STRUCT) {
-              term = 
-                  Pro_Term.m_compound(functor, 
-                    termList.toArray(Pro_Term_empty));
-     System.out.println("term: " + term);
+              term = term_stack.pop();
+              tC = (Pro_TermData_Compound)term.getData();
+              tC.subterm = termList.toArray(Pro_Term_empty);
+              tC.arity = (byte)tC.subterm.length;
               termList = termList_stack.pop();
-              functor = functor_stack.pop();
             } else if (action == JalogSyntax.BGN_ARG) {
               
             } else if (action == JalogSyntax.END_ARG) {
@@ -84,8 +83,9 @@ public class Reader
             } else if (action == JalogSyntax.BGN_CLAUSE) {
               varSymTab.clear();
             } else if (action == JalogSyntax.END_CLAUSE) {
-              term_out = Pro_Term.EMPTY_LIST; // !!!!
-              Pro_Term[] operands = {term,term_out};
+              operands = new Pro_Term[2];
+              operands[0] = term;
+              operands[1] = Pro_Term.EMPTY_LIST;
               term_out = Pro_Term.m_compound(":-",operands);
      System.out.println("term: " + term_out);
 
@@ -102,7 +102,21 @@ public class Reader
                 }
                 
               }
+            } else if (action == JalogSyntax.BGN_BINOP){
+              operands = new Pro_Term[2];
+              operands[0] = term;
+              term = 
+                  Pro_Term.m_compound(Pr1.sValue(),operands);
+              term_stack.push(term);
+              
+            } else if (action == JalogSyntax.END_BINOP){
+              T = term;
+              term = term_stack.pop();
+              
+              tC = (Pro_TermData_Compound)term.getData();
+              tC.subterm[1] = T;
             }
+
   /*
             T = Pr1.NextPart();
             if(Pr1.Error != 0)

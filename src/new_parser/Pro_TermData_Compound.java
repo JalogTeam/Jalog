@@ -16,10 +16,15 @@ public class Pro_TermData_Compound extends Pro_TermData
     subterm = iniSubterm;
   }
 
+// to detect loops
+static int depth = 0;
+  
   public String toString()
   {
+depth ++;
     if(arity == 0)
     {
+depth --;
       return name+"()";
     }
     else
@@ -39,9 +44,14 @@ public class Pro_TermData_Compound extends Pro_TermData
         }
         else
         {
+if(depth > 5) {
+          params += "...";
+}else {
           params += subterm[i].toString();
+}
         }
       }
+depth --;
       return name + "(" + params + ")";
     }
   }
