@@ -20,4 +20,8 @@ Seuraava vaihe:
 4. Nyt tulee clauseen kuuluva :- -operaattori kahdesti.
   
 5. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
-   toString-operaatiossa. Väliaikainen ratkaisu.
+   toString-operaatiossa. Väliaikainen ratkaisu. 
+
+6. Bodystä pitää tehdä Pro_TermData_List.
+
+7. Vaihdetaan ITEM -> SUBGOAL

@@ -44,7 +44,7 @@ depth --;
         }
         else
         {
-if(depth > 5) {
+if(depth > 10) {
           params += "...";
 }else {
           params += subterm[i].toString();

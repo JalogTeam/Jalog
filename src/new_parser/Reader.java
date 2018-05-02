@@ -20,6 +20,7 @@ public class Reader
     String varname;
     Pro_Term[] Apu = new Pro_Term[10];
     Pro_Term[] operands; 
+    long ivalue;
 
     exit_value = null;
     JalogParser Pr1 = new JalogParser(JalogSyntax.CLAUSES);
@@ -67,14 +68,19 @@ public class Reader
               term = 
                   Pro_Term.m_compound(Pr1.sValue(),Pro_Term_empty);
               termList_stack.push(termList);
+System.out.println("Push termList:" + termList.size());
               termList = new Vector();
               term_stack.push(term);
+System.out.println("Push term:" + term.Id);
+              term = null;
             } else if (action == JalogSyntax.END_STRUCT) {
               term = term_stack.pop();
+System.out.println("Pop term:" + term.Id);
               tC = (Pro_TermData_Compound)term.getData();
               tC.subterm = termList.toArray(Pro_Term_empty);
               tC.arity = (byte)tC.subterm.length;
               termList = termList_stack.pop();
+System.out.println("Pop termList:" + termList.size());
             } else if (action == JalogSyntax.BGN_ARG) {
               
             } else if (action == JalogSyntax.END_ARG) {
@@ -89,6 +95,24 @@ public class Reader
               term_out = Pro_Term.m_compound(":-",operands);
      System.out.println("term: " + term_out);
 
+     
+            } else if (action == JalogSyntax.BGN_BODY) {
+              
+            } else if (action == JalogSyntax.END_BODY) {
+              operands = new Pro_Term[2];
+              operands[0] = term;
+              operands[1] = Pro_Term.EMPTY_LIST;
+              term_out = Pro_Term.m_compound(":-",operands);
+     System.out.println("term: " + term_out);
+
+            } else if (action == JalogSyntax.BGN_ITEM) {
+              
+            } else if (action == JalogSyntax.END_ITEM) {
+     
+     
+     
+     
+     
             } else if (action == JalogSyntax.VARIABLE) {
               varname = Pr1.sValue();
               if (varname.equals("_")) {
@@ -102,16 +126,29 @@ public class Reader
                 }
                 
               }
+              
+              
+              
+            } else if (action == JalogSyntax.INT) {
+              ivalue = Pr1.iValue();
+              if (ivalue < 0) {
+                System.out.println( "ERROR: negative iValue");
+              }
+              term = Pro_Term.m_integer(ivalue);
+System.out.println("Integer: " + term.Id + " " + ivalue);         
             } else if (action == JalogSyntax.BGN_BINOP){
               operands = new Pro_Term[2];
               operands[0] = term;
               term = 
                   Pro_Term.m_compound(Pr1.sValue(),operands);
               term_stack.push(term);
-              
+System.out.println("Push term:" + term.Id + ": " + operands[0].Id + " " + 
+    Pr1.sValue());
+              term = null;
             } else if (action == JalogSyntax.END_BINOP){
               T = term;
               term = term_stack.pop();
+System.out.println("Pop term:" + term.Id);
               
               tC = (Pro_TermData_Compound)term.getData();
               tC.subterm[1] = T;
