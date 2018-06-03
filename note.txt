@@ -1,10 +1,10 @@
-Projektitilanne 2018-04-17
+Projektitilanne 2018-03-03
 
 Vanhan parserin toimiva testiympäristö on
 src\old_parser
 Toimiva testiohjelma on Reader_Test.java
-Esimerkkikäännös
-> javac 
+Esimerkkikäännös (täysi)
+> javac Reader_Test.java
 Esimerkkisuoritus
 > java Reader_Test TestData\TestData3.pro
 Tulokset:
@@ -22,6 +22,4 @@ Seuraava vaihe:
 5. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
    toString-operaatiossa. Väliaikainen ratkaisu. 
 
-6. Bodystä pitää tehdä Pro_TermData_List.
-
-7. Vaihdetaan ITEM -> SUBGOAL
+6. Vaihdetaan ITEM -> SUBGOAL

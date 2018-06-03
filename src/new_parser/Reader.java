@@ -20,6 +20,8 @@ public class Reader
     String varname;
     Pro_Term[] Apu = new Pro_Term[10];
     Pro_Term[] operands; 
+    Pro_Term old_last, new_last;
+    Pro_TermData_List new_last_data;
     long ivalue;
 
     exit_value = null;
@@ -97,22 +99,40 @@ System.out.println("Pop termList:" + termList.size());
 
      
             } else if (action == JalogSyntax.BGN_BODY) {
+              // dummy for begin of subgoal list
+              new_last_data = new Pro_TermData_List(null, null);
+              new_last = new Pro_Term(new_last_data);              
+              term_stack.push(new_last); // subgoal list begin pointer
+              term_stack.push(new_last); // subgoal list end pointer
+            
               
             } else if (action == JalogSyntax.END_BODY) {
-              operands = new Pro_Term[2];
+              // pop old last 
+              old_last = term_stack.pop();
+              // link empty to old
+              ((Pro_TermData_List)old_last.getData()).t2 = Pro_Term.EMPTY_LIST;
+              // pop begin of list
+              term = ((Pro_TermData_List)term_stack.pop().getData()).t2;
+/*
+            operands = new Pro_Term[2];
               operands[0] = term;
               operands[1] = Pro_Term.EMPTY_LIST;
               term_out = Pro_Term.m_compound(":-",operands);
-     System.out.println("term: " + term_out);
+*/
+     System.out.println("term: " + term);
 
             } else if (action == JalogSyntax.BGN_ITEM) {
               
             } else if (action == JalogSyntax.END_ITEM) {
-     
-     
-     
-     
-     
+              // create new list term item
+              new_last_data = new Pro_TermData_List(term, null);
+              new_last = new Pro_Term(new_last_data);
+              // pop old last 
+              old_last = term_stack.pop();
+              // link new to old
+              ((Pro_TermData_List)old_last.getData()).t2 = new_last;
+              // push new last
+              term_stack.push(new_last);
             } else if (action == JalogSyntax.VARIABLE) {
               varname = Pr1.sValue();
               if (varname.equals("_")) {
@@ -152,6 +172,21 @@ System.out.println("Pop term:" + term.Id);
               
               tC = (Pro_TermData_Compound)term.getData();
               tC.subterm[1] = T;
+            } else if (action == JalogSyntax.BGN_UNOP) {
+              operands = new Pro_Term[1];
+              term = 
+                  Pro_Term.m_compound(Pr1.sValue(),operands);
+              term_stack.push(term);
+System.out.println("Push term:" + term.Id + ": " + 
+    Pr1.sValue());
+              term = null;
+            } else if (action == JalogSyntax.END_UNOP) {
+              T = term;
+              term = term_stack.pop();
+System.out.println("Pop term:" + term.Id);
+              
+              tC = (Pro_TermData_Compound)term.getData();
+              tC.subterm[0] = T;
             }
 
   /*
