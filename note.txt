@@ -1,4 +1,4 @@
-Projektitilanne 2018-03-03
+Projektitilanne 2018-06-13
 
 Vanhan parserin toimiva testiympäristö on
 src\old_parser
@@ -17,9 +17,7 @@ Seuraava vaihe:
 3. Lisätään operaatioita Reader.java komponenttiin puuttuvien actioneitten
    käsittelemiseen.
    
-4. Nyt tulee clauseen kuuluva :- -operaattori kahdesti.
-  
-5. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
+4. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
    toString-operaatiossa. Väliaikainen ratkaisu. 
 
-6. Vaihdetaan ITEM -> SUBGOAL
+5. Vaihdetaan ITEM -> SUBGOAL

@@ -22,6 +22,7 @@ public class Reader
     Pro_Term[] operands; 
     Pro_Term old_last, new_last;
     Pro_TermData_List new_last_data;
+    Pro_TermData data;
     long ivalue;
 
     exit_value = null;
@@ -91,10 +92,22 @@ System.out.println("Pop termList:" + termList.size());
             } else if (action == JalogSyntax.BGN_CLAUSE) {
               varSymTab.clear();
             } else if (action == JalogSyntax.END_CLAUSE) {
-              operands = new Pro_Term[2];
-              operands[0] = term;
-              operands[1] = Pro_Term.EMPTY_LIST;
-              term_out = Pro_Term.m_compound(":-",operands);
+              data = term.getData();
+              if (( data instanceof Pro_TermData_Compound ) && (":-".equals(((Pro_TermData_Compound)data).name))) {
+                 if (((Pro_TermData_Compound)data).arity == 1) {
+                  operands = new Pro_Term[2];
+                  operands[0] = null;
+                  operands[1] = ((Pro_TermData_Compound)data).subterm[0];
+                  ((Pro_TermData_Compound)data).arity = 2;
+                  ((Pro_TermData_Compound)data).subterm = operands;
+                }
+                term_out = term;
+              } else {
+                operands = new Pro_Term[2];
+                operands[0] = term;
+                operands[1] = Pro_Term.EMPTY_LIST;
+                term_out = Pro_Term.m_compound(":-",operands);
+              }
      System.out.println("term: " + term_out);
 
      
