@@ -21,3 +21,6 @@ Seuraava vaihe:
    toString-operaatiossa. Väliaikainen ratkaisu. 
 
 5. Vaihdetaan ITEM -> SUBGOAL
+
+NYT:
+TestData4.pro - rivi 5, ei osaa käsitellä listoja alkaen empty_list...

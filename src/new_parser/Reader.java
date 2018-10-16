@@ -24,6 +24,7 @@ public class Reader
     Pro_TermData_List new_last_data;
     Pro_TermData data;
     long ivalue;
+    String svalue;
 
     exit_value = null;
     JalogParser Pr1 = new JalogParser(JalogSyntax.CLAUSES);
@@ -169,6 +170,11 @@ System.out.println("Pop termList:" + termList.size());
               }
               term = Pro_Term.m_integer(ivalue);
 System.out.println("Integer: " + term.Id + " " + ivalue);         
+            } else if (action == JalogSyntax.CHAR) {
+              ivalue = Pr1.iValue();
+              svalue = Pr1.sValue();
+              term = Pro_Term.m_char((char)ivalue);
+System.out.println("Character: " + term.Id + " '" + svalue + "'");         
             } else if (action == JalogSyntax.BGN_BINOP){
               operands = new Pro_Term[2];
               operands[0] = term;
