@@ -6,16 +6,15 @@ Toimiva testiohjelma on Reader_Test.java
 Esimerkkikäännös (täysi)
 > javac Reader_Test.java
 Esimerkkisuoritus
-> java Reader_Test TestData\TestData3.pro
-Tulokset:
-test_result.txt
+> java Reader_Test TestData\TestData7.pro
 
 Seuraava vaihe:
 1. Testiympäristö: src\new_parser
-2. Sitten vaan editoimaan ja debuggaamaan. Tavoite, että testeri antaa
-   muuten saman tuloksen, paitsi hyväksyy jatketun stringin.
-3. Lisätään operaatioita Reader.java komponenttiin puuttuvien actioneitten
-   käsittelemiseen.
+
+2. Reader.java poikki siten, että tiedoston luku on kutsuvalla puolella.
+   Näin sitä voi käyttää stringinä tms. talletetulla ohjelmalla.
+   
+3. Integroidaan ajoengineen ja katsotaan, mitä tapahtuu.
    
 4. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
    toString-operaatiossa. Väliaikainen ratkaisu. 
@@ -23,4 +22,4 @@ Seuraava vaihe:
 5. Vaihdetaan ITEM -> SUBGOAL
 
 NYT:
-TestData4.pro - rivi 5, ei osaa käsitellä listoja alkaen empty_list...
+SUDOKU.PRO menee läpi parserista
