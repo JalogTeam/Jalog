@@ -1,0 +1,248 @@
+* TOKENS
+| 0
+= !INT 0 [0 .. 0] INT |0|
+= !EOL [1 .. 1] EOL ||
+= !EOL [1 .. 1] EOL ||
+| 1 
+= !INT 1 [0 .. 0] INT |1|
+= !EOL [2 .. 2] EOL ||
+= [2 .. 2] EOL ||
+| 
+= !EOL [0 .. 0] EOL ||
+= !EOL [0 .. 0] EOL ||
+|  
+= !EOL [1 .. 1] EOL ||
+= !EOL [1 .. 1] EOL ||
+|  
+= !EOL [1 .. 1] EOL ||
+= !EOL [1 .. 1] EOL ||
+| 0$@@@1
+= !INT 0 [0 .. 0] INT |0|
+= !ERR [1] [1 .. 1] ERR |$|
+= !ERR [2] [2 .. 2] ERR |@|
+= !ERR [3] [3 .. 3] ERR |@|
+= !ERR [4] [4 .. 4] ERR |@|
+= !INT 1 [5 .. 5] INT |1|
+= !EOL [6 .. 6] EOL ||
+= !EOL [6 .. 6] EOL ||
+| ,;.=*//***//[]|<<==>>==!!==!$,$0$00$1$01$123$1A$A1$1a$a1$1g % kommentti
+= !COMMA [0 .. 0] COMMA |,|
+= !SEMICOLON [1 .. 1] SEMICOLON |;|
+= !POINT [2 .. 2] POINT |.|
+= !EQ [3 .. 3] EQ |=|
+= !STAR [4 .. 4] STAR |*|
+= !SLASH [5 .. 5] SLASH |/|
+= !SLASH [11 .. 11] SLASH |/|
+= !LBRAK [12 .. 12] LBRAK |[|
+= !RBRAK [13 .. 13] RBRAK |]|
+= !VBAR [14 .. 14] VBAR |||
+= !LT [15 .. 15] LT |<|
+= !LE [16 .. 17] LE |<=|
+= !EQ [18 .. 18] EQ |=|
+= !GT [19 .. 19] GT |>|
+= !GE [20 .. 21] GE |>=|
+= !EQ [22 .. 22] EQ |=|
+= !CUT [23 .. 23] CUT |!|
+= !NE [24 .. 25] NE |!=|
+= !EQ [26 .. 26] EQ |=|
+= !CUT [27 .. 27] CUT |!|
+= !ERR [28] [28 .. 28] ERR |$|
+= !COMMA [29 .. 29] COMMA |,|
+= !INT 0 [30 .. 31] INT |$0|
+= !INT 0 [32 .. 34] INT |$00|
+= !INT 1 [35 .. 36] INT |$1|
+= !INT 1 [37 .. 39] INT |$01|
+= !INT 291 [40 .. 43] INT |$123|
+= !INT 26 [44 .. 46] INT |$1A|
+= !INT 161 [47 .. 49] INT |$A1|
+= !INT 26 [50 .. 52] INT |$1a|
+= !INT 161 [53 .. 55] INT |$a1|
+= !INT 1 [56 .. 57] INT |$1|
+= !NAME g [58 .. 58] NAME |g|
+= !EOL [60 .. 71] EOL |% kommentti|
+= !EOL [60 .. 71] EOL |% kommentti|
+| 0 1 9 10 11 12 13 1. 2+ -3 1e2 1e-2 1.1 1.2e3 -()+ /* monta
+= !INT 0 [0 .. 0] INT |0|
+= !INT 1 [2 .. 2] INT |1|
+= !INT 9 [4 .. 4] INT |9|
+= !INT 10 [6 .. 7] INT |10|
+= !INT 11 [9 .. 10] INT |11|
+= !INT 12 [12 .. 13] INT |12|
+= !INT 13 [15 .. 16] INT |13|
+= !INT 1 [18 .. 18] INT |1|
+= !POINT [19 .. 19] POINT |.|
+= !INT 2 [21 .. 21] INT |2|
+= !PLUS [22 .. 22] PLUS |+|
+= !MINUS [24 .. 24] MINUS |-|
+= !INT 3 [25 .. 25] INT |3|
+= !REAL 100.0 [27 .. 29] REAL |1e2|
+= !REAL 0.01 [31 .. 34] REAL |1e-2|
+= !REAL 1.1 [36 .. 38] REAL |1.1|
+= !REAL 1200.0 [40 .. 44] REAL |1.2e3|
+= !MINUS [46 .. 46] MINUS |-|
+= !LPAR [47 .. 47] LPAR |(|
+= !RPAR [48 .. 48] RPAR |)|
+= !PLUS [49 .. 49] PLUS |+|
+= !EOL [51 .. 59] EOL |/* monta|
+= !EOL [51 .. 59] EOL |/* monta|
+| riviä
+= !EOL [0 .. 6] EOL |riviä|
+= !EOL [0 .. 6] EOL |riviä|
+| pitkä
+= !EOL [0 .. 6] EOL |pitkä|
+= !EOL [0 .. 6] EOL |pitkä|
+| 
+= !EOL [0 .. 0] EOL ||
+= !EOL [0 .. 0] EOL ||
+| kommentti */
+= !EOL [12 .. 12] EOL ||
+= !EOL [12 .. 12] EOL ||
+| a A z Z _ aa aA Aa AA a9 A9 a0A goal
+= !NAME a [0 .. 0] NAME |a|
+= !VARIABLE A [2 .. 2] VARIABLE |A|
+= !NAME z [4 .. 4] NAME |z|
+= !VARIABLE Z [6 .. 6] VARIABLE |Z|
+= !OPEN [8 .. 8] OPEN |_|
+= !NAME aa [10 .. 11] NAME |aa|
+= !NAME aA [13 .. 14] NAME |aA|
+= !VARIABLE Aa [16 .. 17] VARIABLE |Aa|
+= !VARIABLE AA [19 .. 20] VARIABLE |AA|
+= !NAME a9 [22 .. 23] NAME |a9|
+= !VARIABLE A9 [25 .. 26] VARIABLE |A9|
+= !NAME a0A [28 .. 30] NAME |a0A|
+= !GOAL_ [32 .. 35] GOAL_ |goal|
+= !EOL [36 .. 36] EOL ||
+= !EOL [36 .. 36] EOL ||
+| 'a' '\n' '\'' '\\' '\"' '"' 'A' '\x42' '\u0043' '\U00000044' '+'-' /* taas
+= !CHAR $61 [0 .. 2] CHAR |'a'|
+= !CHAR $a [4 .. 7] CHAR |'\n'|
+= !CHAR $27 [9 .. 12] CHAR |'\''|
+= !CHAR $5c [14 .. 17] CHAR |'\\'|
+= !CHAR $22 [19 .. 22] CHAR |'\"'|
+= !CHAR $22 [24 .. 26] CHAR |'"'|
+= !CHAR $41 [28 .. 30] CHAR |'A'|
+= !CHAR $42 [32 .. 37] CHAR |'\x42'|
+= !CHAR $43 [39 .. 46] CHAR |'\u0043'|
+= !CHAR $44 [48 .. 59] CHAR |'\U00000044'|
+= !CHAR $2b [61 .. 63] CHAR |'+'|
+= !MINUS [64 .. 64] MINUS |-|
+= !ERR [65] [65 .. 66] ERR |' |
+= !EOL [67 .. 74] EOL |/* taas|
+= !EOL [67 .. 74] EOL |/* taas|
+| kommentti */ "a\n\'\\\"'A\x42\u0043 '", "ei % kommentti", "loppu puuttuu
+= !STRING "a\n'\\\"'ABC '" [13 .. 37] STRING |"a\n\'\\\"'A\x42\u0043 '"|
+= !COMMA [38 .. 38] COMMA |,|
+= !STRING "ei % kommentti" [40 .. 55] STRING |"ei % kommentti"|
+= !COMMA [56 .. 56] COMMA |,|
+= !ERR [58] [58 .. 71] ERR |"loppu puuttuu|
+= !EOL [72 .. 72] EOL ||
+= !EOL [72 .. 72] EOL ||
+| % kommenttirivi
+= !EOL [0 .. 15] EOL |% kommenttirivi|
+= !EOL [0 .. 15] EOL |% kommenttirivi|
+| "",
+= !STRING "" [0 .. 1] STRING |""|
+= !COMMA [2 .. 2] COMMA |,|
+= !EOL [3 .. 3] EOL ||
+= !EOL [3 .. 3] EOL ||
+| "a\u0062\u00e7",
+= !STRING "ab\u00E7" [0 .. 14] STRING |"a\u0062\u00e7"|
+= !COMMA [15 .. 15] COMMA |,|
+= !EOL [16 .. 16] EOL ||
+= !EOL [16 .. 16] EOL ||
+| "\u0110\U00000065\U00000192" "\U00010010\U0002f804",
+= !STRING "\u0110e\u0192" [0 .. 27] STRING |"\u0110\U00000065\U00000192"|
+= !STRING "\U00010010\U0002F804" [29 .. 50] STRING |"\U00010010\U0002f804"|
+= [51 .. 51] COMMA |,|
+= !EOL [52 .. 52] EOL ||
+= !EOL [52 .. 52] EOL ||
+| "a\u62\ue7\u110\U65\U192" "\U10010\U2f804",
+= !STRING "ab\u00E7\u0110e\u0192" [0 .. 24] STRING |"a\u62\ue7\u110\U65\U192"|
+= !STRING "\U00010010\U0002F804" [26 .. 41] STRING |"\U10010\U2f804"|
+= !COMMA [42 .. 42] COMMA |,|
+= !EOL [43 .. 43] EOL ||
+= !EOL [43 .. 43] EOL ||
+| "\x61" "\u0062" "\U00000063".
+= !STRING "a" [0 .. 5] STRING |"\x61"|
+= !STRING "b" [7 .. 14] STRING |"\u0062"|
+= !STRING "c" [16 .. 27] STRING |"\U00000063"|
+= !POINT [28 .. 28] POINT |.|
+= !EOL [29 .. 29] EOL ||
+= !EOL [29 .. 29] EOL ||
+| 'a''\u62''\ue7''\u110''\U65''\U192''\U10010''\U2f804'
+= !CHAR $61 [0 .. 2] CHAR |'a'|
+= !CHAR $62 [3 .. 8] CHAR |'\u62'|
+= !CHAR $e7 [9 .. 14] CHAR |'\ue7'|
+= !CHAR $110 [15 .. 21] CHAR |'\u110'|
+= !CHAR $65 [22 .. 27] CHAR |'\U65'|
+= !CHAR $192 [28 .. 34] CHAR |'\U192'|
+= !CHAR $10010 [35 .. 43] CHAR |'\U10010'|
+= !CHAR $2f804 [44 .. 52] CHAR |'\U2f804'|
+= !EOL [53 .. 53] EOL ||
+= !EOL [53 .. 53] EOL ||
+| '\''''''''
+= !CHAR $27 [0 .. 3] CHAR |'\''|
+= !CHAR $27 [4 .. 6] CHAR |'''|
+= !CHAR $27 [7 .. 9] CHAR |'''|
+= !EOL [10 .. 10] EOL ||
+= !EOL [10 .. 10] EOL ||
+| -123
+= !MINUS [0 .. 0] MINUS |-|
+= !INT 123 [1 .. 3] INT |123|
+= !EOL [4 .. 4] EOL ||
+= !EOL [4 .. 4] EOL ||
+| 9223372036854775807
+= !INT 9223372036854775807 [0 .. 18] INT |9223372036854775807|
+= !EOL [19 .. 19] EOL ||
+= !EOL [19 .. 19] EOL ||
+| 9223372036854775808
+= !INT # 9223372036854775808 [0 .. 18] INT |9223372036854775808|
+= !EOL [19 .. 19] EOL ||
+= !EOL [19 .. 19] EOL ||
+| 9223372036854775810
+= !INT * 9.223372036854776E18 [0 .. 18] INT |9223372036854775810|
+= !EOL [19 .. 19] EOL ||
+= !EOL [19 .. 19] EOL ||
+| 9223372036854775811
+= !INT * 9.223372036854776E18 [0 .. 18] INT |9223372036854775811|
+= !EOL [19 .. 19] EOL ||
+= !EOL [19 .. 19] EOL ||
+| 9223372036854776832
+= !INT * 9.223372036854776E18 [0 .. 18] INT |9223372036854776832|
+= !EOL [19 .. 19] EOL ||
+= !EOL [19 .. 19] EOL ||
+| 9223372036854776833
+= !INT * 9.223372036854778E18 [0 .. 18] INT |9223372036854776833|
+= !EOL [19 .. 19] EOL ||
+= !EOL [19 .. 19] EOL ||
+| $7FFFFFFFFFFFFFFF
+= !INT 9223372036854775807 [0 .. 16] INT |$7FFFFFFFFFFFFFFF|
+= !EOL [17 .. 17] EOL ||
+= !EOL [17 .. 17] EOL ||
+| $8000000000000000
+= !INT # 9223372036854775808 [0 .. 16] INT |$8000000000000000|
+= !EOL [17 .. 17] EOL ||
+= !EOL [17 .. 17] EOL ||
+| $8000000000000001
+= !INT * 9.223372036854776E18 [0 .. 16] INT |$8000000000000001|
+= !EOL [17 .. 17] EOL ||
+= !EOL [17 .. 17] EOL ||
+| $8000000000000400
+= !INT * 9.223372036854776E18 [0 .. 16] INT |$8000000000000400|
+= !EOL [17 .. 17] EOL ||
+= !EOL [17 .. 17] EOL ||
+| $8000000000000401
+= !INT * 9.223372036854778E18 [0 .. 16] INT |$8000000000000401|
+= !EOL [17 .. 17] EOL ||
+= !EOL [17 .. 17] EOL ||
+| : :- /* kommentti ei lopu
+= !ERR [0] [0 .. 0] ERR |:|
+= !IFSYM [2 .. 3] IFSYM |:-|
+= !EOL [5 .. 25] EOL |/* kommentti ei lopu|
+= !EOL [5 .. 25] EOL |/* kommentti ei lopu|
++ EOF
+= !ERR [0] [0 .. 0] ERR ||
+= !EOF [0 .. 0] EOF ||
+= !complete [0 .. 0] EOF ||
+= !complete [0 .. 0] EOF ||
+. END

@@ -1,4 +1,4 @@
-Projektitilanne 2018-06-13
+Projektitilanne 2018-11-06
 
 Vanhan parserin toimiva testiympäristö on
 src\old_parser
@@ -9,12 +9,9 @@ Esimerkkisuoritus
 > java Reader_Test TestData\TestData7.pro
 
 Seuraava vaihe:
-1. Testiympäristö: src\new_parser
+1. Testiympäristö: src_new_parser
 
-2. Reader.java poikki siten, että tiedoston luku on kutsuvalla puolella.
-   Näin sitä voi käyttää stringinä tms. talletetulla ohjelmalla.
-   
-3. Integroidaan ajoengineen ja katsotaan, mitä tapahtuu.
+2. Parseri integroitu, mutta ei rupea ajamaan.
    
 4. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
    toString-operaatiossa. Väliaikainen ratkaisu. 
