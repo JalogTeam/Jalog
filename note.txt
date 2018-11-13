@@ -18,5 +18,16 @@ Seuraava vaihe:
 
 5. Vaihdetaan ITEM -> SUBGOAL
 
+Mahdollisia kehityskohteita:
+* Optio, jolla voi tarkastaa onko symboleita, jotka eroavat toisistaan vain
+  kirjaincasen perusteella.
+  
 NYT:
-SUDOKU.PRO menee l‰pi parserista
+SUDOKU.PRO feilaa v‰‰rin make_link predikaatissa.
+
+
+PERIAATTEITA
+
+* K‰ytet‰‰n Turbo-Prologin konventiota, ett‰ symbolit ovat case-riippumattomia
+  paitsi ensimm‰isen merkin osalta. 
+  - Prolog-standardin mukaan isot ja pienet kirjaimet ovat eri merkkej‰.

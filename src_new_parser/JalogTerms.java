@@ -28,6 +28,7 @@ public class JalogTerms
     Pro_Term old_last, new_last;
     Pro_Term tail = Pro_Term.EMPTY_LIST;
     String varname;
+    String name;
     long ivalue;
     String svalue;
     boolean EOF = false;
@@ -41,6 +42,7 @@ public class JalogTerms
  
   public Pro_Term NextPart()
   {
+    
     Pro_Term result = null;
     
     do
@@ -51,12 +53,22 @@ public class JalogTerms
 // System.out.println("action: " + action);
 
       if (action == JalogSyntax.SYM) {
+        name = Pr1.sValue();
+
+        // Normalize case to accommodate Turbo Prolog convention
+        name = name.toLowerCase();
+        
         term = 
-            Pro_Term.m_compound(Pr1.sValue(),Pro_Term_empty);
+            Pro_Term.m_compound(name,Pro_Term_empty);
 // System.out.println("term: " + term);
       } else if (action == JalogSyntax.BGN_STRUCT) {
+        name = Pr1.sValue();
+
+        // Normalize case to accommodate Turbo Prolog convention
+        name = name.toLowerCase();
+        
         term = 
-            Pro_Term.m_compound(Pr1.sValue(),Pro_Term_empty);
+            Pro_Term.m_compound(name,Pro_Term_empty);
         termList_stack.push(termList);
 // System.out.println("Push termList:" + termList.size());
         termList = new Vector();
@@ -137,7 +149,11 @@ public class JalogTerms
         term_stack.push(new_last);
       } else if (action == JalogSyntax.VARIABLE) {
         varname = Pr1.sValue();
-// System.out.println("Variable: " + " " + varname);
+        
+        // Normalize case to accommodate Turbo Prolog convention
+        varname = varname.toUpperCase();
+
+        // System.out.println("Variable: " + " " + varname);
         term = (Pro_Term)varSymTab.get(varname);
         if (term == null) 
         {

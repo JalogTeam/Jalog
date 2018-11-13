@@ -24,6 +24,7 @@ len([_|Rest], I1) :-
   I1 = I + 1.
 
 sudoku1(Rows):-
+  write("making links\n"),
   make_links(Rows, Cols, SubSquares),
   write("links done"),nl,
   xxxy(Rows, Cols, SubSquares, 1, 1, 1, 0),
@@ -65,9 +66,15 @@ sudoku1(Rows):-
     [G7, G8, G9, H7, H8, H9, I7, I8, I9]]). */
     
 make_links(Rows, Cols, SubSquares) :-
+write("A "),
   make_open_matrix(Cols, 9, 9),
+write("B "),
   make_open_matrix(SubSquares, 9, 9),
-  make_link(Rows, Cols, SubSquares, 1, 1).
+write("C "),
+  make_link(Rows, Cols, SubSquares, 1, 1),
+write("D ").
+
+make_links(_,_,_):- write("E "), fail.
   
 
 make_link(_, _, _, 10, _) :- !.
@@ -75,17 +82,27 @@ make_link(_, _, _, 10, _) :- !.
 make_link(Rows, Cols, SubSquares, IRow, 10) :-
   !,
   IRow_1 = IRow + 1,
+write("make_link row: "), write(IRow), ln,
   make_link(Rows, Cols, SubSquares, IRow_1, 1). 
 
 make_link(Rows, Cols, SubSquares, IRow, ICol) :-
+write("  make_link col: "), write(ICol), nl,
   nth_element(Rows, IRow, Row),
+write("F "),
   nth_element(Row, ICol, TheElement),
+write("G "),
   nth_element(Cols, ICol, Col),
+write("H "),
   nth_element(Col, IRow, TheElement),
+write("I "),
   sub_square_index(IRow, ICol, ISSRow),
+write("J "),
   sub_square_elem_index(IRow, ICol, ISSCol),
+write("K "),
   nth_element(SubSquares, ISSRow, SubSquare),
+write("L "),
   nth_element(SubSquare, ISSCol, TheElement),
+write("M "),
   ICol_1 = ICol + 1,
   make_link(Rows, Cols, SubSquares, IRow, ICol_1). 
     
@@ -231,7 +248,7 @@ make_open_list([_Item|List], NCol) :-
 
    
   
-
+:- dump("sudoku.dump").
 %goal
 /* Kaleva nnnn */
 /*
