@@ -1,29 +1,30 @@
-Projektitilanne 2018-11-06
+Projektitilanne 2018-11-23
 
-Vanhan parserin toimiva testiymp‰ristˆ on
-src\old_parser
-Toimiva testiohjelma on Reader_Test.java
+SUDOKU.pro toimii
+
+Vanhan Jalogin toimiva testiymp‰ristˆ on
+src
 Esimerkkik‰‰nnˆs (t‰ysi)
-> javac Reader_Test.java
+> javac Jalog.java
 Esimerkkisuoritus
-> java Reader_Test TestData\TestData7.pro
+> java Jalog D:\wa\Jalog\src_new_parser\TestData\SUDOKU.pro
 
 Seuraava vaihe:
-1. Testiymp‰ristˆ: src_new_parser
 
-2. Parseri integroitu, mutta ei rupea ajamaan.
+1. Laajempi testisetti
    
-4. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
+2. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
    toString-operaatiossa. V‰liaikainen ratkaisu. 
 
-5. Vaihdetaan ITEM -> SUBGOAL
+3. Vaihdetaan ITEM -> SUBGOAL
 
 Mahdollisia kehityskohteita:
 * Optio, jolla voi tarkastaa onko symboleita, jotka eroavat toisistaan vain
   kirjaincasen perusteella.
   
 NYT:
-SUDOKU.PRO feilaa v‰‰rin make_link predikaatissa.
+
+
 
 
 PERIAATTEITA

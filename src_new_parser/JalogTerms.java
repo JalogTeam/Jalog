@@ -32,6 +32,7 @@ public class JalogTerms
     long ivalue;
     String svalue;
     boolean EOF = false;
+    char ch;
   
   public JalogTerms(int initState)
   {
@@ -186,10 +187,13 @@ public class JalogTerms
 // System.out.println("String: " + term.Id + " '" + svalue + "'");  
  
       } else if (action == JalogSyntax.BGN_BINOP){
+        svalue = Pr1.sValue();
+        ch = svalue.charAt(0);
+        if ((ch >= 'a') && (ch <= 'z')) svalue = svalue + '_';
         operands = new Pro_Term[2];
         operands[0] = term;
         term = 
-            Pro_Term.m_compound(Pr1.sValue(),operands);
+            Pro_Term.m_compound(svalue,operands);
         term_stack.push(term);
 // System.out.println("Push term:" + term.Id + ": " + operands[0].Id + " " + 
 //    Pr1.sValue());
