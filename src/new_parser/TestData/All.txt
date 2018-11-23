@@ -1,6 +1,0 @@
-@ Koe.txt
-@ Token.txt
-@ Xpr1.txt
-@ Terms.txt
-@ Number.txt
-. end

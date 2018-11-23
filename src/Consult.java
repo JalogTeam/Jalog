@@ -8,7 +8,7 @@ public class Consult
   static void run(String FileName)
   {
     exit_value = null;
-    Parser Pr1 = new Parser(Parser.CLAUSE);
+    JalogTerms JT = new JalogTerms(JalogTerms.CLAUSE);
     Pro_Term T;
     Pro_Term[] Apu = new Pro_Term[10];
     int ApuCnt = 0;
@@ -35,27 +35,35 @@ public class Consult
             System.out.println("*** Error: " + e);
             line = null;
           }
-          if (line != null) {
   // System.out.println("");
   // System.out.println("Line: " + line);
-            Pr1.SetString(line);
-          } else {
-            Pr1.SetEOF();
-  // System.out.println("Consult:EOF");
-          }
+          JT.SetLine(line);
           do
           {
   // System.out.println("   ---");
-            T = Pr1.NextPart();
-            if(Pr1.Error != 0)
+            T = JT.NextPart();
+            if(JT.Error != 0)
             {
               exit_value = Pro_Term.m_integer(1); // Syntax error
-              System.err.println("*** Error in file " + FileName + " Line: " + LineNmbr + " Pos: " + Pr1.ErrorPos);
-              System.err.println("    " + line);
-              for(int i = -3; i < Pr1.ErrorPos; i++) {
-                System.err.print(" ");
+              if (JT.Error == JT.ERROR_INTERNAL) {
+                System.err.print("*** Internal error when processing file ");
+                
+              } else {
+                System.err.print("*** Error in file ");
               }
-              System.err.println("^");
+              System.err.print(FileName + " Line: " + LineNmbr);
+              if (JT.ErrorPos > 0) {
+                System.err.print(" Pos: " + 
+                  JT.ErrorPos);
+              }
+              System.err.println();
+              System.err.println("    " + line);
+              if (JT.ErrorPos > 0) {
+                for(int i = -3; i < JT.ErrorPos; i++) {
+                  System.err.print(" ");
+                }
+                System.err.println("^");
+              }
 
               T = null;
               line = null;

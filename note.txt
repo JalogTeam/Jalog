@@ -1,13 +1,15 @@
 Projektitilanne 2018-11-23
 
-SUDOKU.pro toimii
+* SUDOKU.pro toimii
 
-Vanhan Jalogin toimiva testiympäristö on
-src
+* new_parser mergetty masteriin
+
+Jalogin toimiva testiympäristö on src
+
 Esimerkkikäännös (täysi)
 > javac Jalog.java
 Esimerkkisuoritus
-> java Jalog D:\wa\Jalog\src_new_parser\TestData\SUDOKU.pro
+> java Jalog TestData\SUDOKU.pro
 
 Seuraava vaihe:
 
