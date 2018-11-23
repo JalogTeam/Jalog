@@ -6,6 +6,9 @@ public class JalogTerms
 {
   public int Error = 0;
   public int ErrorPos = 0; 
+  public static final int ERROR_INTERNAL = 1;
+  public static final int ERROR_SYNTAX = 2;
+  public static final int ERROR_OVERFLOW = 3;
   public static final int CLAUSE = JalogSyntax.CLAUSE;
   public static final int TERM = JalogSyntax.TERM;
 
@@ -168,7 +171,9 @@ public class JalogTerms
       } else if (action == JalogSyntax.INT) {
         ivalue = Pr1.iValue();
         if (ivalue < 0) {
-          // System.out.println( "ERROR: negative iValue");
+          Error = ERROR_OVERFLOW;
+          ErrorPos = Pr1.tokenPos + 1;
+// System.out.println( "ERROR: negative iValue");
         }
         term = Pro_Term.m_integer(ivalue);
 // System.out.println("Integer: " + term.Id + " " + ivalue);         
@@ -231,10 +236,19 @@ public class JalogTerms
         term = null;
 //      } else if (action == JalogSyntax.DONE) {
 //        result = null;
+      } else if (action == JalogSyntax.ERR) {
+        Error = ERROR_SYNTAX;
       } else {
+        
+        Error = ERROR_INTERNAL;
 // System.out.println("*** Unknown action: " + action);             
       }
-
+      if (Error != 0) {
+        action = Syntax.COMPLETE;
+        if (ErrorPos == 0) {
+          ErrorPos = Pr1.errPos + 1;
+        }
+      }
     } while(action != Syntax.EOL && action != Syntax.COMPLETE);
 // System.out.println("nextPart: " + result);
     return result;

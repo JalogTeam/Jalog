@@ -45,12 +45,25 @@ public class Consult
             if(JT.Error != 0)
             {
               exit_value = Pro_Term.m_integer(1); // Syntax error
-              System.err.println("*** Error in file " + FileName + " Line: " + LineNmbr + " Pos: " + JT.ErrorPos);
-              System.err.println("    " + line);
-              for(int i = -3; i < JT.ErrorPos; i++) {
-                System.err.print(" ");
+              if (JT.Error == JT.ERROR_INTERNAL) {
+                System.err.print("*** Internal error when processing file ");
+                
+              } else {
+                System.err.print("*** Error in file ");
               }
-              System.err.println("^");
+              System.err.print(FileName + " Line: " + LineNmbr);
+              if (JT.ErrorPos > 0) {
+                System.err.print(" Pos: " + 
+                  JT.ErrorPos);
+              }
+              System.err.println();
+              System.err.println("    " + line);
+              if (JT.ErrorPos > 0) {
+                for(int i = -3; i < JT.ErrorPos; i++) {
+                  System.err.print(" ");
+                }
+                System.err.println("^");
+              }
 
               T = null;
               line = null;
