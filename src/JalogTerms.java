@@ -33,6 +33,7 @@ public class JalogTerms
     String varname;
     String name;
     long ivalue;
+    double rvalue;
     String svalue;
     boolean EOF = false;
     char ch;
@@ -177,6 +178,10 @@ public class JalogTerms
         }
         term = Pro_Term.m_integer(ivalue);
 // System.out.println("Integer: " + term.Id + " " + ivalue);         
+      } else if (action == JalogSyntax.REAL) {
+        rvalue = Pr1.rValue();
+        term = Pro_Term.m_real(rvalue);
+System.out.println("Real: " + term.Id + " " + rvalue);         
       } else if (action == JalogSyntax.EMPTY_LIST) {
         term = Pro_Term.EMPTY_LIST;
 // System.out.println("Empty list");         
@@ -241,7 +246,7 @@ public class JalogTerms
       } else {
         
         Error = ERROR_INTERNAL;
-// System.out.println("*** Unknown action: " + action);             
+System.out.println("*** Unknown action: " + action);             
       }
       if (Error != 0) {
         action = Syntax.COMPLETE;

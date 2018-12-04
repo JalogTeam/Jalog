@@ -1,0 +1,76 @@
+Testiraportti
+
+test_arith_1.pro
+*** Internal error when processing file test_arith_1.pro Line: 18
+    :-A=3.5*5,writeln(A, " =17.5?").
+--- Korjattu
+*** mod ja div ei lasketa reaaleille. Onko fiitseri?
+    
+Ei selviä ilmeisesti flotareista.
+
+test_backtrack_.pro
+OK
+
+test_boound.pro
+OK
+
+test_consult_exit.pro
+OK
+
+test_cut.pro
+OK
+
+test_cut_2.pro
+OK
+
+test_exit.pro
+OK
+
+test_gt.pro
+OK
+
+test_lazy.pro
+OK
+
+test_no.pro
+OK
+
+test_recall.pro
+OK
+
+test_unknown_.pro
+OK
+
+testi_assertz.pro
+OK
+
+testi_call.pro
+OK
+
+testi_fail.pro
+OK
+
+testi_not.pro
+OK
+
+testi_trap.pro
+OK
+
+testi3a.pro
+OK
+
+testi4.pro (foreach_)
+OK
+
+testi5.pro 
+*** Parsiminen OK. Enginessä ehkä vika, koska ei failin jälkeen ei muita tuloksia.
+    Sama tulos kuin vanhassa versiossa!
+
+testi7.pro
+OK
+
+testi8.pro
+OK
+
+testi9.pro
+OK
