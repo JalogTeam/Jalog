@@ -9,3 +9,5 @@ data(8).
 :- dump("testiout.dump").
 %:- koe.
 :- testi(A), writeln("TULOS: ", A, " ;"), fail.
+koe:- data(A), writeln("data(", A, ")."), fail.
+:- koe.

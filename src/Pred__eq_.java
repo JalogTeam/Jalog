@@ -12,7 +12,7 @@ public class Pred__eq_ extends Pred
     Left = data.subterm[0];
 
     Right = data.subterm[1];
-
+// System.out.println("Pred__eq_ construct " + Left + " = " + Right);
   }
 
   public void call()
@@ -20,10 +20,13 @@ public class Pred__eq_ extends Pred
     
     if(!forward){
       trail.backtrack(Mark);
+// System.out.println("Pred__eq_ call backtrack");
     } else if(Left.unify(Right, trail, Mark)) { 
       forward = true;
+// System.out.println("Pred__eq_ call success");
     } else {
       forward = false;
+// System.out.println("Pred__eq_ call fail");
     }
   }
 }

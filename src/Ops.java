@@ -41,6 +41,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
       for(int i = 0; i < data.arity; i++){
         System.out.print(data.subterm[i].image());
       }
+      result = new Pred(); // **
 
     // writeln/*
 
@@ -49,6 +50,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
         System.out.print(data.subterm[i].image());
       }
       System.out.println("");
+      result = new Pred(); // **
 
     // writeq/*
 
@@ -56,11 +58,13 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
       for(int i = 0; i < data.arity; i++){
         System.out.print(data.subterm[i].toString());
       }
+      result = new Pred(); // **
 
     // nl/0
 
     } else if(data.name.equals("nl") && (data.arity == 0)){ 
       System.out.println("");
+      result = new Pred(); // **
 
     // =/2
 
@@ -102,6 +106,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
 // System.out.print("\n--Consulting \"" + Filename + "\"-- Loop: Rejected!\n");
         Pred.forward = false;
       }
+      result = new Pred(); // **
 
     // fail/0
 
@@ -118,6 +123,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
       } else {
         Pred.forward = false;
       }
+      result = new Pred(); // **
 
     // assertz/1
 
@@ -128,6 +134,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
       } else {
         Pred.forward = false;
       }
+      result = new Pred(); // **
 
     // not/1
 
@@ -151,6 +158,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
     } else if(data.name.equals("z_") && (data.arity == 0)){
 
       Pred.z_request = true;
+      result = new Pred(); // **
       
 
 // END TEMPORARY
@@ -159,6 +167,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
 
     } else if(data.name.equals("bound") && (data.arity == 1)){
       if(data.subterm[0].getData() != null) {
+        result = new Pred(); // **
       } else {
         Pred.forward = false;
       }
@@ -183,6 +192,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
       } else {
         Pred.forward = false;
       }
+      result = new Pred(); // **
 
     // trap/3
 

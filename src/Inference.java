@@ -152,7 +152,7 @@ if(Debug > 0) System.out.println("\n Inference: post_call " +
         } else {
 if(Debug > 0)
 {
-System.out.println("\nInference (a) current = " + current);
+// System.out.println("\nInference (a) current = " + current);
 if(current.pcall == null) System.out.println("\nInference (a) current.pcall == null, next=" + current.next);
 }
           if((current.pcall == null) || (current.pcall.called_body == null)) { /* Here crashes ****/

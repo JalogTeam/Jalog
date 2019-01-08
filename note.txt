@@ -1,8 +1,5 @@
-Projektitilanne 2018-11-23
+Projektitilanne 2018-12-04
 
-* SUDOKU.pro toimii
-
-* new_parser mergetty masteriin
 
 Jalogin toimiva testiympäristö on src
 
@@ -11,6 +8,7 @@ Esimerkkikäännös (täysi)
 Esimerkkisuoritus
 > java Jalog TestData\SUDOKU.pro
 
+  
 Seuraava vaihe:
 
 1. Laajempi testisetti
@@ -26,8 +24,12 @@ Mahdollisia kehityskohteita:
   
 NYT:
 
+KORJATTU: Inferencessä vika. Kun kutsutaan forwardilla uudestaan kerran 
+  suoritettavia primitiivejä, ne ovatkin hävinneet.
+  Liittyviä moduleita: Inference, Ops
+  Huomattiin erityisesti primitiiveissä write ja assertz.
 
-
+Mahdollista debug-tulostusta, kun ajetaan testiä test\test_arith_1.pro.
 
 PERIAATTEITA
 

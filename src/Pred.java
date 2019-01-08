@@ -46,6 +46,7 @@ public class Pred
 
   public void call()
   {
+// System.out.println("Pred.call");
   }
 
   public void post_call()
