@@ -138,12 +138,12 @@ public class JalogTerms
         
       } else if (action == JalogSyntax.END_TAIL) {
         tail = term;
-      } else if ((action == JalogSyntax.BGN_ITEM) || 
+      } else if ((action == JalogSyntax.BGN_SUBGOAL) || 
           (action == JalogSyntax.BGN_ELEM)){
         
-      } else if ((action == JalogSyntax.END_ITEM) || 
+      } else if ((action == JalogSyntax.END_SUBGOAL) || 
           (action == JalogSyntax.END_ELEM)){
-        // create new list term item
+        // create new list term subgoal
         new_last_data = new Pro_TermData_List(term, null);
         new_last = new Pro_Term(new_last_data);
         // pop old last 

@@ -10,6 +10,8 @@ public class Pro_TermData_Compound extends Pro_TermData
   public byte arity;
   public Pro_Term[] subterm;
   
+  static final int MAX_DEPTH = 1000;
+  
   Pro_TermData_Compound(String iniName, Pro_Term[] iniSubterm)
   {
     name = iniName;
@@ -46,7 +48,7 @@ depth --;
         }
         else
         {
-if(depth > 10) {
+if(depth > MAX_DEPTH) {
           params += "...";
 }else {
           params += subterm[i].toString();

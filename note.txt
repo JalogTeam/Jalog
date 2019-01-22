@@ -11,12 +11,13 @@ Esimerkkisuoritus
   
 Seuraava vaihe:
 
-1. Laajempi testisetti
+1. Laajempi testisetti -> kunnon regressiotesti-systeemi.
    
 2. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
    toString-operaatiossa. Väliaikainen ratkaisu. 
+   Syvyyslimiitti on nyt 1000.
 
-3. Vaihdetaan ITEM -> SUBGOAL
+3. Vaihdetaan ITEM -> SUBGOAL - DONE
 
 Mahdollisia kehityskohteita:
 * Optio, jolla voi tarkastaa onko symboleita, jotka eroavat toisistaan vain

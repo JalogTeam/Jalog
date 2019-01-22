@@ -362,8 +362,8 @@ public class JalogSyntax extends SimpleSyntax
   public static final String END_CLAUSE = "end_clause";
   public static final String BGN_BODY = "bgn_body";
   public static final String END_BODY = "end_body";
-  public static final String BGN_ITEM = "bgn_item";
-  public static final String END_ITEM = "end_item";
+  public static final String BGN_SUBGOAL = "bgn_subgoal";
+  public static final String END_SUBGOAL = "end_subgoal";
   public static final String BGN_STRING = "bgn_string";
   public static final String MORE_STRING = "more_string";
   public static final String END_STRING = "end_string";
@@ -464,9 +464,9 @@ public class JalogSyntax extends SimpleSyntax
 // expr2 = expr3
 //       = expr2 COMMA expr3
 
-    new ParseRule(1200,ANY,BGN_ITEM,1300,END_ITEM,1201),
+    new ParseRule(1200,ANY,BGN_SUBGOAL,1300,END_SUBGOAL,1201),
 
-    new ParseRule(1201,COMMA,BGN_ITEM,1300,END_ITEM,1201),
+    new ParseRule(1201,COMMA,BGN_SUBGOAL,1300,END_SUBGOAL,1201),
     new ParseRule(1201,ANY,NIL,NONE,NIL,END),
 
 // expr3 = expr4
