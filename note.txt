@@ -1,4 +1,4 @@
-Projektitilanne 2019-02-05
+Projektitilanne 2019-02-26
 
 Regressiotestausta kehitetty. Ympäristö on test\regression_test .
 Regressiotesti ajetaan komennolla test_test .
@@ -6,6 +6,8 @@ Regressiotesti ajetaan komennolla test_test .
 Testaus kattaa:
   Predikaatit
     fail
+    write
+    cut_
     
   Kaikki aritmettiset operaattorit
 
@@ -40,3 +42,13 @@ PERIAATTEITA
 * Käytetään Turbo-Prologin konventiota, että symbolit ovat case-riippumattomia
   paitsi ensimmäisen merkin osalta. 
   - Prolog-standardin mukaan isot ja pienet kirjaimet ovat eri merkkejä.
+  
+HAVAINTOJA
+
+* Real operaatiot tuottavat debuggaustulostusta.
+* Write character tulostaa yläpilkut ympärille.
+* writeq tulostaa debuggausinfoa. Korjattava!
+* test__eq_: reaalien yhtäsuuruusvertailu ei toimi 3.141 != 3.141 !
+  - stringivertailu ei toimi "a" != "a" !
+
+

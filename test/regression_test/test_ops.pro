@@ -34,6 +34,8 @@ koe52 :- A = 2 mod (-5), write(A), nl.
 koe53 :- A = 6.3 mod 4.8, write(A), nl.
 koe54 :- A = 8.14 mod 3, write(A), nl.
 
+koe61 :- A = mod_(5, 2), write(A), nl.
+
 % Test main
 
 :- koe1, 
@@ -66,4 +68,6 @@ koe54 :- A = 8.14 mod 3, write(A), nl.
    koe51,
    koe52,
    koe53,
-   koe54.
+   koe54,
+   nl,
+   koe61.

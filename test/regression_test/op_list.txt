@@ -1,0 +1,17 @@
+cut_/0 OK
+write/*
+writeln/*
+writeq/*
+nl/0
+=/2
+foreach_/2
+consult/1
+fail/0
+dump/1
+assertz/1
+not/1
+bound/1
+">"/2
+trap/3
+exit/1
+

@@ -6,8 +6,15 @@ if not x==x%jalog_errors% (
 
 REM testing fail
 
-call do_test.bat test_fail
-call do_test.bat test_ops
+REM call do_test.bat test_fail
+REM call do_test.bat test_ops
+REM call do_test.bat test_types
+REM call do_test.bat test_cut_
+REM call do_test.bat test_write
+REM call do_test.bat test_writeln
+REM call do_test.bat test_writeq
+call do_test.bat test__eq_
+
 
 REM final report
 echo.
