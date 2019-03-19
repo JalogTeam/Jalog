@@ -29,7 +29,8 @@ depth ++;
     if(arity == 0)
     {
 depth --;
-      return name+"()";
+//      return name+"()";
+      return name;
     }
     else
     {

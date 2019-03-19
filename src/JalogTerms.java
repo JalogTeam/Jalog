@@ -181,7 +181,7 @@ public class JalogTerms
       } else if (action == JalogSyntax.REAL) {
         rvalue = Pr1.rValue();
         term = Pro_Term.m_real(rvalue);
-System.out.println("Real: " + term.Id + " " + rvalue);         
+// System.out.println("Real: " + term.Id + " " + rvalue);         
       } else if (action == JalogSyntax.EMPTY_LIST) {
         term = Pro_Term.EMPTY_LIST;
 // System.out.println("Empty list");         

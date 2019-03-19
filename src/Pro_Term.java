@@ -4,7 +4,7 @@ import java.util.Hashtable;
 
 public class Pro_Term 
 {
-  static int debug = 1;
+  static int debug = 0;
   static long lastId = 0;
   
   private Pro_TermData data;

@@ -14,7 +14,7 @@
 
 koe1 :- write("koe1: "), writeq('A'), write('|'),nl.
 
-koe2 :- write("koe2: "), writeq(a('b', 'c')), write(d), write('|'),nl.
+koe2 :- write("koe2: "), writeq(a('b', 'c')), writeq(d), write('|'),nl.
 
 koe3 :- write("koe3: "), writeq(1234567890), write('|'),nl.
 

@@ -11,5 +11,10 @@ public class Pro_TermData_Char extends Pro_TermData
   {
     return "'" + value + "'";
   }
+
+  public String image()
+  {
+    return String.valueOf(value);
+  }
 } // end class Pro_TermData_Char
 

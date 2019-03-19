@@ -45,10 +45,11 @@ PERIAATTEITA
   
 HAVAINTOJA
 
-* Real operaatiot tuottavat debuggaustulostusta.
-* Write character tulostaa yläpilkut ympärille.
-* writeq tulostaa debuggausinfoa. Korjattava!
+* Real operaatiot tuottavat debuggaustulostusta. OK
+* Write character tulostaa yläpilkut ympärille. OK
+* writeq tulostaa debuggausinfoa. Korjattava! OK
 * test__eq_: reaalien yhtäsuuruusvertailu ei toimi 3.141 != 3.141 !
   - stringivertailu ei toimi "a" != "a" !
+* Ei tunnista < operaattoria.
 
 
