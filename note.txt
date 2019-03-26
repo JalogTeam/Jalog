@@ -6,8 +6,13 @@ Regressiotesti ajetaan komennolla test_test .
 Testaus kattaa:
   Predikaatit
     fail
-    write
+    write, writeln, writeq
     cut_
+    foreach_
+    consult
+    assertz
+    not
+    bound
     
   Kaikki aritmettiset operaattorit
 
@@ -34,7 +39,6 @@ Mahdollisia kehityskohteita:
   
 NYT:
 
-Parserin reaalilukuosa tulostaa debug-tulostusta: "REAL..."
 Mahdollista debug-tulostusta, kun ajetaan testiä test\test_arith_1.pro.
 
 PERIAATTEITA
@@ -45,11 +49,13 @@ PERIAATTEITA
   
 HAVAINTOJA
 
-* Real operaatiot tuottavat debuggaustulostusta. OK
-* Write character tulostaa yläpilkut ympärille. OK
-* writeq tulostaa debuggausinfoa. Korjattava! OK
 * test__eq_: reaalien yhtäsuuruusvertailu ei toimi 3.141 != 3.141 !
   - stringivertailu ei toimi "a" != "a" !
 * Ei tunnista < operaattoria.
+* Jos konsultoidaan dataa, mutta faktaa ei tule yhtään, haku tuottaa 
+  tulostuksen "*** Unknown predicate:".
+* Olisikohan hyvä sellainen predikaatti, joka konsultoi pelkkiä faktoja?
+* Olisikohan hyvä olemassa predikaatti free?
+
 
 

@@ -5,15 +5,23 @@ if not x==x%jalog_errors% (
 )
 
 
-call do_test.bat test_fail
-call do_test.bat test_ops
-call do_test.bat test_types
-call do_test.bat test_cut_
-call do_test.bat test_write
-call do_test.bat test_writeln
-call do_test.bat test_writeq
+REM call do_test.bat test_fail
+REM call do_test.bat test_ops
+REM call do_test.bat test_types
+REM call do_test.bat test_cut_
+REM call do_test.bat test_write
+REM call do_test.bat test_writeln
+REM call do_test.bat test_writeq
+REM * nl is done in each test. Does not need own case.
 REM call do_test.bat test__eq_
-
+REM call do_test.bat test_foreach_
+REM call do_test.bat test_consult
+REM call do_test.bat test_assertz
+REM call do_test.bat test_not
+call do_test.bat test_bound
+REM call do_test.bat test_trap
+REM call do_test.bat test_exit
+REM call do_test.bat test_
 
 REM final report
 echo.
