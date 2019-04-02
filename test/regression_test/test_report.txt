@@ -1,0 +1,16 @@
+Test report
+-----------
+
+test_types
+----------
+
+  Needs more work.
+  
+test__eq_
+---------
+ write(a('x')) -> "a(x)" not "a('x')" ?
+ 
+ koe5a: error in real equality comparison
+ koe5d: errror in real/integer equality comparison
+ koe6a: error in string equality comparison
+ 

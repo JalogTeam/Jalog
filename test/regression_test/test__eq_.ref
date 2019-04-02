@@ -1,0 +1,53 @@
+koe1a: |
+*Yes*
+koe1b: -
+*Yes*
+koe1c: a|
+*Yes*
+koe2a: |
+*Yes*
+koe2b: -
+*Yes*
+koe2c: -
+*Yes*
+koe2d: a(x)|
+*Yes*
+koe2e: a(x) x|
+*Yes*
+koe3a: |
+*Yes*
+koe3b: -
+*Yes*
+koe3c: 1|
+*Yes*
+koe4a: |
+*Yes*
+koe4b: -
+*Yes*
+koe4c: -
+*Yes*
+koe4d: [a,x]|
+*Yes*
+koe4e: [a,x] x|
+*Yes*
+koe5a: |
+*Yes*
+koe5b: -
+*Yes*
+koe5c: 3.141|
+*Yes*
+koe5d: |
+*Yes*
+koe6a: |
+*Yes*
+koe6b: -
+*Yes*
+koe6c: a|
+*Yes*
+koe7a: |
+*Yes*
+koe7b: |
+*Yes*
+koe7c: z|
+*Yes*
+Exit status: 0 ; 

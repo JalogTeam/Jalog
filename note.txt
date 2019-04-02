@@ -16,6 +16,8 @@ Testaus kattaa:
     
   Kaikki aritmettiset operaattorit
 
+Testiraportti: Jalog\test\regression_test\test_report.txt
+
 Jalogin toimiva testiympäristö on src
 
 Esimerkkikäännös (täysi)
@@ -26,7 +28,10 @@ Esimerkkisuoritus
   
 Seuraava vaihe:
 
-1. Laajennetaan regressiotestiä.
+1. Korjataan types-virheet:
+    - real, character ja stringivertailut
+
+1.1 Lisätään loput vertailuoperaattorit    
    
 2. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
    toString-operaatiossa. Väliaikainen ratkaisu. 

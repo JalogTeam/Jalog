@@ -33,6 +33,11 @@ koe34 :- 34 = 34, write("34 = 34"), nl.
 koe35 :- 64 = $40, write("64 = $40"), nl.
 koe36 :- 36 > 37, write("error 36 > 37"), nl, fail.
 koe36 :- 36 < 37, write("36 < 37"), nl.
+koe37 :- 38 >= 37, write("38 >= 37"), nl.
+koe38 :- 36 <= 37, write("36 <= 37"), nl.
+koe39a :- 36 <> 37, write("36 <> 37"), nl.
+koe39b :- 36 >< 37, write("36 >< 37"), nl.
+koe39c :- 36 != 37, write("36 != 37"), nl.
 
 koe41 :- write([41,42]), nl.
 koe42 :- A = [42,43], write(A), nl.
@@ -82,6 +87,11 @@ koe66 :- "A" < "B", write("\"A\" < \"B\""), nl.
 :- koe34.
 :- koe35.
 :- koe36.
+:- koe37.
+:- koe38.
+:- koe39a.
+:- koe39b.
+:- koe39c.
 
 :- nl.
 :- koe41.

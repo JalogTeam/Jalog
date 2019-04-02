@@ -3,3 +3,4 @@ koe1 a: *** Unknown predicate: data/1
 koe1 b: ;
 koe1 c:  10 20 40;
 *Yes*
+Exit status: 0 ; 
