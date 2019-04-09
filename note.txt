@@ -1,4 +1,4 @@
-Projektitilanne 2019-02-26
+Projektitilanne 2019-04-09
 
 Regressiotestausta kehitetty. Ympäristö on test\regression_test .
 Regressiotesti ajetaan komennolla test_test .
@@ -54,8 +54,6 @@ PERIAATTEITA
   
 HAVAINTOJA
 
-* test__eq_: reaalien yhtäsuuruusvertailu ei toimi 3.141 != 3.141 !
-  - stringivertailu ei toimi "a" != "a" !
 * Ei tunnista < operaattoria.
 * Jos konsultoidaan dataa, mutta faktaa ei tule yhtään, haku tuottaa 
   tulostuksen "*** Unknown predicate:".

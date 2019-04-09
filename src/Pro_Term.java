@@ -43,6 +43,7 @@ public class Pro_Term
     Pro_TrailMark garbage = new Pro_TrailMark();
     Pro_TrailMark first_backtop = new Pro_TrailMark();
     boolean success = false;
+    double rvalue;
     
     if(pBack != null)
     {
@@ -92,9 +93,14 @@ public class Pro_Term
       else if (pn1.data instanceof Pro_TermData_Integer)
       {
         tmp2.compval(pn2);
-        success = ((tmp2.data instanceof Pro_TermData_Integer)&&
-                        (((Pro_TermData_Integer)pn1.data).value ==
-                         ((Pro_TermData_Integer)tmp2.data).value));
+        if(tmp2.data instanceof Pro_TermData_Integer){
+          success = (((Pro_TermData_Integer)pn1.data).value ==
+                         ((Pro_TermData_Integer)tmp2.data).value);
+        } else if(tmp2.data instanceof Pro_TermData_Real){
+          rvalue = ((Pro_TermData_Integer)pn1.data).value;
+          success = (rvalue == ((Pro_TermData_Real)tmp2.data).value);
+        }
+        
       }
       else if (pn1.data instanceof Pro_TermData_Char)
       {
@@ -103,14 +109,18 @@ public class Pro_Term
                         (((Pro_TermData_Char)pn1.data).value ==
                          ((Pro_TermData_Char)tmp2.data).value));
       }
-/*      else if (pn1.data instanceof Pro_TermData_Real)
+      else if (pn1.data instanceof Pro_TermData_Real)
       {
         tmp2.compval(pn2);
-        success = ((tmp2.data instanceof Pro_TermData_Real)&&
-                        (((Pro_TermData_Real)pn1.data).value ==
-                         ((Pro_TermData_Real)tmp2.data).value));
+        if(tmp2.data instanceof Pro_TermData_Real){
+          success = (((Pro_TermData_Real)pn1.data).value ==
+                         ((Pro_TermData_Real)tmp2.data).value);
+        } else if (tmp2.data instanceof Pro_TermData_Integer){
+          rvalue = ((Pro_TermData_Integer)tmp2.data).value;
+          success = (((Pro_TermData_Real)pn1.data).value == rvalue);
+        }
       }
-*/
+
       else if (pn1.data instanceof Pro_TermData_Compound)
       {
         if(pn2.data instanceof Pro_TermData_Compound)
@@ -155,9 +165,13 @@ public class Pro_Term
       }
       else if (pn1.data instanceof Pro_TermData_String)
       {
-        success = ((tmp2.data instanceof Pro_TermData_String)&&
+// System.out.println("Pro_Term string compare: ");
+// System.out.println("  !: " + ((Pro_TermData_String)pn1.data));
+// System.out.println("  2: " + ((Pro_TermData_String)pn2.data));
+
+        success = ((pn2.data instanceof Pro_TermData_String)&&
                         (((Pro_TermData_String)pn1.data).value.equals(
-                         ((Pro_TermData_String)tmp2.data).value)));
+                         ((Pro_TermData_String)pn2.data).value)));
       }
       else if (pn1.data instanceof Pro_TermData_List)
       {

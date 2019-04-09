@@ -45,6 +45,7 @@ koe5b :- write("koe5b: "), 3.141 = 2.8, write('|'),nl. % should fail
 koe5b :- write('-'), nl.
 koe5c :- write("koe5c: "), A = 3.141, write(A), write('|'),nl.
 koe5d :- write("koe5d: "), 2 = 2.0, write('|'),nl.
+koe5e :- write("koe5e: "), 2.0 = 2, write('|'),nl.
 
 koe6a :- write("koe6a: "), "a" = "a", write('|'),nl.
 koe6b :- write("koe6b: "), "a" = "b", write('|'),nl. % should fail
@@ -81,6 +82,7 @@ koe7c :- write("koe7c: "), A = B, A = 'z', write(B), write('|'),nl.
 :- koe5b. 
 :- koe5c. 
 :- koe5d. 
+:- koe5e. 
    
 :- koe6a. 
 :- koe6b. 
