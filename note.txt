@@ -1,4 +1,4 @@
-Projektitilanne 2019-04-09
+Projektitilanne 2019-04-16
 
 Regressiotestausta kehitetty. Ymp‰ristˆ on test\regression_test .
 Regressiotesti ajetaan komennolla test_test .
@@ -21,19 +21,19 @@ Testiraportti: Jalog\test\regression_test\test_report.txt
 Jalogin toimiva testiymp‰ristˆ on src
 
 Esimerkkik‰‰nnˆs (t‰ysi)
-> javac Jalog.java
+  > javac Jalog.java
+  
 Esimerkkisuoritus
-> java Jalog TestData\SUDOKU.pro
+  > java Jalog TestData\SUDOKU.pro
+
+Regressiotestien suoritus
+  Hakemisto: test\regression_test
+  Suorituskomento: > test_test
 
   
 Seuraava vaihe:
 
-1. Korjataan types-virheet:
-    - real, character ja stringivertailut
-
-1.1 Lis‰t‰‰n loput vertailuoperaattorit    
-   
-2. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
+1. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
    toString-operaatiossa. V‰liaikainen ratkaisu. 
    Syvyyslimiitti on nyt 1000.
 
@@ -44,7 +44,6 @@ Mahdollisia kehityskohteita:
   
 NYT:
 
-Mahdollista debug-tulostusta, kun ajetaan testi‰ test\test_arith_1.pro.
 
 PERIAATTEITA
 
@@ -54,7 +53,6 @@ PERIAATTEITA
   
 HAVAINTOJA
 
-* Ei tunnista < operaattoria.
 * Jos konsultoidaan dataa, mutta faktaa ei tule yht‰‰n, haku tuottaa 
   tulostuksen "*** Unknown predicate:".
 * Olisikohan hyv‰ sellainen predikaatti, joka konsultoi pelkki‰ faktoja?

@@ -22,6 +22,13 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
     int arity = data.arity;
     boolean op_found = true;
 
+    char Op;
+    double R1 = 0.0, R2 = 0.0;
+    long I1 = 0, I2 = 0;
+    char T1, T2, Tv, C1 = ' ', C2 = ' ';
+    String S1 = "", S2 = "";
+    boolean Bv = false;
+
     if(!(data instanceof Pro_TermData_Compound)){
       Pred.forward = false;
 // Debug_times.leave(3);
@@ -214,30 +221,125 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
             
           // ">"/2
 
-          } else if(name.equals(">")){
-// Debug_times.enter(2);
-            Pro_Term tmp1 = new Pro_Term();
-            Pro_Term tmp2 = new Pro_Term();
-// Debug_times.leave(2);
-            tmp1.compval(data.subterm[0]);
-            tmp2.compval(data.subterm[1]);
-
-            Pro_TermData data1 = tmp1.getData();
-            Pro_TermData data2 = tmp2.getData();
-
-            if((data1 instanceof Pro_TermData_Integer) &&
-                (data2 instanceof Pro_TermData_Integer) &&
-                (((Pro_TermData_Integer)data1).value >
-                ((Pro_TermData_Integer)data2).value)){
-            } else {
-              Pred.forward = false;
-            }
-            result = new Pred(); // **
-
           } else {
-            op_found = false;
+            Op = ' ';
+            if(name.equals(">")) { Op = '>'; }
+            if(name.equals("<")) { Op = '<'; }
+            if(name.equals(">=")) { Op = 'G'; }
+            if(name.equals("<=")) { Op = 'L'; }
+            if(name.equals("!=")) { Op = 'N'; }
+            
+            if (Op != ' ') {
+  // Debug_times.enter(2);
+              Pro_Term tmp1 = new Pro_Term();
+              Pro_Term tmp2 = new Pro_Term();
+  // Debug_times.leave(2);
+              tmp1.compval(data.subterm[0]);
+              tmp2.compval(data.subterm[1]);
+
+              Pro_TermData data1 = tmp1.getData();
+              Pro_TermData data2 = tmp2.getData();
+
+              T1 = ' ';
+              T2 = ' ';
+              Tv = ' ';
+              if(data1 instanceof Pro_TermData_Integer){
+                T1 = 'i';
+                I1 = ((Pro_TermData_Integer)data1).value;
+                Tv = 'i';
+              } else if(data1 instanceof Pro_TermData_Real) {
+                T1 = 'r';
+                R1 = ((Pro_TermData_Real)data1).value;
+                Tv = 'r';
+              } else if(data1 instanceof Pro_TermData_Char) {
+                T1 = 'c';
+                C1 = ((Pro_TermData_Char)data1).value;
+                Tv = 'c';
+              } else if(data1 instanceof Pro_TermData_String) {
+                T1 = 's';
+                S1 = ((Pro_TermData_String)data1).value;
+                Tv = 's';
+              }
+              if(Tv != ' ') {
+                if(data2 instanceof Pro_TermData_Integer){
+                  T2 = 'i';
+                  I2 = ((Pro_TermData_Integer)data2).value;
+                  Tv = (T1 == 'i' ? 'i': T1 == 'r' ? 'r' : ' ');
+                } else if(data2 instanceof Pro_TermData_Real) {
+                  T2 = 'r';
+                  R2 = ((Pro_TermData_Real)data2).value;
+                  Tv = (T1 == 'i' ? 'r': T1 == 'r' ? 'r' : ' ');
+                } else if(data2 instanceof Pro_TermData_Char) {
+                  T2 = 'c';
+                  C2 = ((Pro_TermData_Char)data2).value;
+                  Tv = (T1 == 'c' ? 'c': ' ');
+                } else if(data2 instanceof Pro_TermData_String) {
+                  T2 = 's';
+                  S2 = ((Pro_TermData_String)data2).value;
+                  Tv = (T1 == 's' ? 's': ' ');
+                } else {
+                  Tv = ' ';
+                }
+                if(Tv != ' ') {
+                  if(Tv == 'r') { // real comparison
+                    if(T1 == 'i') {
+                      R1 = I1;
+                    }
+                    if(T2 == 'i') {
+                      R2 = I2;
+                    }
+                    switch(Op) {
+                      case '>': Bv = (R1 > R2); break;
+                      case '<': Bv = (R1 < R2); break;
+                      case 'G': Bv = (R1 >= R2); break;
+                      case 'L': Bv = (R1 <= R2); break;
+                      case 'N': Bv = (R1 != R2); break;
+                      default: Tv = ' '; // No result for others
+                    }
+                  } else if(Tv == 'i') { // integer comparison
+                    switch(Op) {
+                      case '>': Bv = (I1 > I2); break;
+                      case '<': Bv = (I1 < I2); break;
+                      case 'G': Bv = (I1 >= I2); break;
+                      case 'L': Bv = (I1 <= I2); break;
+                      case 'N': Bv = (I1 != I2); break;
+                      default: Tv = ' '; // No result for others
+                    }
+                  } else if(Tv == 'c') { // character comparison
+                    switch(Op) {
+                      case '>': Bv = (C1 > C2); break;
+                      case '<': Bv = (C1 < C2); break;
+                      case 'G': Bv = (C1 >= C2); break;
+                      case 'L': Bv = (C1 <= C2); break;
+                      case 'N': Bv = (C1 != C2); break;
+                      default: Tv = ' '; // No result for others
+                    }
+                  } else if(Tv == 's') { // string comparison
+                    I1 = S1.compareTo(S2);
+                    switch(Op) {
+                      case '>': Bv = (I1 > 0); break;
+                      case '<': Bv = (I1 < 0); break;
+                      case 'G': Bv = (I1 >= 0); break;
+                      case 'L': Bv = (I1 <= 0); break;
+                      case 'N': Bv = (I1 != 0); break;
+                      default: Tv = ' '; // No result for others
+                    }
+                  }
+                }
+                
+              }
+              if (Tv != ' ') {
+                Pred.forward = Bv;
+              } else {
+                Pred.forward = false;
+              }
+              if (Pred.forward) {
+                result = new Pred(); 
+              }
+            } else {
+              op_found = false;
+            }
           }
-          
         } break;
         case 3: {
           

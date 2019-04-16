@@ -47,12 +47,13 @@ koe44 :- [A] = [B], B = 44, write(A), nl.
 koe51 :- write(5.1), nl.
 koe52 :- B = 5.2, write(B),nl.
 koe53 :- B = 5.2 + 1, write(B), nl.
-
 koe54 :- 5.4 = 5.5, write("error 5.4 = 5.5"), nl, fail.
 koe54 :- 5.4 = 5.4, write("5.4 = 5.4"), nl.
-
-koe56 :- 5.6 > 5.7, write("error 5.6 > 5.7"), nl, fail.
-koe56 :- 5.6 < 5.7, write("5.6 < 5.7"), nl.
+koe56 :- 3.6 > 3.7, write("error 3.6 > 3.7"), nl, fail.
+koe56 :- 3.6 < 3.7, write("3.6 < 3.7"), nl.
+koe57 :- 38 >= 3.7, write("38 >= 3.7"), nl.
+koe58 :- 3.6 <= 3.7, write("38 >= 3.7"), nl.
+koe59 :- 3.6 <> 3.7, write("3.6 <> 3.7"), nl.
 
 koe61 :- writeq("A"), nl.
 koe62 :- B = "A", writeq(B),nl.
@@ -67,48 +68,52 @@ koe66 :- "A" < "B", write("\"A\" < \"B\""), nl.
 
 % Test main
 
-:- koe11, 
-   koe12,
-   koe13,
-   koe14,
-   koe15,
-   koe16.
+:- write("koe11: "), koe11. 
+:- write("koe12: "), koe12.
+:- write("koe13: "), koe13.
+:- write("koe14: "), koe14.
+:- write("koe15: "), koe15.
+:- write("koe16: "), koe16.
    
 :- nl.
-:- koe21.
-:- koe22.
-:- koe23.
-:- koe24.
+:- write("koe21: "), koe21.
+:- write("koe22: "), koe22.
+:- write("koe23: "), koe23.
+:- write("koe24: "), koe24.
 
 :- nl.
-:- koe31.
-:- koe32.
-:- koe33.
-:- koe34.
-:- koe35.
-:- koe36.
-:- koe37.
-:- koe38.
-:- koe39a.
-:- koe39b.
-:- koe39c.
+:- write("koe31: "), koe31.
+:- write("koe32: "), koe32.
+:- write("koe33: "), koe33.
+:- write("koe34: "), koe34.
+:- write("koe35: "), koe35.
+:- write("koe36: "), koe36.
+:- write("koe37: "), koe37.
+:- write("koe38: "), koe38.
+:- write("koe39a: "), koe39a.
+:- write("koe39b: "), koe39b.
+:- write("koe39c: "), koe39c.
 
 :- nl.
-:- koe41.
-:- koe42.
-:- koe43.
-:- koe44.
+:- write("koe41: "), koe41.
+:- write("koe42: "), koe42.
+:- write("koe43: "), koe43.
+:- write("koe44: "), koe44.
 
 :- nl.
-:- koe51.
-:- koe52.
-:- koe53.
-:- koe54.
-:- koe56.
+:- write("koe51: "), koe51.
+:- write("koe52: "), koe52.
+:- write("koe53: "), koe53.
+:- write("koe54: "), koe54.
+:- write("koe56: "), koe56.
+:- write("koe57: "), koe57.
+:- write("koe58: "), koe58.
+:- write("koe59: "), koe59.
 
 :- nl.
-:- koe61.
-:- koe62.
-:- koe64.
-:- koe65.
-:- koe66.
+:- write("koe61: "), koe61.
+:- write("koe62: "), koe62.
+:- write("koe64: "), koe64.
+:- write("koe65: "), koe65.
+:- write("koe66: "), koe66.
+:- nl.

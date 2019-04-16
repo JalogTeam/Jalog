@@ -1,64 +1,88 @@
-'A'
-'A'
-+('A',1)
-'A' = 'A'
-'A' < 'B'
+koe11: 'A'
+*Yes*
+koe12: 'A'
+*Yes*
+koe13: +('A',1)
+*Yes*
+koe14: 'A' = 'A'
+*Yes*
+koe15: *No*
+koe16: 'A' < 'B'
 *Yes*
 
 *Yes*
-a(21)
+koe21: a(21)
 *Yes*
-a(22)
+koe22: a(22)
 *Yes*
-23
+koe23: 23
 *Yes*
-24
-*Yes*
-
-*Yes*
-31
-*Yes*
-32
-*Yes*
-33
-*Yes*
-34 = 34
-*Yes*
-64 = $40
-*Yes*
-36 < 37
+koe24: 24
 *Yes*
 
 *Yes*
-[41,42]
+koe31: 31
 *Yes*
-[42,43]
+koe32: 32
 *Yes*
-43
+koe33: 33
 *Yes*
-44
+koe34: 34 = 34
+*Yes*
+koe35: 64 = $40
+*Yes*
+koe36: 36 < 37
+*Yes*
+koe37: 38 >= 37
+*Yes*
+koe38: 36 <= 37
+*Yes*
+koe39a: 36 <> 37
+*Yes*
+koe39b: 36 >< 37
+*Yes*
+koe39c: 36 != 37
 *Yes*
 
 *Yes*
-5.1
+koe41: [41,42]
 *Yes*
-5.2
+koe42: [42,43]
 *Yes*
-6.2
+koe43: 43
 *Yes*
-5.4 = 5.4
-*Yes*
-5.6 < 5.7
+koe44: 44
 *Yes*
 
 *Yes*
-"A"
+koe51: 5.1
 *Yes*
-"A"
+koe52: 5.2
 *Yes*
-"A" = "A"
+koe53: 6.2
 *Yes*
-"A" = "\u0041"
+koe54: 5.4 = 5.4
 *Yes*
-"A" < "B"
+koe56: 3.6 < 3.7
 *Yes*
+koe57: 38 >= 3.7
+*Yes*
+koe58: 38 >= 3.7
+*Yes*
+koe59: 3.6 <> 3.7
+*Yes*
+
+*Yes*
+koe61: "A"
+*Yes*
+koe62: "A"
+*Yes*
+koe64: "A" = "A"
+*Yes*
+koe65: "A" = "\u0041"
+*Yes*
+koe66: "A" < "B"
+*Yes*
+
+*Yes*
+Exit status: 0 ; 

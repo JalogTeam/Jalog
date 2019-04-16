@@ -1,16 +1,70 @@
-Test report
------------
+Comparing files test_fail.ans and TEST_FAIL.REF
+FC: no differences encountered
 
-test_types
+----------
+Comparing files test_ops.ans and TEST_OPS.REF
+FC: no differences encountered
+
+----------
+Comparing files test_types.ans and TEST_TYPES.REF
+FC: no differences encountered
+
+----------
+Comparing files test_cut_.ans and TEST_CUT_.REF
+FC: no differences encountered
+
+----------
+Comparing files test_write.ans and TEST_WRITE.REF
+FC: no differences encountered
+
+----------
+Comparing files test_writeln.ans and TEST_WRITELN.REF
+FC: no differences encountered
+
+----------
+Comparing files test_writeq.ans and TEST_WRITEQ.REF
+FC: no differences encountered
+
+----------
+Comparing files test__eq_.ans and TEST__EQ_.REF
+FC: no differences encountered
+
+----------
+Comparing files test_foreach_.ans and TEST_FOREACH_.REF
+FC: no differences encountered
+
+----------
+Comparing files test_consult.ans and TEST_CONSULT.REF
+FC: no differences encountered
+
+----------
+Comparing files test_assertz.ans and TEST_ASSERTZ.REF
+FC: no differences encountered
+
+----------
+Comparing files test_not.ans and TEST_NOT.REF
+FC: no differences encountered
+
+----------
+Comparing files test_bound.ans and TEST_BOUND.REF
+FC: no differences encountered
+
+----------
+Comparing files test_trap.ans and TEST_TRAP.REF
+FC: no differences encountered
+
+----------
+Comparing files test_exit_0.ans and TEST_EXIT_0.REF
+FC: no differences encountered
+
+----------
+Comparing files test_exit_1.ans and TEST_EXIT_1.REF
+FC: no differences encountered
+
+----------
+Comparing files test_exit_50.ans and TEST_EXIT_50.REF
+FC: no differences encountered
+
 ----------
 
-  Needs more work.
-  
-test__eq_
----------
- write(a('x')) -> "a(x)" not "a('x')" ?
- 
- koe5a: error in real equality comparison
- koe5d: errror in real/integer equality comparison
- koe6a: error in string equality comparison
- 
+Passed all tests
