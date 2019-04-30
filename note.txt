@@ -43,6 +43,12 @@ Mahdollisia kehityskohteita:
   kirjaincasen perusteella.
   
 NYT:
+Katso plan.txt
+
+Tyyppitestit: vielä tekemättä ja koodaamatta:
+% list
+% real
+% string
 
 
 PERIAATTEITA

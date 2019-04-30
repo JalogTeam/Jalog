@@ -18,10 +18,24 @@ koe15 :- 'A' = $41, write("'A' = $41"), nl.
 koe16 :- 'A' > 'B', write("error 'A' > 'B'"), nl, fail.
 koe16 :- 'A' < 'B', write("'A' < 'B'"), nl.
 
+koe1x1 :- is_char('z'), write("'z' is char"), nl.
+koe1x2 :- is_char(A), write("error A is not char"), nl.
+koe1x2 :- write("A is not char"), nl.
+koe1x3 :- is_char("z"), write("error \"z\" is not char"), nl.
+koe1x3 :- write("\"z\" is not char"), nl.
+
+
 koe21 :- write(a(21)), nl.
 koe22 :- A = a(22), write(A), nl.
 koe23 :- a(A) = a(23), write(A), nl.
 koe24 :- a(A) = a(B), B = 24, write(A), nl.
+
+koe2x1 :- is_compound(a(21)), write("a(21) is compound"), nl.
+koe2x2 :- is_compound(A), write("error A is not compound"), nl.
+koe2x2 :- write("A is not compound"), nl.
+koe2x3 :- is_compound([a,b]), write("error [a,b] is not compound"), nl.
+koe2x3 :- write("[a,b] is not compound"), nl.
+koe2x4 :- is_compound(a), write("a is compound"), nl.
 
 koe31 :- write(31), nl.
 koe32 :- B = 32, write(B),nl.
@@ -39,6 +53,30 @@ koe39a :- 36 <> 37, write("36 <> 37"), nl.
 koe39b :- 36 >< 37, write("36 >< 37"), nl.
 koe39c :- 36 != 37, write("36 != 37"), nl.
 
+koe3x1 :- is_integer(1), write("1 is integer"), nl.
+koe3x2 :- is_integer(A), write("error A is not integer"), nl.
+koe3x2 :- write("A is not integer"), nl.
+koe3x3 :- is_integer(1.5), write("error 1.5 is not integer"), nl.
+koe3x3 :- write("1.5 is not integer"), nl.
+/*
+koe3x1 :- is_integer(1), write("1 is integer"), nl.
+koe3x2 :- is_integer(A), write("error A is not integer"), nl.
+koe3x2 :- write("A is not integer"), nl.
+koe3x3 :- is_integer(1.5), write("error 1.5 is not integer"), nl.
+koe3x3 :- write("1.5 is not integer"), nl.
+
+koe3x1 :- is_integer(1), write("1 is integer"), nl.
+koe3x2 :- is_integer(A), write("error A is not integer"), nl.
+koe3x2 :- write("A is not integer"), nl.
+koe3x3 :- is_integer(1.5), write("error 1.5 is not integer"), nl.
+koe3x3 :- write("1.5 is not integer"), nl.
+
+koe3x1 :- is_integer(1), write("1 is integer"), nl.
+koe3x2 :- is_integer(A), write("error A is not integer"), nl.
+koe3x2 :- write("A is not integer"), nl.
+koe3x3 :- is_integer(1.5), write("error 1.5 is not integer"), nl.
+koe3x3 :- write("1.5 is not integer"), nl.
+*/
 koe41 :- write([41,42]), nl.
 koe42 :- A = [42,43], write(A), nl.
 koe43 :- [A] = [43], write(A), nl.
@@ -74,12 +112,19 @@ koe66 :- "A" < "B", write("\"A\" < \"B\""), nl.
 :- write("koe14: "), koe14.
 :- write("koe15: "), koe15.
 :- write("koe16: "), koe16.
+:- write("koe1x1: "), koe1x1.
+:- write("koe1x2: "), koe1x2.
+:- write("koe1x3: "), koe1x3.
    
 :- nl.
 :- write("koe21: "), koe21.
 :- write("koe22: "), koe22.
 :- write("koe23: "), koe23.
 :- write("koe24: "), koe24.
+:- write("koe2x1: "), koe2x1.
+:- write("koe2x2: "), koe2x2.
+:- write("koe2x3: "), koe2x3.
+:- write("koe2x4: "), koe2x4.
 
 :- nl.
 :- write("koe31: "), koe31.
@@ -93,6 +138,9 @@ koe66 :- "A" < "B", write("\"A\" < \"B\""), nl.
 :- write("koe39a: "), koe39a.
 :- write("koe39b: "), koe39b.
 :- write("koe39c: "), koe39c.
+:- write("koe3x1: "), koe3x1.
+:- write("koe3x2: "), koe3x2.
+:- write("koe3x3: "), koe3x3.
 
 :- nl.
 :- write("koe41: "), koe41.

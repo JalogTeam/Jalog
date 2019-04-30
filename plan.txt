@@ -1,0 +1,138 @@
+Plan for future development
+
+Predicates
+----------
+
+  comline - gives command line
+  
+  readchar(char c)
+  
+  readint
+  
+  readln
+  
+  readreal
+  
+  readterm
+  
+  nl
+  
+  write
+  
+  writedevice
+  
+  writef
+  
+  closefile
+  
+  consult
+  
+  deletefile
+  
+  dir
+  
+  disk
+  
+  eof
+  
+  existfile
+  
+  filepos
+  
+  file_str
+  
+  filemode
+  
+  flush
+  
+  openappend
+  
+  openmodify
+  
+  openread
+  
+  openwrite
+  
+  readdevice
+  
+  renamefile
+  
+  save
+  
+  writedevice
+  
+  concat
+  
+  frontchar
+  
+  frontstr
+  
+  fronttoken
+  
+  isname
+  
+  str_len
+  
+  char_int
+  
+  str_char
+  
+  str_int
+  
+  str_real
+  
+  upper_lower
+  
+  asserta
+  
+  assertz
+  
+  consult
+  
+  retract
+  
+  save
+  
+  date
+  
+  time
+  
+  trace
+  
+  bound
+  
+  equal
+  
+  exit
+  
+  fail
+  
+  findall
+  
+  free
+  
+  not
+  
+Not in Turbo Prolog 1.0
+
+  format
+  
+  int_real
+  
+  str_term
+  
+  is_integer
+  
+  is_char
+  
+  is_real
+  
+  is_string
+  
+  is_list
+  
+  is_compound
+  
+  
+  
+  

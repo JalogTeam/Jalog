@@ -21,6 +21,8 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
     String name = data.name;
     int arity = data.arity;
     boolean op_found = true;
+    
+    Pro_TermData data1, data2, data3;
 
     char Op;
     double R1 = 0.0, R2 = 0.0;
@@ -28,7 +30,8 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
     char T1, T2, Tv, C1 = ' ', C2 = ' ';
     String S1 = "", S2 = "";
     boolean Bv = false;
-
+    String filename;
+    
     if(!(data instanceof Pro_TermData_Compound)){
       Pred.forward = false;
 // Debug_times.leave(3);
@@ -37,21 +40,13 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
 
 // System.out.println("\n--Ops.call_forward: " + name + "/" + arity);
 
-    // cut_/0
-
-    if(name.equals("cut_") && (arity == 0)){ 
-// System.out.println("\n--Ops.first_call: cut");
-// Debug_times.enter(2);
-      result = new Pred_cut_();
-// Debug_times.leave(2);
-
     // write/*
 
-    } else if(name.equals("write")){ // handle all arities
+    if(name.equals("write")){ // handle all arities
       for(int i = 0; i < arity; i++){
         System.out.print(data.subterm[i].image());
       }
-      result = new Pred(); // **
+      // result = new Pred(); // **
 
     // writeln/*
 
@@ -60,7 +55,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
         System.out.print(data.subterm[i].image());
       }
       System.out.println("");
-      result = new Pred(); // **
+      // result = new Pred(); // **
 
     // writeq/*
 
@@ -68,15 +63,15 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
       for(int i = 0; i < arity; i++){
         System.out.print(data.subterm[i].toString());
       }
-      result = new Pred(); // **
+      // result = new Pred(); // **
 
-      // exit
+    // exit/0, exit/1
 
     } else if(name.equals("exit") ){
       Pred.exception = true;
       Pred.exit_value = null;
       if(arity > 0) {
-        Pro_TermData data1 = data.subterm[0].getData();
+        data1 = data.subterm[0].getData();
         if((data1 != null) && (data1 instanceof Pro_TermData_Integer)) {
           Pred.exit_value = data.subterm[0].getRealNode();
         }
@@ -90,12 +85,22 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
     } else {
       
       switch (arity) {
+
         case 0: {
+
+          // cut_/0
+
+          if(name.equals("cut_") && (arity == 0)){ 
+// System.out.println("\n--Ops.first_call: cut");
+// Debug_times.enter(2);
+            result = new Pred_cut_();
+// Debug_times.leave(2);
+          
           // nl/0
 
-          if(name.equals("nl")){ 
+          } else if(name.equals("nl")){ 
             System.out.println("");
-            result = new Pred(); // **
+            // result = new Pred(); // **
             
           // fail/0
 
@@ -109,44 +114,45 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
         } break;
         case 1: {
           
+          data1 = data.subterm[0].getData();
+          
          // consult/1
 
           if(name.equals("consult")){ 
-              // consult(String Filename) - (i)
-            String Filename = data.subterm[0].image();
-// System.out.print("\n--Consulting \"" + Filename + "\"--");
+              // consult(String filename) - (i)
+            filename = data.subterm[0].image();
+// System.out.print("\n--Consulting \"" + filename + "\"--");
             int size = ConsultingFiles.size();
             boolean found = false;
             for(int i = 0; (i < size) && !found; i++){
-              found = Filename.equals((String)ConsultingFiles.elementAt(i));
+              found = filename.equals((String)ConsultingFiles.elementAt(i));
             }
             if(!found) {
 // System.out.print(" starting.\n");
-              ConsultingFiles.push(Filename);
-              Consult.run(Filename);
+              ConsultingFiles.push(filename);
+              Consult.run(filename);
               if(Consult.exit_value != null) { // bad file
                 Pred.exception = true;
                 Pred.exit_value = Consult.exit_value;
               }
               ConsultingFiles.pop();
-// System.out.print("\n--Consulting \"" + Filename + "\"-- Finished\n");
+// System.out.print("\n--Consulting \"" + filename + "\"-- Finished\n");
             } else {
-// System.out.print("\n--Consulting \"" + Filename + "\"-- Loop: Rejected!\n");
+// System.out.print("\n--Consulting \"" + filename + "\"-- Loop: Rejected!\n");
               Pred.forward = false;
             }
-            result = new Pred(); // **
+            // result = new Pred(); // **
             
           // dump/1
 
           } else if(name.equals("dump")){
-            Pro_TermData data0 = data.subterm[0].getData();
-            if(data0 instanceof Pro_TermData_String) {
-              String filename = ((Pro_TermData_String)data0).value;
+            if(data1 instanceof Pro_TermData_String) {
+              filename = ((Pro_TermData_String)data1).value;
               Database.dump(filename);
             } else {
               Pred.forward = false;
             }
-            result = new Pred(); // **
+            // result = new Pred(); // **
 
           // assertz/1
 
@@ -157,7 +163,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
             } else {
               Pred.forward = false;
             }
-            result = new Pred(); // **
+            // result = new Pred(); // **
 
           // not/1
 
@@ -181,7 +187,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
           } else if(name.equals("z_")){
 
             Pred.z_request = true;
-            result = new Pred(); // **
+            // result = new Pred(); // **
             
 
 // END TEMPORARY
@@ -189,8 +195,36 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
           // bound/1
 
           } else if(name.equals("bound")){
-            if(data.subterm[0].getData() != null) {
-              result = new Pred(); // **
+            if(data1 != null) {
+              // result = new Pred(); // **
+            } else {
+              Pred.forward = false;
+            }
+
+
+          // is_integer/1
+
+          } else if(name.equals("is_integer")){
+            if((data1 != null) && (data1 instanceof Pro_TermData_Integer)) {
+              // result = new Pred(); // **
+            } else {
+              Pred.forward = false;
+            }
+
+          // is_char/1
+
+          } else if(name.equals("is_char")){
+            if((data1 != null) && (data1 instanceof Pro_TermData_Char)) {
+              // result = new Pred(); // **
+            } else {
+              Pred.forward = false;
+            }
+
+          // is_compound/1
+
+          } else if(name.equals("is_compound")){
+            if((data1 != null) && (data1 instanceof Pro_TermData_Compound)) {
+              // result = new Pred(); // **
             } else {
               Pred.forward = false;
             }
@@ -237,8 +271,8 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
               tmp1.compval(data.subterm[0]);
               tmp2.compval(data.subterm[1]);
 
-              Pro_TermData data1 = tmp1.getData();
-              Pro_TermData data2 = tmp2.getData();
+              data1 = tmp1.getData();
+              data2 = tmp2.getData();
 
               T1 = ' ';
               T2 = ' ';
@@ -334,7 +368,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
                 Pred.forward = false;
               }
               if (Pred.forward) {
-                result = new Pred(); 
+                // result = new Pred(); 
               }
             } else {
               op_found = false;

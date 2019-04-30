@@ -68,6 +68,9 @@ if(Debug > 0) System.out.println("\nInference: new_body_item = " + new_body_item
 if(Debug > 0) System.out.println("\nInference B: first_call " + new_body_item_data.t1);
 
             new_pred = Ops.first_call(new_body_item_data.t1);
+            if (new_pred == null) {
+              new_pred = new Pred(); // Null does not work in backtrack. 
+            }
 // TEMPORARY!
             if(Pred.z_request) {
               Pred.z_request = false;

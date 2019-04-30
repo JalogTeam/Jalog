@@ -9,6 +9,12 @@ koe14: 'A' = 'A'
 koe15: *No*
 koe16: 'A' < 'B'
 *Yes*
+koe1x1: 'z' is char
+*Yes*
+koe1x2: A is not char
+*Yes*
+koe1x3: "z" is not char
+*Yes*
 
 *Yes*
 koe21: a(21)
@@ -18,6 +24,14 @@ koe22: a(22)
 koe23: 23
 *Yes*
 koe24: 24
+*Yes*
+koe2x1: a(21) is compound
+*Yes*
+koe2x2: A is not compound
+*Yes*
+koe2x3: [a,b] is not compound
+*Yes*
+koe2x4: a is compound
 *Yes*
 
 *Yes*
@@ -42,6 +56,12 @@ koe39a: 36 <> 37
 koe39b: 36 >< 37
 *Yes*
 koe39c: 36 != 37
+*Yes*
+koe3x1: 1 is integer
+*Yes*
+koe3x2: A is not integer
+*Yes*
+koe3x3: 1.5 is not integer
 *Yes*
 
 *Yes*
