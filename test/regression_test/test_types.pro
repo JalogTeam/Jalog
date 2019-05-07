@@ -37,6 +37,14 @@ koe2x3 :- is_compound([a,b]), write("error [a,b] is not compound"), nl.
 koe2x3 :- write("[a,b] is not compound"), nl.
 koe2x4 :- is_compound(a), write("a is compound"), nl.
 
+koe2y1 :- a = b, write("error a = b"), nl, fail.
+koe2y1 :- write("not a = b"), nl.
+koe2y2 :- a = a, write("a = a"), nl.
+
+koe2y3 :- a > b, write("error a > b"), nl, fail.
+koe2y3 :- write("not a > b"), nl.
+koe2y4 :- a < b, write("a < b"), nl.
+
 koe31 :- write(31), nl.
 koe32 :- B = 32, write(B),nl.
 koe33 :- B = 32 + 1, write(B), nl.
@@ -58,29 +66,20 @@ koe3x2 :- is_integer(A), write("error A is not integer"), nl.
 koe3x2 :- write("A is not integer"), nl.
 koe3x3 :- is_integer(1.5), write("error 1.5 is not integer"), nl.
 koe3x3 :- write("1.5 is not integer"), nl.
-/*
-koe3x1 :- is_integer(1), write("1 is integer"), nl.
-koe3x2 :- is_integer(A), write("error A is not integer"), nl.
-koe3x2 :- write("A is not integer"), nl.
-koe3x3 :- is_integer(1.5), write("error 1.5 is not integer"), nl.
-koe3x3 :- write("1.5 is not integer"), nl.
+koe3x4 :- is_integer(1.0), write("error 1.0 is not integer"), nl.
+koe3x4 :- write("1.0 is not integer"), nl.
 
-koe3x1 :- is_integer(1), write("1 is integer"), nl.
-koe3x2 :- is_integer(A), write("error A is not integer"), nl.
-koe3x2 :- write("A is not integer"), nl.
-koe3x3 :- is_integer(1.5), write("error 1.5 is not integer"), nl.
-koe3x3 :- write("1.5 is not integer"), nl.
-
-koe3x1 :- is_integer(1), write("1 is integer"), nl.
-koe3x2 :- is_integer(A), write("error A is not integer"), nl.
-koe3x2 :- write("A is not integer"), nl.
-koe3x3 :- is_integer(1.5), write("error 1.5 is not integer"), nl.
-koe3x3 :- write("1.5 is not integer"), nl.
-*/
 koe41 :- write([41,42]), nl.
 koe42 :- A = [42,43], write(A), nl.
 koe43 :- [A] = [43], write(A), nl.
 koe44 :- [A] = [B], B = 44, write(A), nl.
+
+koe4x1 :- is_list([1]), write("[1] is list"), nl.
+koe4x2 :- is_list(A), write("error A is not list"), nl.
+koe4x2 :- write("A is not list"), nl.
+koe4x3 :- is_list(a(1)), write("error a(1) is not list"), nl.
+koe4x3 :- write("a(1) is not list"), nl.
+koe4x4 :- is_list([]), write("[] is list"), nl.
 
 koe51 :- write(5.1), nl.
 koe52 :- B = 5.2, write(B),nl.
@@ -93,6 +92,14 @@ koe57 :- 38 >= 3.7, write("38 >= 3.7"), nl.
 koe58 :- 3.6 <= 3.7, write("38 >= 3.7"), nl.
 koe59 :- 3.6 <> 3.7, write("3.6 <> 3.7"), nl.
 
+koe5x1 :- is_real(1.1), write("1.1 is real"), nl.
+koe5x2 :- is_real(A), write("error A is not real"), nl.
+koe5x2 :- write("A is not real"), nl.
+koe5x3 :- is_real(1), write("error 1 is not real"), nl.
+koe5x3 :- write("1 is not real"), nl.
+koe5x4 :- is_real(1.0), write("1.0 is real"), nl.
+
+
 koe61 :- writeq("A"), nl.
 koe62 :- B = "A", writeq(B),nl.
 
@@ -102,6 +109,14 @@ koe64 :- "A" = "A", write("\"A\" = \"A\""), nl.
 koe65 :- "A" = "\u0041", write("\"A\" = \"\\u0041\""), nl.
 koe66 :- "A" > "B", write("error \"A\" > \"B\""), nl, fail.
 koe66 :- "A" < "B", write("\"A\" < \"B\""), nl.
+
+koe6x1 :- is_string("A"), write("\"A\" is string"), nl.
+koe6x2 :- is_string(A), write("error A is not string"), nl.
+koe6x2 :- write("A is not string"), nl.
+koe6x3 :- is_string(a), write("error a is not string"), nl.
+koe6x3 :- write("a is not string"), nl.
+
+
 
 
 % Test main
@@ -125,6 +140,10 @@ koe66 :- "A" < "B", write("\"A\" < \"B\""), nl.
 :- write("koe2x2: "), koe2x2.
 :- write("koe2x3: "), koe2x3.
 :- write("koe2x4: "), koe2x4.
+:- write("koe2y1: "), koe2y1.
+:- write("koe2y2: "), koe2y2.
+:- write("koe2y3: "), koe2y3.
+:- write("koe2y4: "), koe2y4.
 
 :- nl.
 :- write("koe31: "), koe31.
@@ -141,12 +160,17 @@ koe66 :- "A" < "B", write("\"A\" < \"B\""), nl.
 :- write("koe3x1: "), koe3x1.
 :- write("koe3x2: "), koe3x2.
 :- write("koe3x3: "), koe3x3.
+:- write("koe3x4: "), koe3x4.
 
 :- nl.
 :- write("koe41: "), koe41.
 :- write("koe42: "), koe42.
 :- write("koe43: "), koe43.
 :- write("koe44: "), koe44.
+:- write("koe4x1: "), koe4x1.
+:- write("koe4x2: "), koe4x2.
+:- write("koe4x3: "), koe4x3.
+:- write("koe4x4: "), koe4x4.
 
 :- nl.
 :- write("koe51: "), koe51.
@@ -157,6 +181,10 @@ koe66 :- "A" < "B", write("\"A\" < \"B\""), nl.
 :- write("koe57: "), koe57.
 :- write("koe58: "), koe58.
 :- write("koe59: "), koe59.
+:- write("koe5x1: "), koe5x1.
+:- write("koe5x2: "), koe5x2.
+:- write("koe5x3: "), koe5x3.
+:- write("koe5x4: "), koe5x4.
 
 :- nl.
 :- write("koe61: "), koe61.
@@ -164,4 +192,7 @@ koe66 :- "A" < "B", write("\"A\" < \"B\""), nl.
 :- write("koe64: "), koe64.
 :- write("koe65: "), koe65.
 :- write("koe66: "), koe66.
+:- write("koe6x1: "), koe6x1.
+:- write("koe6x2: "), koe6x2.
+:- write("koe6x3: "), koe6x3.
 :- nl.

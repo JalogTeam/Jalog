@@ -33,6 +33,14 @@ koe2x3: [a,b] is not compound
 *Yes*
 koe2x4: a is compound
 *Yes*
+koe2y1: not a = b
+*Yes*
+koe2y2: a = a
+*Yes*
+koe2y3: not a > b
+*Yes*
+koe2y4: a < b
+*Yes*
 
 *Yes*
 koe31: 31
@@ -63,6 +71,8 @@ koe3x2: A is not integer
 *Yes*
 koe3x3: 1.5 is not integer
 *Yes*
+koe3x4: 1.0 is not integer
+*Yes*
 
 *Yes*
 koe41: [41,42]
@@ -72,6 +82,14 @@ koe42: [42,43]
 koe43: 43
 *Yes*
 koe44: 44
+*Yes*
+koe4x1: [1] is list
+*Yes*
+koe4x2: A is not list
+*Yes*
+koe4x3: a(1) is not list
+*Yes*
+koe4x4: [] is list
 *Yes*
 
 *Yes*
@@ -91,6 +109,14 @@ koe58: 38 >= 3.7
 *Yes*
 koe59: 3.6 <> 3.7
 *Yes*
+koe5x1: 1.1 is real
+*Yes*
+koe5x2: A is not real
+*Yes*
+koe5x3: 1 is not real
+*Yes*
+koe5x4: 1.0 is real
+*Yes*
 
 *Yes*
 koe61: "A"
@@ -102,6 +128,12 @@ koe64: "A" = "A"
 koe65: "A" = "\u0041"
 *Yes*
 koe66: "A" < "B"
+*Yes*
+koe6x1: "A" is string
+*Yes*
+koe6x2: A is not string
+*Yes*
+koe6x3: a is not string
 *Yes*
 
 *Yes*

@@ -1,4 +1,4 @@
-Projektitilanne 2019-04-16
+Projektitilanne 2019-05-07
 
 Regressiotestausta kehitetty. Ympäristö on test\regression_test .
 Regressiotesti ajetaan komennolla test_test .
@@ -13,8 +13,15 @@ Testaus kattaa:
     assertz
     not
     bound
+    is_char
+    is_real
+    is_string
+    is_compound
+    is_list
+    is_integer
     
-  Kaikki aritmettiset operaattorit
+    
+  Kaikki aritmettiset ja vertailuoperaattorit, 
 
 Testiraportti: Jalog\test\regression_test\test_report.txt
 
@@ -45,10 +52,7 @@ Mahdollisia kehityskohteita:
 NYT:
 Katso plan.txt
 
-Tyyppitestit: vielä tekemättä ja koodaamatta:
-% list
-% real
-% string
+Tyyppitestit tehty
 
 
 PERIAATTEITA

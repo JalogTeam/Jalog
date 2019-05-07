@@ -211,6 +211,15 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
               Pred.forward = false;
             }
 
+          // is_real/1
+
+          } else if(name.equals("is_real")){
+            if((data1 != null) && (data1 instanceof Pro_TermData_Real)) {
+              // result = new Pred(); // **
+            } else {
+              Pred.forward = false;
+            }
+
           // is_char/1
 
           } else if(name.equals("is_char")){
@@ -220,10 +229,28 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
               Pred.forward = false;
             }
 
+          // is_string/1
+
+          } else if(name.equals("is_string")){
+            if((data1 != null) && (data1 instanceof Pro_TermData_String)) {
+              // result = new Pred(); // **
+            } else {
+              Pred.forward = false;
+            }
+
           // is_compound/1
 
           } else if(name.equals("is_compound")){
             if((data1 != null) && (data1 instanceof Pro_TermData_Compound)) {
+              // result = new Pred(); // **
+            } else {
+              Pred.forward = false;
+            }
+
+          // is_list/1
+
+          } else if(name.equals("is_list")){
+            if((data1 != null) && (data1 instanceof Pro_TermData_List)) {
               // result = new Pred(); // **
             } else {
               Pred.forward = false;
@@ -293,6 +320,11 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
                 T1 = 's';
                 S1 = ((Pro_TermData_String)data1).value;
                 Tv = 's';
+              } else if((data1 instanceof Pro_TermData_Compound) && 
+                  (((Pro_TermData_Compound)data1).arity == 0)) {
+                T1 = 'y';
+                S1 = ((Pro_TermData_Compound)data1).name;
+                Tv = 'y';
               }
               if(Tv != ' ') {
                 if(data2 instanceof Pro_TermData_Integer){
@@ -311,6 +343,11 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
                   T2 = 's';
                   S2 = ((Pro_TermData_String)data2).value;
                   Tv = (T1 == 's' ? 's': ' ');
+                } else if(data2 instanceof Pro_TermData_Compound && 
+                    (((Pro_TermData_Compound)data2).arity == 0)) {
+                  T2 = 'y';
+                  S2 = ((Pro_TermData_Compound)data2).name;
+                  Tv = (T1 == 'y' ? 's': ' ');
                 } else {
                   Tv = ' ';
                 }
