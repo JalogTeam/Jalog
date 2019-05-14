@@ -3,6 +3,18 @@ Plan for future development
 Predicates
 ----------
 
+  bitand
+  
+  bitnot
+  
+  bitor
+  
+  bitxor
+  
+  bitleft
+  
+  bitright
+  
   comline - gives command line
   
   readchar(char c)
@@ -132,6 +144,33 @@ Not in Turbo Prolog 1.0
   is_list
   
   is_compound
+  
+  
+Functions
+
+  random
+  
+  abs
+  
+  round
+  
+  cos
+  
+  sin
+  
+  tan
+  
+  arctan
+  
+  exp
+  
+  ln
+  
+  log
+  
+  sqrt
+  
+  
   
   
   

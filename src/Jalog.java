@@ -64,4 +64,53 @@ public class Jalog
       
     
   }
+  
+  static public class Exit extends Exception {
+    public Exit(long status) {
+        super("Exit");
+        this.status = status;
+    }
+    long status;
+  }
+  
+  static public void consult(String filename) {
+    Consult.run(filename);
+  }
+  
+  static public boolean call(String predname, Pro_Term ... args) throws Jalog.Exit {
+    boolean retval;
+    long exit_status = -1;
+    
+    Inference I = new Inference();
+
+    Pro_Term predcall[] = {Pro_Term.m_compound(predname, args)};
+    
+    Pro_Term body = Pro_Term.m_list(predcall);
+    
+    Pred.forward = true;
+    I.run_body(body);
+    
+    // Get result values
+    
+    if(I.exit_value == null)
+    {
+      if(Pred.forward){
+        retval = true;
+      } else {
+        retval = false;
+      }
+    } else {
+      /* Exception! */
+      Pred.trail.backtrack(I.Mark); // clear variables
+      
+      Pro_TermData exit_td = I.exit_value.getData();
+      if (exit_td instanceof Pro_TermData_Integer) {
+        exit_status = ((Pro_TermData_Integer)exit_td).value;
+      }
+      
+      throw new Exit(exit_status);
+    }
+//    Pred.trail.backtrack(I.Mark); // clear variables
+    return retval;
+  }
 }

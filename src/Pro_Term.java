@@ -632,5 +632,14 @@ public class Pro_Term
     return new_this;
   }
 
+  public String typename() {
+    Pro_TermData data = getData();
+    
+    if (data == null) {
+      return "null";
+    } else {
+      return data.getClass().getName();
+    }
+  }
 } // end class Pro_Term
 
