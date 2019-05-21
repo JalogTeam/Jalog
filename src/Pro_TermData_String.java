@@ -4,6 +4,7 @@ public class Pro_TermData_String extends Pro_TermData
 
   Pro_TermData_String(String iniVal)
   {
+    typename = Jalog.STRING;
     value = iniVal;
   }
 

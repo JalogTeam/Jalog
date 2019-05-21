@@ -16,6 +16,7 @@ public class Pro_TermData_Compound extends Pro_TermData
   {
     name = iniName;
     arity = (byte)(iniSubterm.length);
+    typename = (arity == 0 ? Jalog.SYMBOL : Jalog.COMPOUND);
     
     subterm = iniSubterm;
   }

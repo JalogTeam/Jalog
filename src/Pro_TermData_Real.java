@@ -4,6 +4,7 @@ public class Pro_TermData_Real extends Pro_TermData
   
   Pro_TermData_Real(double iniVal)
   {
+    typename = Jalog.REAL;
     value = iniVal;
   }
   public String toString()

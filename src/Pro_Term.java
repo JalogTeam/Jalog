@@ -7,7 +7,7 @@ public class Pro_Term
   static int debug = 0;
   static long lastId = 0;
   
-  private Pro_TermData data;
+  protected Pro_TermData data;
 //  public Pro_TermData data;
   public long Id;
   
@@ -257,7 +257,24 @@ public class Pro_Term
   {
     return getRealNode().data;
   }
+  
+  public String getType()
+  {
+    Pro_TermData data = getRealNode().data;
+    
+    return (data == null ? Jalog.OPEN : data.typename);
+  }
 
+  public long getIntegerValue() {
+    String type = getType();
+    
+    if(type == Jalog.INTEGER) {
+      return ((Pro_TermData_Integer)getData()).value;
+    } else {
+      return 0;
+    }
+  }
+  
   public void clearData()
   {
     data = null;
@@ -641,5 +658,6 @@ public class Pro_Term
       return data.getClass().getName();
     }
   }
+
 } // end class Pro_Term
 

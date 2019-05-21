@@ -2,8 +2,10 @@
 
 import java.util.Hashtable;
 
-public class Pro_TermData
+public abstract class Pro_TermData
 {
+  public String typename;
+  
   public String image()
   {
     return toString();

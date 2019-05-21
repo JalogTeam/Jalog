@@ -1,0 +1,17 @@
+
+jalog_consult(String filename)
+
+boolean jalog_call(String pred, Object ... args)
+
+Vapaa muuttuja:
+  public class jalog_value
+  {
+    public Object value; // null -> avoin
+  }
+  
+Compound muuttuja:
+  public class jalog_compound
+  {
+    public String functor;
+    public Object [] args;
+  }

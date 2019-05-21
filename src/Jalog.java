@@ -3,7 +3,26 @@ import java.io.*;
 
 public class Jalog
 {
-  static final String id_string="Jalog 0.2 by Ari Okkonen & Mikko Levanto 2012-04-20";
+  static final String id_string="Jalog 0.3 by Ari Okkonen & Mikko Levanto 2019-04-21";
+  
+  private static int instance_count = 0;
+  
+  public Jalog() {
+    if (instance_count > 0) {
+      throw new Error("Multiple Jalog instances not supported.");
+    } else {
+      instance_count ++;
+    }
+  }
+  
+  public static void dispose() {
+    
+    Database.db.clear();
+    
+    instance_count = 0;
+    
+  }
+  
   public static void main(String args[])
   { 
     int i;
@@ -65,6 +84,40 @@ public class Jalog
     
   }
   
+  // Java calling interface
+  // ======================
+  
+  public static class Term extends Pro_Term{
+    Term(Pro_Term t) {
+      Id = t.Id;
+      data = t.data;
+    }
+  };
+
+
+  // typenames
+  
+  static final String OPEN = "open";
+  static final String INTEGER = "integer";
+  static final String SYMBOL = "symbol";
+  static final String REAL = "real";
+  static final String CHAR = "char";
+  static final String STRING = "String";
+  static final String LIST = "list";
+  static final String COMPOUND = "compound";
+  
+  public static Term symbol(String name) {
+ 
+    return new Term(Pro_Term.m_compound(name, new Pro_Term[0]));
+  }
+
+  public static Term open() {
+    return new Term(Pro_Term.m_open());
+  }
+
+
+
+
   static public class Exit extends Exception {
     public Exit(long status) {
         super("Exit");
@@ -73,7 +126,7 @@ public class Jalog
     long status;
   }
   
-  static public void consult(String filename) {
+  static public void consult_file(String filename) {
     Consult.run(filename);
   }
   

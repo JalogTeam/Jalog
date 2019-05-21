@@ -12,6 +12,7 @@ public class Pro_TermData_List extends Pro_TermData
 
   Pro_TermData_List(Pro_Term head, Pro_Term tail)
   {
+    typename = Jalog.LIST;
     t1 = head;
     t2 = tail;
   }
