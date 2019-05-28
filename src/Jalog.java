@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Jalog
 {
-  static final String id_string="Jalog 0.3 by Ari Okkonen & Mikko Levanto 2019-04-21";
+  static final String id_string="Jalog 0.4 by Ari Okkonen & Mikko Levanto 2019-05-28";
   
   private static int instance_count = 0;
   
@@ -106,13 +106,21 @@ public class Jalog
   static final String LIST = "list";
   static final String COMPOUND = "compound";
   
+  public static Term open() {
+    return new Term(Pro_Term.m_open());
+  }
+
+  public static Term integer(long i) {
+    return new Term(Pro_Term.m_integer(i));
+  }
+
   public static Term symbol(String name) {
  
     return new Term(Pro_Term.m_compound(name, new Pro_Term[0]));
   }
 
-  public static Term open() {
-    return new Term(Pro_Term.m_open());
+  public static Term list(Term[] elements) {
+    return new Term(Pro_Term.m_list(elements));
   }
 
 

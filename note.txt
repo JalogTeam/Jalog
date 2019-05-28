@@ -1,9 +1,10 @@
-Projektitilanne 2019-05-07
+Projektitilanne 2019-05-28
 
-Regressiotestausta kehitetty. Ympäristö on test\regression_test .
-Regressiotesti ajetaan komennolla test_test .
+Java-interfeisiä kehitetty. Miten Prolog-ohjelman tuottamat tietorakenteet
+konvertoidaan Javaa varten? Tietorakenteiden sisukset ovat tyyppiä Pro_Term
+mutta Java-interfeis haluaa näyttää Jalog.Term-tyyppiä.
 
-Testaus kattaa:
+Regressiotesti kattaa:
   Predikaatit
     fail
     write, writeln, writeq
