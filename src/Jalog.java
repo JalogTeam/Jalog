@@ -92,6 +92,150 @@ public class Jalog
       Id = t.Id;
       data = t.data;
     }
+
+    private Term() {
+      // Not to be used
+    }
+    // How to get rid of Pro_Term.getType? 
+    
+    public String getType()
+    {
+      Pro_TermData data = getRealNode().data;
+      
+      return (data == null ? Jalog.OPEN : data.typename);
+    }
+
+    public long getIntegerValue() {
+      String type = getType();
+      
+      if(type == Jalog.INTEGER) {
+        return ((Pro_TermData_Integer)getData()).value;
+      } else if(type == Jalog.REAL) {
+        return (long)(((Pro_TermData_Real)getData()).value);
+      } else {
+        return 0;
+      }
+    }
+
+    public String getSymbolValue() {
+      String type = getType();
+      
+      if(type == Jalog.SYMBOL) {
+        return ((Pro_TermData_Compound)getData()).name;
+      } else {
+        return null;
+      }
+    }
+
+    public double getRealValue() {
+      String type = getType();
+      
+      if(type == Jalog.INTEGER) {
+        return (double)(((Pro_TermData_Integer)getData()).value);
+      } else if(type == Jalog.REAL) {
+        return ((Pro_TermData_Real)getData()).value;
+      } else {
+        return 0.0;
+      }
+    }
+
+    public char getCharacterValue() {
+      String type = getType();
+      
+      if(type == Jalog.CHARACTER) {
+        return ((Pro_TermData_Char)getData()).value;
+      } else {
+        return '\uFFFF';
+      }
+    }
+
+    public String getStringValue() {
+      String type = getType();
+      
+      if(type == Jalog.STRING) {
+        return ((Pro_TermData_String)getData()).value;
+      } else {
+        return null;
+      }
+    }
+
+    public Term[] getElements() {
+      Term[] result;
+      Pro_Term current, head;
+      int n, i;
+      
+      if (getType() == Jalog.LIST) {
+        current = this;
+        n = 0;
+        while ((current != null) && (current.getType() == Jalog.LIST)) {
+          current = ((Pro_TermData_List)current.getData()).t2;
+          if (current != null) n++;
+//          n++;
+        }
+        if (current != null) n++;
+// System.out.println("*** getElements, n=" + n);        
+        result = new Term[n];
+        current = this;
+        n = 0;
+        while (/*(current != null) && (current.getType() == Jalog.LIST) && */
+            n < result.length) {
+          head = ((Pro_TermData_List)current.getData()).t1;
+          if (head != null) {
+            result[n] = new Jalog.Term(head);
+// System.out.println("  * getElements, ["+n+"] = "
+// +(result[n]!=null ? result[n].getType() : "null"));
+          } else {
+            result[n] = null;
+// System.out.println("  * getElements, ["+n+"] = "
+// +(result[n]!=null ? result[n].getType() : "null"));
+          }
+          current = ((Pro_TermData_List)current.getData()).t2;
+            if (current != null) n++;
+//          n++;
+        }
+        /* Here for tail - not processed
+        if (current != null){
+          result[n] = new Jalog.Term(current);
+System.out.println("  * getElements, ["+n+"] = "
++(result[n]!=null ? result[n].getType() : "null"));
+          if (current != null) n++;
+//          n++;
+        }
+        */
+      } else {
+        result = null;
+      }
+      return result;
+    }
+
+    public String getFunctor() {
+      String type = getType();
+      if ((type == Jalog.COMPOUND) || (type == Jalog.SYMBOL)) {
+        return ((Pro_TermData_Compound)getData()).name;
+      } else {
+        return null;
+      }
+    }
+
+    public Term[]  getSubTerms() {
+      String type = getType();
+      Term[] result = null;
+      int i;
+      int arity;
+      Pro_TermData_Compound data;
+      
+      if ((type == Jalog.COMPOUND) || (type == Jalog.SYMBOL)) {
+        data = (Pro_TermData_Compound)getData();
+        arity = data.arity;
+        result = new Term[arity];
+        for(i = 0; i < arity; i ++)
+        {
+          result[i] = new Term(data.subterm[i]);
+        }
+      }
+      return result;
+    }
+
   };
 
 
@@ -101,8 +245,8 @@ public class Jalog
   static final String INTEGER = "integer";
   static final String SYMBOL = "symbol";
   static final String REAL = "real";
-  static final String CHAR = "char";
-  static final String STRING = "String";
+  static final String CHARACTER = "character";
+  static final String STRING = "string";
   static final String LIST = "list";
   static final String COMPOUND = "compound";
   
@@ -115,12 +259,27 @@ public class Jalog
   }
 
   public static Term symbol(String name) {
- 
     return new Term(Pro_Term.m_compound(name, new Pro_Term[0]));
+  }
+
+  public static Term real(double r) {
+    return new Term(Pro_Term.m_real(r));
+  }
+
+  public static Term character(char c) {
+    return new Term(Pro_Term.m_char(c));
+  }
+
+  public static Term string(String s) {
+    return new Term(Pro_Term.m_string(s));
   }
 
   public static Term list(Term[] elements) {
     return new Term(Pro_Term.m_list(elements));
+  }
+
+  public static Term compound(String name, Term[] arguments) {
+    return new Term(Pro_Term.m_compound(name, arguments));
   }
 
 

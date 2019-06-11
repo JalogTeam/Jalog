@@ -33,8 +33,11 @@ public class SolveSudoku
 */
     
     myJalog.consult_file("D:\\wa\\Jalog\\demo\\sudoku\\sudoku_solver_compnent.pro");
+    System.out.println("Problem");
     print_sudoku(sudoku_problem);
-//    solve_sudoku(sudoku_problem, sudoku_solution);
+    solve_sudoku(sudoku_problem, sudoku_solution);
+    System.out.println("Solution");
+    print_sudoku(sudoku_solution);
      
      
     myJalog.dispose();
@@ -45,7 +48,6 @@ public class SolveSudoku
   
   public static void print_sudoku(int[][] sudoku){
     int i, j;
-    System.out.println("Solution to be here");
     
     for (i = 0; i < 9; i++) {
       if ((i % 3) == 0) {
@@ -66,31 +68,32 @@ public class SolveSudoku
       int[][] sudoku_solution) {
 
     int i, j, value;
-    Jalog.Term[9] line, matrix;
+    Jalog.Term line[] = new Jalog.Term[9];
+    Jalog.Term matrix[] = new Jalog.Term[9];
     Jalog.Term board;
     Jalog.Term element;
     
     for (i = 0; i < 9; i++) {
       for (j = 0; j < 9; j++) {
-        value = sudoku[i][j];
+        value = sudoku_problem[i][j];
         if(value == 0) {
           line[j] = Jalog.open();
         } else {
-          line[j] = Jalog.integer(sudoku[i][j]);
+          line[j] = Jalog.integer(sudoku_problem[i][j]);
         }
       }
       matrix[i] = Jalog.list(line);
     }
     board = Jalog.list(matrix);
     try {
-      if (j.call("sudoku1", board))
+      if (myJalog.call("sudoku1", board))
       {
-        matrix = Jalog.getElements(board);
+        matrix = board.getElements();
         for (i = 0; i < 9; i++) {
-          line = Jalog.getElements(matrix);
+          line = matrix[i].getElements();
           for (j = 0; j < 9; j++) {
             element = line[j];
-            if (len_type == Jalog.INTEGER) {
+            if (element.getType() == Jalog.INTEGER) {
               sudoku_solution[i][j] = (int)element.getIntegerValue();
             } else {
               sudoku_solution[i][j] = 0;

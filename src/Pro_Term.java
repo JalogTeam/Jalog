@@ -256,7 +256,7 @@ public class Pro_Term
   public Pro_TermData getData()
   {
     return getRealNode().data;
-  }
+  } 
   
   public String getType()
   {
@@ -264,7 +264,7 @@ public class Pro_Term
     
     return (data == null ? Jalog.OPEN : data.typename);
   }
-
+/*
   public long getIntegerValue() {
     String type = getType();
     
@@ -274,6 +274,7 @@ public class Pro_Term
       return 0;
     }
   }
+*/
   
   public void clearData()
   {
@@ -649,6 +650,7 @@ public class Pro_Term
     return new_this;
   }
 
+/*
   public String typename() {
     Pro_TermData data = getData();
     
@@ -658,6 +660,6 @@ public class Pro_Term
       return data.getClass().getName();
     }
   }
-
+*/
 } // end class Pro_Term
 
