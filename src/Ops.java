@@ -201,6 +201,15 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
               Pred.forward = false;
             }
 
+          // free/1
+
+          } else if(name.equals("free")){
+            if(data1 == null) {
+              // result = new Pred(); // **
+            } else {
+              Pred.forward = false;
+            }
+
 
           // is_integer/1
 
