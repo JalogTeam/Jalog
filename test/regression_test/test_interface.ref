@@ -1,0 +1,68 @@
+TestInterface 0.2 by Ari Okkonen & Mikko Levanto 2019-06-25
+integer test
+test_int_success
+out_int of type integer
+out_int = 9
+out_comment of type string
+out_comment = OK
+
+symbol test
+test_symbol_success
+out_symbol of type symbol
+out_symbol = good
+out_comment of type string
+out_comment = OK
+
+real test
+test_real_success
+out_real of type real
+out_real = 1.414
+out_comment of type string
+out_comment = OK
+
+character test
+test_char_success
+out_char of type character
+out_char = 'z'
+out_comment of type string
+out_comment = OK
+
+string test
+test_string_success
+out_string of type string
+out_string = "match"
+out_comment of type string
+out_comment = OK
+
+list test
+test_list_success
+out_list of type list
+  out_list[0] of type integer
+  out_list[0] = 7
+  out_list[1] of type integer
+  out_list[1] = 9
+out_comment of type string
+out_comment = Jep
+
+compound test
+test_compound_success
+out_compound of type compound
+  out_compound funcgtor: b
+  out_compound[0] of type integer
+  out_compound[0] = 7
+  out_compound[1] of type integer
+  out_compound[1] = 9
+out_comment of type string
+out_comment = Jep
+
+open test
+test_open_success
+out_open of type open
+out_open good
+out_comment of type string
+out_comment = open
+
+Exit test
+Expected Exit 42
+
+Exit status: 0 ; 

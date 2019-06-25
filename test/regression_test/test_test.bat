@@ -25,6 +25,8 @@ call do_test.bat test_exit_1
 call do_test.bat test_exit_50
 REM call do_test.bat test_
 
+call do_test_interface.bat test_interface
+
 REM final report
 echo.
 if x==x%jalog_errors% (

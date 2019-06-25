@@ -3,13 +3,14 @@ import java.io.*;
 
 public class TestInterface
 {
-  static final String id_string="TestInterface 0.1 by Ari Okkonen & Mikko Levanto 2019-06-11";
+  static final String id_string="TestInterface 0.2 by Ari Okkonen & Mikko Levanto 2019-06-25";
   
   static Jalog myJalog = new Jalog();
 
 
   public static void main(String args[])
   { 
+    int i;
     String type;
     System.out.println(id_string);
     myJalog.consult_file("test_java_if.pro");
@@ -22,10 +23,15 @@ public class TestInterface
         in_real, out_real,
         in_char, out_char,
         in_string, out_string,
+        in_list, out_list,
+        in_compound, out_compound,
+        in_open, out_open,
         out_comment;
-    
+    Jalog.Term[] in_list_content, out_list_content;
+
     // integer
 
+    System.out.println("integer test");
     in_int = Jalog.integer(7);
     out_int = Jalog.open();
     out_comment = Jalog.open();
@@ -55,6 +61,7 @@ public class TestInterface
 
     // symbol
 
+    System.out.println("symbol test");
     in_symbol = Jalog.symbol("test");
     out_symbol = Jalog.open();
     out_comment = Jalog.open();
@@ -84,6 +91,7 @@ public class TestInterface
 
     // real
 
+    System.out.println("real test");
     in_real = Jalog.real(3.142);
     out_real = Jalog.open();
     out_comment = Jalog.open();
@@ -113,6 +121,7 @@ public class TestInterface
 
     // character
 
+    System.out.println("character test");
     in_char = Jalog.character('y');
     out_char = Jalog.open();
     out_comment = Jalog.open();
@@ -142,6 +151,7 @@ public class TestInterface
 
     // string
 
+    System.out.println("string test");
     in_string = Jalog.string("template");
     out_string = Jalog.open();
     out_comment = Jalog.open();
@@ -166,6 +176,142 @@ public class TestInterface
       }
     } catch (Jalog.Exit e) {
       System.out.println("Exit " + e);
+    }
+    System.out.println();
+
+    // list
+
+    System.out.println("list test");
+    in_list_content = new Jalog.Term[2];
+    in_list_content[0] = Jalog.integer(3);
+    in_list_content[1] = Jalog.integer(5);
+    in_list = Jalog.list(in_list_content);
+    out_list = Jalog.open();
+    out_comment = Jalog.open();
+    
+    try {
+      if (myJalog.call("test_list", in_list, out_list, out_comment))
+      {
+        System.out.println("test_list_success");
+        type = out_list.getType();
+        System.out.println("out_list of type " + type);
+        if (type == Jalog.LIST) {
+          out_list_content = out_list.getElements();
+          for (i = 0; i < out_list_content.length; i++) {
+
+            out_int = out_list_content[i];
+            type = out_int.getType();
+            System.out.println("  out_list[" + i + "] of type " + type);
+            if (type == Jalog.INTEGER) {
+              int_value = out_int.getIntegerValue();
+              System.out.println("  out_list[" + i + "] = " + int_value);
+            } else {
+              System.out.println("  out_list[" + i + "] bad");
+            }
+          }
+        } else {
+          System.out.println("out_list bad");
+        }
+
+        print_comment(out_comment);
+      } else {
+         System.out.println("test_list_fail");
+       
+      }
+    } catch (Jalog.Exit e) {
+      System.out.println("Exit " + e);
+    }
+    System.out.println();
+
+    // compound
+
+    System.out.println("compound test");
+    in_list_content = new Jalog.Term[2];
+    in_list_content[0] = Jalog.integer(3);
+    in_list_content[1] = Jalog.integer(5);
+    in_compound = Jalog.compound("a", in_list_content);
+    out_compound = Jalog.open();
+    out_comment = Jalog.open();
+    
+    try {
+      if (myJalog.call("test_compound", in_compound, out_compound, out_comment))
+      {
+        System.out.println("test_compound_success");
+        type = out_compound.getType();
+        System.out.println("out_compound of type " + type);
+        if (type == Jalog.COMPOUND) {
+          System.out.println("  out_compound funcgtor: " + 
+              out_compound.getFunctor());
+          out_list_content = out_compound.getSubTerms();
+          for (i = 0; i < out_list_content.length; i++) {
+
+            out_int = out_list_content[i];
+            type = out_int.getType();
+            System.out.println("  out_compound[" + i + "] of type " + type);
+            if (type == Jalog.INTEGER) {
+              int_value = out_int.getIntegerValue();
+              System.out.println("  out_compound[" + i + "] = " + int_value);
+            } else {
+              System.out.println("  out_compound[" + i + "] bad");
+            }
+          }
+        } else {
+          System.out.println("out_compound bad");
+        }
+
+        print_comment(out_comment);
+      } else {
+         System.out.println("test_compound_fail");
+       
+      }
+    } catch (Jalog.Exit e) {
+      System.out.println("Exit " + e);
+    }
+    System.out.println();
+
+    // open
+
+    System.out.println("open test");
+    in_open = Jalog.open();
+    out_open = Jalog.open();
+    out_comment = Jalog.open();
+    
+    try {
+      if (myJalog.call("test_open", in_open, out_open, out_comment))
+      {
+        System.out.println("test_open_success");
+        type = out_open.getType();
+        System.out.println("out_open of type " + type);
+        if (type == Jalog.OPEN) {
+          System.out.println("out_open good");
+        } else {
+          System.out.println("out_open bad");
+        }
+
+        print_comment(out_comment);
+      } else {
+         System.out.println("test_open_fail");
+       
+      }
+    } catch (Jalog.Exit e) {
+      System.out.println("Exit " + e);
+    }
+    System.out.println();
+
+    // Exit
+
+    System.out.println("Exit test");
+    
+    try {
+      if (myJalog.call("test_exit"))
+      {
+        System.out.println("test_open_success ERROR");
+      } else {
+        System.out.println("test_open_fail ERROR");
+       
+      }
+    } catch (Jalog.Exit e) {
+      System.out.println("Expected Exit " + e.status);
     }
     System.out.println();
 
