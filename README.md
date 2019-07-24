@@ -1,11 +1,18 @@
+
+## *Under construction* !
 # Jalog
+
 *An interpreter for a Prolog-like language with Java-like arithmetic written in Java*
 
-**Version** 0.2 2012-04-20 Minor corrections. Debug timing disabled.
+Jalog makes artificial intelligence available to a wide variety of devices and applications.
+
+**Version** 0.3 2019-07-24 Interface test completed and integrated to regression test.
+
 ### Authors
 Mikko Levanto<br>
 Ari Okkonen
 ## Usage
+### Stand-alone Jalog
 <pre>
 X:><b>java Jalog</b>
 Parameters: &lt;compiler_options> &lt;program_name> &lt;program_arguments>
@@ -14,6 +21,13 @@ Parameters: &lt;compiler_options> &lt;program_name> &lt;program_arguments>
   &lt;program_name> - complete file name - no default extensions
   &lt;program_arguments> - as the program needs them
 </pre>
+### Integrated Jalog
+A more complex thing.
+
+## Intended use
+
+Jalog gives ability to use [Prolog](https://en.wikipedia.org/wiki/Prolog) style reasoning whereever [Java](https://en.wikipedia.org/wiki/Java_%28programming_language%29) can be used. Prolog helps the programmer to concentrate on the problem instead of the solution algorithm. Examples: finding routes, solving puzzles like Sudoku, ...
+
 See examples in `test` directory for implemented features.
 
 ----------
