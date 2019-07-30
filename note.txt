@@ -1,6 +1,11 @@
 Projektitilanne 2019-07-30
 
-Java-interfeisi toimii.
+Organisoitu pakkauksiksi:
+  Jalog: io.github.JalogTeam.jalog
+  Parser: io.github.JalogTeam.parser
+  
+Regressiotesti p‰ivitetty testaamaan pakkauksia.
+Sudoku demo p‰ivitetty.
 
 Regressiotesti kattaa:
   mm. Predikaatit
@@ -42,7 +47,7 @@ Regressiotestien suoritus
   
 Seuraava vaihe:
 
-1. Tehd‰‰n package ja jar, ja sovelletaan niit‰ Sudokussa.
+1. Tehd‰‰n jar, ja sovelletaan sit‰ Sudokussa.
    - Batit, joilla pystyt‰‰n kamat k‰‰nt‰m‰‰n - esimerkiksi git bash'issa.
 
 2. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri

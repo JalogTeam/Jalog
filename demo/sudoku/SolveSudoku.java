@@ -1,4 +1,5 @@
 // SolveSudoku.java
+import io.github.JalogTeam.jalog.Jalog;
 import java.io.*;
 
 public class SolveSudoku

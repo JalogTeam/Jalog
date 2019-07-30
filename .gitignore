@@ -4,3 +4,6 @@
 *.class
 # Notepad++ project
 *.npp
+# Not important
+src_save/
+test/tutkittava/

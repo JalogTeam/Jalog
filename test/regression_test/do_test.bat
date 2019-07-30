@@ -1,4 +1,4 @@
-java -cp ..\..\src Jalog %1.pro > %1.ans
+java -cp ..\..\src io/github/JalogTeam/jalog/Jalog %1.pro > %1.ans
 echo Exit status: %ERRORLEVEL% ; >> %1.ans
 fc %1.ans %1.ref
 REM fc %1.ans %1.pro
