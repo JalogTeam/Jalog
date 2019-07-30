@@ -22,7 +22,7 @@ Parameters: &lt;compiler_options> &lt;program_name> &lt;program_arguments>
   &lt;program_arguments> - as the program needs them
 </pre>
 ### Integrated Jalog
-A more complex thing.
+A Jalog program can be called from a Java program. The purpose of this arrangement is to facilitate using Java for the input and output including the user interface, and the Prolog like language for problem solving and planning purposes.
 
 ## Intended use
 
@@ -32,6 +32,8 @@ See examples in `test` directory for implemented features.
 
 ----------
 ### Version history
+**0.3** 2019-07-24 Interface test completed and integrated to regression test.
+
 **0.2** 2012-04-20 Minor corrections. Debug timing disabled.
 
 **0.1** 2012-03-13 Initial version. Capable of solving Sudoku.

@@ -1,11 +1,9 @@
-Projektitilanne 2019-05-28
+Projektitilanne 2019-07-30
 
-Java-interfeisi‰ kehitetty. Miten Prolog-ohjelman tuottamat tietorakenteet
-konvertoidaan Javaa varten? Tietorakenteiden sisukset ovat tyyppi‰ Pro_Term
-mutta Java-interfeis haluaa n‰ytt‰‰ Jalog.Term-tyyppi‰.
+Java-interfeisi toimii.
 
 Regressiotesti kattaa:
-  Predikaatit
+  mm. Predikaatit
     fail
     write, writeln, writeq
     cut_
@@ -20,9 +18,12 @@ Regressiotesti kattaa:
     is_compound
     is_list
     is_integer
-    
+    exit
+    trap
     
   Kaikki aritmettiset ja vertailuoperaattorit, 
+  
+  Java interface
 
 Testiraportti: Jalog\test\regression_test\test_report.txt
 
@@ -41,7 +42,10 @@ Regressiotestien suoritus
   
 Seuraava vaihe:
 
-1. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
+1. Tehd‰‰n package ja jar, ja sovelletaan niit‰ Sudokussa.
+   - Batit, joilla pystyt‰‰n kamat k‰‰nt‰m‰‰n - esimerkiksi git bash'issa.
+
+2. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
    toString-operaatiossa. V‰liaikainen ratkaisu. 
    Syvyyslimiitti on nyt 1000.
 
