@@ -14,8 +14,8 @@ Ari Okkonen
 ## Usage
 ### Stand-alone Jalog
 <pre>
-X:><b>java Jalog</b>
-Parameters: &lt;compiler_options> &lt;program_name> &lt;program_arguments>
+X:><b>java -jar jalog.jar</b> <i>Parameters</i>
+<i>Parameters</i>: &lt;compiler_options> &lt;program_name> &lt;program_arguments>
   &lt;compiler_options>
       -v Show version information
   &lt;program_name> - complete file name - no default extensions
