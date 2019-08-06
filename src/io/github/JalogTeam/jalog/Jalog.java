@@ -6,7 +6,7 @@ import java.io.*;
 
 public class Jalog
 {
-  static final String id_string="Jalog 0.4 by Ari Okkonen & Mikko Levanto 2019-05-28";
+  static final String id_string="Jalog 0.4 by Ari Okkonen & Mikko Levanto 2019-08-06";
   
   private static int instance_count = 0;
   

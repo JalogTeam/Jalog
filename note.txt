@@ -1,11 +1,14 @@
-Projektitilanne 2019-07-30
+Projektitilanne 2019-08-06
 
 Organisoitu pakkauksiksi:
   Jalog: io.github.JalogTeam.jalog
   Parser: io.github.JalogTeam.parser
   
-Regressiotesti p‰ivitetty testaamaan pakkauksia.
-Sudoku demo p‰ivitetty.
+Jar: jalog.jar
+  
+Regressiotesti p‰ivitetty testaamaan jar'ia.
+Sudoku demo p‰ivitetty:
+  > java -jar jalog.jar test\sekalaisia\SUDOKU.PRO
 
 Regressiotesti kattaa:
   mm. Predikaatit
@@ -34,6 +37,9 @@ Testiraportti: Jalog\test\regression_test\test_report.txt
 
 Jalogin toimiva testiymp‰ristˆ on src
 
+Build jar:
+  > build_jar
+
 Esimerkkik‰‰nnˆs (t‰ysi)
   > javac Jalog.java
   
@@ -42,15 +48,13 @@ Esimerkkisuoritus
 
 Regressiotestien suoritus
   Hakemisto: test\regression_test
-  Suorituskomento: > test_test
+  Suorituskomento: > test_jar
 
   
 Seuraava vaihe:
 
-1. Tehd‰‰n jar, ja sovelletaan sit‰ Sudokussa.
-   - Batit, joilla pystyt‰‰n kamat k‰‰nt‰m‰‰n - esimerkiksi git bash'issa.
 
-2. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
+1. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
    toString-operaatiossa. V‰liaikainen ratkaisu. 
    Syvyyslimiitti on nyt 1000.
 
