@@ -6,7 +6,7 @@
 
 Jalog makes artificial intelligence available to a wide variety of devices and applications.
 
-**Version** 0.3 2019-07-24 Interface test completed and integrated to regression test.
+**Version** 0.4 2019-08-06 Build system for jar file: build_jar.bat.
 
 ### Authors
 Mikko Levanto<br>
@@ -32,6 +32,8 @@ See examples in `test` directory for implemented features.
 
 ----------
 ### Version history
+**0.4** 2019-08-06 Build system for jar file: build_jar.bat.
+
 **0.3** 2019-07-24 Interface test completed and integrated to regression test.
 
 **0.2** 2012-04-20 Minor corrections. Debug timing disabled.

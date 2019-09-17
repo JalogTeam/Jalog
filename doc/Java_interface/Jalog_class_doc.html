@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jalog class</title>
+</head>
+<body>
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+io.github.JalogTeam.jalog</FONT>
+<BR>
+Class Jalog</H2>
+<PRE>
+<A HREF="https://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" 
+title="class in java.lang">java.lang.Object</A>
+  <IMG SRC="inherit.png" ALT="extended by "><B>io.github.JalogTeam.jalog.Jalog</B>
+</PRE>
+<HR>
+<DL>
+  <DT>
+    <PRE>public class <B>Jalog</B>
+    </PRE>
+  </DT>
+</DL>
+<P>
+Class <code>Jalog</code> represents the Prolog subsystem.
+Before running the Prolog program the Prolog subsystem is instantiated.
+Running the system can consist of several calls.
+Each call is preceded by construction of input and output data structures.
+Then the instantiated system is used to run the program.
+The run call should be within a try-catch structure, because it can throw
+an exception.
+If the call succeeds, the results are recovered from the Prolog data structures.
+Finally the subsystem is disposed.
+</p>
+<p id="calling_pattern">
+Typical calling pattern:
+</p>
+<pre>
+  static <b>Jalog</b> myJalog = new <b>Jalog</b>();
+  myJalog.<b>consult_file</b>("<i>source</i>.pro");
+  /* for each call */
+    /* construct data structures, e.g.: */
+      Jalog.<b>Term</b> count = Jalog.<b>integer</b>(7);
+      Jalog.<b>Term</b> answer = Jalog.<b>open</b>();
+    /* call the predicate */
+      try {
+        if (myJalog.<b>call</b>("<i>predicate</i>", count, answer))
+        { /* success */
+          if (answer.<b>getType</b>() == Jalog.<b>INTEGER</b>) {
+            /* answer of expected type got */
+            long result = answer.<b>getIntegerValue</b>();
+          } else {
+            /* wrong type, should not occur */
+          }
+        } else {
+          /* predicate failed */
+        }
+      } catch (Jalog.<b>Exit</b> e) { 
+        /* exception */
+      }
+  /* when everything is done */    
+  myJalog.<b>dispose</b>();
+</pre>
+<HR>
+
+<P>
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+
+<A NAME="nested_class_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Nested Class Summary</B></FONT></TH>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;class</CODE></FONT></TD>
+<TD><CODE><B><A HREF="Jalog_Term_class_doc.html">Jalog.Term</A></B></CODE>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+All data processed and produced by Jalog is of this class.</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;class</CODE></FONT></TD>
+<TD><CODE><B><A HREF="Jalog_Exit_class_doc.html">Jalog.Exit</A></B></CODE>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Exception to be raised when exit predicate is executed.</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+<!-- =========== FIELD SUMMARY =========== -->
+
+<A NAME="field_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Field Summary</B></FONT></TH>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="#CHARACTER">CHARACTER</A></B></CODE>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Code for character variable.</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="#COMPOUND">COMPOUND</A></B></CODE>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Code for compound variable.</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="#INTEGER">INTEGER</A></B></CODE>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Code for integer variable.</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="#LIST">LIST</A></B></CODE>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Code for list variable.</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="#OPEN">OPEN</A></B></CODE>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Code for open variable.</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="#REAL">REAL</A></B></CODE>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C
+ode for real variable.</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="#STRING">STRING</A></B></CODE>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Code for string variable.</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="#SYMBOL">SYMBOL</A></B></CODE>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Code for symbol variable.</TD>
+</TR>
+
+
+</TABLE>
+&nbsp;
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+<A NAME="constructor_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Constructor Summary</B></FONT></TH>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="#Jalog()">Jalog</A></B>()</CODE>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Constructs a <CODE>Jalog</CODE> engine instance.</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;static boolean</CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#call(String,Jalog.Term...)">call</A></B>(String predname, <a href="Jalog_Term_class_doc.html">Jalog.Term</a> ... args)
+    </CODE>
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Calls a predicate defined in the consulted file.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;static <a href="Jalog_Term_class_doc.html">Jalog.Term</a></CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#character(char)">character</A></B>(char c)</CODE>
+
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Creates a new character term with value c.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;static <a href="Jalog_Term_class_doc.html">Jalog.Term</a></CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#compound(String,Jalog.Term[])">compound</A></B>(String name, <a href="Jalog_Term_class_doc.html">Jalog.Term</a>[] arguments)
+    </CODE>
+
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Creates a new compound term with functor name <code>name</code> and
+components from arguments array. If the arguments array is empty, the result
+is of type symbol.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;static void</CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#consult_file(String)">consult_file</A></B>(String filename)</CODE>
+
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Consults (reads and compiles) a Prolog source file.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;static void</CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#dispose">dispose</A></B>()</CODE>
+
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Clears the database of program and data..
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;static <a href="Jalog_Term_class_doc.html">Jalog.Term</a></CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#integer(long)">integer</A></B>(long i)</CODE>
+
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Creates a new integer term with value i.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;static <a href="Jalog_Term_class_doc.html">Jalog.Term</a></CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#list(Jalog.Term[])">list</A></B>(<a href="Jalog_Term_class_doc.html">Jalog.Term</a>[] elements)</CODE>
+
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Creates a new list term populated with items from <code>elements</code> 
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;
+    <!--<A HREF="#open()" title="class in java.awt.image">static Jalog.Term</A>
+    -->static <a href="Jalog_Term_class_doc.html">Jalog.Term</a></CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#open()">open</A></B>()</CODE>
+
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Creates a new open variable.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;static <a href="Jalog_Term_class_doc.html">Jalog.Term</a></CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#real(double)">real</A></B>(double r)</CODE>
+
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Creates a new real term with value r.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;static <a href="Jalog_Term_class_doc.html">Jalog.Term</a></CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#string(String)">string</A></B>(String s)</CODE>
+
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Creates a new string term with value s.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;static <a href="Jalog_Term_class_doc.html">Jalog.Term</a></CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#symbol(String)">symbol</A></B>(String name)</CODE>
+
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Creates a new symbol term with value name.
+   </TD>
+</TR>
+
+</TABLE>
+&nbsp;
+<P>
+<!-- ============ FIELD DETAIL =========== -->
+<TABLE id="field_detail" BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Field Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+
+<H3 id="OPEN">
+OPEN</H3>
+<PRE>
+public static final String <B>OPEN</B> = "open"</PRE>
+<DL>
+<DD>Code for open variable.</DD>
+</DL>
+<HR>
+
+<H3 id="INTEGER">
+INTEGER</H3>
+<PRE>
+public static final String <B>INTEGER</B> = "integer"</PRE>
+<DL>
+<DD>Code for integer variable.</DD>
+</DL>
+<HR>
+
+<H3 id="SYMBOL">
+SYMBOL</H3>
+<PRE>
+public static final String <B>SYMBOL</B> = "symbol"</PRE>
+<DL>
+<DD>Code for symbol variable.</DD>
+</DL>
+<HR>
+
+<H3 id="REAL">
+REAL</H3>
+<PRE>
+public static final String <B>REAL</B> = "real"</PRE>
+<DL>
+<DD>Code for real variable.</DD>
+</DL>
+<HR>
+
+<H3 id="CHARACTER">
+CHARACTER</H3>
+<PRE>
+public static final String <B>CHARACTER</B> = "character"</PRE>
+<DL>
+<DD>Code for character variable.</DD>
+</DL>
+<HR>
+
+<H3 id="STRING">
+STRING</H3>
+<PRE>
+public static final String <B>STRING</B> = "string"</PRE>
+<DL>
+<DD>Code for string variable.</DD>
+</DL>
+<HR>
+
+<H3 id="LIST">
+LIST</H3>
+<PRE>
+public static final String <B>LIST</B> = "list"</PRE>
+<DL>
+<DD>Code for list variable.</DD>
+</DL>
+<HR>
+
+<H3 id="COMPOUND">
+COMPOUND</H3>
+<PRE>
+public static final String <B>COMPOUND</B> = "compound"</PRE>
+<DL>
+<DD>Code for compound variable.</DD>
+</DL>
+<HR>
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+<A NAME="constructor_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Constructor Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<H3 id="Jalog()">
+Jalog</H3>
+<PRE>public <B>Jalog</B>()</PRE>
+<DL>
+  <DD>Constructs a <CODE>Jalog</CODE> inference engine. Limitation: Only one
+  engine can exist at any time. After usage it must be disposed of using
+  the dispose method.
+  <P>
+  <DL>
+    <DT><B>Throws:</B>
+    <DD><CODE>Error</CODE> - if a Jalog inference engine already exists.
+    <DT><B>See Also:</B>
+    <DD><A HREF="#dispose"><CODE>dispose()</CODE></A>
+  </DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<H3 id="open()">open</H3>
+<PRE>
+public static <a href="Jalog_Term_class_doc.html">Jalog.Term</a> <B>open</B>()</PRE>
+<DL>
+<DD>Creates a new open variable.
+<P>
+<DD>
+<DL>
+  <DT><B>Returns:</B>
+  <DD>the new open variable.
+  <!--
+  <DT><B>See Also:</B>
+  <DD><A HREF="../../../java/awt/image/AffineTransformOp.html#TYPE_NEAREST_NEIGHBOR"><CODE>TYPE_NEAREST_NEIGHBOR</CODE></A>
+  -->
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="integer(long)">integer</H3>
+<PRE>
+public static <a href="Jalog_Term_class_doc.html">Jalog.Term</a> <B>integer</B>(long i)</PRE>
+<DL>
+<DD>Creates a new integer term with value i.
+<P>
+<DD>
+<DL>
+  <DT><B>Parameters:</B>
+  <DD><CODE>i</CODE> - the value of the new integer.
+  <DT><B>Returns:</B>
+  <DD>an integer term.
+</DL>
+</DD>
+</DL>
+<HR>
+
+
+<H3 id="symbol(String)">symbol</H3>
+<PRE>
+public static <a href="Jalog_Term_class_doc.html">Jalog.Term</a> <B>symbol</B>(String name)</PRE>
+<DL>
+<DD>Creates a new symbol term with value name.
+<P>
+<DD>
+<DL>
+  <DT><B>Parameters:</B>
+  <DD><CODE>name</CODE> - the value of the new symbol.
+  <DT><B>Returns:</B>
+  <DD>a symbol term.
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="real(double)">real</H3>
+<PRE>
+public static <a href="Jalog_Term_class_doc.html">Jalog.Term</a> <B>real</B>(double r)</PRE>
+<DL>
+<DD>Creates a new real term with value r.
+<P>
+<DD>
+<DL>
+  <DT><B>Parameters:</B>
+  <DD><CODE>r</CODE> - the value of the new real.
+  <DT><B>Returns:</B>
+  <DD>a real term.
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="character(char)">character</H3>
+<PRE>
+public static <a href="Jalog_Term_class_doc.html">Jalog.Term</a> <B>character</B>(char c)</PRE>
+<DL>
+<DD>Creates a new character term with value c.
+<P>
+<DD>
+<DL>
+  <DT><B>Parameters:</B>
+  <DD><CODE>c</CODE> - the value of the new character.
+  <DT><B>Returns:</B>
+  <DD>a character term.
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="string(String)">string</H3>
+<PRE>
+public static <a href="Jalog_Term_class_doc.html">Jalog.Term</a> <B>string</B>(String s)</PRE>
+<DL>
+<DD>Creates a new string term with value s.
+<P>
+<DD>
+<DL>
+  <DT><B>Parameters:</B>
+  <DD><CODE>s</CODE> - the value of the new string.
+  <DT><B>Returns:</B>
+  <DD>a string term.
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="list(Jalog.Term[])">list</H3>
+<PRE>
+public static <a href="Jalog_Term_class_doc.html">Jalog.Term</a> <B>list</B>(<a href="Jalog_Term_class_doc.html">Jalog.Term</a>[] elements)</PRE>
+<DL>
+<DD>Creates a new list term populated with items from <code>elements</code> 
+array.
+<P>
+<DD>
+<DL>
+  <DT><B>Parameters:</B>
+  <DD><CODE>elements</CODE> - the items of the new list.
+  <DT><B>Returns:</B>
+  <DD>a list term.
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="compound(String,Jalog.Term[])">compound</H3>
+<PRE>
+public static <a href="Jalog_Term_class_doc.html">Jalog.Term</a> <B>compound</B>(String name, <a href="Jalog_Term_class_doc.html">Jalog.Term</a>[] arguments)</PRE>
+<DL>
+<DD>Creates a new compound term with functor name <code>name</code> and
+components from arguments array. If the arguments array is empty, the result
+is of type symbol.
+<P>
+<DD>
+<DL>
+  <DT><B>Parameters:</B>
+  <DD><CODE>name</CODE> - the functor of the new compound.</DD>
+  <DD><CODE>arguments</CODE> - the components of the new compound.</DD>
+  <DT><B>Returns:</B>
+  <DD>a compound term.
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="consult_file(String)">consult_file</H3>
+<PRE>
+public static void <B>consult_file</B>(String filename)</PRE>
+<DL>
+<DD>Consults (reads and compiles) a Prolog source file.
+<P>
+<DD>
+<DL>
+  <DT><B>Parameters:</B>
+  <DD><CODE>filename</CODE> - the name of the Prolog source file.</DD>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="dispose">dispose</H3>
+<PRE>
+public static void <B>dispose</B>()</PRE>
+<DL>
+<DD>Clears the Prolog program, its data and the inference engine from the memory. Allows creating a new inference engine for another purpose.
+<P>
+</DL>
+<HR>
+
+<H3 id="call(String,Jalog.Term...)">call</H3>
+<PRE>
+public static boolean <B>call</B>(String predname, <a href="Jalog_Term_class_doc.html">Jalog.Term</a> ... args)</PRE>
+<DL>
+<DD>Calls a predicate defined in the consulted file.
+<P>
+<DD>
+<DL>
+  <DT><B>Parameters:</B>
+  <DD><CODE>predname</CODE> - the name of the predicate to be called.
+  <DD><CODE>args</CODE> - the arguments for the predicate.
+  <DT><B>Returns:</B>
+  <DD><code>true</code> if the predicate succeeds, <code>false</code> if the
+    predicate fails.
+  <DT><B>Throws:</B>
+  <DD><CODE>Jalog.Exit</CODE> - when the program executes an exit predicate.
+ </DL>
+</DD>
+</DL>
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+<font size="-1">Authors: Mikko Levanto, Ari Okkonen</font>
+</body>
+</html>

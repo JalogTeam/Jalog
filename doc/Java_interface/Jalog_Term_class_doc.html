@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jalog.Term class</title>
+</head>
+<body>
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+io.github.JalogTeam.jalog</FONT>
+<BR>
+Class Jalog.Term</H2>
+<PRE>
+<A HREF="https://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" 
+title="class in java.lang">java.lang.Object</A>
+  <IMG SRC="inherit.png" ALT="extended by "><B>io.github.JalogTeam.jalog.Jalog.Term</B>
+</PRE>
+<DL>
+<DT><B>Enclosing class:</B><DD><A HREF="Jalog_class_doc.html" title="class in javax.swing.tree">Jalog</A></DD>
+</DL>
+<HR>
+<DL>
+<DT><PRE>public class <B>Jalog.Term</B>
+</PRE>
+</DT>
+</DL>
+<P>
+Data of class <code>Jalog.Term</code> are used by the Jalog inference engine.
+The methods of <code>Jalog.Term</code> are used to extract the values of 
+terms for normal use in Java programs.
+</p>
+<p>
+Functions to create data items of type <code>Jalog.Term</code> are found in 
+<a href="Jalog_class_doc.html">Jalog class</a>.
+</p>
+
+<HR>
+
+<P>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;char</CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#getCharacterValue">getCharacterValue</A></B>()
+    </CODE>
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Gets the char out of the Jalog.Term, if present.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;Jalog.Term[]</CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#getElements">getElements</A></B>()
+    </CODE>
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Converts a Jalog list to a Jalog.Term array, if present.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;String</CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#getFunctor">getFunctor</A></B>()
+    </CODE>
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Gets the functor name of a compound Jalog.Term, if present.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;long</CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#getIntegerValue">getIntegerValue</A></B>()
+    </CODE>
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Gets the long integer value out of the Jalog.Term, if present.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;double</CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#getRealValue">getRealValue</A></B>()
+    </CODE>
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Gets the double value out of the Jalog.Term, if present.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;String</CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#getStringValue">getStringValue</A></B>()
+    </CODE>
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Gets the String value of the Jalog.Term, if present.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;Jalog.Term[]</CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#getSubTerms">getSubTerms</A></B>()
+    </CODE>
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Gets the subterms out of the Jalog.Term of compound type, if present.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;String</CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#getSymbolValue">getSymbolValue</A></B>()
+    </CODE>
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Gets the symbol value of the Jalog.Term of symbol, if present.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;String</CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#getType">getType</A></B>()
+    </CODE>
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Gets the type code of the Jalog.Term.
+   </TD>
+</TR>
+
+
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<H3 id="getCharacterValue">getCharacterValue</H3>
+<PRE>
+public char <B>getCharacterValue</B>()</PRE>
+<DL>
+<DD>Gets the char out of the Jalog.Term.
+<P>
+<DD>
+<DL>
+  <DT><B>Returns:</B>
+  <DD>the char value if present, otherwise '\uFFFF'.
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="getElements">getElements</H3>
+<PRE>
+public Jalog.Term[] <B>getElements</B>()</PRE>
+<DL>
+<DD>Converts a Jalog list to a Jalog.Term array.
+<P>
+<DD>
+<DL>
+  <DT><B>Returns:</B>
+  <DD>an array of the list values for a list, otherwise null.
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="getFunctor">getFunctor</H3>
+<PRE>
+public String <B>getFunctor</B>()</PRE>
+<DL>
+<DD>Gets the name of the functor of the compound Jalog.Term.
+<P>
+<DD>
+<DL>
+  <DT><B>Returns:</B>
+  <DD>the functor of a compound Term as a String, null for other types.
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="getIntegerValue">getIntegerValue</H3>
+<PRE>
+public long <B>getIntegerValue</B>()</PRE>
+<DL>
+<DD>Gets the long out of the Jalog.Term.
+<P>
+<DD>
+<DL>
+  <DT><B>Returns:</B>
+  <DD>the long value if the term is numeric. Integers are as such, reals are 
+  typecast to long, Other types return 0.
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="getRealValue">getRealValue</H3>
+<PRE>
+public double <B>getRealValue</B>()</PRE>
+<DL>
+<DD>Gets the double value out of the Jalog.Term.
+<P>
+<DD>
+<DL>
+  <DT><B>Returns:</B>
+  <DD>the double value for numeric terms. Real values are as such, integers 
+  are typecast to double, other types return 0.0.
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="getStringValue">getStringValue</H3>
+<PRE>
+public String <B>getStringValue</B>()</PRE>
+<DL>
+<DD>Gets the String out of the Jalog.Term.
+<P>
+<DD>
+<DL>
+  <DT><B>Returns:</B>
+  <DD>the String value if present, otherwise null.
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="getSubTerms">getSubTerms</H3>
+<PRE>
+public Jalog.Term[] <B>getSubTerms</B>()</PRE>
+<DL>
+<DD>Collects the subterms of a Jalog compound term to an array.
+<P>
+<DD>
+<DL>
+  <DT><B>Returns:</B>
+  <DD>a Jalog.Term array of the arguments for a compound; null for other types.
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="getSymbolValue">getSymbolValue</H3>
+<PRE>
+public String <B>getSymbolValue</B>()</PRE>
+<DL>
+<DD>Gets the name of the symbol.
+<P>
+<DD>
+<DL>
+  <DT><B>Returns:</B>
+  <DD>the name of the symbol, null for other Term types.
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="getType">getType</H3>
+<PRE>
+public String <B>getType</B>()</PRE>
+<DL>
+  <DD>Gets the type name of the Jalog.Term.
+  <P>
+  <DD>
+    <DL>
+      <DT><B>Returns:</B></DT>
+      <DD>the type name string. One of <code>Jalog.OPEN</code>, 
+        <code>Jalog.INTEGER</code>, <code>Jalog.SYMBOL</code>,
+        <code>Jalog.REAL</code>, <code>Jalog.CHARACTER</code>, 
+        <code>Jalog.STRING</code>, <code>Jalog.LIST</code>, or 
+        <code>Jalog.COMPOUND</code>. 
+        See <a href="Jalog_class_doc.html#field_summary">
+          Jalog Field Summary</a>.
+        </DD>
+    </DL>
+  </DD>
+</DL>
+
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+<font size="-1">Authors: Mikko Levanto, Ari Okkonen</font>
+</body>
+</html>

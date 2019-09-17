@@ -4,7 +4,7 @@ import java.io.*;
 
 public class SolveSudoku
 {
-  static final String id_string="SolveSudoku 0.1 by Ari Okkonen & Mikko Levanto 2019-05-28";
+  static final String id_string="SolveSudoku 0.1 by Ari Okkonen & Mikko Levanto 2019-09-17";
   
   static Jalog myJalog = new Jalog();
 
@@ -73,6 +73,8 @@ public class SolveSudoku
     Jalog.Term matrix[] = new Jalog.Term[9];
     Jalog.Term board;
     Jalog.Term element;
+
+//  Preparation of the problem
     
     for (i = 0; i < 9; i++) {
       for (j = 0; j < 9; j++) {
@@ -86,9 +88,12 @@ public class SolveSudoku
       matrix[i] = Jalog.list(line);
     }
     board = Jalog.list(matrix);
+
+//  Finding the solution
+  
     try {
-      if (myJalog.call("sudoku1", board))
-      {
+      if (myJalog.call("sudoku", board))
+      { // Getting the solution
         matrix = board.getElements();
         for (i = 0; i < 9; i++) {
           line = matrix[i].getElements();
@@ -101,14 +106,14 @@ public class SolveSudoku
             }
           }
         }
-      } else { // fail
+      } else { // fail: Report solution not found
         for (i = 0; i < 9; i++) {
           for (j = 0; j < 9; j++) {
             sudoku_solution[i][j] = sudoku_problem[i][j];
           }
         }
       }
-    } catch (Jalog.Exit e) {
+    } catch (Jalog.Exit e) { // Report exception
       for (i = 0; i < 9; i++) {
         for (j = 0; j < 9; j++) {
           sudoku_solution[i][j] = 0;
@@ -119,7 +124,7 @@ public class SolveSudoku
      
 /* Kaleva 2581 */
 /*
-:-  sudoku1([
+:-  sudoku([
     [ 8, _, _, _, 2, _, _, 3, _],
     [ 9, _, 4, 6, _, _, _, 1, 2],
     [ _, 5, _, _, 7, 1, _, _, 6],

@@ -23,13 +23,11 @@ len([_|Rest], I1) :-
   len(Rest, I),
   I1 = I + 1.
 
-sudoku1(Rows):-
+/* Main predicate */
+
+sudoku(Rows):-
   make_links(Rows, Cols, SubSquares),
-  write("links done"),nl,
-  xxxy(Rows, Cols, SubSquares, 1, 1, 1, 0),
-  write("Rows\n", Rows),nl,nl,
-  write("Columns\n", Cols),nl,nl,
-  write("Squares\n", SubSquares),nl.
+  solve(Rows, Cols, SubSquares, 1, 1, 1, 0).
 
   
   
@@ -64,12 +62,18 @@ sudoku1(Rows):-
     [G4, G5, G6, H4, H5, H6, I4, I5, I6],
     [G7, G8, G9, H7, H8, H9, I7, I8, I9]]). */
     
+/* make_links: 
+    Create matrices for columns and sub-squares of the original matrix for
+    easy access */
+    
 make_links(Rows, Cols, SubSquares) :-
   make_open_matrix(Cols, 9, 9),
   make_open_matrix(SubSquares, 9, 9),
   make_link(Rows, Cols, SubSquares, 1, 1).
   
-
+/* make_link: Unify corresponding variables of row, column, and sub-square
+     matrices. */
+     
 make_link(_, _, _, 10, _) :- !.
 
 make_link(Rows, Cols, SubSquares, IRow, 10) :-
@@ -78,14 +82,14 @@ make_link(Rows, Cols, SubSquares, IRow, 10) :-
   make_link(Rows, Cols, SubSquares, IRow_1, 1). 
 
 make_link(Rows, Cols, SubSquares, IRow, ICol) :-
-  nth_element(Rows, IRow, Row),
-  nth_element(Row, ICol, TheElement),
-  nth_element(Cols, ICol, Col),
-  nth_element(Col, IRow, TheElement),
+  element_at(Rows, IRow, Row),
+  element_at(Row, ICol, TheElement),
+  element_at(Cols, ICol, Col),
+  element_at(Col, IRow, TheElement),
   sub_square_index(IRow, ICol, ISSRow),
   sub_square_elem_index(IRow, ICol, ISSCol),
-  nth_element(SubSquares, ISSRow, SubSquare),
-  nth_element(SubSquare, ISSCol, TheElement),
+  element_at(SubSquares, ISSRow, SubSquare),
+  element_at(SubSquare, ISSCol, TheElement),
   ICol_1 = ICol + 1,
   make_link(Rows, Cols, SubSquares, IRow, ICol_1). 
     
@@ -96,6 +100,7 @@ max(A, B, A) :-
   
 max(_, B, B).
 
+/* Does the list contain this number already? */
 
 bound_member(I, [I1|_]) :-
   bound(I1),
@@ -105,6 +110,7 @@ bound_member(I, [I1|_]) :-
 bound_member(I, [_|Rest]) :-
   bound_member(I, Rest).        
     
+/* find_choices: Find the possible choices for this location */
     
 find_choices(Row, Col, SubSquare, Choices) :-
   find_rest_choices(Row, Col, SubSquare, 1, Choices).
@@ -127,12 +133,13 @@ find_rest_choices(Row, Col, SubSquare, I, Rest) :-
   find_rest_choices(Row, Col, SubSquare, I1, Rest).
     
 
-nth_element([Elem|_], 1, Elem) :- !.
+element_at([Elem|_], 1, Elem) :- !.
 
-nth_element([_|Rest], N, Elem) :-
+element_at([_|Rest], N, Elem) :-
   Nm1 = N - 1,
-  nth_element(Rest, Nm1, Elem).
+  element_at(Rest, Nm1, Elem).
   
+/* Find the sub-square for element IRow, ICol */
   
 sub_square_index(IRow, ICol, ISubSquare) :-
   ISubSquare = 1 + ((IRow - 1) div 3) * 3 + (ICol - 1) div 3 .
@@ -148,68 +155,72 @@ sub_square_index(IRow, ICol, ISubSquare) :-
     [H1, H2, H3, H4, H5, H6, H7, H8, H9],
     [I1, I2, I3, I4, I5, I6, I7, I8, I9]
 */
+
+/* Find the index within the sub-square for element IRow, ICol */
+
 sub_square_elem_index(IRow, ICol, ISSE) :-
   ISSE = 1 + ((IRow - 1) mod 3) * 3 + (ICol - 1) mod 3 . 
   
-xxxy(Rows, _Cols, _SubSquares, 10, _ICol, _IChoices, 0) :-
+solve(Rows, _Cols, _SubSquares, 10, _ICol, _IChoices, 0) :-
   matrix_all_bound(Rows),
-  !,
-  write("Found"). % Solution found!
+  !. % Solution found!
   
-xxxy(_Rows, _Cols, _SubSquares, 10, _ICol, _IChoices, 0) :-
+  
+solve(_Rows, _Cols, _SubSquares, 10, _ICol, _IChoices, 0) :-
   !,
   fail.
 
 
-xxxy(_Rows, _Cols, _SubSquares, 10, _ICol, IChoices, IChoices) :-
+solve(_Rows, _Cols, _SubSquares, 10, _ICol, IChoices, IChoices) :-
   !, % No solution for this branch
   fail.
 
-xxxy(Rows, Cols, SubSquares, IRow, _ICol, IChoices, Max) :-
+solve(Rows, Cols, SubSquares, IRow, _ICol, IChoices, Max) :-
   IRow > 9,
   IChoices_1 = IChoices + 1,
   !,
-  xxxy(Rows, Cols, SubSquares, 1, 1, IChoices_1, Max).
+  solve(Rows, Cols, SubSquares, 1, 1, IChoices_1, Max).
   
 
-xxxy(Rows, Cols, SubSquares, IRow, ICol, IChoices, Max) :-
+solve(Rows, Cols, SubSquares, IRow, ICol, IChoices, Max) :-
   ICol > 9,
   !,
   IRow_1 = IRow + 1,
   !,
-  write(".",IRow),
-  xxxy(Rows, Cols, SubSquares, IRow_1, 1, IChoices, Max).
+  solve(Rows, Cols, SubSquares, IRow_1, 1, IChoices, Max).
   
-xxxy(Rows, Cols, SubSquares, IRow, ICol, IChoices, Max) :-
-  nth_element(Rows, IRow, Row),
-  nth_element(Row, ICol, ThisElement),
+solve(Rows, Cols, SubSquares, IRow, ICol, IChoices, Max) :-
+  element_at(Rows, IRow, Row),
+  element_at(Row, ICol, ThisElement),
   not(bound(ThisElement)),
-  nth_element(Cols, ICol, Col),
+  element_at(Cols, ICol, Col),
   sub_square_index(IRow, ICol, ISubSquare),
-  nth_element(SubSquares, ISubSquare, SubSquare),
+  element_at(SubSquares, ISubSquare, SubSquare),
   find_choices(Row, Col, SubSquare, Choices),
   len(Choices, IChoicesActual),
   !,
-  xxxy_1(Rows, Cols, SubSquares, IRow, ICol, IChoices, Max, Choices, IChoicesActual, ThisElement).
+  solve_1(Rows, Cols, SubSquares, IRow, ICol, IChoices, Max, Choices, IChoicesActual, ThisElement).
 
-xxxy(Rows, Cols, SubSquares, IRow, ICol, IChoices, Max) :-
+solve(Rows, Cols, SubSquares, IRow, ICol, IChoices, Max) :-
   ICol_1 = ICol + 1,
   !,
-  xxxy(Rows, Cols, SubSquares, IRow, ICol_1, IChoices, Max).
+  solve(Rows, Cols, SubSquares, IRow, ICol_1, IChoices, Max).
 
-xxxy_1(Rows, Cols, SubSquares, _IRow, _ICol, IChoices, _Max, Choices, IChoicesActual, ThisElement) :-
+/* Solve ThisElement */
+
+solve_1(Rows, Cols, SubSquares, _IRow, _ICol, IChoices, _Max, Choices, IChoicesActual, ThisElement) :-
   IChoicesActual = Ichoices,
   !,
   pick_one(Choices, Choice),
   ThisElement = Choice,
-  xxxy(Rows, Cols, SubSquares, 1, 1, 1, 0),
+  solve(Rows, Cols, SubSquares, 1, 1, 1, 0),
   !.
   
-xxxy_1(Rows, Cols, SubSquares, IRow, ICol, IChoices, Max, _Choices, IChoicesActual, _) :-
+solve_1(Rows, Cols, SubSquares, IRow, ICol, IChoices, Max, _Choices, IChoicesActual, _) :-
   ICol_1 = ICol + 1,
   max(Max, IChoicesActual, MaxNew),
   !,
-  xxxy(Rows, Cols, SubSquares, IRow, ICol_1, IChoices, MaxNew).
+  solve(Rows, Cols, SubSquares, IRow, ICol_1, IChoices, MaxNew).
    
 
 make_open_matrix([],0,_) :- 
@@ -235,7 +246,7 @@ make_open_list([_Item|List], NCol) :-
 %goal
 /* Kaleva nnnn */
 /*
-  sudoku1([
+  sudoku([
     [ _, _, _, _, _, _, _, _, _],
     [ _, _, _, _, _, _, _, _, _],
     [ _, _, _, _, _, _, _, _, _],
@@ -250,7 +261,7 @@ make_open_list([_Item|List], NCol) :-
 
 /* Mikon helppo */
 /*
-:-  sudoku1([
+:-  sudoku([
     [ 6, 1, _, 4, 8, 9, 7, _, 2],
     [ 8, 9, 2, _, 7, _, 6, 1, 4],
     [ 7, _, 4, _, 1, 2, 8, 9, _],
@@ -263,7 +274,7 @@ make_open_list([_Item|List], NCol) :-
     ]).
 */
 /*
-:-  sudoku1([[6,1,5,4,8,9,7,3,2],
+:-  sudoku([[6,1,5,4,8,9,7,3,2],
 [8,9,2,5,7,3,6,1,4],
 [7,3,4,6,1,2,8,9,5],
 [9,6,1,7,2,4,3,5,8],
@@ -274,7 +285,7 @@ make_open_list([_Item|List], NCol) :-
 [5,8,6,1,3,7,2,4,9]]).
 */
 /*
-:-  sudoku1([[6,1,5,4,8,9,7,3,2],
+:-  sudoku([[6,1,5,4,8,9,7,3,2],
 [8,9,2,5,7,3,6,1,4],
 [7,3,4,6,1,2,8,9,5],
 [9,_,1,7,_,4,3,5,8],
@@ -286,7 +297,7 @@ make_open_list([_Item|List], NCol) :-
 */
 /* Kaleva 2581 */
 /*
-:-  sudoku1([
+:-  sudoku([
     [ 8, _, _, _, 2, _, _, 3, _],
     [ 9, _, 4, 6, _, _, _, 1, 2],
     [ _, 5, _, _, 7, 1, _, _, 6],
@@ -301,7 +312,7 @@ make_open_list([_Item|List], NCol) :-
 */
 /* Kaleva 2582 */
 /*
-:-  sudoku1([
+:-  sudoku([
     [ _, 9, 5, _, _, 7, _, 8, _],
     [ _, _, 6, 8, _, _, 3, _, _],
     [ _, _, _, _, _, 4, _, _, _],
@@ -316,7 +327,7 @@ make_open_list([_Item|List], NCol) :-
 /* Kaleva 2583 */
 /*
 
-:-  sudoku1([
+:-  sudoku([
     [ 7, _, _, _, _, _, 9, _, 6],
     [ _, _, 1, 6, _, 2, _, _, _],
     [ _, 4, 6, _, _, 8, _, 5, _],
@@ -331,7 +342,7 @@ make_open_list([_Item|List], NCol) :-
 /* "Maailman vaikein" */
 /* Takes currently several weeks to run
 
-:-  sudoku1([
+:-  sudoku([
     [ 8, 5, _, _, _, 2, 4, _, _],
     [ 7, 2, _, _, _, _, _, _, 9],
     [ _, _, 4, _, _, _, _, _, _],
