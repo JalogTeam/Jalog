@@ -1,4 +1,4 @@
-Projektitilanne 2019-08-06
+Projektitilanne 2019-09-24
 
 Organisoitu pakkauksiksi:
   Jalog: io.github.JalogTeam.jalog
@@ -52,6 +52,7 @@ Regressiotestien suoritus
 
   
 Seuraava vaihe:
+0. Paikallinen dokumenttihakemistorakenne vastaamaan github.io:ssa olevaa.
 
 
 1. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
