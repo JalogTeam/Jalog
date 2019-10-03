@@ -299,6 +299,27 @@ public class TestInterface
     }
     System.out.println();
 
+    // Command line arguments
+
+    System.out.println("Command line arguments test");
+
+    myJalog.set_comline_arg("label", "value");   
+    myJalog.set_comline_arg("Label", "Value");   
+    myJalog.set_comline_arg("switch", "");   
+    myJalog.set_comline_arg("", "argument");   
+    try {
+      if (myJalog.call("test_command_line_arguments"))
+      {
+        System.out.println("test_command_line_arguments success");
+      } else {
+        System.out.println("test_command_line_arguments fail");
+       
+      }
+    } catch (Jalog.Exit e) {
+      System.out.println("Exit " + e.status);
+    }
+    System.out.println();
+
     // Exit
 
     System.out.println("Exit test");
@@ -306,9 +327,9 @@ public class TestInterface
     try {
       if (myJalog.call("test_exit"))
       {
-        System.out.println("test_open_success ERROR");
+        System.out.println("test_exit_success ERROR");
       } else {
-        System.out.println("test_open_fail ERROR");
+        System.out.println("test_exit_fail ERROR");
        
       }
     } catch (Jalog.Exit e) {

@@ -9,6 +9,7 @@ public class Jalog
   static final String id_string="Jalog 0.4 by Ari Okkonen & Mikko Levanto 2019-08-06";
   
   private static int instance_count = 0;
+  private static int arg_index = 1;
   
   public Jalog() {
     if (instance_count > 0) {
@@ -16,6 +17,7 @@ public class Jalog
     } else {
       instance_count ++;
     }
+    arg_index = 1;
   }
   
   public static void dispose() {
@@ -61,6 +63,14 @@ public class Jalog
     }
 
     if(Command_Line.program_name != null) {
+      
+      /* Command line options for the program */
+   
+      for(i=0;i<Command_Line.appl_labels.length;i++){
+        set_comline_arg(Command_Line.appl_labels[i],
+            Command_Line.appl_values[i]);
+      }
+      
       Consult.run(Command_Line.program_name);
 //System.out.println("created terms total: " + Pro_Term.lastId);
 //System.out.println("max trail: " + Pro_Trail.maxnum);
@@ -299,6 +309,19 @@ System.out.println("  * getElements, ["+n+"] = "
   static public void consult_file(String filename) {
     Consult.run(filename);
   }
+
+  static public void set_comline_arg(String label, String value) {
+    Jalog.Term[] in_list_content;
+    
+    in_list_content = new Jalog.Term[3];
+    
+    in_list_content[0] = Jalog.integer(arg_index++);
+    in_list_content[1] = Jalog.string(label);
+    in_list_content[2] = Jalog.string(value);
+
+    Database.assertz(Jalog.compound("comline_arg", in_list_content));
+  }
+
   
   static public boolean call(String predname, Pro_Term ... args) throws Jalog.Exit {
     boolean retval;

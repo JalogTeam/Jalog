@@ -35,7 +35,6 @@ public class Command_Line
       } else {
         value = arg;
       }
-
     }
 // System.out.println("parse_argument: '" + arg + "' -> '" + label + "','" + value + "'");     
   }

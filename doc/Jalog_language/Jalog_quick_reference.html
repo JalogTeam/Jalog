@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<head>
+<title>Jalog Quick Reference</title>
+</head>
+<body>
+  <h1>Jalog Quick Reference</h1>
+    <h2>Built-in Predicates</h2>
+    <dl>
+      <dt><font size="+1"><b><code>assertz(</code><i>Fact</i><code>)</code></b></font></dt>
+      <dd><p>Stores the fact <i>Fact</i> to the end of the database.</p>
+      <p>Example:</p>
+      <p><code>assertz(connection(7588, 9032))</code></p>
+      </dd>
+
+      <dt><font size="+1"><b><code>bound(</code><i>Var</i><code>)</code></b></font></dt>
+      <dd>
+        <p>Succeeds, if the parameter <i>Var</i> is bound, otherwise fails.</p>
+      </dd>
+
+      <dt><font size="+1"><b><code>consult(</code><i>Filename</i><code>)</code></b></font></dt>
+      <dd>
+        <p>Reads the facts from the file <i>Filename</i> to the database.</p>
+        <p>Example:</p>
+        <p><code>consult("route_data.pro")</code></p>
+      </dd>
+
+      <dt><font size="+1"><b><code>exit</code></b></font></dt>
+      <dd>
+        <p>Terminates the program with exit code <code>0</code>.</p>
+      </dd>
+
+      <dt><font size="+1"><b><code>exit(</code><i>Int_value</i><code>)</code></b></font></dt>
+      <dd>
+        <p>Terminates the program with exit code <i>Int_value</i>.</p>
+      </dd>
+
+      <dt><font size="+1"><b><code>fail</code></b></font></dt>
+      <dd>
+        <p>This call fails always.</p>
+      </dd>
+
+      <dt><font size="+1"><b><code>foreach_(</code><i>Var</i><code>, </code><i>List</i>
+          <code>)</code></b></font></dt>
+      <dd>
+        <p>Binds the first variable <i>Var</i> in the first call to 
+        the first item of the list <i>List</i> in the second variable, and in recalls
+        to the succeeding items.</p>
+        <p><code>foreach_(X, [1, 2, 3]), write(' ', X), fail.</code> prints
+        <code> 1 2 3</code></p>
+      </dd>
+
+      <dt><font size="+1"><b><code>is_char(</code><i>Var</i><code>)</code></b></font></dt>
+      <dd>
+        <p>Succeeds, if the parameter <i>Var</i> is bound to a character value.</p>
+      </dd>
+
+      <dt><font size="+1"><b><code>is_compound(</code><i>Var</i><code>)</code></b></font></dt>
+      <dd>
+        <p>Succeeds, if the parameter <i>Var</i> is bound to a compound structure.</p>
+      </dd>
+
+      <dt><font size="+1"><b><code>is_integer(</code><i>Var</i><code>)</code></b></font></dt>
+      <dd>
+        <p>Succeeds, if the parameter <i>Var</i> is bound to an integer value.</p>
+      </dd>
+
+      <dt><font size="+1"><b><code>is_list(</code><i>Var</i><code>)</code></b></font></dt>
+      <dd>
+        <p>Succeeds, if the parameter <i>Var</i> is bound to a list structure.</p>
+      </dd>
+
+      <dt><font size="+1"><b><code>is_real(</code><i>Var</i><code>)</code></b></font></dt>
+      <dd>
+        <p>Succeeds, if the parameter <i>Var</i> is bound to a real value.</p>
+      </dd>
+
+      <dt><font size="+1"><b><code>is_string(</code><i>Var</i><code>)</code></b></font></dt>
+      <dd>
+        <p>Succeeds, if the parameter <i>Var</i> is bound to a string value.</p>
+      </dd>
+
+      <dt><font size="+1"><b><code>nl</code></b></font></dt>
+      <dd>
+        <p>Prints a newline character.</p>
+      </dd>
+
+      <dt><font size="+1"><b><code>not(</code><i>Predicate_call</i><code>)</code></b></font></dt>
+      <dd>
+        <p>Fails, if <i>Predicate_call</i> succeeds, succeeds, if <i>Predicate_call
+        </i> fails.</p>
+        <p>Example:</p>
+        <p><code>not(connection(7588, 9032))</code> fails, if <code>
+        connection(7588, 9032)</code> is found from the database, otherwise 
+        succeeds.</p>
+      </dd>
+
+      <dt><font size="+1"><b><code>trap(</code><i>Predicate_call</i><code>, </code>
+        <i>Var_exit</i><code>, </code><i>Exception_handler</i><code>)</code></b></font></dt>
+      <dd>
+        <p>Executes <i>Predicate_call</i>. If an exception happens
+        within the call, the exit code is bound to <i>Var_exit</i>, 
+        <i>Exception_handler</i> is called, and finally the whole <code>trap</code>
+        predicate fails.</p>
+        <p>Example:</p>
+        <pre>trap(analyze(Situation, Results), X, write("*** Exception ", X, '!'))
+        </pre>
+      </dd>
+
+      <dt><font size="+1"><b><code>write(</code><i>parameters</i><code>)</code></b></font></dt>
+      <dd>
+        <p>Prints the values of the parameters without punctuation or whitespace
+        in between.</p>
+        <p><code>write('a', "bc", 3.142)</code> prints <code>abc3.142</code></p>
+      </dd>
+
+      <dt><font size="+1"><b><code>writeln(</code><i>parameters</i><code>)</code></b></font></dt>
+      <dd>
+        <p>As <code>write</code> but followed by <i>nl</i></p>
+      </dd>
+
+      <dt><font size="+1"><b><code>writeq(</code><i>parameters</i><code>)</code></b></font></dt>
+      <dd>
+        <p>Prints the values of the parameters in lexical notation so that they
+        can be read back. Strings are enclosed in double quotes and characters
+        are enclosed in single quotes.</p>
+        <p><code>writeq('a', "bc", 3.142)</code> prints <code>'a'"bc"3.142</code>
+        </p>
+        <p><code>writeq(a('b', 'c'))</code> prints <code>a('b','c')</code>
+        </p>
+      </dd>
+      
+      <!-- Template for additional stuff
+      <dt><font size="+1"><b>__</b></font></dt>
+      <dd>
+      </dd>
+      -->
+      
+    </dl>
+</body>
+</html>

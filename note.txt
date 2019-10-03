@@ -1,14 +1,9 @@
-Projektitilanne 2019-09-24
+Projektitilanne 2019-10-03
 
-Organisoitu pakkauksiksi:
-  Jalog: io.github.JalogTeam.jalog
-  Parser: io.github.JalogTeam.parser
-  
-Jar: jalog.jar
-  
-Regressiotesti päivitetty testaamaan jar'ia.
-Sudoku demo päivitetty:
-  > java -jar jalog.jar test\sekalaisia\SUDOKU.PRO
+ 
+Uudet ominaisuudet ja regressiotesti päivitetty
+  * lisätty: komentoriviargumentit Jalog-ohjelmalle
+  * lisätty: komentoriviargumentit Java-interfeisiin
 
 Regressiotesti kattaa:
   mm. Predikaatit
@@ -28,6 +23,9 @@ Regressiotesti kattaa:
     is_integer
     exit
     trap
+    
+  faktat
+    comline_args
     
   Kaikki aritmettiset ja vertailuoperaattorit, 
   

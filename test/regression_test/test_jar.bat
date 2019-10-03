@@ -23,6 +23,7 @@ call do_test_jar.bat test_trap
 call do_test_jar.bat test_exit_0
 call do_test_jar.bat test_exit_1
 call do_test_jar.bat test_exit_50
+call do_test_jar.bat test_command_line_arguments "-a=b" -c d
 REM call do_test_jar.bat test_
 
 call do_test_interface.bat test_interface

@@ -62,6 +62,13 @@ out_open good
 out_comment of type string
 out_comment = open
 
+Command line arguments test
+comline_arg(1, "label", "value").
+comline_arg(2, "Label", "Value").
+comline_arg(3, "switch", "").
+comline_arg(4, "", "argument").
+test_command_line_arguments success
+
 Exit test
 Expected Exit 42
 
