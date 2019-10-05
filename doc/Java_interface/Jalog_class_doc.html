@@ -330,6 +330,20 @@ is of type symbol.
 
 <TR BGCOLOR="white" CLASS="TableRowColor">
   <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+    <CODE>&nbsp;static void</CODE></FONT>
+  </TD>
+  <TD>
+    <CODE><B><A HREF="#set_comline_arg(String,String)">set_comline_arg</A></B>
+    (String option, String argument)</CODE>
+
+    <BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Defines a command-line argument for the Jalog program.
+   </TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+  <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
     <CODE>&nbsp;static <a href="Jalog_Term_class_doc.html">Jalog.Term</a></CODE></FONT>
   </TD>
   <TD>
@@ -558,6 +572,33 @@ public static <a href="Jalog_Term_class_doc.html">Jalog.Term</a> <B>character</B
   <DD><CODE>c</CODE> - the value of the new character.
   <DT><B>Returns:</B>
   <DD>a character term.
+</DL>
+</DD>
+</DL>
+<HR>
+
+<H3 id="set_comline_arg(String,String)">set_comline_arg</H3>
+<PRE>
+public static void <B>set_comline_arg</B>(String option, String argument)</PRE>
+<DL>
+<DD>Defines a command-line argument.
+<P>
+<DD>
+<DL>
+  <DT><B>Parameters:</B>
+  <DD><CODE>option</CODE> - the name of the option.</DD>
+  <DD><CODE>argument</CODE> - the value of the option.</DD>
+  <DT><B>Example:</B>
+  <DD>To emulate the following command line arguments<BR/>
+  <CODE>&nbsp;&nbsp;-foo=bar -up report.txt</CODE><BR/>
+  the calls</DD>
+  <DD><CODE>&nbsp;&nbsp;set_comline_arg("foo", "bar");</CODE></DD>
+  <DD><CODE>&nbsp;&nbsp;set_comline_arg("up", "");</CODE></DD>
+  <DD><CODE>&nbsp;&nbsp;set_comline_arg("", "report.txt");</CODE></DD>
+  <DD>store the following facts to the Jalog database
+  <DD><CODE>&nbsp;&nbsp;comline_arg(1, "foo", "bar").</CODE></DD>
+  <DD><CODE>&nbsp;&nbsp;comline_arg(2, "up", "").</CODE></DD>
+  <DD><CODE>&nbsp;&nbsp;comline_arg(3, "", "report.txt").</CODE></DD>
 </DL>
 </DD>
 </DL>

@@ -17,6 +17,21 @@
         <p>Succeeds, if the parameter <i>Var</i> is bound, otherwise fails.</p>
       </dd>
 
+      <dt><font size="+1"><b><code>comline_arg(</code><i>Number</i><code>, 
+          </code><i>Option</i><code>, </code><i>Argument</i><code>)</code></b></font></dt>
+      <dd>
+        <p>These are the command line arguments given to the program. </p>
+        <p>A command line example <b>Note</b> the equal sign separating an
+        option and its argument:</p>
+        <code>> java -jar jalog.jar myprogram.pro -foo=bar -up report.txt</code>
+        <p>stores the following facts to the database prior to starting 
+        <code>myprogram.pro</code>:</p>
+        <pre>
+comline_arg(1, "foo", "bar").
+comline_arg(2, "up", "").
+comline_arg(3, "", "report.txt").</pre>
+      </dd>
+
       <dt><font size="+1"><b><code>consult(</code><i>Filename</i><code>)</code></b></font></dt>
       <dd>
         <p>Reads the facts from the file <i>Filename</i> to the database.</p>
