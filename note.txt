@@ -50,6 +50,13 @@ Regressiotestien suoritus
 
   
 Seuraava vaihe:
+
+0. dynamic -m‰‰rittely, joka est‰‰ virheilmoituksen database-faktan puuttuessa.
+   esim: 
+       :-dynamic("fakta/3"). 
+   tai 
+       :-dynamic(fakta(A, B, C)).
+
 0. Paikallinen dokumenttihakemistorakenne vastaamaan github.io:ssa olevaa.
 
 
@@ -80,6 +87,8 @@ HAVAINTOJA
   tulostuksen "*** Unknown predicate:".
 * Olisikohan hyv‰ sellainen predikaatti, joka konsultoi pelkki‰ faktoja?
 * Olisikohan hyv‰ olemassa predikaatti free?
-
+* Database haku ja talletus tapahtuvat ep‰symmetrisesti. Talletus ja avaimen
+  muodostaminen Database.java:ssa; haku ja samanlainen avaimen muodostus
+  Pred_fetch_.java:ssa.
 
 
