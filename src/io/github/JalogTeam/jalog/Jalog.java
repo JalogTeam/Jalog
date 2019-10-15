@@ -6,7 +6,7 @@ import java.io.*;
 
 public class Jalog
 {
-  static final String id_string="Jalog 0.4 by Ari Okkonen & Mikko Levanto 2019-08-06";
+  static final String id_string="Jalog 0.4 by Ari Okkonen & Mikko Levanto 2019-10-15";
   
   private static int instance_count = 0;
   private static int arg_index = 1;
@@ -65,7 +65,9 @@ public class Jalog
     if(Command_Line.program_name != null) {
       
       /* Command line options for the program */
-   
+
+      Database.define_by_string("comline_arg/3"); // Avoid error messages
+                                     // if no command line arguments      
       for(i=0;i<Command_Line.appl_labels.length;i++){
         set_comline_arg(Command_Line.appl_labels[i],
             Command_Line.appl_values[i]);

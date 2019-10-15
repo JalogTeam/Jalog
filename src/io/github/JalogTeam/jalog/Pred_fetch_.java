@@ -53,9 +53,9 @@ public class Pred_fetch_ extends Pred
       }
     } else { // nothing in database, fail
       forward = false;
-      if(!key.equals("comline_arg/3")) { // TODO: Skip, if dynamic
+//      if(!key.equals("comline_arg/3")) { // TODO: Skip, if dynamic
         System.out.println("*** Unknown predicate: " + key);
-      }
+//      }
     }
   } // Pred_fetch_
 

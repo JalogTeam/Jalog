@@ -25,11 +25,14 @@ call do_test_jar.bat test_exit_1
 call do_test_jar.bat test_exit_50
 call do_test_jar.bat test_command_line_arguments "-a=b" -c d
 call do_test_jar.bat test_command_line_no_arguments
+call do_test_jar.bat test_dynamic
 REM call do_test_jar.bat test_
 
 call do_test_interface.bat test_interface
 
 REM final report
+echo.
+java -jar ..\..\jalog.jar -v
 echo.
 if x==x%jalog_errors% (
   echo Passed all tests

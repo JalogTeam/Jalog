@@ -51,12 +51,6 @@ Regressiotestien suoritus
   
 Seuraava vaihe:
 
-0. dynamic -m‰‰rittely, joka est‰‰ virheilmoituksen database-faktan puuttuessa.
-   esim: 
-       :-dynamic("fakta/3"). 
-   tai 
-       :-dynamic(fakta(A, B, C)).
-
 0. Paikallinen dokumenttihakemistorakenne vastaamaan github.io:ssa olevaa.
 
 
@@ -69,11 +63,14 @@ Mahdollisia kehityskohteita:
 * Optio, jolla voi tarkastaa onko symboleita, jotka eroavat toisistaan vain
   kirjaincasen perusteella.
   
+* J‰tet‰‰n *yes* ja *no* tulostukset pois, jos kutsutaan Java-p‰‰ohjelmasta.
+  
 NYT:
 Katso plan.txt
 
-Tyyppitestit tehty
-
+0. dynamic -m‰‰rittely, joka est‰‰ virheilmoituksen database-faktan puuttuessa.
+   esim: 
+       :-dynamic("fakta/3"). 
 
 PERIAATTEITA
 
@@ -84,7 +81,7 @@ PERIAATTEITA
 HAVAINTOJA
 
 * Jos konsultoidaan dataa, mutta faktaa ei tule yht‰‰n, haku tuottaa 
-  tulostuksen "*** Unknown predicate:".
+  tulostuksen "*** Unknown predicate:". KORJATTU
 * Olisikohan hyv‰ sellainen predikaatti, joka konsultoi pelkki‰ faktoja?
 * Olisikohan hyv‰ olemassa predikaatti free?
 * Database haku ja talletus tapahtuvat ep‰symmetrisesti. Talletus ja avaimen

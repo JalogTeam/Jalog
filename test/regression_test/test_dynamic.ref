@@ -1,0 +1,26 @@
+A 
+*** Unknown predicate: a/0
+*No*
+B 
+*Yes*
+C 
+*No*
+D 
+*Yes*
+E 
+*No*
+F 
+*** Unknown predicate: b/2
+*No*
+G 
+*** Unknown predicate: b/0
+*No*
+b stored
+*Yes*
+H 
+*Yes*
+I 
+J 
+heippa
+*No*
+Exit status: 0 ; 

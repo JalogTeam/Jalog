@@ -268,6 +268,21 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
               Pred.forward = false;
             }
 
+          // dynamic/1
+
+          } else if(name.equals("dynamic")){
+            Pro_Term term0 = data.subterm[0];
+            Pro_TermData arg = term0.getData();
+            if(arg instanceof Pro_TermData_String) {
+              String key = ((Pro_TermData_String)arg).value;
+              Database.define_by_string(key);      
+            } else {
+              System.out.println("*** Error: dynamic: Argument must be a " +
+                  "string containing functor/arity");
+              Pred.forward = false;
+            }
+            // result = new Pred(); // **
+
           } else {
             op_found = false;
           }

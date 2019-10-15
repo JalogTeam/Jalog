@@ -84,6 +84,15 @@ public class Database
         
   }
 
+  static void define_by_string(String key) {
+    Database_FactClass factClass;
+    
+    factClass = (Database_FactClass) db.get(key);
+    if(factClass == null) {
+      factClass = new Database_FactClass();
+      db.put(key,factClass);
+    } 
+  }
   
   static void asserta(Pro_Term x)
   {

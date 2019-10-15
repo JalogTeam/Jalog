@@ -41,6 +41,19 @@ comline_arg(3, "", "report.txt").</pre>
         <p><code>consult("route_data.pro")</code></p>
       </dd>
 
+      <dt><font size="+1"><b><code>dynamic(</code><i>PredicateIndicator</i><code>)</code></b></font></dt>
+      <dd>
+        <p>Prevents an error message, if no clause matching PredicateIndicator
+        is found in the database. This is intended for predicates that can
+        be asserted and retracted in runtime. This is intended to be used
+        as a directive.</p>
+        <p>A <i>PredicateIndicator</i> must be a string of form 
+        <i>Functor</i><code>/</code><i>Arity</i> .
+        </p>
+        <p>Example:</p>
+        <p><code>:- dynamic("route/3").</code></p>
+      </dd>
+
       <dt><font size="+1"><b><code>exit</code></b></font></dt>
       <dd>
         <p>Terminates the program with exit code <code>0</code>.</p>
