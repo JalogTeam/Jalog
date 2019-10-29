@@ -1,8 +1,38 @@
-
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=0.8">
+<style>
+td {
+  padding-left:1em;
+}
+</style>
+</head>
+<body>
 <H2>Lexical Structure</H2>
 <H3>Character Set</H3>
 Jalog uses UTF-8 character set. ASCII character set is sufficient for writing
 a program.
+<H3>Whitespace</H3>
+Whitespace (spaces, tabs, newlines and comments) are allowed between tokens but
+not within tokens. However whitespace in strings is part of the token and
+not considered whitespace.
+<H3>Comments</H3>
+<H4>Block comments</H4>
+<p>Everything between character combinations "/*" and "*/" is considered comment.</p>
+<p>Example:
+<pre>
+  /* This
+     is
+     comment */
+</pre></p>
+
+<H4>End-line comments</H4>
+<p>End-line comments start with percent sign "%". Everything after it until the end
+of line is considered a comment.</p>
+<p>Example:
+<pre>
+       write("This is program"), % This is comment
+</pre></p>
 <H3>Simple Tokens</H3>
 <table>
 <TR><TH></TH></TR>
@@ -27,14 +57,160 @@ a program.
 <TR><TH>CUT</TH><TD>,</TD></TR>
 <TR><TH>VBAR</TH><TD>,</TD></TR>
 <TR><TH>OPEN</TH><TD>,</TD></TR>
-<TR><TH>COMMENT_MARK</TH><TD>,</TD></TR>
-
-<!--
-<TR><TH>INT</TH><TD>,</TD></TR>
-<TR><TH>REAL</TH><TD>,</TD></TR>
-<TR><TH>CHAR</TH><TD>,</TD></TR>
-<TR><TH>NAME</TH><TD>,</TD></TR>
-<TR><TH>STRING</TH><TD>,</TD></TR>
-<TR><TH>VARIABLE</TH><TD>,</TD></TR>
--->
 <TR><TH></table>
+
+<H3>INT</H3>
+Integer literal. Decimal literal consist of digits "0"..."9".
+Hexadecimal literals start with "$" or "0x" followed by hexadecimal digits
+"0"..."9" and "a"..."f" (upper-case is also allowed). The range of allowed
+values is 0...2147483647 or $0...$7FFFFFFF.
+<H3>REAL</H3>
+Floating point literal. A floating-point literal starts with decimal digits
+followed by fraction part or exponent part or both. Fraction part consits of
+point followed by one or more digits. Exponent part starts with "e" or "E"
+followed by an optional "+" or "-" sign and decimal digits. The largest 
+positive finite literal is 1.7976931348623157e308.
+<H3>CHAR</H3>
+Character literal. Character literal starts and ends with an apostrophe "'".
+Between the apostrophes is an ordinary character (printable character other than
+"'" or "\") or an escape sequence.
+
+<table>
+  <tr>
+    <th>
+      Image
+    </th>
+    <th>
+      Explanation
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <code>\a</code>
+    </td>
+    <td>
+      Control character Bell (0x07)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>\b</code>
+    </td>
+    <td>
+      Control character backspace (0x08)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>\t</code>
+    </td>
+    <td>
+      Control character tab (0x09)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>\n</code>
+    </td>
+    <td>
+      Control character line feed (0x0A), used as line separator
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>\v</code>
+    </td>
+    <td>
+      Control character vertical tabulator (0x0B)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>\f</code>
+    </td>
+    <td>
+      Control character form feed (0x0C)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>\r</code>
+    </td>
+    <td>
+      Control character carriage return (0x0D)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>\e</code>
+    </td>
+    <td>
+      Control character escape (0x1B)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>\x</code><i>hh</i>
+    </td>
+    <td>
+      Character represented by the two digit hexadecimal number <i>hh</i>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>\u</code><i>hhhh</i>
+    </td>
+    <td>
+      Character represented by the four digit hexadecimal number <i>hhhh</i>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>\U</code><i>hhhhhhhh</i>
+    </td>
+    <td>
+      Character represented by the eight digit hexadecimal number <i>hhhhhhhh</i>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>\</code><i>ddd</i>
+    </td>
+    <td>
+      Character represented by the three digit decimal number <i>ddd</i>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>\\</code>
+    </td>
+    <td>
+      Backslash <code>\</code>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>\'</code>
+    </td>
+    <td>
+      Apostrophe <code>'</code>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>\"</code>
+    </td>
+    <td>
+      Quote <code>"</code>
+    </td>
+  </tr>
+</table>
+A char variable can contain a 16 bit value, so values from '\u0000' to '\uFFFF' are available.
+
+
+
+<H3>NAME</H3>
+<H3>STRING</H3>
+<H3>VARIABLE</H3>
+</body>
+</html>

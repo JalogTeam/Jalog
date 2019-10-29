@@ -87,5 +87,6 @@ HAVAINTOJA
 * Database haku ja talletus tapahtuvat epäsymmetrisesti. Talletus ja avaimen
   muodostaminen Database.java:ssa; haku ja samanlainen avaimen muodostus
   Pred_fetch_.java:ssa.
+* Largest negative integer cannot be given as a negated literal.
 
 
