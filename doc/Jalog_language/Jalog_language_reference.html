@@ -36,7 +36,7 @@ of line is considered a comment.</p>
 <pre>
        write("This is program"), % This is comment
 </pre></p>
-<H3>Simple Tokens</H3>
+<H3 id="tokens">Simple Tokens</H3>
 <table class="token_table">
 <TR><TH></TH></TR>
 <TR><TH>COMMA</TH><TD>,</TD></TR>
@@ -55,11 +55,11 @@ of line is considered a comment.</p>
 <TR><TH>LE</TH><TD>&lt;=</TD></TR>
 <TR><TH>PLUS</TH><TD>+</TD></TR>
 <TR><TH>SLASH</TH><TD>/</TD></TR>
-<TR><TH>LBRAK</TH><TD>,</TD></TR>
-<TR><TH>RBRAK</TH><TD>,</TD></TR>
-<TR><TH>CUT</TH><TD>,</TD></TR>
-<TR><TH>VBAR</TH><TD>,</TD></TR>
-<TR><TH>OPEN</TH><TD>,</TD></TR>
+<TR><TH>LBRAK</TH><TD>[</TD></TR>
+<TR><TH>RBRAK</TH><TD>]</TD></TR>
+<TR><TH>CUT</TH><TD>!</TD></TR>
+<TR><TH></TH><TD>|</TD></TR>
+<TR><TH>OPEN</TH><TD>_</TD></TR>
 <TR><TH></table>
 
 <H3>INT</H3>
@@ -231,7 +231,7 @@ Between the apostrophes is an ordinary character (printable character other than
   </tr>
 </table>
 <p>A char variable can contain a 16 bit value, so values from '\u0000' to '\uFFFF' are available. Values starting from '\U00010000' cannot be stored in char variables but can be used in strings.</p>
-<p>Caaracters are coded in Unicode. For code charts see <a href="http://www.unicode.org/charts/">Unicode Character Code Charts</a>.</p>
+<p>Caaracters are coded in Unicode. For code charts see e.g. <a href="http://www.unicode.org/charts/">Unicode Character Code Charts</a>.</p>
 <p>Examples:
 <pre>
   ' '
@@ -239,17 +239,18 @@ Between the apostrophes is an ordinary character (printable character other than
   '\''
   'a'
   '\x07'
+  '\176'
   '\u0110'
 </pre></p>
 <H3>STRING</H3>
-<p>String literal. A string literal starts and ends with a quote "<code>"</code>". Between the quotes is an (possible empty) sequence of characters. The characters in a string are represented in the same way as in a char literal (except quote must be represented using an escape sequence "<code>\"</code>". Characters in range '\U00010000' .. '\U0010FFFF' are stored as two surrogate characters.
+<p>String literal. A string literal starts and ends with a quote "<code>"</code>". Between the quotes is an (possible empty) sequence of characters. The characters in a string are represented in the same way as in a char literal (except a quote must be represented using an escape sequence "<code>\"</code>", and an apostrophe does not need escaping). Characters in range '\U00010000' .. '\U0010FFFF' are stored as two surrogate characters.
 <p>Strings can be broken to several string literals, which may be separated by whitespace.</p>
 <p>Examples:
 <pre>
   ""
-  "\""
+  "a"
   "He said \"Hello world.\""
-  "The better angel is a man right fair,\nThe worser spirit a woman color’d ill."
+  "The better angel is a man right fair,\nThe worser spirit a woman color'd ill."
   "Shall we see again? \U0001F642"
 </pre></p>
 <H3>NAME</H3>
@@ -266,9 +267,23 @@ Between the apostrophes is an ordinary character (printable character other than
 </pre>
 </p>
 
+<H3>VARIABLE NAME</H3>
+<p>A variable name must start with a upper-case letter "<code>A</code>"..."<code>Z</code>" or an underscore "<code>_</code>". The other characters can be lower-case or upper-case letters, digits, or underscores. </p>
+<p>A special case is the one-character variable name "<code>_</code>". Unlike other variable names each occurrence of it refers to a separate dummy variable. 
+Recommended uses: 
+<ul>
+<li>In a predicate call as an output parameter that is not needed</li>
+<li>In a clause head as a formal parameter to be ignored</li>
+</ul>
+</p>
+
+<!--
 <H3>VARIABLE</H3>
-<p>A variable must start with a upper-case letter "<code>a</code>"..."<code>z</code>" or an underscore "<code>_</code>". The other characters can be lower-case or upper-case letters, digits, or underscores "<code>_</code>". </p>
-<p>A special case is the one-character variable "<code>_</code>". Unlike other variables each occurrence of it is a separate variable. These are mainly used when the predicate gives an output variable that is not needed.</p>
+<p>A variable must start with a upper-case letter "<code>A</code>"..."<code>Z</code>" or an underscore "<code>_</code>". The other characters can be lower-case or upper-case letters, digits, or underscores. </p>
+<p>A special case is the one-character variable "<code>_</code>". Unlike other variables each occurrence of it is a separate variable. 
+These are mainly used when the predicate gives an output variable that is not needed.
+</p>
+-->
 <p>Examples:
 <pre>
   _
@@ -278,6 +293,85 @@ Between the apostrophes is an ordinary character (printable character other than
   _result
   Row_number
   BestOf3
+</pre>
+</p>
+<H3>EOF</H3>
+<p>Physical end-of-file.</p>
+<H2>Syntax</H2>
+<p><a href="https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form">
+Backus-Naur form</a> is used here to present the syntax. Names in <code>CAPITAL</code> letters refer to <a href="#tokens">tokens</a>.</p>
+<p>
+<pre>
+  &lt;program&gt; ::= &lt;program&gt; &lt;clause&gt; 
+            | EOF
+
+  &lt;clause&gt; ::= &lt;sentence&gt; POINT 
+<!--  
+  &lt;fact&gt; ::= &lt;expr8&gt; POINT
+  
+  &lt;facts&gt; ::= &lt;facts&gt; &lt;fact&gt; 
+            | &lt;eof&gt;
+  &lt;term&gt; ::= &lt;expr6&gt;
+  &lt;expr&gt; ::= &lt;formula&gt;
+-->
+  &lt;sentence&gt; ::= IFSYM &lt;body&gt; 
+            | &lt;head&gt;
+            | &lt;head&gt; IFSYM &lt;body&gt;
+<!--
+  &lt;expr1&gt; ::= &lt;expr1&gt;
+            | &lt;expr1&gt; SEMICOLON &lt;expr1&gt;
+-->            
+  &lt;head&gt; ::= &lt;structure&gt;
+
+  &lt;body&gt; ::= &lt;formula&gt;
+            | &lt;body&gt; COMMA &lt;formula&gt;
+            
+  &lt;formula&gt; ::= &lt;addend&gt;
+            | &lt;addend&gt; EQ &lt;addend&gt;
+            | &lt;addend&gt; NE &lt;addend&gt;
+            | &lt;addend&gt; GT &lt;addend&gt;
+            | &lt;addend&gt; GE &lt;addend&gt;
+            | &lt;addend&gt; LT &lt;addend&gt;
+            | &lt;addend&gt; LE &lt;addend&gt;
+            
+  &lt;addend&gt; ::= PLUS &lt;factor&gt;
+            | MINUS &lt;factor&gt;
+            | &lt;factor&gt;
+            | &lt;addend&gt; PLUS &lt;factor&gt;
+            | &lt;addend&gt; MINUS &lt;factor&gt;
+  
+  &lt;factor&gt; ::= &lt;primary&gt;
+            | &lt;factor&gt; STAR &lt;primary&gt;
+            | &lt;factor&gt; SLASH &lt;primary&gt;
+
+  &lt;primary&gt; ::= VARNAME
+            | OPEN
+            | INT
+            | REAL
+            | CHAR
+            | CUT
+            | LPAR &lt;sentence&gt; RPAR
+            | &lt;string&gt;
+            | &lt;list&gt;
+            | &lt;structure&gt;
+
+  &lt;string&gt; ::= STRING
+            | &lt;string&gt; STRING
+
+  &lt;list&gt; ::= LBRAK RBRAK
+            | LBRAK &lt;elements&gt; VBAR &lt;formula&gt; RBRAK
+            | LBRAK &lt;elements&gt; RBRAK
+
+  &lt;elements&gt; ::= &lt;formula&gt;
+            | &lt;elements&gt; COMMA &lt;formula&gt;
+
+  &lt;structure&gt; ::= NAME LPAR RPAR
+            | NAME LPAR &lt;arguments&gt; RPAR
+            | NAME
+
+  &lt;arguments&gt; ::= &lt;formula&gt;
+            | &lt;arguments&gt; COMMA &lt;formula&gt;
+
 </pre>
 </p>
 

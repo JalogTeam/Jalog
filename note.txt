@@ -60,10 +60,16 @@ Seuraava vaihe:
 
 
 Mahdollisia kehityskohteita:
+
+* Varoitus, jos muuttuja esiintyy clausessa vain kerran, ellei sen nimi ala 
+  alaviivalla.
+  
 * Optio, jolla voi tarkastaa onko symboleita, jotka eroavat toisistaan vain
   kirjaincasen perusteella.
   
 * J‰tet‰‰n *yes* ja *no* tulostukset pois, jos kutsutaan Java-p‰‰ohjelmasta.
+
+* Interactive mode
   
 NYT:
 Katso plan.txt

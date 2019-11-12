@@ -548,7 +548,7 @@ public class JalogSyntax extends io.github.JalogTeam.parser.SimpleSyntax
     new ParseRule(1610,ANY,NIL,NONE,NIL,END),
 
 // expr7 = LBRAK RBRAK
-//       = LBRAK elemlist | expr3 RBRAK
+//       = LBRAK elemlist VBAR expr3 RBRAK
 //       = LBRAK elemlist RBRAK
 //       = expr8
 // elemlist = expr3
@@ -573,8 +573,8 @@ public class JalogSyntax extends io.github.JalogTeam.parser.SimpleSyntax
 // expr8 = NAME LPAR RPAR
 //       = NAME LPAR arglist RPAR
 //       = NAME
-// arglist = expr0
-//         = arglist COMMA expr0
+// arglist = expr3
+//         = arglist COMMA expr3
 
     new ParseRule(1800,NAME,FUNCTOR,NONE,NIL,1801),
 
