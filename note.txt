@@ -1,4 +1,4 @@
-Projektitilanne 2019-10-03
+Projektitilanne 2019-11-12
 
  
 Uudet ominaisuudet ja regressiotesti päivitetty
@@ -51,10 +51,15 @@ Regressiotestien suoritus
   
 Seuraava vaihe:
 
-0. Paikallinen dokumenttihakemistorakenne vastaamaan github.io:ssa olevaa.
+0. Sudoku demo pitäisi tehdä niin, että Prolog-koodi on JAR-tiedostossa. Samalla
+   voi katsoa, voiko kyselystä tehdä helposti interaktiivisen jollakin
+   komentorivivivulla.
+
+1. Paikallinen dokumenttihakemistorakenne vastaamaan github.io:ssa olevaa. 
+   TARKASTA!
 
 
-1. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
+2. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
    toString-operaatiossa. Väliaikainen ratkaisu. 
    Syvyyslimiitti on nyt 1000.
 
