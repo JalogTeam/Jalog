@@ -100,4 +100,9 @@ HAVAINTOJA
   Pred_fetch_.java:ssa.
 * Largest negative integer cannot be given as a negated literal.
 
+Animation
+
+* Backtrac tarkastus: Tarkastetaan, ett‰ from-arvo p‰tee ennen transitiota.
+
+* road - instantiointi kutsupinon p‰‰lle.
 
