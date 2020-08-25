@@ -1,0 +1,27 @@
+D:\wa\Jalog>java -jar jalog.jar doc\examples\find_route.pro
+route(oulu, joensuu, [], _, _)
+connected(oulu, _506, _)
+road(oulu, _561, _)
+  road(oulu, _601, _) FAILED
+road(_655, oulu, _)
+member(kajaani, [oulu])
+member(kajaani, [])
+  member(kajaani, []) FAILED
+  member(kajaani, [oulu]) FAILED
+route(kajaani, joensuu, [oulu], _, _)
+connected(kajaani, _1002, _)
+road(kajaani, _1057, _)
+member(oulu, [kajaani,oulu])
+member(oulu, [oulu])
+  road(kajaani, _1243, _) FAILED
+road(_1297, kajaani, _)
+member(joensuu, [kajaani,oulu])
+member(joensuu, [oulu])
+member(joensuu, [])
+  member(joensuu, []) FAILED
+  member(joensuu, [oulu]) FAILED
+  member(joensuu, [kajaani,oulu]) FAILED
+route(joensuu, joensuu, [kajaani,oulu], _, _)
+
+[oulu,kajaani,joensuu], total length 413
+*Yes*

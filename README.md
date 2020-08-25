@@ -1,12 +1,10 @@
-
-## *Under construction* !
 # Jalog
 
 *An interpreter for a Prolog-like language with Java-like arithmetic written in Java*
 
 Jalog makes artificial intelligence available to a wide variety of devices and applications.
 
-**Version** 0.4 2019-08-06 Build system for jar file: build_jar.bat.
+**Version** 1.0.0 2020-08-25 First release
 
 ### Authors
 Mikko Levanto<br>
@@ -32,6 +30,8 @@ See examples in `test` directory for implemented features.
 
 ----------
 ### Version history
+**1.0.0** 2020-08-25 First release
+
 **0.4** 2019-08-06 Build system for jar file: build_jar.bat.
 
 **0.3** 2019-07-24 Interface test completed and integrated to regression test.

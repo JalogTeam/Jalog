@@ -1,5 +1,13 @@
-Projektitilanne 2019-11-12
+Uutta
+=====
 
+Quick Reference
+---------------
+
+Aritmeettisista operaattoreista puuttuvat + ja -, myös unaarimiinus.
+
+Projektitilanne 2019-11-12
+==========================
  
 Uudet ominaisuudet ja regressiotesti päivitetty
   * lisätty: komentoriviargumentit Jalog-ohjelmalle
