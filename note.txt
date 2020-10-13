@@ -99,6 +99,7 @@ PERIAATTEITA
   
 HAVAINTOJA
 
+* JalogTerms.java - Asetetaan EOF-muuttuja, mutta ei n‰ytet‰ eik‰ k‰ytet‰.
 * Jos konsultoidaan dataa, mutta faktaa ei tule yht‰‰n, haku tuottaa 
   tulostuksen "*** Unknown predicate:". KORJATTU
 * Olisikohan hyv‰ sellainen predikaatti, joka konsultoi pelkki‰ faktoja?

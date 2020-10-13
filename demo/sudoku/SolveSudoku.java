@@ -33,7 +33,7 @@ public class SolveSudoku
     }
 */
     
-    myJalog.consult_file("D:\\wa\\Jalog\\demo\\sudoku\\sudoku_solver_compnent.pro");
+    myJalog.consult_file("D:\\wa\\JalogTeam\\Jalog\\demo\\sudoku\\sudoku_solver_compnent.pro");
     System.out.println("Problem");
     print_sudoku(sudoku_problem);
     solve_sudoku(sudoku_problem, sudoku_solution);

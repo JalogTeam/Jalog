@@ -1,1 +1,1 @@
-javac -cp ..\..\src;. SolveSudoku.java
+javac -cp ..\..\classes;. -sourcepath ..\..\src;. SolveSudoku.java
