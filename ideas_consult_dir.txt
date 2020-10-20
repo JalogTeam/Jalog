@@ -1,0 +1,102 @@
+
+
+JAVA
+====
+
+ideoita
+-------
+
+myJalog.consult_file("D:\\wa\\JalogTeam\\Jalog\\demo\\sudoku\\sudoku_solver_compnent.pro");
+
+myJalog.consult_resource("lkasdjflksjf");
+
+// myJalog.consult_string("agc:-def.abc:-gez.");
+
+myJalog.consult_stringlist(["abc:-def.","abc:-gez."});
+
+
+myJalog.consult_data_file("D:\\wa\\JalogTeam\\Jalog\\demo\\sudoku\\sudoku_solver_compnent.pro");
+
+myJalog.consult_data_resource("lkasdjflksjf");
+
+// myJalog.consult_data_string("agc:-def.abc:-gez.");
+
+myJalog.consult_data_stringlist(["abc:-def.","abc:-gez."});
+
+
+// myJalog.consult_rules_file("D:\\wa\\JalogTeam\\Jalog\\demo\\sudoku\\sudoku_solver_compnent.pro");
+
+// myJalog.consult_rules_resource("lkasdjflksjf");
+
+// myJalog.consult_rules_string("agc:-def.abc:-gez.");
+
+// myJalog.consult_rules_stringlist(["abc:-def.","abc:-gez."});
+
+
+
+myJalog.set_consult_dir("C:data");
+myJalog.set_consult_dir("res:");
+
+suunnitelmaa
+------------
+
+  static public void set_consult_dir("C:data");
+  static public void set_consult_dir("res:");
+
+  static public void set_include_dir("C:data");
+  static public void set_include_dir("res:");
+
+  static public void consult_file(String filename);  // lukee faktoja
+  static public void consult_stringlist(String[] data);  // lukee faktoja
+  static public void include_file(String filename);  // lukee ohjelmaa
+  static public void include_stringlist(String[] program);  // lukee ohjelmaa
+
+
+-------------------
+JALOG
+=====
+
+ideoita
+-------
+
+consult("mydata.pro"),
+consult("res:filename.pro"),
+consult("file:data1.pro"),
+consult("http://lksdjflksjd"),
+
+// consult_data_stringlist
+// consult_rules_stringlist
+consult_stringlist
+
+set_consult_dir("C:data"),
+set_consult_dir("res:"),
+
+
+consult_data("res:filename.pro"),
+
+consult_rules
+
+term_str(Term, Type, String)
+
+term_str(Term, String),
+assertz(Term),
+
+suunnitelmaa
+------------
+
+consult - lukee pelkkiä faktoja
+consult_stringlist
+
+set_consult_dir("C:data"),
+set_consult_dir("res:"),
+
+direktiivejä
+  include - lukee ohjelmaa
+
+  set_include_dir("C:data"),
+  set_include_dir("res:"),
+
+
+
+
+

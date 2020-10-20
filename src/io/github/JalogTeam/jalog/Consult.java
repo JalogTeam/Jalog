@@ -16,14 +16,14 @@ public class Consult
     Pro_Term[] Apu = new Pro_Term[10];
     int ApuCnt = 0;
     String line;
-    RandomAccessFile file1;
+    BufferedReader file1;
     int LineNmbr = 0;
 
     /*try*/ {
     
 //      System.out.println("Consulting " + FileName);
       try {
-        file1 = new RandomAccessFile(FileName,"r");
+        file1 = new BufferedReader(new FileReader(FileName));
       } catch (Exception e) {
         System.out.println("*** Error: " + e);
         file1 = null;
