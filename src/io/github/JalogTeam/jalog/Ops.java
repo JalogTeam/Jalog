@@ -133,7 +133,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
             if(!found) {
 // System.out.print(" starting.\n");
               ConsultingFiles.push(filename);
-              Consult.run(filename);
+              Consult.consult_file(filename, 'c');
               if(Consult.exit_value != null) { // bad file
                 Pred.exception = true;
                 Pred.exit_value = Consult.exit_value;

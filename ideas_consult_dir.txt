@@ -47,9 +47,9 @@ suunnitelmaa
   static public void set_include_dir("res:");
 
   static public void consult_file(String filename);  // lukee faktoja
-  static public void consult_stringlist(String[] data);  // lukee faktoja
+  static public void consult_stringlist(String[] data, String name);  // lukee faktoja
   static public void include_file(String filename);  // lukee ohjelmaa
-  static public void include_stringlist(String[] program);  // lukee ohjelmaa
+  static public void include_stringlist(String[] program, String name);  // lukee ohjelmaa
 
 
 -------------------
