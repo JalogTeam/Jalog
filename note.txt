@@ -115,3 +115,8 @@ Animation
 
 * road - instantiointi kutsupinon p‰‰lle.
 
+
+BUGIT!
+
+* retract on implementoimatta!
+

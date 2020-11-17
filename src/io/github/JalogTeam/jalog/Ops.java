@@ -133,7 +133,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
             if(!found) {
 // System.out.print(" starting.\n");
               ConsultingFiles.push(filename);
-              Consult.consult_file(filename, 'c');
+              Consult.consult_file(filename, null);
               if(Consult.exit_value != null) { // bad file
                 Pred.exception = true;
                 Pred.exit_value = Consult.exit_value;
@@ -306,6 +306,21 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
             result = new Pred_foreach_(data);
 // Debug_times.leave(2);
             result.call();
+
+          // consult_data/2
+
+          } else if(name.equals("consult_data")){ 
+              // consult(String filename) - (i)
+            filename = data.subterm[0].image();
+            Pro_Term filter_list = data.subterm[1];
+// System.out.print("\n--Consulting \"" + filename + "\"--");
+            String[] filter = ((Pro_TermData_List)filter_list.data). 
+                toStringList();
+            Consult.consult_file(filename, filter);
+            if(Consult.exit_value != null) { // bad file
+              Pred.exception = true;
+              Pred.exit_value = Consult.exit_value;
+            }
             
           // ">"/2
 

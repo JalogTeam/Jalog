@@ -13,7 +13,7 @@ public class Consult
   static private File include_dir = null;
   
 
-  static private Object identify(String name, char mode) {
+  static private Object identify(String name, String[] filter) {
     String resource_name = null;
     File infile = null;
     
@@ -83,9 +83,9 @@ public class Consult
     include_dirname = dirname;
   }
 
-  static void consult_file(String fileName, char mode)
+  static void consult_file(String fileName, String[] filter)
   {
-System.out.println("Consult.consult_file: mode: '" + mode + "', fileName: \"" + fileName + "\"");
+System.out.println("Consult.consult_file: filter: '" + filter + "', fileName: \"" + fileName + "\"");
     int root_type = 0; // 1-file, 2-resource
     int name_start_pos = 0;  
     File infile = null;    
@@ -137,7 +137,7 @@ System.out.println("VALMIS");
         }
         
       } else {
-        if (mode == 'c') {
+        if (filter == null) {
           if (consult_dirname != null) {
             // FILE NOT FOUND
 System.out.println("FILE NOT FOUND");
@@ -189,22 +189,23 @@ System.out.println();
       exit_value = Pro_Term.m_integer(1); // File not found
     }
 */    
-    if(input != null) run(input, mode, fileName);
+    if(input != null) run(input, filter, fileName);
     
   }
 
-  static void consult_stringlist(String[] lines, char mode, String name) { 
+  static void consult_stringlist(String[] lines, String name) { 
     // name for error messages only
     StringArrayReader input = new StringArrayReader(lines);
     
-    run(input, mode, name);
+    run(input, null, name);
     
   }
   
 //  static void run(String FileName)
-  static private void run(Reader input, char mode, String filename) {
+  static private void run(Reader input, String[] filter, String filename) {
 
-System.out.println("Consult.run: mode: '" + mode + "', filename: \"" + filename + "\"");
+System.out.println("Consult.run: filter: '" + filter + "', filename: \"" + 
+filename + "\"");
 
     exit_value = null;
     JalogTerms JT = new JalogTerms(JalogTerms.CLAUSE);
@@ -269,7 +270,11 @@ System.out.println("Consult.run: mode: '" + mode + "', filename: \"" + filename 
             } else {
 //System.out.println("   Term: " + T);
 //System.out.println("");
-              process_clause(T);
+              if(filter == null) {
+                process_clause(T);
+              } else {
+                process_data(T, filter);
+              }
               if(exit_value != null) {
                 T = null;
                 line = null;
@@ -338,4 +343,37 @@ System.out.println("Consult.run: mode: '" + mode + "', filename: \"" + filename 
 
     }
   }
+
+  private static void process_data(Pro_Term T, String[] filter) {
+    // filter: ["data/3", "x/2",...]
+    
+//System.out.println("\n--Consult: process_data:" + T );
+    Pro_TermData_Compound data = 
+        (T != null ? (Pro_TermData_Compound) T.getData() : null);
+
+    if(data != null 
+        && data.name.equals(":-") && (data.arity == 2) &&
+        (data.subterm[0] != null) && 
+        (data.subterm[1].getData() == Pro_TermData_List.EMPTY)){
+      // genuine fact
+
+      Pro_TermData_Compound fact = 
+          (Pro_TermData_Compound)data.subterm[0].data;
+
+      String name = fact.name;
+      byte arity = fact.arity;
+      int i;
+      boolean found;
+      String key = name + "/" + Integer.toString(arity);
+      found = false;
+      for (i=0; (i < filter.length) && !found; i++) {
+        found = key.equals(filter[i]);
+      }
+      if(found){
+        Database.assertz(data.subterm[0]);
+      }
+
+    }
+  }
+
 }

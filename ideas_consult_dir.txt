@@ -96,7 +96,9 @@ direktiivejä
   set_include_dir("C:data"),
   set_include_dir("res:"),
 
-
+consult_data(tiedoston_tai_resurssin_nimi, list_of_predicates)
+  consult_data("C:data", ["source/2", "sink/2"]),
+  
 
 
 

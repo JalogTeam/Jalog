@@ -102,7 +102,7 @@ public class Jalog
             Command_Line.appl_values[i]);
       }
       
-      Consult.consult_file(Command_Line.program_name, 'c');
+      Consult.consult_file(Command_Line.program_name, null);
 //System.out.println("created terms total: " + Pro_Term.lastId);
 //System.out.println("max trail: " + Pro_Trail.maxnum);
 //System.out.println("last trail: " + Pro_Trail.currentnum);
@@ -338,7 +338,12 @@ System.out.println("  * getElements, ["+n+"] = "
   }
   
   static public void consult_file(String filename) {
-    Consult.consult_file(filename, 'c');
+    Consult.consult_file(filename, null);
+  }
+
+  static public void consult_stringlist(String[] lines, 
+      String name) {
+    Consult.consult_stringlist(lines, name);
   }
 
   static public void set_comline_arg(String label, String value) {

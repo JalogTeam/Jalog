@@ -75,6 +75,7 @@ public class Pro_TermData_List extends Pro_TermData
     }
   }
 
+
   public String image()
   {
     if(this == EMPTY)
@@ -131,6 +132,70 @@ public class Pro_TermData_List extends Pro_TermData
 //System.out.println("case L2 ****");
       return new Pro_TermData_List(new_t1, new_t2);
     }
+  }
+
+  public String[] toStringList()
+  {
+    int n = 0;
+    String[] result;
+    
+    if(this == EMPTY)
+    {
+      result = new String[0];
+    }
+    else
+    {
+      Pro_Term next = t2.getRealNode();
+      n = 1;
+       
+      while((next != null) && (next.getData() instanceof Pro_TermData_List))
+      {
+        Pro_TermData_List next_data = (Pro_TermData_List)(next.getData());
+        if(next_data != EMPTY)
+        {
+          n = n + 1;
+          next = next_data.t2.getRealNode();
+        }
+        else
+        {
+          next = null;
+        }
+        
+      }
+      
+      if(next != null)
+      {
+        n = n + 1;
+      }
+      
+      result = new String[n];
+      
+      next = t2.getRealNode();
+      result[0] = t1.toString();
+      n = 1;
+      while((next != null) && (next.getData() instanceof Pro_TermData_List))
+      {
+        Pro_TermData_List next_data = (Pro_TermData_List)(next.getData());
+        if(next_data != EMPTY)
+        {
+          result[n] = next_data.t1.toString();
+          n = n + 1;
+          next = next_data.t2.getRealNode();
+        }
+        else
+        {
+          next = null;
+        }
+        
+      }
+      
+      if(next != null)
+      {
+        result[n] = next.toString();
+      }
+      
+    }
+    return result;
   }
   
 } // end class Pro_TermData_List
