@@ -171,14 +171,14 @@ public class Pro_TermData_List extends Pro_TermData
       result = new String[n];
       
       next = t2.getRealNode();
-      result[0] = t1.toString();
+      result[0] = t1.image();
       n = 1;
       while((next != null) && (next.getData() instanceof Pro_TermData_List))
       {
         Pro_TermData_List next_data = (Pro_TermData_List)(next.getData());
         if(next_data != EMPTY)
         {
-          result[n] = next_data.t1.toString();
+          result[n] = next_data.t1.image();
           n = n + 1;
           next = next_data.t2.getRealNode();
         }
@@ -191,7 +191,7 @@ public class Pro_TermData_List extends Pro_TermData
       
       if(next != null)
       {
-        result[n] = next.toString();
+        result[n] = next.image();
       }
       
     }

@@ -16,6 +16,8 @@ REM * nl is done in each test. Does not need own case.
 call do_test_jar.bat test__eq_
 call do_test_jar.bat test_foreach_
 call do_test_jar.bat test_consult
+call do_test_jar.bat test_consult_data
+call do_test_jar.bat test_consult_data_2
 call do_test_jar.bat test_assertz
 call do_test_jar.bat test_not
 call do_test_jar.bat test_bound

@@ -313,10 +313,11 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
               // consult(String filename) - (i)
             filename = data.subterm[0].image();
             Pro_Term filter_list = data.subterm[1];
-// System.out.print("\n--Consulting \"" + filename + "\"--");
             String[] filter = ((Pro_TermData_List)filter_list.data). 
                 toStringList();
+// System.out.println("\n--Consulting data \"" + filename + "\" filter[0]: " + filter[0]);
             Consult.consult_file(filename, filter);
+//System.out.println("\n--Consulted data \"" + filename + "\"--");
             if(Consult.exit_value != null) { // bad file
               Pred.exception = true;
               Pred.exit_value = Consult.exit_value;

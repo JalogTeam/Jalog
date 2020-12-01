@@ -85,7 +85,7 @@ public class Consult
 
   static void consult_file(String fileName, String[] filter)
   {
-System.out.println("Consult.consult_file: filter: '" + filter + "', fileName: \"" + fileName + "\"");
+// System.out.println("Consult.consult_file: filter: '" + filter + "', fileName: \"" + fileName + "\"");
     int root_type = 0; // 1-file, 2-resource
     int name_start_pos = 0;  
     File infile = null;    
@@ -97,7 +97,7 @@ System.out.println("Consult.consult_file: filter: '" + filter + "', fileName: \"
       name_start_pos = 4;
       
       try {
-System.out.println("A");
+// System.out.println("A");
         InputStream is = Consult.class.getClassLoader().
           getResourceAsStream(fileName.substring(name_start_pos));
 
@@ -114,7 +114,7 @@ System.out.println("A");
       name_start_pos = 5;
       
       try {
-System.out.println("B");
+// System.out.println("B");
         input = new FileReader(fileName.substring(name_start_pos));
       } catch (Exception e) {
         System.out.println("*** Error: " + e);
@@ -126,7 +126,7 @@ System.out.println("B");
       infile = new File(fileName);
       if (infile.isAbsolute()) {
         // VALMIS
-System.out.println("VALMIS");
+// System.out.println("VALMIS");
       
         try {
           input = new FileReader(fileName);
@@ -140,10 +140,10 @@ System.out.println("VALMIS");
         if (filter == null) {
           if (consult_dirname != null) {
             // FILE NOT FOUND
-System.out.println("FILE NOT FOUND");
+// System.out.println("FILE NOT FOUND");
           } else if (consult_dir != null) {
             // resource
-System.out.println("resource");
+// System.out.println("resource");
       
             try {
               input = new FileReader(fileName);
@@ -170,12 +170,13 @@ System.out.println("resource");
       }
     }
     
+/*
 System.out.println();
 System.out.println("root_type = " + root_type);
 System.out.println("name_start_pos = " + name_start_pos); 
 System.out.println("infile = " + infile); 
 System.out.println();
-
+*/
     
     
 /*   
@@ -204,8 +205,8 @@ System.out.println();
 //  static void run(String FileName)
   static private void run(Reader input, String[] filter, String filename) {
 
-System.out.println("Consult.run: filter: '" + filter + "', filename: \"" + 
-filename + "\"");
+// System.out.println("Consult.run: filter: '" + filter + "', filename: \"" + 
+// filename + "\"");
 
     exit_value = null;
     JalogTerms JT = new JalogTerms(JalogTerms.CLAUSE);
@@ -347,7 +348,7 @@ filename + "\"");
   private static void process_data(Pro_Term T, String[] filter) {
     // filter: ["data/3", "x/2",...]
     
-//System.out.println("\n--Consult: process_data:" + T );
+// System.out.println("\n--Consult: process_data:" + T );
     Pro_TermData_Compound data = 
         (T != null ? (Pro_TermData_Compound) T.getData() : null);
 
@@ -366,14 +367,18 @@ filename + "\"");
       boolean found;
       String key = name + "/" + Integer.toString(arity);
       found = false;
+// System.out.println("\n--Consult: process_data: key = \"" + key + "\"");
       for (i=0; (i < filter.length) && !found; i++) {
         found = key.equals(filter[i]);
+// System.out.println("\n--Consult: process_data: filter = \"" + filter[i] + 
+// "\", found = " + found);
       }
       if(found){
         Database.assertz(data.subterm[0]);
       }
 
     }
+// System.out.println("\n--Consult: process_data: Done");
   }
 
 }
