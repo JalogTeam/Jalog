@@ -1,6 +1,7 @@
 // TestInterface.java
 import io.github.JalogTeam.jalog.Jalog;
 import java.io.*;
+import io.github.JalogTeam.jalog.Database;
 
 public class TestInterface
 {
@@ -8,7 +9,10 @@ public class TestInterface
   
   static Jalog myJalog = new Jalog();
 
-
+  static String[] teststringlist1 = {
+    "stringdata(5)."
+  };
+  
   public static void main(String args[])
   { 
     int i;
@@ -319,7 +323,76 @@ public class TestInterface
       System.out.println("Exit " + e.status);
     }
     System.out.println();
+//-------
+    // consult_data_file
 
+    System.out.println("consult_data_file test");
+    
+    String[] filter = {"data/1"};
+
+    myJalog.consult_data_file("testdata_consult_data_1.pro", filter);
+    out_int = Jalog.open();
+    try {
+      if (myJalog.call("data", out_int))
+      {
+        System.out.println("consult_data_file_success");
+        type = out_int.getType();
+        System.out.println("out_int of type " + type);
+        if (type == Jalog.INTEGER) {
+          int_value = out_int.getIntegerValue();
+          System.out.println("out_int = " + int_value);
+        } else {
+          System.out.println("out_int bad");
+        }
+
+      } else {
+         System.out.println("consult_data_file_fail");
+       
+      }
+
+    } catch (Jalog.Exit e) {
+      System.out.println("Exit " + e);
+    }
+    
+    System.out.println();
+
+
+// ---------
+//-------
+    // consult_data_stringlist
+
+    System.out.println("consult_data_file test");
+    
+    String[] filter2 = {"stringdata/1"};
+
+    myJalog.consult_data_stringlist(teststringlist1, filter2, "teststringlist1");
+    out_int = Jalog.open();
+    try {
+      if (myJalog.call("stringdata", out_int))
+      {
+        System.out.println("consult_data_stringlist_success");
+        type = out_int.getType();
+        System.out.println("out_int of type " + type);
+        if (type == Jalog.INTEGER) {
+          int_value = out_int.getIntegerValue();
+          System.out.println("out_int = " + int_value);
+        } else {
+          System.out.println("out_int bad");
+        }
+
+      } else {
+         System.out.println("consult_data_stringlist_fail");
+       
+      }
+
+    } catch (Jalog.Exit e) {
+      System.out.println("Exit " + e);
+    }
+    
+    System.out.println();
+
+
+// ---------
     // Exit
 
     System.out.println("Exit test");

@@ -69,6 +69,16 @@ comline_arg(3, "switch", "").
 comline_arg(4, "", "argument").
 test_command_line_arguments success
 
+consult_data_file test
+consult_data_file_success
+out_int of type integer
+out_int = 1
+
+consult_data_file test
+consult_data_stringlist_success
+out_int of type integer
+out_int = 5
+
 Exit test
 Expected Exit 42
 

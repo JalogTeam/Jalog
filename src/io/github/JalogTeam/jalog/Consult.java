@@ -137,35 +137,33 @@ public class Consult
         }
         
       } else {
-        if (filter == null) {
-          if (consult_dirname != null) {
-            // FILE NOT FOUND
+        if (consult_dirname != null) {
+          // FILE NOT FOUND
 // System.out.println("FILE NOT FOUND");
-          } else if (consult_dir != null) {
-            // resource
+        } else if (consult_dir != null) {
+          // resource
 // System.out.println("resource");
-      
-            try {
-              input = new FileReader(fileName);
-            } catch (Exception e) {
-              System.out.println("*** Error: " + e);
-              input = null;
-              exit_value = Pro_Term.m_integer(1); // File not found
-            }
-            
-          } else {
-            infile = new File(consult_dir, fileName.substring(name_start_pos));
-            root_type = 1; // file
-      
-            try {
-              input = new FileReader(fileName);
-            } catch (Exception e) {
-              System.out.println("*** Error: " + e);
-              input = null;
-              exit_value = Pro_Term.m_integer(1); // File not found
-            }
-            
+    
+          try {
+            input = new FileReader(fileName);
+          } catch (Exception e) {
+            System.out.println("*** Error: " + e);
+            input = null;
+            exit_value = Pro_Term.m_integer(1); // File not found
           }
+          
+        } else {
+          infile = new File(consult_dir, fileName.substring(name_start_pos));
+          root_type = 1; // file
+    
+          try {
+            input = new FileReader(fileName);
+          } catch (Exception e) {
+            System.out.println("*** Error: " + e);
+            input = null;
+            exit_value = Pro_Term.m_integer(1); // File not found
+          }
+          
         }
       }
     }
@@ -190,15 +188,17 @@ System.out.println();
       exit_value = Pro_Term.m_integer(1); // File not found
     }
 */    
+// System.out.println("input: " + input);
+
     if(input != null) run(input, filter, fileName);
     
   }
 
-  static void consult_stringlist(String[] lines, String name) { 
+  static void consult_stringlist(String[] lines, String[] filter, String name) { 
     // name for error messages only
     StringArrayReader input = new StringArrayReader(lines);
     
-    run(input, null, name);
+    run(input, filter, name);
     
   }
   

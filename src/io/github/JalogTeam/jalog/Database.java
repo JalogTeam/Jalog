@@ -179,7 +179,7 @@ public class Database
     } // end while
   }
 
-  static void dump(String filename)
+  static public void dump(String filename)
   {
     try
     {

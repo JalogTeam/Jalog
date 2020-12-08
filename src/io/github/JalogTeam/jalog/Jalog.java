@@ -343,7 +343,16 @@ System.out.println("  * getElements, ["+n+"] = "
 
   static public void consult_stringlist(String[] lines, 
       String name) {
-    Consult.consult_stringlist(lines, name);
+    Consult.consult_stringlist(lines, null, name);
+  }
+
+  static public void consult_data_file(String filename, String[] filter) {
+    Consult.consult_file(filename, filter);
+  }
+
+  static public void consult_data_stringlist(String[] lines, String[] filter, 
+      String name) {
+    Consult.consult_stringlist(lines, filter, name);
   }
 
   static public void set_comline_arg(String label, String value) {
