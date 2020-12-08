@@ -13,6 +13,11 @@ public class TestInterface
     "stringdata(5)."
   };
   
+  static String[] teststringlist2 = {
+    "stringrule(X):-", 
+    "  X=9."
+  };
+  
   public static void main(String args[])
   { 
     int i;
@@ -324,6 +329,39 @@ public class TestInterface
     }
     System.out.println();
 //-------
+    // consult_stringlist
+
+    System.out.println("consult_stringlist test");
+    
+    myJalog.consult_stringlist(teststringlist2, "teststringlist2");
+    out_int = Jalog.open();
+    try {
+      if (myJalog.call("stringrule", out_int))
+      {
+        System.out.println("consult_stringlist_success");
+        type = out_int.getType();
+        System.out.println("out_int of type " + type);
+        if (type == Jalog.INTEGER) {
+          int_value = out_int.getIntegerValue();
+          System.out.println("out_int = " + int_value);
+        } else {
+          System.out.println("out_int bad");
+        }
+
+      } else {
+         System.out.println("consult_stringlist_fail");
+       
+      }
+
+    } catch (Jalog.Exit e) {
+      System.out.println("Exit " + e);
+    }
+    
+    System.out.println();
+
+
+// ---------
+//-------
     // consult_data_file
 
     System.out.println("consult_data_file test");
@@ -361,7 +399,7 @@ public class TestInterface
 //-------
     // consult_data_stringlist
 
-    System.out.println("consult_data_file test");
+    System.out.println("consult_data_stringlist test");
     
     String[] filter2 = {"stringdata/1"};
 
