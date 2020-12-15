@@ -1,7 +1,6 @@
 Uutta
 =====
 
-Next: consult_stringlist - Ari lis‰si testiin
 
 
 Quick Reference
@@ -13,38 +12,9 @@ Projektitilanne 2019-11-12
 ==========================
  
 Uudet ominaisuudet ja regressiotesti p‰ivitetty
-  * lis‰tty: komentoriviargumentit Jalog-ohjelmalle
-  * lis‰tty: komentoriviargumentit Java-interfeisiin
 
-Regressiotesti kattaa:
-  mm. Predikaatit
-    fail
-    write, writeln, writeq
-    cut_
-    foreach_
-    consult
-    assertz
-    not
-    bound
-    is_char
-    is_real
-    is_string
-    is_compound
-    is_list
-    is_integer
-    exit
-    trap
-    
-  faktat
-    comline_args
-    
-  Kaikki aritmettiset ja vertailuoperaattorit, 
-  
-  Java interface
 
-Testiraportti: Jalog\test\regression_test\test_report.txt
-
-Jalogin toimiva testiymp‰ristˆ on src
+Jalogin toimiva testiymp‰ristˆ on Jalog-juuri.
 
 Build jar:
   > build_jar
@@ -62,13 +32,7 @@ Regressiotestien suoritus
   
 Seuraava vaihe:
 
-0. Sudoku demo pit‰isi tehd‰ niin, ett‰ Prolog-koodi on JAR-tiedostossa. Samalla
-   voi katsoa, voiko kyselyst‰ tehd‰ helposti interaktiivisen jollakin
-   komentorivivivulla.
-
-1. Paikallinen dokumenttihakemistorakenne vastaamaan github.io:ssa olevaa. 
-   TARKASTA!
-
+1. consult_dir(Directory_name)
 
 2. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
    toString-operaatiossa. V‰liaikainen ratkaisu. 
@@ -102,6 +66,8 @@ PERIAATTEITA
   
 HAVAINTOJA
 
+* Ajettaessa komentorivilt‰ tuntematonta resurssia saadaan:
+      *** Error: java.lang.NullPointerException
 * JalogTerms.java - Asetetaan EOF-muuttuja, mutta ei n‰ytet‰ eik‰ k‰ytet‰.
 * Jos konsultoidaan dataa, mutta faktaa ei tule yht‰‰n, haku tuottaa 
   tulostuksen "*** Unknown predicate:". KORJATTU

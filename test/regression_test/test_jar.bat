@@ -31,7 +31,7 @@ call do_test_jar.bat test_dynamic
 REM call do_test_jar.bat test_
 
 call do_test_interface.bat test_interface
-
+call do_test_resource.bat test_resource
 REM final report
 echo.
 java -jar ..\..\jalog.jar -v

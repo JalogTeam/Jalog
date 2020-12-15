@@ -10,6 +10,8 @@ public class TestInterface
   static Jalog myJalog = new Jalog();
 
   static String[] teststringlist1 = {
+    "stringrule(X):-", 
+    "  X=11.",
     "stringdata(5)."
   };
   
