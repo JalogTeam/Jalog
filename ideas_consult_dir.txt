@@ -62,19 +62,19 @@ ideoita
 consult("mydata.pro"),
 consult("res:filename.pro"),
 consult("file:data1.pro"),
-consult("http://lksdjflksjd"),
+// consult("http://lksdjflksjd"),
 
 // consult_data_stringlist
 // consult_rules_stringlist
-consult_stringlist
+// consult_stringlist(["a :- b,", "c."]) - j‰tet‰‰n pois
 
-set_consult_dir("C:data"),
-set_consult_dir("res:"),
+consult_dir("C:data"),
+consult_dir("res:"),
+consult_dir(Dir), % Dir on avoin, jos halutaan tiet‰‰
 
 
-consult_data("res:filename.pro"),
 
-consult_rules
+consult_data("res:filename.pro", ["apu/2", "help/3"]),
 
 term_str(Term, Type, String)
 

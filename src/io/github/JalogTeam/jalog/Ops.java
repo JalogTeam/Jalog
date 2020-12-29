@@ -10,7 +10,7 @@ import java.util.Stack;
 
 public class Ops
 {
-  static Stack ConsultingFiles = new Stack();
+  static private Stack ConsultedFiles = new Stack();
 
 
 
@@ -125,20 +125,20 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
               // consult(String filename) - (i)
             filename = data.subterm[0].image();
 // System.out.print("\n--Consulting \"" + filename + "\"--");
-            int size = ConsultingFiles.size();
+            int size = ConsultedFiles.size();
             boolean found = false;
             for(int i = 0; (i < size) && !found; i++){
-              found = filename.equals((String)ConsultingFiles.elementAt(i));
+              found = filename.equals((String)ConsultedFiles.elementAt(i));
             }
             if(!found) {
 // System.out.print(" starting.\n");
-              ConsultingFiles.push(filename);
+              ConsultedFiles.push(filename);
               Consult.consult_file(filename, null);
               if(Consult.exit_value != null) { // bad file
                 Pred.exception = true;
                 Pred.exit_value = Consult.exit_value;
               }
-              ConsultingFiles.pop();
+//              ConsultedFiles.pop(); No double consulting
 // System.out.print("\n--Consulting \"" + filename + "\"-- Finished\n");
             } else {
 // System.out.print("\n--Consulting \"" + filename + "\"-- Loop: Rejected!\n");
@@ -146,6 +146,20 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
             }
             // result = new Pred(); // **
             
+          // consult_dir/1
+
+          } else if(name.equals("consult_dir")){
+            if(data1 instanceof Pro_TermData_String) {
+              filename = ((Pro_TermData_String)data1).value;
+              Consult.set_consult_dir(filename);
+            } else if(data1 == null) {
+              filename = Consult.get_consult_dir(); 
+              Pro_TrailMark mark = new Pro_TrailMark();
+              data.subterm[0].unify(Pro_Term.m_string(filename), Pred.trail, mark);
+            } else {
+              Pred.forward = false;
+            }
+
           // dump/1
 
           } else if(name.equals("dump")){

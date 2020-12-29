@@ -8,89 +8,67 @@ public class Consult
 {
   static Pro_Term exit_value = null;
   static private String consult_dirname = null;
-  static private File consult_dir = null;
-  static private String include_dirname = null;
-  static private File include_dir = null;
+  static private boolean consult_use_res = false;
+
   
 
-  static private Object identify(String name, String[] filter) {
-    String resource_name = null;
+  static private String identify(String name) {
     File infile = null;
-    
-    int root_type = 0;
-    int name_start_pos = 0;
+    String result = name;
     
     if (name.startsWith("res:")) {
-      root_type = 2; // resource
-      name_start_pos = 4;
+      // Ok
     } else if (name.startsWith("file:")) {
-      root_type = 1; // file
-      name_start_pos = 5;
+      // Ok
     } else {
       infile = new File(name);
       if (infile.isAbsolute()) {
-        root_type = 1; // file
-        name_start_pos = 0; 
-      } else {
-        // name is relative
-      }
-    }
-    
-    if (root_type == 1) {
-      return infile;
-    } else {
-      return resource_name;
-    }
-  }
-
-
-/*
-  static public void set_consult_dir(String dirname) {
-    consult_dirname = dirname;
-    Object r = identify(dirname, 'x');
-    if (r == null) {
-      
-    } else if (r isinstanceof File) {
-      consult_dir = (File)r;
-      consult_dirname = consult_dir.toString();
-    } else {
-      consult_dir = null;
-      consult_dirname = (String)r;
-    } 
-  }
-
-  static void consult_file(String fileName, char mode)
-  {
-    File infile = null;
-    String resource_name = null;
-    
-    Object r = identify(fileName, 'x');
-    if (r == null) { // relative
-      if (consult_dirname != null) {
-        if (consult_dir != null) { // file
-          infile = new File(consult_dir, fileName);
-        } else { // resource
-          resource_name = 
+        result = "file:" + name;
+      } else if (consult_use_res){
+        if (consult_dirname != null) {
+          result = consult_dirname + "/" + name;
+        } else {
+          result = "res:" + name;
+        }
+      } else { // relative file path
+        if (consult_dirname != null) {
+          result = consult_dirname + File.separator + name;
+        } else {
+          result = "file:" + name;
         }
       }
     }
-
-
-  }
-*/
-
-  static public void set_include_dir(String dirname) {
-    include_dirname = dirname;
+    return result;
   }
 
-  static void consult_file(String fileName, String[] filter)
+  static public void set_consult_dir(String dirname) {
+    if (dirname.startsWith("res:")) {
+      consult_use_res = true;
+      consult_dirname = dirname;
+    } else if (dirname.startsWith("file:")) {
+      consult_use_res = false;
+      consult_dirname = dirname;
+    } else {
+      consult_dirname = identify(dirname);
+      consult_use_res = dirname.startsWith("res:");
+    }
+  }
+  
+  static public String get_consult_dir() {
+    return consult_dirname;
+  }
+
+  static void consult_file(String raw_fileName, String[] filter)
   {
-// System.out.println("Consult.consult_file: filter: '" + filter + "', fileName: \"" + fileName + "\"");
+// System.out.println("Consult.consult_file: filter: '" + filter + "', raw_fileName: \"" + raw_fileName + "\"");
     int root_type = 0; // 1-file, 2-resource
     int name_start_pos = 0;  
     File infile = null;    
     
     Reader input = null;
+
+    String fileName = identify(raw_fileName);
+// System.out.println("Consult.consult_file: filter: '" + filter + "', fileName: \"" + fileName + "\"\n");
     
     if (fileName.startsWith("res:")) {
       root_type = 2; // resource
@@ -122,72 +100,8 @@ public class Consult
         exit_value = Pro_Term.m_integer(1); // File not found
       }
       
-    } else {
-      infile = new File(fileName);
-      if (infile.isAbsolute()) {
-        // VALMIS
-// System.out.println("VALMIS");
-      
-        try {
-          input = new FileReader(fileName);
-        } catch (Exception e) {
-          System.out.println("*** Error: " + e);
-          input = null;
-          exit_value = Pro_Term.m_integer(1); // File not found
-        }
-        
-      } else {
-        if (consult_dirname != null) {
-          // FILE NOT FOUND
-// System.out.println("FILE NOT FOUND");
-        } else if (consult_dir != null) {
-          // resource
-// System.out.println("resource");
-    
-          try {
-            input = new FileReader(fileName);
-          } catch (Exception e) {
-            System.out.println("*** Error: " + e);
-            input = null;
-            exit_value = Pro_Term.m_integer(1); // File not found
-          }
-          
-        } else {
-          infile = new File(consult_dir, fileName.substring(name_start_pos));
-          root_type = 1; // file
-    
-          try {
-            input = new FileReader(fileName);
-          } catch (Exception e) {
-            System.out.println("*** Error: " + e);
-            input = null;
-            exit_value = Pro_Term.m_integer(1); // File not found
-          }
-          
-        }
-      }
     }
     
-/*
-System.out.println();
-System.out.println("root_type = " + root_type);
-System.out.println("name_start_pos = " + name_start_pos); 
-System.out.println("infile = " + infile); 
-System.out.println();
-*/
-    
-    
-/*   
-//      System.out.println("Consulting " + FileName);
-    try {
-//        file1 = new BufferedReader(new FileReader(FileName));
-      input = new FileReader(fileName);
-    } catch (Exception e) {
-      System.out.println("*** Error: " + e);
-      input = null;
-      exit_value = Pro_Term.m_integer(1); // File not found
-    }
-*/    
 // System.out.println("input: " + input);
 
     if(input != null) run(input, filter, fileName);
