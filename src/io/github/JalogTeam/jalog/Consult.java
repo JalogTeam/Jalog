@@ -7,8 +7,10 @@ import java.io.*;
 public class Consult
 {
   static Pro_Term exit_value = null;
-  static private String consult_dirname = null;
   static private boolean consult_use_res = false;
+  static private String base_dirname = "file:" + 
+      (new File("")).getAbsolutePath();
+  static private String consult_dirname = base_dirname;
 
   
 
