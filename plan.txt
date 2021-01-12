@@ -3,6 +3,10 @@ Plan for future development
 Predicates
 ----------
 
+  asserta
+  
+  assertz -- done
+  
   bitand
   
   bitnot
@@ -15,7 +19,19 @@ Predicates
   
   bitright
   
+  bound -- done
+  
   comline - gives command line
+  
+  comline_arg -- done
+  
+  dynamic -- done
+  
+  fail -- done
+  
+  foreach_ -- done
+  
+  not -- done
   
   readchar(char c)
   
@@ -27,17 +43,27 @@ Predicates
   
   readterm
   
+  trap -- done
+  
   nl
   
-  write
+  write --done
   
   writedevice
   
   writef
+
+  writeln  -- done
+  
+  writeq -- done
   
   closefile
   
-  consult
+  consult -- done
+  
+  consult_data -- done
+  
+  consult_dir -- done
   
   deletefile
   
@@ -95,10 +121,6 @@ Predicates
   
   upper_lower
   
-  asserta
-  
-  assertz
-  
   consult
   
   retract
@@ -111,19 +133,13 @@ Predicates
   
   trace
   
-  bound
-  
   equal
   
-  exit
-  
-  fail
+  exit -- done
   
   findall
   
   free
-  
-  not
   
 Not in Turbo Prolog 1.0
 

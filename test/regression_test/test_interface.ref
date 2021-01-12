@@ -84,6 +84,11 @@ consult_data_stringlist_success
 out_int of type integer
 out_int = 5
 
+set_consult_dir test
+get_consult_dir 1: file:D:\wa\JalogTeam\Jalog\test\regression_test
+get_consult_dir 2: file:D:\wa\JalogTeam\Jalog\test\regression_test\test_dir
+get_consult_dir 3: file:D:\wa\JalogTeam\Jalog\test\regression_test
+
 Exit test
 Expected Exit 42
 

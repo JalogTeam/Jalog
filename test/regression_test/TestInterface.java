@@ -41,7 +41,7 @@ public class TestInterface
         out_comment;
     Jalog.Term[] in_list_content, out_list_content;
 
-    // integer
+// integer
 
     System.out.println("integer test");
     in_int = Jalog.integer(7);
@@ -71,7 +71,7 @@ public class TestInterface
     }
     System.out.println();
 
-    // symbol
+// symbol
 
     System.out.println("symbol test");
     in_symbol = Jalog.symbol("test");
@@ -101,7 +101,7 @@ public class TestInterface
     }
     System.out.println();
 
-    // real
+// real
 
     System.out.println("real test");
     in_real = Jalog.real(3.142);
@@ -131,7 +131,7 @@ public class TestInterface
     }
     System.out.println();
 
-    // character
+// character
 
     System.out.println("character test");
     in_char = Jalog.character('y');
@@ -161,7 +161,7 @@ public class TestInterface
     }
     System.out.println();
 
-    // string
+// string
 
     System.out.println("string test");
     in_string = Jalog.string("template");
@@ -191,7 +191,7 @@ public class TestInterface
     }
     System.out.println();
 
-    // list
+// list
 
     System.out.println("list test");
     in_list_content = new Jalog.Term[2];
@@ -235,7 +235,7 @@ public class TestInterface
     }
     System.out.println();
 
-    // compound
+// compound
 
     System.out.println("compound test");
     in_list_content = new Jalog.Term[2];
@@ -281,7 +281,7 @@ public class TestInterface
     }
     System.out.println();
 
-    // open
+// open
 
     System.out.println("open test");
     in_open = Jalog.open();
@@ -310,7 +310,7 @@ public class TestInterface
     }
     System.out.println();
 
-    // Command line arguments
+// Command line arguments
 
     System.out.println("Command line arguments test");
 
@@ -330,8 +330,8 @@ public class TestInterface
       System.out.println("Exit " + e.status);
     }
     System.out.println();
-//-------
-    // consult_stringlist
+
+// consult_stringlist
 
     System.out.println("consult_stringlist test");
     
@@ -362,9 +362,7 @@ public class TestInterface
     System.out.println();
 
 
-// ---------
-//-------
-    // consult_data_file
+// consult_data_file
 
     System.out.println("consult_data_file test");
     
@@ -396,10 +394,7 @@ public class TestInterface
     
     System.out.println();
 
-
-// ---------
-//-------
-    // consult_data_stringlist
+// consult_data_stringlist
 
     System.out.println("consult_data_stringlist test");
     
@@ -431,9 +426,25 @@ public class TestInterface
     
     System.out.println();
 
+// set_consult_dir
 
-// ---------
-    // Exit
+    System.out.println("set_consult_dir test");
+    
+    // String filter = {"data/1"}; // Must be previously
+
+    String init_consult_dir = myJalog.get_consult_dir();
+    System.out.println("get_consult_dir 1: " + init_consult_dir);
+    
+    myJalog.set_consult_dir("test_dir");
+    System.out.println("get_consult_dir 2: " + myJalog.get_consult_dir());
+    
+    myJalog.set_consult_dir(init_consult_dir);
+    System.out.println("get_consult_dir 3: " + myJalog.get_consult_dir());
+    
+   
+    System.out.println();
+
+// Exit
 
     System.out.println("Exit test");
     

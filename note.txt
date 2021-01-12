@@ -1,8 +1,14 @@
 Uutta
 =====
 
+consult_dir
+-----------
+
 consult konsultoi tiedoston vain kertaalleen.
 HUOM: Miten toiminta, jos vaihdetaan välillä hakemistoa consult_dir -kutsulla?
+
+* Pitäisikö .. toimia ja miten?
+
 
 Quick Reference
 ---------------

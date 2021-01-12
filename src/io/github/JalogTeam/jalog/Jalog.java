@@ -35,7 +35,8 @@ import java.io.*;
 
 public class Jalog
 {
-  static final String id_string="Jalog 0.4 by Ari Okkonen & Mikko Levanto 2019-10-15";
+  static final String id_string =
+      "Jalog 1.1.0 by Ari Okkonen & Mikko Levanto 2021-01-12";
   
   private static int instance_count = 0;
   private static int arg_index = 1;
@@ -62,25 +63,9 @@ public class Jalog
     int i;
     boolean show_help = true;
 
-//    System.err.println(id_string);
-/*
-    for(i=0;i<args.length;i++){
-      System.out.println("" + i + ": '" + args[i] + "'");
-    }
-*/
     
     Command_Line.set(args);
  
-/*
-
-    for(i=0;i<Command_Line.env_labels.length;i++){
-      System.out.println("env " + i + ": '" + Command_Line.env_labels[i] + "'='"+Command_Line.env_values[i]+"'");
-    }
-    System.out.println("Program name: '" + Command_Line.program_name + "'");
-    for(i=0;i<Command_Line.appl_labels.length;i++){
-      System.out.println("appl " + i + ": '" + Command_Line.appl_labels[i] + "'='"+Command_Line.appl_values[i]+"'");
-    }
-*/
 
 /* Settings based on command line options */
     for(i=0;i<Command_Line.env_labels.length;i++){
@@ -103,9 +88,6 @@ public class Jalog
       }
       
       Consult.consult_file(Command_Line.program_name, null);
-//System.out.println("created terms total: " + Pro_Term.lastId);
-//System.out.println("max trail: " + Pro_Trail.maxnum);
-//System.out.println("last trail: " + Pro_Trail.currentnum);
       if(Consult.exit_value != null) {
         /* We got exceptional exit */
 //        Pro_TermData exit_data = Consult.exit_value.data;
@@ -237,15 +219,7 @@ public class Jalog
             if (current != null) n++;
 //          n++;
         }
-        /* Here for tail - not processed
-        if (current != null){
-          result[n] = new Jalog.Term(current);
-System.out.println("  * getElements, ["+n+"] = "
-+(result[n]!=null ? result[n].getType() : "null"));
-          if (current != null) n++;
-//          n++;
-        }
-        */
+        //Tail not processed!
       } else {
         result = null;
       }
@@ -355,6 +329,14 @@ System.out.println("  * getElements, ["+n+"] = "
     Consult.consult_stringlist(lines, filter, name);
   }
 
+  static public void set_consult_dir(String dirname) {
+    Consult.set_consult_dir(dirname);
+  }
+  
+  static public String get_consult_dir() {
+    return Consult.get_consult_dir();
+  }
+  
   static public void set_comline_arg(String label, String value) {
     Jalog.Term[] in_list_content;
     
