@@ -3,16 +3,16 @@
 package io.github.JalogTeam.jalog;
 
 import java.io.*;
-import java.util.Stack;
+import java.util.*;
+
 
 // NOTE: Consider identifying predefined predicates in parser.
 
 
 public class Ops
 {
-  static private Stack ConsultedFiles = new Stack();
-
-
+//  static private Stack ConsultedFiles = new Stack();
+  static Hashtable ConsultedFiles = new Hashtable(100);
 
   static Pred first_call(Pro_Term pred_call)
   { // Entered always forward==true
@@ -34,6 +34,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
     String S1 = "", S2 = "";
     boolean Bv = false;
     String filename;
+    boolean found = false;
     
     if(!(data instanceof Pro_TermData_Compound)){
       Pred.forward = false;
@@ -123,16 +124,23 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
 
           if(name.equals("consult")){ 
               // consult(String filename) - (i)
-            filename = data.subterm[0].image();
-// System.out.print("\n--Consulting \"" + filename + "\"--");
+            filename = Consult.identify(data.subterm[0].image());
+// System.out.print("\n--Consulting \"" + data.subterm[0].image() + " -> " + filename + "\"--");
+
+            found = (ConsultedFiles.get(filename) != null);
+/*
             int size = ConsultedFiles.size();
             boolean found = false;
             for(int i = 0; (i < size) && !found; i++){
               found = filename.equals((String)ConsultedFiles.elementAt(i));
             }
+*/
             if(!found) {
 // System.out.print(" starting.\n");
+/*
               ConsultedFiles.push(filename);
+*/
+              ConsultedFiles.put(filename, "");
               Consult.consult_file(filename, null);
               if(Consult.exit_value != null) { // bad file
                 Pred.exception = true;
@@ -140,9 +148,6 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
               }
 //              ConsultedFiles.pop(); No double consulting
 // System.out.print("\n--Consulting \"" + filename + "\"-- Finished\n");
-            } else {
-// System.out.print("\n--Consulting \"" + filename + "\"-- Loop: Rejected!\n");
-              Pred.forward = false;
             }
             // result = new Pred(); // **
             

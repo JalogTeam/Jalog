@@ -2,5 +2,7 @@ koe1 a: *** Unknown predicate: data/1
 ;
 koe1 b: ;
 koe1 c:  1 2 3 5;
+koe1 d: ;
+koe1 e:  1 2 3 5 6 8;
 *Yes*
 Exit status: 0 ; 

@@ -13,20 +13,30 @@ public class Consult
   static private String consult_dirname = base_dirname;
 
   
-
-  static private String identify(String name) {
+  // identify returns absolute path prefixed with 'file:' or 'res:'
+  static public String identify(String name) {
     File infile = null;
     String result = name;
+    boolean use_res;
     
     if (name.startsWith("res:")) {
       // Ok
-    } else if (name.startsWith("file:")) {
+//    } else if (name.startsWith("file:")) {
       // Ok
     } else {
+      if (name.startsWith("file:")) {
+        use_res = false;
+        name = name.substring(5); // remove "file:" from beginning
+      } else {
+        use_res = consult_use_res;
+      }
+      if((!use_res) && (File.separatorChar != '/')) {
+        name = name.replace('/', File.separatorChar);
+      }
       infile = new File(name);
       if (infile.isAbsolute()) {
         result = "file:" + name;
-      } else if (consult_use_res){
+      } else if (use_res){
         if (consult_dirname != null) {
           result = consult_dirname + "/" + name;
         } else {
@@ -34,7 +44,7 @@ public class Consult
         }
       } else { // relative file path
         if (consult_dirname != null) {
-          result = consult_dirname + File.separator + name;
+          result = consult_dirname + File.separatorChar + name;
         } else {
           result = "file:" + name;
         }
