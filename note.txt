@@ -1,21 +1,8 @@
 Uutta
 =====
 
-consult_dir
------------
 
-consult konsultoi tiedoston vain kertaalleen.
-HUOM: Miten toiminta, jos vaihdetaan välillä hakemistoa consult_dir -kutsulla?
-
-* Pitäisikö .. toimia ja miten?
-
-
-Quick Reference
----------------
-
-Aritmeettisista operaattoreista puuttuvat + ja -, myös unaarimiinus.
-
-Projektitilanne 2019-11-12
+Projektitilanne 2021-01-26
 ==========================
  
 Uudet ominaisuudet ja regressiotesti päivitetty
@@ -24,24 +11,20 @@ Uudet ominaisuudet ja regressiotesti päivitetty
 Jalogin toimiva testiympäristö on Jalog-juuri.
 
 Build jar:
+  (Aina täysi käännös)
   > build_jar
-
-Esimerkkikäännös (täysi)
-  > javac Jalog.java
   
-Esimerkkisuoritus
+Esimerkkisuoritus KOMENTO EI TOIMI!
   > java Jalog TestData\SUDOKU.pro
 
 Regressiotestien suoritus
-  Hakemisto: test\regression_test
   Suorituskomento: > test_jar
 
   
 Seuraava vaihe:
 
-1. consult_dir(Directory_name)
 
-2. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
+1. Pro_TermData_Compound.java tiedostossa syvyyslimiitteri
    toString-operaatiossa. Väliaikainen ratkaisu. 
    Syvyyslimiitti on nyt 1000.
 
@@ -95,4 +78,18 @@ Animation
 BUGIT!
 
 * retract on implementoimatta!
+
+TEHTYJÄ
+
+consult_dir
+-----------
+
+consult konsultoi tiedoston vain kertaalleen.
+HUOM: Miten toiminta, jos vaihdetaan välillä hakemistoa consult_dir -kutsulla?
+* Pitäisikö .. toimia ja miten?
+  -> Konsultoi nyt sen toisenkin kertaalleen
+
+consult_dir(Directory_name)
+
+
 
