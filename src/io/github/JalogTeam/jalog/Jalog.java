@@ -41,23 +41,6 @@ public class Jalog
   private static int instance_count = 0;
   private static int arg_index = 1;
   
-  public Jalog() {
-    if (instance_count > 0) {
-      throw new Error("Multiple Jalog instances not supported.");
-    } else {
-      instance_count ++;
-    }
-    arg_index = 1;
-  }
-  
-  public static void dispose() {
-    
-    Database.db.clear();
-    
-    instance_count = 0;
-    
-  }
-  
   public static void main(String args[])
   { 
     int i;
@@ -110,9 +93,25 @@ public class Jalog
     
   }
   
-  // Java calling interface
-  // ======================
+// Java calling interface
+// ======================
+
+// Constructor
+
+  // Constructs a Jalog inference engine. Limitation: Only one engine can exist
+  // at any time. After usage it must be disposed of using the dispose method.
   
+  public Jalog() {
+    if (instance_count > 0) {
+      throw new Error("Multiple Jalog instances not supported.");
+    } else {
+      instance_count ++;
+    }
+    arg_index = 1;
+  }
+
+// Nested classes
+
   public static class Term extends Pro_Term{
     Term(Pro_Term t) {
       Id = t.Id;
@@ -256,8 +255,15 @@ public class Jalog
 
   };
 
-
-  // typenames
+  static public class Exit extends Exception {
+    public Exit(long status) {
+        super("Exit");
+        this.status = status;
+    }
+    public long status;
+  }
+  
+// Fields: typenames
   
   public static final String OPEN = "open";
   public static final String INTEGER = "integer";
@@ -267,7 +273,9 @@ public class Jalog
   public static final String STRING = "string";
   public static final String LIST = "list";
   public static final String COMPOUND = "compound";
-  
+
+// Methods
+
   public static Term open() {
     return new Term(Pro_Term.m_open());
   }
@@ -303,14 +311,6 @@ public class Jalog
 
 
 
-  static public class Exit extends Exception {
-    public Exit(long status) {
-        super("Exit");
-        this.status = status;
-    }
-    public long status;
-  }
-  
   static public void consult_file(String filename) {
     Consult.consult_file(filename, null);
   }
@@ -349,7 +349,12 @@ public class Jalog
     Database.assertz(Jalog.compound("comline_arg", in_list_content));
   }
 
+  public static void dispose() {
+    Database.db.clear();
+    instance_count = 0;
+  }
   
+ 
   static public boolean call(String predname, Pro_Term ... args) throws Jalog.Exit {
     boolean retval;
     long exit_status = -1;
