@@ -48,7 +48,8 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
 
     if(name.equals("write")){ // handle all arities
       for(int i = 0; i < arity; i++){
-        System.out.print(data.subterm[i].image());
+//        System.out.print(data.subterm[i].image());
+        Jalog.out.print(data.subterm[i].image());
       }
       // result = new Pred(); // **
 
@@ -56,16 +57,19 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
 
     } else if(name.equals("writeln")){ // handle all arities
       for(int i = 0; i < arity; i++){
-        System.out.print(data.subterm[i].image());
+//        System.out.print(data.subterm[i].image());
+        Jalog.out.print(data.subterm[i].image());
       }
-      System.out.println("");
+//      System.out.println("");
+      Jalog.out.println("");
       // result = new Pred(); // **
 
     // writeq/*
 
     } else if(name.equals("writeq")){ // handle all arities
       for(int i = 0; i < arity; i++){
-        System.out.print(data.subterm[i].toString());
+//        System.out.print(data.subterm[i].toString());
+        Jalog.out.print(data.subterm[i].toString());
       }
       // result = new Pred(); // **
 
@@ -103,7 +107,8 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
           // nl/0
 
           } else if(name.equals("nl")){ 
-            System.out.println("");
+//            System.out.println("");
+            Jalog.out.println("");
             // result = new Pred(); // **
             
           // fail/0

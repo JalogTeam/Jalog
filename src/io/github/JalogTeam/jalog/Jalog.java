@@ -308,9 +308,6 @@ public class Jalog
     return new Term(Pro_Term.m_compound(name, arguments));
   }
 
-
-
-
   static public void consult_file(String filename) {
     Consult.consult_file(filename, null);
   }
