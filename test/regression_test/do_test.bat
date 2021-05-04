@@ -1,4 +1,4 @@
-java -cp ..\..\src io/github/JalogTeam/jalog/Jalog %1.pro %2 %3 %4 %5 %6 %7 %8 %9 > %1.ans
+java -cp ..\..\src io/github/JalogTeam/jalog/Jalog %1.pro %2 %3 %4 %5 %6 %7 %8 %9 1> %1.ans 2>&1
 echo Exit status: %ERRORLEVEL% ; >> %1.ans
 fc %1.ans %1.ref
 REM fc %1.ans %1.pro

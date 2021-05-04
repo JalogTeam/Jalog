@@ -36,7 +36,7 @@ import java.io.*;
 public class Jalog
 {
   static final String id_string =
-      "Jalog 1.1.0 by Ari Okkonen & Mikko Levanto 2021-01-12";
+      "Jalog 1.2.0 by Ari Okkonen & Mikko Levanto 2021-04-27";
   
   private static int instance_count = 0;
   private static int arg_index = 1;
@@ -112,6 +112,27 @@ public class Jalog
 
 // Nested classes
 
+  public static class Output {
+    public void print(String s) {
+      System.out.print(s);
+    }
+    
+    public void println(String s) {
+      print(s);
+      print("\n");
+    }
+
+    public void println() {
+      print("\n");
+    }
+  }
+  
+  public static class OutputErr extends Output {
+    public void print(String s) {
+      System.err.print(s);
+    }
+  }
+  
   public static class Term extends Pro_Term{
     Term(Pro_Term t) {
       Id = t.Id;
@@ -261,6 +282,19 @@ public class Jalog
         this.status = status;
     }
     public long status;
+  }
+  
+// Output redirect
+
+  public static Output out = new Output();
+  public static Output err = new OutputErr();
+  
+  public static void setOut(Output o) {
+    out = o;  
+  }
+  
+  public static void setErr(Output o) {
+    err = o;  
   }
   
 // Fields: typenames

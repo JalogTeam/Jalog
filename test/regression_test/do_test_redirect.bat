@@ -1,9 +1,9 @@
-javac -cp ..\..\jalog.jar;. TestInterface.java
+javac -cp ..\..\jalog.jar;. TestRedirect.java
 if ERRORLEVEL 1 (
   echo Compile error: %1 : Errorlevel %ERRORLEVEL%
   set /A jalog_errors=%jalog_errors%+1
 ) else (
-java -cp ..\..\jalog.jar;. TestInterface 1> %1.ans 2>&1
+java -cp ..\..\jalog.jar;. TestRedirect > %1.ans
 echo Exit status: %ERRORLEVEL% ; >> %1.ans
 fc %1.ans %1.ref
 REM fc %1.ans %1.pro

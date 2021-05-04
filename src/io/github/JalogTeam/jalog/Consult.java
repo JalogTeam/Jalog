@@ -173,23 +173,23 @@ public class Consult
             {
               exit_value = Pro_Term.m_integer(1); // Syntax error
               if (JT.Error == JT.ERROR_INTERNAL) {
-                System.err.print("*** Internal error when processing file ");
+                Jalog.err.print("*** Internal error when processing file ");
                 
               } else {
-                System.err.print("*** Error in file ");
+                Jalog.err.print("*** Error in file ");
               }
-              System.err.print(filename + " Line: " + LineNmbr);
+              Jalog.err.print(filename + " Line: " + LineNmbr);
               if (JT.ErrorPos > 0) {
-                System.err.print(" Pos: " + 
+                Jalog.err.print(" Pos: " + 
                   JT.ErrorPos);
               }
-              System.err.println();
-              System.err.println("    " + line);
+              Jalog.err.println();
+              Jalog.err.println("    " + line);
               if (JT.ErrorPos > 0) {
                 for(int i = -3; i < JT.ErrorPos; i++) {
-                  System.err.print(" ");
+                  Jalog.err.print(" ");
                 }
-                System.err.println("^");
+                Jalog.err.println("^");
               }
 
               T = null;

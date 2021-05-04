@@ -33,6 +33,7 @@ call do_test_jar.bat test_dynamic
 REM call do_test_jar.bat test_
 
 call do_test_interface.bat test_interface
+call do_test_redirect.bat test_redirect
 call do_test_resource.bat test_resource resources/testdata.pro
 call do_test_resource.bat test_subresource resources/testdata.pro resources/sub/testdata.pro
 REM final report

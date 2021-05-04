@@ -2,7 +2,7 @@ if not x==x%jalog_errors% exit /B
 
 REM testing fail
 
-java -cp ..\..\src Jalog test_fail.pro > test_fail.ans
+java -cp ..\..\src Jalog test_fail.pro 1> test_fail.ans 2>&1
 fc test_fail.ans test_fail.ref
 REM fc test_fail.ans test_fail.pro
 if ERRORLEVEL 1 (

@@ -1,6 +1,6 @@
 copy ..\..\jalog.jar test.jar
 jar -uf test.jar resources/%1.pro %2 %3 %4 %5 %6 %7 %8 %9
-java -jar test.jar res:resources/%1.pro > %1.ans
+java -jar test.jar res:resources/%1.pro 1> %1.ans 2>&1
 echo Exit status: %ERRORLEVEL% ; >> %1.ans
 del test.jar
 fc %1.ans %1.ref
