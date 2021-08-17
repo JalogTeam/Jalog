@@ -87,10 +87,9 @@ public class Consult
       name_start_pos = 4;
       
       try {
-// System.out.println("A");
-        InputStream is = Consult.class.getClassLoader().
-          getResourceAsStream(fileName.substring(name_start_pos));
-
+// System.out.println("A " + fileName);
+        InputStream is = Jalog.getResourceAsStream(fileName.substring(name_start_pos));
+// System.out.println("A0 " + (is==null?"is==null":"is/=null"));
         input =
           new InputStreamReader(is, "UTF-8");
       } catch (Exception e) {

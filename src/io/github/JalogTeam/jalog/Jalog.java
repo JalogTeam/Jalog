@@ -36,15 +36,16 @@ import java.io.*;
 public class Jalog
 {
   static final String id_string =
-      "Jalog 1.2.0 by Ari Okkonen & Mikko Levanto 2021-04-27";
+      "Jalog 1.3.0 by Ari Okkonen & Mikko Levanto 2021-08-17";
   
   private static int instance_count = 0;
   private static int arg_index = 1;
-  
+
   public static void main(String args[])
   { 
     int i;
     boolean show_help = true;
+    Jalog myJalog;
 
     
     Command_Line.set(args);
@@ -60,6 +61,8 @@ public class Jalog
     }
 
     if(Command_Line.program_name != null) {
+      
+      myJalog = new Jalog();
       
       /* Command line options for the program */
 
@@ -102,16 +105,27 @@ public class Jalog
   // at any time. After usage it must be disposed of using the dispose method.
   
   public Jalog() {
+// System.out.println("* Jalog constructor");
     if (instance_count > 0) {
       throw new Error("Multiple Jalog instances not supported.");
     } else {
       instance_count ++;
     }
     arg_index = 1;
+    rm = new ResourceManager();
+//System.out.println("*  rm=" + (rm==null?"null":"not null"));
+    
   }
 
 // Nested classes
 
+  public static class ResourceManager {
+    public InputStream getResourceAsStream(String fileName) throws IOException {
+// System.out.println("* Jalog.ResourceManager.getResourceAsStream(" + fileName + ")");
+      return Jalog.class.getClassLoader().getResourceAsStream(fileName);
+    }
+  }
+  
   public static class Output {
     public void print(String s) {
       System.out.print(s);
@@ -283,6 +297,15 @@ public class Jalog
     }
     public long status;
   }
+
+// Resource manager replacement
+
+  static ResourceManager rm = null;
+  
+  public static void setResourceManager(ResourceManager rm) {
+    Jalog.rm = rm;
+  }
+  
   
 // Output redirect
 
@@ -309,7 +332,13 @@ public class Jalog
   public static final String COMPOUND = "compound";
 
 // Methods
+  public static InputStream getResourceAsStream(String fileName) throws IOException {
+// System.out.println("* Jalog.getResourceAsStream(" + fileName + ")");
+// System.out.println("*   rm=" + (rm==null?"null":"not null"));
+    return rm.getResourceAsStream(fileName);
 
+  }
+  
   public static Term open() {
     return new Term(Pro_Term.m_open());
   }
