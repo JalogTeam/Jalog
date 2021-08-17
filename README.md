@@ -4,8 +4,7 @@
 
 Jalog makes artificial intelligence available to a wide variety of devices and applications.
 
-**Version** 1.0.0 2020-08-25 First release
-
+**Version** 1.3.0 2021-08-17 Android compatible
 ### Authors
 Mikko Levanto<br>
 Ari Okkonen
