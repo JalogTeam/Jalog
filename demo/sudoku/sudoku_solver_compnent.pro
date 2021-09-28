@@ -1,3 +1,4 @@
+% sudoku_solver_component.pro
 
 matrix_all_bound([]) :- !.
 
@@ -242,6 +243,7 @@ make_open_list([_Item|List], NCol) :-
 
    
   
+% Test cases
 
 %goal
 /* Kaleva nnnn */
