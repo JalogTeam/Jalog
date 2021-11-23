@@ -2,9 +2,24 @@ Uutta
 =====
 
 
-Projektitilanne 2021-01-26
+Projektitilanne 2021-10-26
 ==========================
- 
+
+Ennen riliisi‰
+--------------
+  Quick referencen tiedostonimiselitykset consult, consult_dir ja consult_data
+  predikaateille:
+    Lis‰tt‰v‰ file: ja res: prefixit.
+--------------
+Riliisin j‰lkeen
+----------------
+  Android dokumentit kuntoon ja niihin linkit.
+  
+  Laitetaan file:///D:/wa/JalogTeam/JalogTeam.github.io/r1.3/Introduction_to_Jalog.html kuntoon.
+  
+---------------
+
+
 Uudet ominaisuudet ja regressiotesti p‰ivitetty
 
 
@@ -76,6 +91,8 @@ Animation
 
 
 BUGIT!
+
+* N‰ytt‰‰, ettei setErr tekisi mit‰‰n j‰rkev‰‰ ln ja println funktioille error striimiin.
 
 * retract on implementoimatta!
 

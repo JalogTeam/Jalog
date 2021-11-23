@@ -36,7 +36,7 @@ import java.io.*;
 public class Jalog
 {
   static final String id_string =
-      "Jalog 1.3.0 by Ari Okkonen & Mikko Levanto 2021-08-17";
+      "Jalog 1.3.1 by Ari Okkonen & Mikko Levanto 2021-11-23";
   
   private static int instance_count = 0;
   private static int arg_index = 1;
@@ -426,6 +426,8 @@ public class Jalog
     Pro_Term body = Pro_Term.m_list(predcall);
     
     Pred.forward = true;
+    Pred.exception = false;
+    
     I.run_body(body);
     
     // Get result values
