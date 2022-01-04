@@ -1,5 +1,65 @@
 Plan for future development
+===========================
+String manipulation 1.4.0
+-------------------------
+1:'([a-z]|[A-Z])+'
 
+[0-9]+
+' '
+','
+'''
+'('
+')'
+'&'
+'#'
+'+'
+'='
+
+'auto+maatti = automaatti'
+ 0123456789012345678901234
+1:'auto' 11:'+' 1:'maatti' 4:' ' 12:'=' 4:' ' 1:'automaatti'
+1:(0,4), 11:(4,1), 1:(5,6), 4:(11,1), 12:(12,1), 4(13,1), 1:(14,10)
+
+
+Predikaatteja ehdolle
+=====================
+
+string_chlist(string, charlist)
+
+frontchar(S,H,S1)  - sisäinen substring-esitystapa?
+
+fronttoken(String1, Token, Rest) - mites olisi arity4, jossa re
+
+frontstr(NumberOfChars, String1, StartStr, EndStr) /* (i,i,o,o) */
+
+concat(String1, String2, String3) /* (i,i,o), (i,o,i), (o,i,i), (i,i,i) */
+
+str_len(StringArg, Length) /* (i,o), (i,i), (o,i) */
+
+isname(String) - tai jotain sen tapaista
+
+charAt(S, Pos, C) - toisella flowpatternilla etsii merkin, bäkträkätessä seuraavan.
+
+substring(Str_in,Pos,Len,Str_out) /* (i,i,i,o) */ - toisella flowpatternilla etsii substringin, bäkträkätessä seuraavan. 
+
+upper_lower(S1, S2) /* (i,i), (i,o), (o,i) */
+
+str_repeat(N, Si, So) /* (i,i,o), (i,i,i) */
+
+char_code(C, I) /* (i,o), (o,i), (i,i) */ - 16 bit int
+
+is_high_surrogate(C) /* (i) C on char tai int */
+is_low_surrogate(C) /* (i) C on char tai int */
+
+str_term(S, T) /* (i,i), (i,o), (o,i) */
+// Tulevaisuudessa myös:
+//   term_str(Domain,Term,String) /* (i,i,o),(i,_,i) */
+
+---------
+
+Aloitetaan substring ja concat predikaateilla.
+
+============================
 Predicates
 ----------
 
