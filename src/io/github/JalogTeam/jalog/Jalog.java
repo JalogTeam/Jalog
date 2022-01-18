@@ -36,7 +36,7 @@ import java.io.*;
 public class Jalog
 {
   static final String id_string =
-      "Jalog 1.3.1 by Ari Okkonen & Mikko Levanto 2021-11-23";
+      "Jalog 1.4.0 by Ari Okkonen & Mikko Levanto 2022-01-11";
   
   private static int instance_count = 0;
   private static int arg_index = 1;

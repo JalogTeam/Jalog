@@ -4,6 +4,11 @@ if not x==x%jalog_errors% (
   exit /B
 )
 
+REM 1.4 tests
+
+call do_test_jar.bat test_strings
+
+REM regression tests
 
 call do_test_jar.bat test_fail
 call do_test_jar.bat test_ops

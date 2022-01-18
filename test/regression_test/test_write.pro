@@ -31,7 +31,7 @@ koe6a :- write("koe6a: "), write('|'), write(""), write('|') ,nl.
 koe6b :- write("koe6b: "), write('|'), write("string"), write('|') ,nl.
 
 koe7a :- write("koe7a: "), write('|'), write(A), write('|') ,nl.
-koe7b :- write("koe7b: "), A = B, write('|'), write(A), write('|'), nl.
+koe7b :- write("koe7b: "), A = B, write('|'), write(A), write('|'), write(B), write('|'), nl.
 
 koe10 :- write("koe10: "), write('a', 'b'), write('|'), nl.
 
