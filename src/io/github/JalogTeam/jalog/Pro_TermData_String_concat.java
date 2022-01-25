@@ -8,7 +8,8 @@ public class Pro_TermData_String_concat extends Pro_TermData_String
   public Pro_TermData_String left; // concat
   public Pro_TermData_String right; // concat
 
-  Pro_TermData_String_concat(String left, String right)
+  Pro_TermData_String_concat(Pro_TermData_String left, 
+      Pro_TermData_String right)
   {
     typename = Jalog.STRING;
     tag = CONCATENATED;
@@ -27,10 +28,10 @@ public class Pro_TermData_String_concat extends Pro_TermData_String
 
   public String image()
   {
-    return base_string.substring(start, len);
+    return this.substring(0, len);
   }
   
-  public String substring(int req_start, int req_len);
+  public String substring(int req_start, int req_len)
   {   
     int start = req_start;
     int len = req_len;

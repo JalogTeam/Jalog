@@ -166,15 +166,15 @@ public class Pro_Term
           success = false;
         }
       }
-      else if (pn1.data instanceof Pro_TermData_String)
+      else if (pn1.data instanceof Pro_TermData_String_simple)
       {
 // System.out.println("Pro_Term string compare: ");
-// System.out.println("  !: " + ((Pro_TermData_String)pn1.data));
-// System.out.println("  2: " + ((Pro_TermData_String)pn2.data));
+// System.out.println("  !: " + ((Pro_TermData_String_simple)pn1.data));
+// System.out.println("  2: " + ((Pro_TermData_String_simple)pn2.data));
 
-        success = ((pn2.data instanceof Pro_TermData_String)&&
-                        (((Pro_TermData_String)pn1.data).value.equals(
-                         ((Pro_TermData_String)pn2.data).value)));
+        success = ((pn2.data instanceof Pro_TermData_String_simple)&&
+                        (((Pro_TermData_String_simple)pn1.data).value.equals(
+                         ((Pro_TermData_String_simple)pn2.data).value)));
       }
       else if (pn1.data instanceof Pro_TermData_List)
       {
@@ -311,7 +311,7 @@ public class Pro_Term
   static public Pro_Term m_string(String iniVal)
   {
     Pro_Term a = new Pro_Term();
-    a.data = new Pro_TermData_String(iniVal);
+    a.data = new Pro_TermData_String_simple(iniVal);
     return a;
   }
   

@@ -1,0 +1,11 @@
+Kesken
+
+Pro_Term.java
+  tarkista kaikki Pro_TermData_simple
+  
+Ops.java
+  tarkista kaikki Pro_TermData_simple
+  
+Jalog.java
+  tarkista kaikki Pro_TermData_simple
+  

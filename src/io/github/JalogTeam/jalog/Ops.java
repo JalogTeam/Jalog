@@ -159,8 +159,8 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
           // consult_dir/1
 
           } else if(name.equals("consult_dir")){
-            if(data1 instanceof Pro_TermData_String) {
-              filename = ((Pro_TermData_String)data1).value;
+            if(data1 instanceof Pro_TermData_String_simple) {
+              filename = ((Pro_TermData_String_simple)data1).value;
               Consult.set_consult_dir(filename);
             } else if(data1 == null) {
               filename = Consult.get_consult_dir(); 
@@ -173,8 +173,8 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
           // dump/1
 
           } else if(name.equals("dump")){
-            if(data1 instanceof Pro_TermData_String) {
-              filename = ((Pro_TermData_String)data1).value;
+            if(data1 instanceof Pro_TermData_String_simple) {
+              filename = ((Pro_TermData_String_simple)data1).value;
               Database.dump(filename);
             } else {
               Pred.forward = false;
@@ -268,7 +268,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
           // is_string/1
 
           } else if(name.equals("is_string")){
-            if((data1 != null) && (data1 instanceof Pro_TermData_String)) {
+            if((data1 != null) && (data1 instanceof Pro_TermData_String_simple)) {
               // result = new Pred(); // **
             } else {
               Pred.forward = false;
@@ -297,8 +297,8 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
           } else if(name.equals("dynamic")){
             Pro_Term term0 = data.subterm[0];
             Pro_TermData arg = term0.getData();
-            if(arg instanceof Pro_TermData_String) {
-              String key = ((Pro_TermData_String)arg).value;
+            if(arg instanceof Pro_TermData_String_simple) {
+              String key = ((Pro_TermData_String_simple)arg).value;
               Database.define_by_string(key);      
             } else {
               System.out.println("*** Error: dynamic: Argument must be a " +
@@ -383,9 +383,9 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
                 T1 = 'c';
                 C1 = ((Pro_TermData_Char)data1).value;
                 Tv = 'c';
-              } else if(data1 instanceof Pro_TermData_String) {
+              } else if(data1 instanceof Pro_TermData_String_simple) {
                 T1 = 's';
-                S1 = ((Pro_TermData_String)data1).value;
+                S1 = ((Pro_TermData_String_simple)data1).value;
                 Tv = 's';
               } else if((data1 instanceof Pro_TermData_Compound) && 
                   (((Pro_TermData_Compound)data1).arity == 0)) {
@@ -406,9 +406,9 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
                   T2 = 'c';
                   C2 = ((Pro_TermData_Char)data2).value;
                   Tv = (T1 == 'c' ? 'c': ' ');
-                } else if(data2 instanceof Pro_TermData_String) {
+                } else if(data2 instanceof Pro_TermData_String_simple) {
                   T2 = 's';
-                  S2 = ((Pro_TermData_String)data2).value;
+                  S2 = ((Pro_TermData_String_simple)data2).value;
                   Tv = (T1 == 's' ? 's': ' ');
                 } else if(data2 instanceof Pro_TermData_Compound && 
                     (((Pro_TermData_Compound)data2).arity == 0)) {

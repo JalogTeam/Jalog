@@ -28,8 +28,7 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
     return value;
   }
   
-  public String substring(int req_start, int req_len);
-  {
+  public String substring(int req_start, int req_len) {
     int start = req_start;
     int len = req_len;
     if (start < 0) {
