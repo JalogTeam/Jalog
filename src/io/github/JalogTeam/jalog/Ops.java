@@ -494,11 +494,35 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
             ((Pred_trap)result).exit_var = data.subterm[1];
             ((Pred_trap)result).catch_body = Pro_Term.m_list(catch_items);
             
+          } else if (name.equals("concat")){
+            Pro_Term left_term = data.subterm[0];
+            Pro_Term right_term = data.subterm[1];
+            Pro_Term result_term = data.subterm[2];
+            
+            Pro_Term so = Pro_Term.m_string_concat((Pro_TermData_String)left_term.data, 
+                (Pro_TermData_String)right_term.data);
+            
+            Pro_Term[] to_be_compared = {so, result_term};            
+            Pro_TermData_Compound compare_data = 
+                new Pro_TermData_Compound("=", to_be_compared);
+Pro_Term.debug = 1;
+            result = new Pred__eq_(compare_data);
+            result.call();
+Pro_Term.debug = 0;
+
           } else {
             op_found = false;
           }
           
         } break;
+        case 4: {
+                
+           op_found = false;
+               
+        } break;
+        
+        
+        
         default: {
           op_found = false;
         } break;

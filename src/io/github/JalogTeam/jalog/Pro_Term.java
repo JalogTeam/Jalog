@@ -47,7 +47,8 @@ public class Pro_Term
     Pro_TrailMark first_backtop = new Pro_TrailMark();
     boolean success = false;
     double rvalue;
-    
+
+if(debug>0) System.out.println("* unify2: begin");
     if(pBack != null)
     {
       pBack.mark(Mark);// = pBack.top;
@@ -56,6 +57,8 @@ public class Pro_Term
 
     pn1 = getRealNode();
     pn2 = pn2.getRealNode();
+if(debug>0) System.out.println("  1: " + (pn1/*.data*/));
+if(debug>0) System.out.println("  2: " + (pn2/*.data*/));
     
     if (pn1 == pn2)
     {
@@ -166,15 +169,18 @@ public class Pro_Term
           success = false;
         }
       }
-      else if (pn1.data instanceof Pro_TermData_String_simple)
+      else if (pn1.data instanceof Pro_TermData_String)
       {
+        if (pn1.data instanceof Pro_TermData_String_simple)
+        {
 // System.out.println("Pro_Term string compare: ");
 // System.out.println("  !: " + ((Pro_TermData_String_simple)pn1.data));
 // System.out.println("  2: " + ((Pro_TermData_String_simple)pn2.data));
 
-        success = ((pn2.data instanceof Pro_TermData_String_simple)&&
+          success = ((pn2.data instanceof Pro_TermData_String_simple)&&
                         (((Pro_TermData_String_simple)pn1.data).value.equals(
                          ((Pro_TermData_String_simple)pn2.data).value)));
+        }
       }
       else if (pn1.data instanceof Pro_TermData_List)
       {
@@ -240,6 +246,8 @@ public class Pro_Term
         }
       }
     }
+if(debug>0) System.out.println("* unify2: end " + success);
+ 
     return success;
   } // end unify
   
@@ -312,6 +320,24 @@ public class Pro_Term
   {
     Pro_Term a = new Pro_Term();
     a.data = new Pro_TermData_String_simple(iniVal);
+    return a;
+  }
+  
+
+  static public Pro_Term m_string_substring(Pro_TermData_String base_string,
+      int req_start, int req_len)
+  {
+    Pro_Term a = new Pro_Term();
+    a.data = new Pro_TermData_String_substring(base_string, req_start, req_len);
+    return a;
+  }
+  
+
+  static public Pro_Term m_string_concat(Pro_TermData_String left, 
+      Pro_TermData_String right)
+  {
+    Pro_Term a = new Pro_Term();
+    a.data = new Pro_TermData_String_concat(left, right);
     return a;
   }
   

@@ -6,16 +6,43 @@ public class Test_String {
   
   public static void main(String args[]) {
     System.out.println("BEGIN String test");  
+    System.out.println(); 
+    
+    System.out.println("1. simple string"); 
+
     Pro_TermData_String s = test_String_simple("jotakin pienta");
     System.out.println();  
-    test_String_substring(s, 1, 12);
+    
+    System.out.println("2. substring simple stringistä"); 
+
+    Pro_TermData_String ss1 = test_String_substring(s, 1, 12);
     System.out.println(); 
+    
+    System.out.println("3. concat kahdesta simple stringistä");
     Pro_TermData_String s1 = 
         new Pro_TermData_String_simple("jotakin pienta ");
     Pro_TermData_String s2 = 
         new Pro_TermData_String_simple("lisaa sellaista");
     
-    test_String_concat(s1, s2);
+    Pro_TermData_String cs1 = test_String_concat(s1, s2);
+    System.out.println(); 
+
+    System.out.println("4. substring substringistä");
+    Pro_TermData_String ss2 = test_String_substring(ss1, 4, 5);
+    System.out.println(); 
+
+    System.out.println("5. substring konkatenoidusta stringistä");
+    Pro_TermData_String ss3 = test_String_substring(cs1, 8, 12);
+    System.out.println(); 
+
+    System.out.println("6. concat substringistä ja konkatenoidusta");
+    Pro_TermData_String cs2 = test_String_concat(ss1, cs1);
+    System.out.println(); 
+
+    System.out.println("7. concat konkatenoidusta ja substringistä");
+    Pro_TermData_String cs3 = test_String_concat(cs1, ss1);
+    System.out.println(); 
+
     System.out.println("END String test");  
   }
   
