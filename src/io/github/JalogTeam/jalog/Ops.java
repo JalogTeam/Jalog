@@ -1,4 +1,4 @@
-// Primitive_Ops.java
+// Ops.java
 
 package io.github.JalogTeam.jalog;
 
@@ -499,7 +499,8 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
             Pro_Term right_term = data.subterm[1];
             Pro_Term result_term = data.subterm[2];
             
-            Pro_Term so = Pro_Term.m_string_concat((Pro_TermData_String)left_term.data, 
+            Pro_Term so = Pro_Term.m_string_concat(
+                (Pro_TermData_String)left_term.data, 
                 (Pro_TermData_String)right_term.data);
             
             Pro_Term[] to_be_compared = {so, result_term};            
@@ -517,7 +518,32 @@ Pro_Term.debug = 0;
         } break;
         case 4: {
                 
-           op_found = false;
+          // substring/4
+
+          if(name.equals("substring")){
+            // substring(Str_in,Pos,Len,Str_out)
+            Pro_Term str_in = data.subterm[0];
+            Pro_Term pos = data.subterm[1];
+            Pro_Term len = data.subterm[2];
+            Pro_Term str_out = data.subterm[3];
+ 
+            Pro_Term so = Pro_Term.m_string_substring(
+                (Pro_TermData_String)str_in.data,
+                ((Pro_TermData_Integer)pos.data).value,
+                ((Pro_TermData_Integer)len.data).value);
+            
+            Pro_Term[] to_be_compared = {so, str_out};            
+            Pro_TermData_Compound compare_data = 
+                new Pro_TermData_Compound("=", to_be_compared);
+Pro_Term.debug = 1;
+            result = new Pred__eq_(compare_data);
+            result.call();
+Pro_Term.debug = 0;
+
+
+          } else {
+             op_found = false;
+          }
                
         } break;
         

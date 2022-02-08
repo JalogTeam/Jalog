@@ -6,13 +6,13 @@ public class Pro_TermData_String_substring
     extends Pro_TermData_String
 {
   public Pro_TermData_String base_string; // substring
-  public int start; // substring
+  public long start; // substring
  
 
   Pro_TermData_String_substring(Pro_TermData_String base_string,
-      int req_start, int req_len)
+      long req_start, long req_len)
   {
-    int max_len;
+    long max_len;
     
     typename = Jalog.STRING;
     tag = SUBSTRING;
@@ -33,7 +33,7 @@ public class Pro_TermData_String_substring
       this.len = 0;
     }
   }
-
+  
   public String toString()
   {
     String temp = new String(image());
@@ -47,11 +47,11 @@ public class Pro_TermData_String_substring
     return base_string.substring(start, len);
   }
   
-  public String substring(int req_start, int req_len)
+  public String substring(long req_start, long req_len)
   {
-    int start = req_start;
-    int len = req_len;
-    int max_len;
+    long start = req_start;
+    long len = req_len;
+    long max_len;
     
 System.out.println("** substring(" + req_start + ", " + req_len + ")");
 System.out.println("** base_string.len = " + base_string.len);
@@ -65,16 +65,16 @@ System.out.println("** base_string.image() = |" + base_string.image() + "|");
     if((len > 0) && (max_len > 0)) {
       if (len > max_len)  len = max_len;
   
-      return base_string.substring(start + this.start, len);
+      return base_string.substring((int)(start + this.start), (int)len);
     } else {
       return "";
     }
   }
 
-  protected void appendSubstring(StringBuilder buffer, int req_start, 
-      int req_len) {
-    int start = req_start;
-    int len = req_len;
+  protected void appendSubstring(StringBuilder buffer, long req_start, 
+      long req_len) {
+    long start = req_start;
+    long len = req_len;
     if (start < 0) {
       len = len + start;
       start = 0;

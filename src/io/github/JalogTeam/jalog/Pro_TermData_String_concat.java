@@ -31,10 +31,10 @@ public class Pro_TermData_String_concat extends Pro_TermData_String
     return this.substring(0, len);
   }
   
-  public String substring(int req_start, int req_len)
+  public String substring(long req_start, long req_len)
   {   
-    int start = req_start;
-    int len = req_len;
+    long start = req_start;
+    long len = req_len;
     StringBuilder buffer;
     
     if (start < 0) {
@@ -51,7 +51,7 @@ public class Pro_TermData_String_concat extends Pro_TermData_String
       } else if(start >= left.len) {
         return right.substring(start - left.len , len);
       } else {
-        buffer = new StringBuilder(len);
+        buffer = new StringBuilder((int)len);
         left.appendSubstring(buffer, start, left.len - start);
         right.appendSubstring(buffer, 0, len - left.len + start);
         return buffer.toString();
@@ -61,10 +61,10 @@ public class Pro_TermData_String_concat extends Pro_TermData_String
     }
   }
 
-  protected void appendSubstring(StringBuilder buffer, int req_start, 
-      int req_len) {
-    int start = req_start;
-    int len = req_len;
+  protected void appendSubstring(StringBuilder buffer, long req_start, 
+      long req_len) {
+    long start = req_start;
+    long len = req_len;
     if (start < 0) {
       len = len + start;
       start = 0;

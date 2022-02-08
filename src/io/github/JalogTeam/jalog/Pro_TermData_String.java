@@ -19,7 +19,7 @@ public abstract class Pro_TermData_String extends Pro_TermData
   public static final int SUBSTRING = 2;
   public static final int CONCATENATED = 3;
 
-  public int len;
+  public long len;
   public int tag;
   
   public Pro_TermData_String base_string; // substring
@@ -32,10 +32,10 @@ public abstract class Pro_TermData_String extends Pro_TermData
 
   public abstract String image();
   
-  public abstract String substring(int start, int len);
+  public abstract String substring(long start, long len);
   
-  protected abstract void appendSubstring(StringBuilder buffer, int start, 
-      int len);
+  protected abstract void appendSubstring(StringBuilder buffer, long start, 
+      long len);
 } // end class Pro_TermData_String
 
 

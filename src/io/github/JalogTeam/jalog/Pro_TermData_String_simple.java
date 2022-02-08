@@ -28,9 +28,9 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
     return value;
   }
   
-  public String substring(int req_start, int req_len) {
-    int start = req_start;
-    int len = req_len;
+  public String substring(long req_start, long req_len) {
+    long start = req_start;
+    long len = req_len;
     if (start < 0) {
       len = len + start;
       start = 0;
@@ -39,16 +39,16 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
     if (start > this.len) len = 0;
     if (start + len > this.len) len = this.len - start;
     if(len > 0) {
-      return value.substring(start, start + len);
+      return value.substring((int)start, (int)(start + len));
     } else {
       return "";
     }
   }
   
-  protected void appendSubstring(StringBuilder buffer, int req_start, 
-      int req_len) {
-    int start = req_start;
-    int len = req_len;
+  protected void appendSubstring(StringBuilder buffer, long req_start, 
+      long req_len) {
+    long start = req_start;
+    long len = req_len;
     if (start < 0) {
       len = len + start;
       start = 0;
@@ -57,7 +57,7 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
     if (start + len > this.start + this.len) 
         len = this.start + this.len - start;
     if(len > 0) {
-      buffer.append(value, start, start + len);
+      buffer.append(value, (int)start, (int)(start + len));
     }
   }
 } // end class Pro_TermData_String_simple

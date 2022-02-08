@@ -171,15 +171,10 @@ if(debug>0) System.out.println("  2: " + (pn2/*.data*/));
       }
       else if (pn1.data instanceof Pro_TermData_String)
       {
-        if (pn1.data instanceof Pro_TermData_String_simple)
+        if (pn2.data instanceof Pro_TermData_String)
         {
-// System.out.println("Pro_Term string compare: ");
-// System.out.println("  !: " + ((Pro_TermData_String_simple)pn1.data));
-// System.out.println("  2: " + ((Pro_TermData_String_simple)pn2.data));
-
-          success = ((pn2.data instanceof Pro_TermData_String_simple)&&
-                        (((Pro_TermData_String_simple)pn1.data).value.equals(
-                         ((Pro_TermData_String_simple)pn2.data).value)));
+          success = compare_strings((Pro_TermData_String)pn1.data, 
+              (Pro_TermData_String)pn2.data);
         }
       }
       else if (pn1.data instanceof Pro_TermData_List)
@@ -325,7 +320,7 @@ if(debug>0) System.out.println("* unify2: end " + success);
   
 
   static public Pro_Term m_string_substring(Pro_TermData_String base_string,
-      int req_start, int req_len)
+      long req_start, long req_len)
   {
     Pro_Term a = new Pro_Term();
     a.data = new Pro_TermData_String_substring(base_string, req_start, req_len);
@@ -613,6 +608,67 @@ if(debug>0) System.out.println("* unify2: end " + success);
     }
 //System.out.println("case 5 " + source.Id + "->" + new_this.Id + " ****");
     return new_this;
+  }
+
+  private boolean compare_strings(Pro_TermData_String s1, 
+      Pro_TermData_String s2) 
+  {
+    long p = 0;
+    boolean result = true;
+    String string1_found;
+    long start_pos1, len1;
+    int i;
+    
+    if (s1.len == s2.len) {
+      while (result && (p < s1.len)) {
+        get_string_part(p, s1);
+        string1_found = string_found;
+        start_pos1 = start_pos;
+        len1 = len;
+        get_string_part(p, s2);
+        if (len > len1) {
+          len = len1;
+        }
+        for ( i = 0; (i < len) && result; i++) {
+          result = string1_found.charAt((int)start_pos1 + i) == 
+                   string_found.charAt((int)start_pos + i);
+        }                
+        p = p + len;
+      }          
+    } else {
+      result =  false;
+    }
+    return result;      
+  }
+  
+  String string_found;
+  long start_pos, len;
+  
+  private void get_string_part(long p, Pro_TermData_String s)
+  {
+    Pro_TermData_String_substring ss;
+    Pro_TermData_String_concat cs;
+    
+    switch (s.tag) {
+      case Pro_TermData_String.SIMPLE : {
+        string_found = ((Pro_TermData_String_simple)s).value;
+        start_pos = p;
+        len = s.len - start_pos;
+      }; break;
+      case Pro_TermData_String.SUBSTRING : {
+        ss = (Pro_TermData_String_substring)s;
+        get_string_part(ss.start, ss.base_string);
+        if (len > ss.len - start_pos) len = s.len - start_pos;
+      }; break;
+      case Pro_TermData_String.CONCATENATED : {
+        cs = (Pro_TermData_String_concat)s;
+        if (p < cs.left.len) {
+          get_string_part(p, cs.left);
+        } else {
+          get_string_part(p - cs.left.len, cs.right);
+        }
+      }; break;
+    }
   }
 
 /*
