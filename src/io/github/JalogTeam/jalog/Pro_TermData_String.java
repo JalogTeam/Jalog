@@ -19,8 +19,8 @@ public abstract class Pro_TermData_String extends Pro_TermData
   public static final int SUBSTRING = 2;
   public static final int CONCATENATED = 3;
 
-  public long len;
-  public int tag;
+  public final long len;
+  public final int tag;
   
   public Pro_TermData_String base_string; // substring
   public int start; // substring
@@ -28,6 +28,12 @@ public abstract class Pro_TermData_String extends Pro_TermData
   public Pro_TermData_String left; // concat
   public Pro_TermData_String right; // concat
  
+  Pro_TermData_String(int tag, long len) {
+    this.typename = Jalog.STRING;
+    this.tag = tag;
+    this.len = len;
+  }
+  
   public abstract String toString();
 
   public abstract String image();

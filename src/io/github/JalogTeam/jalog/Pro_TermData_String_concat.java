@@ -5,17 +5,16 @@ package io.github.JalogTeam.jalog;
 public class Pro_TermData_String_concat extends Pro_TermData_String
 {
   
-  public Pro_TermData_String left; // concat
-  public Pro_TermData_String right; // concat
+  public final Pro_TermData_String left; // concat
+  public final Pro_TermData_String right; // concat
 
   Pro_TermData_String_concat(Pro_TermData_String left, 
       Pro_TermData_String right)
   {
-    typename = Jalog.STRING;
-    tag = CONCATENATED;
+    super(CONCATENATED, left.len + right.len);
+
     this.left = left;
     this.right = right;
-    this.len = left.len + right.len;
   }
 
   public String toString()

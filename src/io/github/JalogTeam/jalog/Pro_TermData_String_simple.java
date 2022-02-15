@@ -5,14 +5,13 @@ package io.github.JalogTeam.jalog;
 public class Pro_TermData_String_simple extends Pro_TermData_String
 {
   
-  public String value; // simple
+  public final String value; // simple
  
   Pro_TermData_String_simple(String iniVal)
   {
-    typename = Jalog.STRING;
-    tag = SIMPLE;
-    value = iniVal;
-    len = iniVal.length();
+    super(SIMPLE, iniVal.length());
+    
+    this.value = iniVal;
   }
 
   public String toString()
