@@ -83,6 +83,12 @@ public class Pro_TermData_String_concat extends Pro_TermData_String
       }
     }
   }
+      
+  public String structure() {
+    return "c(" + len + "," + left.structure() + "," + 
+        right.structure() + ")";
+  }
+  
 } // end class Pro_TermData_String_concat
 
 

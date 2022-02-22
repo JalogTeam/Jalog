@@ -59,6 +59,11 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
       buffer.append(value, (int)start, (int)(start + len));
     }
   }
+      
+  public String structure() {
+    return "s(" + len + ",|" + value + "|)";
+  }
+  
 } // end class Pro_TermData_String_simple
 
 

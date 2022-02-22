@@ -171,12 +171,13 @@ if(debug>0) System.out.println("  2: " + (pn2/*.data*/));
       }
       else if (pn1.data instanceof Pro_TermData_String)
       {
-System.out.println("A");
+// System.out.println("A");
         if (pn2.data instanceof Pro_TermData_String)
         {
-System.out.println("B");
+// System.out.println("B");
           success = compare_strings((Pro_TermData_String)pn1.data, 
               (Pro_TermData_String)pn2.data);
+// System.out.println("C success=" + success);
         }
       }
       else if (pn1.data instanceof Pro_TermData_List)
@@ -546,6 +547,25 @@ if(debug>0) System.out.println("* unify2: end " + success);
     }
   }
   
+  public static long eval_integer(Pro_Term p) {
+    Pro_Term v = null;
+    long result = 0;
+    
+    if (p.data != null) {
+      if (p.data instanceof Pro_TermData_Integer) {
+        v = p;
+      } else {
+        v = new Pro_Term();
+        v.compval(p);
+      }
+    }
+    if (v.data instanceof Pro_TermData_Integer) {
+      result = ((Pro_TermData_Integer)v.data).value;
+    }
+    
+    return result;
+  }
+  
   public String toString()
   {
     if(data == null)
@@ -620,24 +640,23 @@ if(debug>0) System.out.println("* unify2: end " + success);
     String string1_found;
     long start_pos1, len1;
     int i;
-    
-System.out.println("CS:  s1.len: " + s1.len + ", s2.len: " + s2.len);
+    long max_len;
+// System.out.println("____________");    
+// System.out.println("CS:  s1.structure=" + s1.structure());
+// System.out.println("CS:  s2.structure=" + s2.structure());
 
     if (s1.len == s2.len) {
       while (result && (p < s1.len)) {
-System.out.println("CS: to get_string_part, p = " + p + 
-", s1 = \"" + s1 + "\"");
+// System.out.println("\nCS: p = " + p);
+// System.out.println("CS: to get_string_part, p = " + p + ", s1 = \"" + s1 + "\"");
         get_string_part(p, s1);
-System.out.println("CS: from get_string_part, string_found = \""
-+ string_found + "\", start_pos = " + start_pos + ", len = " + len);
+// System.out.println("CS: from get_string_part, string_found = \"" + string_found + "\", start_pos = " + start_pos + ", len = " + len);
         string1_found = string_found;
         start_pos1 = start_pos;
         len1 = len;
-System.out.println("CS: to get_string_part, p = " + p + 
-", s2 = \"" + s2 + "\"");
+// System.out.println("\nCS: to get_string_part, p = " + p + ", s2 = \"" + s2 + "\"");
         get_string_part(p, s2);
-System.out.println("CS: from get_string_part, string_found = \""
-+ string_found + "\", start_pos = " + start_pos + ", len = " + len);
+// System.out.println("CS: from get_string_part, string_found = \"" + string_found + "\", start_pos = " + start_pos + ", len = " + len);
         if (len > len1) {
           len = len1;
         }
@@ -646,23 +665,26 @@ System.out.println("CS: from get_string_part, string_found = \""
                    string_found.charAt((int)start_pos + i);
         }                
         p = p + len;
-System.out.println("CS: result = " + result + ", p = " + p);
+// System.out.println("CS: result = " + result + ", p = " + p);
       }          
     } else {
       result =  false;
     }
-System.out.println("CS: result = " + result);    
+// System.out.println("CS: result = " + result);    
+// System.out.println("____________");    
     return result;      
   }
   
   String string_found;
   long start_pos, len;
 String indent = "";
+
   private void get_string_part(long p, Pro_TermData_String s)
   {
     Pro_TermData_String_substring ss;
     Pro_TermData_String_concat cs;
-System.out.println(indent + "GSP: p = " + p + ", s = \"" + s + "\"");    
+// System.out.println(indent + "_____");
+// System.out.println(indent + "GSP: p = " + p + ", s = " + s.structure());    
 indent += "  ";
 
     switch (s.tag) {
@@ -670,32 +692,36 @@ indent += "  ";
         string_found = ((Pro_TermData_String_simple)s).value;
         start_pos = p;
         len = s.len - start_pos;
-System.out.println(indent + "GSP/SIMPLE: string_found = \"" + string_found + 
-"\", start_pos = " + start_pos + ", len = " + len);
+// System.out.println(indent + "GSP/SIMPLE: string_found = \"" + string_found + "\", start_pos = " + start_pos + ", len = " + len);
       }; break;
       case Pro_TermData_String.SUBSTRING : {
-System.out.println(indent + "GSP/SUBSTRING: ");
+// System.out.println(indent + "GSP/SUBSTRING: ");
         ss = (Pro_TermData_String_substring)s;
-System.out.println(indent + "GSP/SUBSTRING ss: base_string = \"" + ss.base_string + "\", start = " + ss.start + ", len = " + ss.len);
+// System.out.println(indent + "GSP/SUBSTRING ss: base_string = \"" + ss.base_string + "\", start = " + ss.start + ", len = " + ss.len);
         get_string_part(p + ss.start, ss.base_string);
-System.out.println(indent + "GSP/SUBSTRING: string_found = \"" + string_found +
-"\", start_pos = " + start_pos + ", len = " + len);
-        if (len > ss.len - start_pos) len = s.len/* - start_pos*/;
-System.out.println(indent + "GSP/SUBSTRING: len = " + len);
+// System.out.println(indent + "GSP/SUBSTRING: string_found = \"" + string_found + "\", start_pos = " + start_pos + ", len = " + len);
+//        if (len > ss.len - start_pos) len = s.len/* - start_pos*/;
+        if (len > ss.len - p) len = s.len - p;
+// System.out.println(indent + "GSP/SUBSTRING: len = " + len);
         
       }; break;
       case Pro_TermData_String.CONCATENATED : {
         cs = (Pro_TermData_String_concat)s;
         if (p < cs.left.len) {
-System.out.println(indent + "GSP/CONCATENATED left: ");
+// System.out.println(indent + "GSP/CONCATENATED left: ");
           get_string_part(p, cs.left);
         } else {
-System.out.println(indent + "GSP/CONCATENATED right: ");
+// System.out.println(indent + "GSP/CONCATENATED right: ");
           get_string_part(p - cs.left.len, cs.right);
         }
       }; break;
     }
+
+// System.out.println(indent + "GSP: string_found=|" + string_found + "|," +
+// "start_pos=" + start_pos + ",len=" + len);
 indent = indent.substring(2);
+// System.out.println(indent + "_____");
+
   }
 
 /*

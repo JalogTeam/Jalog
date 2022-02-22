@@ -1,0 +1,25 @@
+koe1: "CDE"
+*Yes*
+koe2: "ABCDEF"
+*Yes*
+koe3.a: Ok
+koe3.b: Ok
+*Yes*
+koe4a1: 
+* A="BCDEFG"
+* B="DEF"
+koe4a2: 
+koe4a3: 
+* A="BCDEFG"
+* B="DEF"
+Ok
+*Yes*
+koe4b: Ok
+*Yes*
+koe4c: Ok
+*Yes*
+koe5: Ok
+*Yes*
+koe6: Ok
+*Yes*
+Exit status: 0 ; 

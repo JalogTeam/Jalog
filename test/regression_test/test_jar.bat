@@ -31,6 +31,7 @@ call do_test_jar.bat test_bound
 call do_test_jar.bat test_trap
 call do_test_jar.bat test_exit_0
 call do_test_jar.bat test_exit_1
+call do_test_jar.bat test_exit_1p1
 call do_test_jar.bat test_exit_50
 call do_test_jar.bat test_command_line_arguments "-a=b" -c d
 call do_test_jar.bat test_command_line_no_arguments

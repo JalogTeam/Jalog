@@ -42,6 +42,9 @@ public abstract class Pro_TermData_String extends Pro_TermData
   
   protected abstract void appendSubstring(StringBuilder buffer, long start, 
       long len);
+      
+  public abstract String structure();
+  
 } // end class Pro_TermData_String
 
 

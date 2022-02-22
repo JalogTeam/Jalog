@@ -79,12 +79,9 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
       Pred.exception = true;
       Pred.exit_value = null;
       if(arity > 0) {
-        data1 = data.subterm[0].getData();
-        if((data1 != null) && (data1 instanceof Pro_TermData_Integer)) {
-          Pred.exit_value = data.subterm[0].getRealNode();
-        }
-      }
-      if(Pred.exit_value == null) {
+        Pred.exit_value = Pro_Term.m_integer(
+            Pro_Term.eval_integer(data.subterm[0]));
+      } else {
         Pred.exit_value = Pro_Term.m_integer(0);
       }
       
@@ -506,7 +503,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
             Pro_Term[] to_be_compared = {so, result_term};            
             Pro_TermData_Compound compare_data = 
                 new Pro_TermData_Compound("=", to_be_compared);
-Pro_Term.debug = 1;
+Pro_Term.debug = 0;
             result = new Pred__eq_(compare_data);
             result.call();
 Pro_Term.debug = 0;
@@ -523,19 +520,23 @@ Pro_Term.debug = 0;
           if(name.equals("substring")){
             // substring(Str_in,Pos,Len,Str_out)
             Pro_Term str_in = data.subterm[0];
-            Pro_Term pos = data.subterm[1];
-            Pro_Term len = data.subterm[2];
+            long pos = Pro_Term.eval_integer(data.subterm[1]);
+            long len = Pro_Term.eval_integer(data.subterm[2]);
+            
+//            Pro_Term pos = data.subterm[1];
+//            Pro_Term len = data.subterm[2];
             Pro_Term str_out = data.subterm[3];
  
             Pro_Term so = Pro_Term.m_string_substring(
                 (Pro_TermData_String)str_in.data,
-                ((Pro_TermData_Integer)pos.data).value,
-                ((Pro_TermData_Integer)len.data).value);
+                pos, len);
+//                ((Pro_TermData_Integer)pos.data).value,
+//                ((Pro_TermData_Integer)len.data).value);
             
             Pro_Term[] to_be_compared = {so, str_out};            
             Pro_TermData_Compound compare_data = 
                 new Pro_TermData_Compound("=", to_be_compared);
-Pro_Term.debug = 1;
+Pro_Term.debug = 0;
             result = new Pred__eq_(compare_data);
             result.call();
 Pro_Term.debug = 0;

@@ -62,9 +62,9 @@ public class Pro_TermData_String_substring
     long len = req_len;
     long max_len;
     
-System.out.println("** substring(" + req_start + ", " + req_len + ")");
-System.out.println("** base_string.len = " + base_string.len);
-System.out.println("** base_string.image() = |" + base_string.image() + "|");
+// System.out.println("** substring(" + req_start + ", " + req_len + ")");
+// System.out.println("** base_string.len = " + base_string.len);
+// System.out.println("** base_string.image() = |" + base_string.image() + "|");
     if (start < 0) {
       len = len + start;
       start = 0;
@@ -96,6 +96,12 @@ System.out.println("** base_string.image() = |" + base_string.image() + "|");
       base_string.appendSubstring(buffer, start + this.start, len);
     }
   }
+      
+  public String structure() {
+    return "ss(" + len + "," + base_string.structure() + "," + start + ")";
+  }
+  
+
 } // end class Pro_TermData_String_substring
 
 
