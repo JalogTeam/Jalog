@@ -31,7 +31,8 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
     double R1 = 0.0, R2 = 0.0;
     long I1 = 0, I2 = 0;
     char T1, T2, Tv, C1 = ' ', C2 = ' ';
-    String S1 = "", S2 = "";
+    String N1 = "", N2 = "";
+    Pro_TermData_String S1 = null, S2 = null;
     boolean Bv = false;
     String filename;
     boolean found = false;
@@ -380,14 +381,14 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
                 T1 = 'c';
                 C1 = ((Pro_TermData_Char)data1).value;
                 Tv = 'c';
-              } else if(data1 instanceof Pro_TermData_String_simple) {
+              } else if(data1 instanceof Pro_TermData_String) {
                 T1 = 's';
-                S1 = ((Pro_TermData_String_simple)data1).value;
+                S1 = (Pro_TermData_String)data1;
                 Tv = 's';
               } else if((data1 instanceof Pro_TermData_Compound) && 
                   (((Pro_TermData_Compound)data1).arity == 0)) {
                 T1 = 'y';
-                S1 = ((Pro_TermData_Compound)data1).name;
+                N1 = ((Pro_TermData_Compound)data1).name;
                 Tv = 'y';
               }
               if(Tv != ' ') {
@@ -403,15 +404,16 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
                   T2 = 'c';
                   C2 = ((Pro_TermData_Char)data2).value;
                   Tv = (T1 == 'c' ? 'c': ' ');
-                } else if(data2 instanceof Pro_TermData_String_simple) {
+                } else if(data2 instanceof Pro_TermData_String) {
                   T2 = 's';
-                  S2 = ((Pro_TermData_String_simple)data2).value;
+                  S2 = (Pro_TermData_String)data2;
                   Tv = (T1 == 's' ? 's': ' ');
                 } else if(data2 instanceof Pro_TermData_Compound && 
                     (((Pro_TermData_Compound)data2).arity == 0)) {
                   T2 = 'y';
-                  S2 = ((Pro_TermData_Compound)data2).name;
-                  Tv = (T1 == 'y' ? 's': ' ');
+                  N2 = ((Pro_TermData_Compound)data2).name;
+//                  Tv = (T1 == 'y' ? 's': ' ');
+                  Tv = (T1 == 'y' ? 'y': ' ');
                 } else {
                   Tv = ' ';
                 }
@@ -450,7 +452,18 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
                       default: Tv = ' '; // No result for others
                     }
                   } else if(Tv == 's') { // string comparison
-                    I1 = S1.compareTo(S2);
+//                    I1 = S1.compareTo(S2);
+                    I1 = Pro_TermData_String.compare_strings(S1, S2);
+                    switch(Op) {
+                      case '>': Bv = (I1 > 0); break;
+                      case '<': Bv = (I1 < 0); break;
+                      case 'G': Bv = (I1 >= 0); break;
+                      case 'L': Bv = (I1 <= 0); break;
+                      case 'N': Bv = (I1 != 0); break;
+                      default: Tv = ' '; // No result for others
+                    }
+                  } else if(Tv == 'y') { // string comparison
+                    I1 = N1.compareTo(N2);
                     switch(Op) {
                       case '>': Bv = (I1 > 0); break;
                       case '<': Bv = (I1 < 0); break;

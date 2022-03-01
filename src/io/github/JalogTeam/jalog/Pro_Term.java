@@ -175,8 +175,9 @@ if(debug>0) System.out.println("  2: " + (pn2/*.data*/));
         if (pn2.data instanceof Pro_TermData_String)
         {
 // System.out.println("B");
-          success = compare_strings((Pro_TermData_String)pn1.data, 
-              (Pro_TermData_String)pn2.data);
+          success = Pro_TermData_String.compare_strings(
+              (Pro_TermData_String)pn1.data, 
+              (Pro_TermData_String)pn2.data) == 0;
 // System.out.println("C success=" + success);
         }
       }
@@ -632,6 +633,7 @@ if(debug>0) System.out.println("* unify2: end " + success);
     return new_this;
   }
 
+/*
   private boolean compare_strings(Pro_TermData_String s1, 
       Pro_TermData_String s2) 
   {
@@ -674,6 +676,7 @@ if(debug>0) System.out.println("* unify2: end " + success);
 // System.out.println("____________");    
     return result;      
   }
+
   
   String string_found;
   long start_pos, len;
@@ -700,7 +703,7 @@ indent += "  ";
 // System.out.println(indent + "GSP/SUBSTRING ss: base_string = \"" + ss.base_string + "\", start = " + ss.start + ", len = " + ss.len);
         get_string_part(p + ss.start, ss.base_string);
 // System.out.println(indent + "GSP/SUBSTRING: string_found = \"" + string_found + "\", start_pos = " + start_pos + ", len = " + len);
-//        if (len > ss.len - start_pos) len = s.len/* - start_pos*/;
+//        if (len > ss.len - start_pos) len = s.len;
         if (len > ss.len - p) len = s.len - p;
 // System.out.println(indent + "GSP/SUBSTRING: len = " + len);
         
@@ -723,7 +726,7 @@ indent = indent.substring(2);
 // System.out.println(indent + "_____");
 
   }
-
+*/
 /*
   public String typename() {
     Pro_TermData data = getData();

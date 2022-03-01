@@ -63,6 +63,86 @@ koe6 :- write("koe6: "), concat("ABC", "DEF", A), substring(A, 1, 4, B),
     concat(B, A, "BCDEABCDEF"),
     write("Ok"), nl.  % should get "Ok" 
 
+testcmp(A, B) :-
+     write("testcmp: "), writeq(A), write("<"), writeq(B),nl,
+     A < B,
+     writeln("yes"), fail.
+
+testcmp(A, B) :-
+     write("testcmp: "), writeq(A), write("<="), writeq(B),nl,
+     A <= B,
+     writeln("yes"), fail.
+     
+testcmp(A, B) :-
+     write("testcmp: "), writeq(A), write("="), writeq(B),nl,
+     A = B,
+     writeln("yes"), fail.
+     
+testcmp(A, B) :-
+     write("testcmp: "), writeq(A), write(">="), writeq(B),nl,
+     A >= B,
+     writeln("yes"), fail.
+     
+testcmp(A, B) :-
+     write("testcmp: "), writeq(A), write(">"), writeq(B),nl,
+     A > B,
+     writeln("yes"), fail.
+
+testcmp(A, B) :-
+     write("testcmp: "), writeq(A), write("<>"), writeq(B),nl,
+     A <> B,
+     writeln("yes"), fail.
+     
+testcmp(_, _).
+
+koe7 :- write("koe7: "),
+    AS1 = "ABCDEF", AS2 = "123456",
+    substring(AS1, 2, 4, AT1), substring(AS2, 1, 3, AT2),
+    writeln("+++ |", AT1, "|", AT2, "|"),
+    concat(AT1, AT2, AU),
+    BS1 = "XCDM", BS2 = "REF234Z",
+    substring(BS1, 1, 2, BT1), substring(BS2, 1, 5, BT2),
+    writeln("+++ |", BT1, "|", BT2, "|"),
+    concat(BT1, BT2, BU),
+    writeln("---|", AU, "|", BU, "|"),
+    testcmp(AU, BU),
+    writeln("--- vv ---"),
+    testcmp(BU, AU),
+    writeln("koe7 done").
+
+koe7a :- write("koe7a: "),
+    AS1 = "ABCDEF", AS2 = "123456",
+    substring(AS1, 2, 4, AT1), substring(AS2, 1, 3, AT2),
+    writeln("+++ |", AT1, "|", AT2, "|"),
+    concat(AT1, AT2, AU),
+    BS1 = "XCDM", BS2 = "REF23YZ",
+    substring(BS1, 1, 2, BT1), substring(BS2, 1, 5, BT2),
+    writeln("+++ |", BT1, "|", BT2, "|"),
+    concat(BT1, BT2, BU),
+    writeln("---|", AU, "|", BU, "|"),
+    testcmp(AU, BU),
+    writeln("--- vv ---"),
+    testcmp(BU, AU),
+    writeln("koe7 done").
+
+koe7b :- write("koe7b: "),
+    AS1 = "ABCDEF", AS2 = "123456",
+    substring(AS1, 2, 4, AT1), substring(AS2, 1, 3, AT2),
+    writeln("+++ |", AT1, "|", AT2, "|"),
+    concat(AT1, AT2, AU),
+    BS1 = "XCDM", BS2 = "REF23YZ",
+    substring(BS1, 1, 2, BT1), substring(BS2, 1, 4, BT2),
+    writeln("+++ |", BT1, "|", BT2, "|"),
+    concat(BT1, BT2, BU),
+    writeln("---|", AU, "|", BU, "|"),
+    testcmp(AU, BU),
+    writeln("--- vv ---"),
+    testcmp(BU, AU),
+    writeln("koe7 done").
+
+
+
+
 % Test main
 
 :- koe1.
@@ -73,3 +153,6 @@ koe6 :- write("koe6: "), concat("ABC", "DEF", A), substring(A, 1, 4, B),
 :- koe4c.
 :- koe5.
 :- koe6.
+:- koe7.
+:- koe7a.
+:- koe7b.
