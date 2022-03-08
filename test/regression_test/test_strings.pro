@@ -140,11 +140,113 @@ koe7b :- write("koe7b: "),
     testcmp(BU, AU),
     writeln("koe7 done").
 
+koe8 :- writeln("koe8: (o,o,o)"),
+    concat(_, _, _),
+    writeln("Error"),
+    fail.
+    
+koe8 :- writeln("koe8: (i,o,o)"),
+    concat("a", _, _),
+    writeln("Error"),
+    fail.
+    
+koe8 :- writeln("koe8: (o,i,o)"),
+    concat(_, "a", _),
+    writeln("Error"),
+    fail.
+    
+koe8 :- writeln("koe8: (o,o,i)"),
+    concat(_, _, "a"),
+    writeln("Error"),
+    fail.
+    
+koe8 :- writeln("koe8: "),
+    koe8g1.
+    
+    
+koe8g1 :-
+    koe8g2("1", "V", "ABCD"), 
+    fail.
+    
+koe8g1 :-
+    concat("AB", "CD", A),
+    koe8g2("2", "V", A),
+    fail.
+    
+koe8g1 :-
+    substring("1ABCD2", 1, 4, B),
+    koe8g2("3", "V", B),
+    fail.
+    
+koe8g1 :-
+    koe8g2("4", "-", "ABCX"), 
+    fail.
+    
+koe8g1 :-
+    concat("AX", "CD", A),
+    koe8g2("5", "-", A),
+    fail.
+    
+koe8g1 :-
+    concat("AB", "CX", A),
+    koe8g2("6", "-", A),
+    fail.
+    
+koe8g1 :-
+    substring("1ABCX2", 1, 4, B),
+    koe8g2("7", "-", B),
+    fail.
+    
+koe8g1.
+    
+koe8g2(I, V, A) :-
+    koe8g3(I, "a", V, A, _, "ABCDEFGH"),    % "EFGH"
+    fail.
+
+koe8g2(I, V, A) :-
+    concat("ABC", "DEFGH", R),
+    koe8g3(I, "b", V, A, _, R),    % "EFGH"
+    fail.
+
+koe8g2(I, V, A) :-
+    concat("ABCDE", "FGH", R),
+    koe8g3(I, "c", V, A, _, R),    % "EFGH"
+    fail.
+
+koe8g2(I, V, A) :-
+    substring("7ABCDEFGH9", 1, 8, R),
+    koe8g3(I, "d", V, A, _, R),    % "EFGH"
+    fail.
 
 
+koe8g2(I, V, B) :-
+    koe8g3(I, "e", V, _, B, "EFGHABCD"),    % "EFGH"
+    fail.
+
+koe8g2(I, _, A) :-
+    concat("EFG", "HABCD", R),
+    koe8g3(I, "f", "-", A, _, R),    % "EFGH"
+    fail.
+
+koe8g2(I, _, A) :-
+    concat("EFGHA", "BCD", R),
+    koe8g3(I, "g", "-", A, _, R),    % "EFGH"
+    fail.
+
+koe8g2(I, _, A) :-
+    substring("7EFGHABCD9", 1, 8, R),
+    koe8g3(I, "h", "-", A, _, R),    % "EFGH"
+    fail.
+
+koe8g2(_).
+
+koe8g3(I, J, V, A, B, R) :-  
+    writeln(I, J, ": ", V, "|", A, "|", B, "|", R, "|"),
+    concat(A, B, R),
+    writeln(I, J, ": ^|", A, "|", B, "|", R, "|").
 
 % Test main
-
+/*
 :- koe1.
 :- koe2.
 :- koe3.
@@ -156,3 +258,5 @@ koe7b :- write("koe7b: "),
 :- koe7.
 :- koe7a.
 :- koe7b.
+*/
+:- koe8.

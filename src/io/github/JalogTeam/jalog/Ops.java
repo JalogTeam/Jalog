@@ -505,22 +505,59 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
             ((Pred_trap)result).catch_body = Pro_Term.m_list(catch_items);
             
           } else if (name.equals("concat")){
-            Pro_Term left_term = data.subterm[0];
-            Pro_Term right_term = data.subterm[1];
-            Pro_Term result_term = data.subterm[2];
-            
-            Pro_Term so = Pro_Term.m_string_concat(
-                (Pro_TermData_String)left_term.data, 
-                (Pro_TermData_String)right_term.data);
-            
-            Pro_Term[] to_be_compared = {so, result_term};            
-            Pro_TermData_Compound compare_data = 
-                new Pro_TermData_Compound("=", to_be_compared);
-Pro_Term.debug = 0;
-            result = new Pred__eq_(compare_data);
-            result.call();
-Pro_Term.debug = 0;
+            Pro_Term left_term = data.subterm[0].getRealNode();
+            Pro_Term right_term = data.subterm[1].getRealNode();
+            Pro_Term result_term = data.subterm[2].getRealNode();
 
+            long len_left, len_right, len;
+            Pro_TermData_Compound compare_data;
+            Pro_Term right_part, left_part;
+            
+            if (left_term.data != null && right_term.data != null) {
+              Pro_Term so = Pro_Term.m_string_concat(
+                  (Pro_TermData_String)left_term.data, 
+                  (Pro_TermData_String)right_term.data);
+            
+Pro_Term.debug = 0;
+              result = new Pred__eq_(
+                  new Pro_TermData_Compound("=", so, result_term));
+              result.call();
+Pro_Term.debug = 0;
+            } else if (left_term.data != null && result_term.data != null) {
+              len_left = ((Pro_TermData_String)left_term.data).len;
+              len = ((Pro_TermData_String)result_term.data).len;
+              left_part = Pro_Term.m_string_substring(
+                  (Pro_TermData_String)result_term.data, 0, len_left);
+              result = new Pred__eq_(
+                  new Pro_TermData_Compound("=", left_term, left_part));
+              result.call();
+              if (Pred.forward) {
+                right_part = Pro_Term.m_string_substring(
+                    (Pro_TermData_String)result_term.data, len_left, 
+                    len - len_left);
+                result = new Pred__eq_(
+                    new Pro_TermData_Compound("=", right_term, right_part));
+                result.call();
+              }
+            } else if (right_term.data != null && result_term.data != null) {
+              len_right = ((Pro_TermData_String)right_term.data).len;
+              len = ((Pro_TermData_String)result_term.data).len;
+              right_part = Pro_Term.m_string_substring(
+                  (Pro_TermData_String)result_term.data, len - len_right, 
+                  len_right);
+              result = new Pred__eq_(
+                  new Pro_TermData_Compound("=", right_term, right_part));
+              result.call();
+              if (Pred.forward) {
+                left_part = Pro_Term.m_string_substring(
+                    (Pro_TermData_String)result_term.data, 0, len - len_right);
+                result = new Pred__eq_(
+                    new Pro_TermData_Compound("=", left_term, left_part));
+                result.call();
+              }
+            } else {
+              Pred.forward = false;  // invalid flow pattern (o,o,o) (i,o,o),(o,i,o),(o,o,i)
+            }
           } else {
             op_found = false;
           }

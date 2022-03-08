@@ -23,6 +23,17 @@ public class Pro_TermData_Compound extends Pro_TermData
     subterm = iniSubterm;
   }
 
+  Pro_TermData_Compound(String iniName, Pro_Term left, Pro_Term right)
+  {
+    Pro_Term[] iniSubterm = {left, right};
+    
+    name = iniName;
+    arity = (byte)2;
+    typename = Jalog.COMPOUND;
+    
+    subterm = iniSubterm;
+  }
+
 // to detect loops
 static int depth = 0;
   
