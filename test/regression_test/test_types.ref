@@ -73,6 +73,8 @@ koe3x3: 1.5 is not integer
 *Yes*
 koe3x4: 1.0 is not integer
 *Yes*
+koe3x5: unified 1 is integer
+*Yes*
 
 *Yes*
 koe41: [41,42]

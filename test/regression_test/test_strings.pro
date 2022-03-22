@@ -245,9 +245,17 @@ koe8g3(I, J, V, A, B, R) :-
     concat(A, B, R),
     writeln(I, J, ": ^|", A, "|", B, "|", R, "|").
 
+koe9 :-  writeln("koe9: "),
+    substring("ABCDEDEDE", A, C, "DED"),
+    writeln("koe9 success ", A, ",",C),
+    fail.
+    
+koe9 :- writeln("koe9 end").
+
 % Test main
-/*
+
 :- koe1.
+/*
 :- koe2.
 :- koe3.
 :- koe4a.
@@ -258,5 +266,6 @@ koe8g3(I, J, V, A, B, R) :-
 :- koe7.
 :- koe7a.
 :- koe7b.
-*/
 :- koe8.
+*/
+:- koe9.

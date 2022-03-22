@@ -560,7 +560,7 @@ if(debug>0) System.out.println("* unify2: end " + success);
         v.compval(p);
       }
     }
-    if (v.data instanceof Pro_TermData_Integer) {
+    if ((v != null) && (v.data instanceof Pro_TermData_Integer)) {
       result = ((Pro_TermData_Integer)v.data).value;
     }
     

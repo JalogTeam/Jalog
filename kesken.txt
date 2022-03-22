@@ -9,3 +9,7 @@ Ops.java
 Jalog.java
   tarkista kaikki Pro_TermData_simple
   
+HUOM!
+=====
+Nyt eivät substringin startti ja pituus saa olla muuta kuin integereitä.
+  

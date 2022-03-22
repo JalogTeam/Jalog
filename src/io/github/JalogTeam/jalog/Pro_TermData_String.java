@@ -43,7 +43,7 @@ public abstract class Pro_TermData_String extends Pro_TermData
   protected abstract void appendSubstring(StringBuilder buffer, long start, 
       long len);
       
-  public abstract String structure();
+  public abstract String structure(); // Debugging tool
   
   public static int compare_strings(Pro_TermData_String s1, 
       Pro_TermData_String s2) 
@@ -91,6 +91,60 @@ public abstract class Pro_TermData_String extends Pro_TermData
       result =  false;
     }
 */
+// System.out.println("CS: result = " + result);    
+// System.out.println("____________");    
+    return result;      
+  }
+
+
+
+
+
+
+  public static boolean contains_at(Pro_TermData_String s1, long pos, 
+      Pro_TermData_String s2) 
+  {
+    long p1, p2 = 0;
+    boolean result = true;
+    String string1_found;
+    long start_pos1, len1;
+    int i;
+    long max_len;
+// System.out.println("____________");    
+// System.out.println("CS:  s1.structure=" + s1.structure());
+// System.out.println("CS:  s2.structure=" + s2.structure());
+
+
+    if ((s1.len - pos < s2.len) && (pos < 0)) {
+      result = false;
+    } else {
+      p1 = pos;
+      while (result && (p2 < s2.len)) {
+// System.out.println("\nCS: p = " + p);
+// System.out.println("CS: to get_string_part, p = " + p + ", s1 = \"" + s1 + "\"");
+        get_string_part(p1, s1);
+// System.out.println("CS: from get_string_part, string_found = \"" + string_found + "\", start_pos = " + start_pos + ", len = " + len);
+        string1_found = string_found;
+        start_pos1 = start_pos;
+        len1 = part_len;
+// System.out.println("\nCS: to get_string_part, p = " + p + ", s2 = \"" + s2 + "\"");
+        get_string_part(p2, s2);
+// System.out.println("CS: from get_string_part, string_found = \"" + string_found + "\", start_pos = " + start_pos + ", len = " + len);
+        if (part_len > len1) {
+          part_len = len1;
+        }
+        for ( i = 0; (i < part_len) && result; i++) {
+          result = (string1_found.charAt((int)start_pos1 + i)) == 
+                   (string_found.charAt((int)start_pos + i));
+        }                
+        p1 = p1 + part_len;
+        p2 = p2 + part_len;
+// System.out.println("CS: result = " + result + ", p = " + p);
+      }
+      if (p2 < s2.len) {
+        result = false;
+      }  
+    }      
 // System.out.println("CS: result = " + result);    
 // System.out.println("____________");    
     return result;      

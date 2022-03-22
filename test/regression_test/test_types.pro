@@ -68,6 +68,7 @@ koe3x3 :- is_integer(1.5), write("error 1.5 is not integer"), nl.
 koe3x3 :- write("1.5 is not integer"), nl.
 koe3x4 :- is_integer(1.0), write("error 1.0 is not integer"), nl.
 koe3x4 :- write("1.0 is not integer"), nl.
+koe3x5 :- A = B, B = 1, is_integer(A), write("unified 1 is integer"), nl.
 
 koe41 :- write([41,42]), nl.
 koe42 :- A = [42,43], write(A), nl.
@@ -161,6 +162,7 @@ koe6x3 :- write("a is not string"), nl.
 :- write("koe3x2: "), koe3x2.
 :- write("koe3x3: "), koe3x3.
 :- write("koe3x4: "), koe3x4.
+:- write("koe3x5: "), koe3x5.
 
 :- nl.
 :- write("koe41: "), koe41.

@@ -1,0 +1,7 @@
+--- Begin dump ---
+koe2/0
+  :-(koe2,[write(koe2: ),concat(ABC,DEF,_63),write(_63),write(|),nl])
+comline_arg/3
+koe1/0
+  :-(koe1,[write(koe1: ),substring(ABCDEF,2,3,_27),write(_27),write(|),nl])
+--- End dump ---

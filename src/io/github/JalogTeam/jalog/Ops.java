@@ -25,7 +25,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
     int arity = data.arity;
     boolean op_found = true;
     
-    Pro_TermData data1, data2, data3;
+    Pro_TermData data1, data2, data3, data4;
 
     char Op;
     double R1 = 0.0, R2 = 0.0;
@@ -564,33 +564,83 @@ Pro_Term.debug = 0;
           
         } break;
         case 4: {
-                
+
+          data1 = data.subterm[0].getData();
+          data2 = data.subterm[1].getData();
+          data3 = data.subterm[2].getData();
+          data4 = data.subterm[3].getData();
+ 
           // substring/4
 
           if(name.equals("substring")){
             // substring(Str_in,Pos,Len,Str_out)
-            Pro_Term str_in = data.subterm[0];
-            long pos = Pro_Term.eval_integer(data.subterm[1]);
-            long len = Pro_Term.eval_integer(data.subterm[2]);
             
+// data1 must be string!
+// ---------------------
+            
+System.out.println("** substring: " + 
+"\n   data1=" + data1 + 
+"\n   data2=" + data2 + 
+"\n   data3=" + data3 + 
+"\n   data4=" + data4); 
+            
+            if ( data2 != null) {
+            
+              
+              long pos = Pro_Term.eval_integer(data.subterm[1]);
+              long len = Pro_Term.eval_integer(data.subterm[2]);
+              
 //            Pro_Term pos = data.subterm[1];
 //            Pro_Term len = data.subterm[2];
-            Pro_Term str_out = data.subterm[3];
- 
-            Pro_Term so = Pro_Term.m_string_substring(
-                (Pro_TermData_String)str_in.data,
-                pos, len);
+              Pro_Term str_out = data.subterm[3];
+   
+              Pro_Term so = Pro_Term.m_string_substring(
+                  (Pro_TermData_String)data1,
+                  pos, len);
 //                ((Pro_TermData_Integer)pos.data).value,
 //                ((Pro_TermData_Integer)len.data).value);
-            
-            Pro_Term[] to_be_compared = {so, str_out};            
-            Pro_TermData_Compound compare_data = 
-                new Pro_TermData_Compound("=", to_be_compared);
+              
+              Pro_Term[] to_be_compared = {so, str_out};            
+              Pro_TermData_Compound compare_data = 
+                  new Pro_TermData_Compound("=", to_be_compared);
 Pro_Term.debug = 0;
-            result = new Pred__eq_(compare_data);
-            result.call();
+              result = new Pred__eq_(compare_data);
+              result.call();
 Pro_Term.debug = 0;
 
+            } else {
+              if (data4 instanceof Pro_TermData_String) {
+                long len1 = ((Pro_TermData_String)data1).len;
+                long len4 = ((Pro_TermData_String)data4).len;
+                Pro_Term data4len = Pro_Term.m_integer(len4);
+                
+                Pro_Term[] to_be_compared = {data.subterm[2], data4len};            
+                Pro_TermData_Compound compare_data = 
+                    new Pro_TermData_Compound("=", to_be_compared);
+                result = new Pred__eq_(compare_data);
+                result.call();
+                if(Pred.forward) { // Length of "needle" is Ok
+                  found = false;
+                  long end_pos = len1 - len4;
+                  long pos;
+                  for (pos = 0; (pos < end_pos) && !found; pos++) {
+                    found = Pro_TermData_String.contains_at((Pro_TermData_String)data1, pos, 
+                        (Pro_TermData_String)data4); 
+                    
+                  }
+                  Pred.forward = found;
+                  if (found) {
+                    Pro_Term foundpos = Pro_Term.m_integer(pos - 1);
+                    Pro_Term[] to_be_compared2 = {data.subterm[1], foundpos};            
+                    compare_data = 
+                        new Pro_TermData_Compound("=", to_be_compared2);
+                    result = new Pred__eq_(compare_data);
+                    result.call();
+                    
+                  }
+                }
+              }
+            }
 
           } else {
              op_found = false;
