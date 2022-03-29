@@ -255,7 +255,6 @@ koe9 :- writeln("koe9 end").
 % Test main
 
 :- koe1.
-/*
 :- koe2.
 :- koe3.
 :- koe4a.
@@ -267,5 +266,4 @@ koe9 :- writeln("koe9 end").
 :- koe7a.
 :- koe7b.
 :- koe8.
-*/
 :- koe9.

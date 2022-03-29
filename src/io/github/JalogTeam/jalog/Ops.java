@@ -503,7 +503,9 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
             result.called_body = Pro_Term.m_list(items);
             ((Pred_trap)result).exit_var = data.subterm[1];
             ((Pred_trap)result).catch_body = Pro_Term.m_list(catch_items);
-            
+          
+          // concat/3
+
           } else if (name.equals("concat")){
             Pro_Term left_term = data.subterm[0].getRealNode();
             Pro_Term right_term = data.subterm[1].getRealNode();
@@ -577,14 +579,16 @@ Pro_Term.debug = 0;
             
 // data1 must be string!
 // ---------------------
-            
+/*            
 System.out.println("** substring: " + 
 "\n   data1=" + data1 + 
 "\n   data2=" + data2 + 
 "\n   data3=" + data3 + 
 "\n   data4=" + data4); 
-            
-            if ( data2 != null) {
+*/            
+            if ( (data1 == null) || (data1.typename != Jalog.STRING) ) {
+              Pred.forward = false;
+            } else if ( data2 != null) {
             
               
               long pos = Pro_Term.eval_integer(data.subterm[1]);
@@ -610,38 +614,10 @@ Pro_Term.debug = 0;
 
             } else {
               if (data4 instanceof Pro_TermData_String) {
-                long len1 = ((Pro_TermData_String)data1).len;
-                long len4 = ((Pro_TermData_String)data4).len;
-                Pro_Term data4len = Pro_Term.m_integer(len4);
-                
-                Pro_Term[] to_be_compared = {data.subterm[2], data4len};            
-                Pro_TermData_Compound compare_data = 
-                    new Pro_TermData_Compound("=", to_be_compared);
-                result = new Pred__eq_(compare_data);
-                result.call();
-                if(Pred.forward) { // Length of "needle" is Ok
-                  found = false;
-                  long end_pos = len1 - len4;
-                  long pos;
-                  for (pos = 0; (pos < end_pos) && !found; pos++) {
-                    found = Pro_TermData_String.contains_at((Pro_TermData_String)data1, pos, 
-                        (Pro_TermData_String)data4); 
-                    
-                  }
-                  Pred.forward = found;
-                  if (found) {
-                    Pro_Term foundpos = Pro_Term.m_integer(pos - 1);
-                    Pro_Term[] to_be_compared2 = {data.subterm[1], foundpos};            
-                    compare_data = 
-                        new Pro_TermData_Compound("=", to_be_compared2);
-                    result = new Pred__eq_(compare_data);
-                    result.call();
-                    
-                  }
-                }
+                result = new Pred_substring(data);
+                if(Pred.forward) result.call();
               }
             }
-
           } else {
              op_found = false;
           }
