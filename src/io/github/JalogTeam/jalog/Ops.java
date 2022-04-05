@@ -4,6 +4,7 @@ package io.github.JalogTeam.jalog;
 
 import java.io.*;
 import java.util.*;
+import java.lang.reflect.Method;
 
 
 // NOTE: Consider identifying predefined predicates in parser.
@@ -11,9 +12,36 @@ import java.util.*;
 
 public class Ops
 {
+  private static class Name_Class {
+    String name;
+    Class pred_class;
+    
+    Name_Class(String name, Class pred_class) {
+      this.name = name;
+      this.pred_class = pred_class;
+    }
+  };
+
+  static Name_Class[] built_in_preds = {
+    new Name_Class("foreach_", Pred_foreach_.class),
+  };
+
 //  static private Stack ConsultedFiles = new Stack();
   static Hashtable ConsultedFiles = new Hashtable(100);
 
+  static Hashtable<String, Method> builtIns = 
+      new Hashtable<String, Method>(100);
+  static {
+    try {
+      for (int i = 0; i < built_in_preds.length; i++) {
+        Name_Class built_in_pred = built_in_preds[i];
+        builtIns.put(built_in_pred.name, built_in_pred.pred_class.
+            getMethod("make", Pro_TermData_Compound.class));
+      }
+    } catch (Exception e) {
+    }
+  }
+  
   static Pred first_call(Pro_Term pred_call)
   { // Entered always forward==true
 // Debug_times.enter(3);
@@ -36,6 +64,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
     boolean Bv = false;
     String filename;
     boolean found = false;
+    Method cur_pred_make_method;
     
     if(!(data instanceof Pro_TermData_Compound)){
       Pred.forward = false;
@@ -45,9 +74,19 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
 
 // System.out.println("\n--Ops.call_forward: " + name + "/" + arity);
 
+    cur_pred_make_method = builtIns.get(name);
+    if (cur_pred_make_method != null) {
+// System.out.println("*** cur_pred_make_method got");
+      try {
+        result = (Pred)cur_pred_make_method.invoke(null, data);
+// System.out.println("*** cur_pred_make_method result " + result);
+      } catch (Exception e) {
+// System.out.println("*** cur_pred_make_method exception: " + e);
+      }
+
     // write/*
 
-    if(name.equals("write")){ // handle all arities
+    } else if(name.equals("write")){ // handle all arities
       for(int i = 0; i < arity; i++){
 //        System.out.print(data.subterm[i].image());
         Jalog.out.print(data.subterm[i].image());
@@ -320,14 +359,6 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
 // Debug_times.leave(2);
             result.call();
          
-          // foreach_/2
-
-          } else if(name.equals("foreach_")){
-              // foreach_(Variable, List) - (o,i)
-// Debug_times.enter(2);
-            result = new Pred_foreach_(data);
-// Debug_times.leave(2);
-            result.call();
 
           // consult_data/2
 

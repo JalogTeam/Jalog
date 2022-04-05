@@ -9,6 +9,14 @@ public class Pred_foreach_ extends Pred
   public Pro_Term Var;
   public Pro_TermData_List RestList;
 
+  public static Pred make(Pro_TermData_Compound data) {
+    
+    Pred_foreach_ result = new Pred_foreach_(data);
+    result.call();
+    
+    return result;
+  }
+
   Pred_foreach_(Pro_TermData_Compound data)
   {
     Pro_Term List;

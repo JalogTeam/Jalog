@@ -252,6 +252,18 @@ koe9 :-  writeln("koe9: "),
     
 koe9 :- writeln("koe9 end").
 
+koe10 :- writeln("koe10"),
+    concat(A, "xyz", "abcxyz"),
+    writeln("koe10 success ", A),
+    fail.
+    
+koe10 :- writeln("koe10"),
+    concat("abc", B, "abcxyz"),
+    writeln("koe10 success ", B),
+    fail.
+    
+koe10 :- writeln("koe10 end").
+    
 % Test main
 
 :- koe1.
@@ -267,3 +279,4 @@ koe9 :- writeln("koe9 end").
 :- koe7b.
 :- koe8.
 :- koe9.
+:- koe10.

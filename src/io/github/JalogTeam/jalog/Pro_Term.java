@@ -9,16 +9,18 @@ public class Pro_Term
 {
   static int debug = 0;
   static long lastId = 0;
+  static long lastPrintId = 0;
   
   protected Pro_TermData data;
 //  public Pro_TermData data;
-  public long Id;
+  public long Id, printId;
   
   
   Pro_Term()
   {
     lastId++;
     Id = lastId;
+    printId = 0; // until printed
   }
 
   Pro_Term(Pro_TermData data)
@@ -571,7 +573,11 @@ if(debug>0) System.out.println("* unify2: end " + success);
   {
     if(data == null)
     {
-      return "_" + Id;
+      if (printId == 0) {
+        lastPrintId++;
+        printId = lastPrintId;
+      }
+      return "_" + printId;
     }
     else
     {
@@ -590,7 +596,7 @@ if(debug>0) System.out.println("* unify2: end " + success);
   {
     if(data == null)
     {
-      return "_" + Id;
+      return this.toString();
     }
     else
     {
