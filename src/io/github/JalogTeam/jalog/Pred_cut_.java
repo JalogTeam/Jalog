@@ -6,8 +6,11 @@ import java.io.*;
 
 public class Pred_cut_ extends Pred
 {
+  public static Pred first_call(Pro_TermData_Compound data) {
+    return new Pred_cut_();
+  }
+
   Pred_cut_(){
-    super();
     cut = true;
 
   }

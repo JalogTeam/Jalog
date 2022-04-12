@@ -24,10 +24,19 @@ public class Ops
 
   static Name_Class[] built_in_preds = {
     new Name_Class("foreach_", Pred_foreach_.class),
+    new Name_Class("exit", Pred_exit.class),
+    new Name_Class("write", Pred_write.class),
+    new Name_Class("writeln", Pred_writeln.class),
+    new Name_Class("writeq", Pred_writeq.class),
+    new Name_Class("cut_", Pred_cut_.class),
+    new Name_Class("nl", Pred_writeln.class),
+    new Name_Class("fail", Pred_fail.class),
+    new Name_Class("consult", Pred_consult.class),
+    new Name_Class("consult_dir", Pred_consult_dir.class),
+    new Name_Class("dump_", Pred_dump_.class),
+    new Name_Class("assertz", Pred_assertz.class),
   };
 
-//  static private Stack ConsultedFiles = new Stack();
-  static Hashtable ConsultedFiles = new Hashtable(100);
 
   static Hashtable<String, Method> builtIns = 
       new Hashtable<String, Method>(100);
@@ -36,7 +45,7 @@ public class Ops
       for (int i = 0; i < built_in_preds.length; i++) {
         Name_Class built_in_pred = built_in_preds[i];
         builtIns.put(built_in_pred.name, built_in_pred.pred_class.
-            getMethod("make", Pro_TermData_Compound.class));
+            getMethod("first_call", Pro_TermData_Compound.class));
       }
     } catch (Exception e) {
     }
@@ -84,143 +93,18 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
 // System.out.println("*** cur_pred_make_method exception: " + e);
       }
 
-    // write/*
-
-    } else if(name.equals("write")){ // handle all arities
-      for(int i = 0; i < arity; i++){
-//        System.out.print(data.subterm[i].image());
-        Jalog.out.print(data.subterm[i].image());
-      }
-      // result = new Pred(); // **
-
-    // writeln/*
-
-    } else if(name.equals("writeln")){ // handle all arities
-      for(int i = 0; i < arity; i++){
-//        System.out.print(data.subterm[i].image());
-        Jalog.out.print(data.subterm[i].image());
-      }
-//      System.out.println("");
-      Jalog.out.println("");
-      // result = new Pred(); // **
-
-    // writeq/*
-
-    } else if(name.equals("writeq")){ // handle all arities
-      for(int i = 0; i < arity; i++){
-//        System.out.print(data.subterm[i].toString());
-        Jalog.out.print(data.subterm[i].toString());
-      }
-      // result = new Pred(); // **
-
-    // exit/0, exit/1
-
-    } else if(name.equals("exit") ){
-      Pred.exception = true;
-      Pred.exit_value = null;
-      if(arity > 0) {
-        Pred.exit_value = Pro_Term.m_integer(
-            Pro_Term.eval_integer(data.subterm[0]));
-      } else {
-        Pred.exit_value = Pro_Term.m_integer(0);
-      }
-      
-      // end of multi argument operations
-      
     } else {
       
       switch (arity) {
 
-        case 0: {
-
-          // cut_/0
-
-          if(name.equals("cut_") && (arity == 0)){ 
-// System.out.println("\n--Ops.first_call: cut");
-// Debug_times.enter(2);
-            result = new Pred_cut_();
-// Debug_times.leave(2);
-          
-          // nl/0
-
-          } else if(name.equals("nl")){ 
-//            System.out.println("");
-            Jalog.out.println("");
-            // result = new Pred(); // **
-            
-          // fail/0
-
-          } else if(name.equals("fail")){
-            Pred.forward = false;
-
-          } else {
-            op_found = false;
-          }
-          
-        } break;
         case 1: {
           
           data1 = data.subterm[0].getData();
           
-         // consult/1
-
-          if(name.equals("consult")){ 
-              // consult(String filename) - (i)
-            filename = Consult.identify(data.subterm[0].image());
-// System.out.print("\n--Consulting \"" + data.subterm[0].image() + " -> " + filename + "\"--");
-
-            found = (ConsultedFiles.get(filename) != null);
-/*
-            int size = ConsultedFiles.size();
-            boolean found = false;
-            for(int i = 0; (i < size) && !found; i++){
-              found = filename.equals((String)ConsultedFiles.elementAt(i));
-            }
-*/
-            if(!found) {
-// System.out.print(" starting.\n");
-/*
-              ConsultedFiles.push(filename);
-*/
-              ConsultedFiles.put(filename, "");
-              Consult.consult_file(filename, null);
-              if(Consult.exit_value != null) { // bad file
-                Pred.exception = true;
-                Pred.exit_value = Consult.exit_value;
-              }
-//              ConsultedFiles.pop(); No double consulting
-// System.out.print("\n--Consulting \"" + filename + "\"-- Finished\n");
-            }
-            // result = new Pred(); // **
-            
-          // consult_dir/1
-
-          } else if(name.equals("consult_dir")){
-            if(data1 instanceof Pro_TermData_String_simple) {
-              filename = ((Pro_TermData_String_simple)data1).value;
-              Consult.set_consult_dir(filename);
-            } else if(data1 == null) {
-              filename = Consult.get_consult_dir(); 
-              Pro_TrailMark mark = new Pro_TrailMark();
-              data.subterm[0].unify(Pro_Term.m_string(filename), Pred.trail, mark);
-            } else {
-              Pred.forward = false;
-            }
-
-          // dump/1
-
-          } else if(name.equals("dump")){
-            if(data1 instanceof Pro_TermData_String_simple) {
-              filename = ((Pro_TermData_String_simple)data1).value;
-              Database.dump(filename);
-            } else {
-              Pred.forward = false;
-            }
-            // result = new Pred(); // **
-
           // assertz/1
 
-          } else if(name.equals("assertz")){
+          if(name.equals("assertz")){
+System.out.println("*** assertz");
             Pro_Term term0 = data.subterm[0];
             if(term0.getData() instanceof Pro_TermData_Compound) {
               Database.assertz(term0);
