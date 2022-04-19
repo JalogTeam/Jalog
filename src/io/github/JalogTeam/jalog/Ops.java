@@ -35,8 +35,24 @@ public class Ops
     new Name_Class("consult_dir", Pred_consult_dir.class),
     new Name_Class("dump_", Pred_dump_.class),
     new Name_Class("assertz", Pred_assertz.class),
-  };
+    new Name_Class("not", Pred_not.class),
+    new Name_Class("bound", Pred_bound.class),
+    new Name_Class("free", Pred_free.class),
+    new Name_Class("is_integer", Pred_is_integer.class),
+    new Name_Class("is_real", Pred_is_real.class),
+    new Name_Class("is_char", Pred_is_char.class),
+    new Name_Class("is_string", Pred_is_string.class),
+    new Name_Class("is_compound", Pred_is_compound.class),
+    new Name_Class("is_list", Pred_is_list.class),
+    new Name_Class("dynamic", Pred_dynamic.class),
+    new Name_Class("=", Pred__eq_.class),
+    new Name_Class(">", Pred__cmpr_.class),
+    new Name_Class("<", Pred__cmpr_.class),
+    new Name_Class(">=", Pred__cmpr_.class),
+    new Name_Class("<=", Pred__cmpr_.class),
+    new Name_Class("!=", Pred__cmpr_.class),
 
+  };
 
   static Hashtable<String, Method> builtIns = 
       new Hashtable<String, Method>(100);
@@ -100,133 +116,17 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
         case 1: {
           
           data1 = data.subterm[0].getData();
-          
-          // assertz/1
 
-          if(name.equals("assertz")){
-System.out.println("*** assertz");
-            Pro_Term term0 = data.subterm[0];
-            if(term0.getData() instanceof Pro_TermData_Compound) {
-              Database.assertz(term0);
-            } else {
-              Pred.forward = false;
-            }
-            // result = new Pred(); // **
+// BEGIN TEMPORARY
 
-          // not/1
-
-          } else if(name.equals("not")){
-            Pro_Term[] items = {data.subterm[0]};
-// Debug_times.enter(2);
-            result = new Pred_not();
-// Debug_times.leave(2);
-
-            result.called_body = Pro_Term.m_list(items);
-
-// TEMPORARY!
-          // call/1
-
-          } else if(name.equals("call")){
-            Pro_Term[] items = {data.subterm[0]};
-            result = new Pred();
-
-            result.called_body = Pro_Term.m_list(items);
-
-          } else if(name.equals("z_")){
+          // z_/1          
+          if(name.equals("z_")){
 
             Pred.z_request = true;
             // result = new Pred(); // **
             
 
 // END TEMPORARY
-
-          // bound/1
-
-          } else if(name.equals("bound")){
-            if(data1 != null) {
-              // result = new Pred(); // **
-            } else {
-              Pred.forward = false;
-            }
-
-          // free/1
-
-          } else if(name.equals("free")){
-            if(data1 == null) {
-              // result = new Pred(); // **
-            } else {
-              Pred.forward = false;
-            }
-
-
-          // is_integer/1
-
-          } else if(name.equals("is_integer")){
-            if((data1 != null) && (data1 instanceof Pro_TermData_Integer)) {
-              // result = new Pred(); // **
-            } else {
-              Pred.forward = false;
-            }
-
-          // is_real/1
-
-          } else if(name.equals("is_real")){
-            if((data1 != null) && (data1 instanceof Pro_TermData_Real)) {
-              // result = new Pred(); // **
-            } else {
-              Pred.forward = false;
-            }
-
-          // is_char/1
-
-          } else if(name.equals("is_char")){
-            if((data1 != null) && (data1 instanceof Pro_TermData_Char)) {
-              // result = new Pred(); // **
-            } else {
-              Pred.forward = false;
-            }
-
-          // is_string/1
-
-          } else if(name.equals("is_string")){
-            if((data1 != null) && (data1 instanceof Pro_TermData_String_simple)) {
-              // result = new Pred(); // **
-            } else {
-              Pred.forward = false;
-            }
-
-          // is_compound/1
-
-          } else if(name.equals("is_compound")){
-            if((data1 != null) && (data1 instanceof Pro_TermData_Compound)) {
-              // result = new Pred(); // **
-            } else {
-              Pred.forward = false;
-            }
-
-          // is_list/1
-
-          } else if(name.equals("is_list")){
-            if((data1 != null) && (data1 instanceof Pro_TermData_List)) {
-              // result = new Pred(); // **
-            } else {
-              Pred.forward = false;
-            }
-
-          // dynamic/1
-
-          } else if(name.equals("dynamic")){
-            Pro_Term term0 = data.subterm[0];
-            Pro_TermData arg = term0.getData();
-            if(arg instanceof Pro_TermData_String_simple) {
-              String key = ((Pro_TermData_String_simple)arg).value;
-              Database.define_by_string(key);      
-            } else {
-              System.out.println("*** Error: dynamic: Argument must be a " +
-                  "string containing functor/arity");
-              Pred.forward = false;
-            }
-            // result = new Pred(); // **
 
           } else {
             op_found = false;
@@ -238,6 +138,7 @@ System.out.println("*** assertz");
           // =/2
 
           if(name.equals("=")){
+System.out.println("*** old =");
 // Debug_times.enter(2);
             result = new Pred__eq_(data);
 // Debug_times.leave(2);
@@ -260,148 +161,9 @@ System.out.println("*** assertz");
               Pred.exit_value = Consult.exit_value;
             }
             
-          // ">"/2
 
           } else {
-            Op = ' ';
-            if(name.equals(">")) { Op = '>'; }
-            if(name.equals("<")) { Op = '<'; }
-            if(name.equals(">=")) { Op = 'G'; }
-            if(name.equals("<=")) { Op = 'L'; }
-            if(name.equals("!=")) { Op = 'N'; }
-            
-            if (Op != ' ') {
-  // Debug_times.enter(2);
-              Pro_Term tmp1 = new Pro_Term();
-              Pro_Term tmp2 = new Pro_Term();
-  // Debug_times.leave(2);
-              tmp1.compval(data.subterm[0]);
-              tmp2.compval(data.subterm[1]);
-
-              data1 = tmp1.getData();
-              data2 = tmp2.getData();
-
-              T1 = ' ';
-              T2 = ' ';
-              Tv = ' ';
-              if(data1 instanceof Pro_TermData_Integer){
-                T1 = 'i';
-                I1 = ((Pro_TermData_Integer)data1).value;
-                Tv = 'i';
-              } else if(data1 instanceof Pro_TermData_Real) {
-                T1 = 'r';
-                R1 = ((Pro_TermData_Real)data1).value;
-                Tv = 'r';
-              } else if(data1 instanceof Pro_TermData_Char) {
-                T1 = 'c';
-                C1 = ((Pro_TermData_Char)data1).value;
-                Tv = 'c';
-              } else if(data1 instanceof Pro_TermData_String) {
-                T1 = 's';
-                S1 = (Pro_TermData_String)data1;
-                Tv = 's';
-              } else if((data1 instanceof Pro_TermData_Compound) && 
-                  (((Pro_TermData_Compound)data1).arity == 0)) {
-                T1 = 'y';
-                N1 = ((Pro_TermData_Compound)data1).name;
-                Tv = 'y';
-              }
-              if(Tv != ' ') {
-                if(data2 instanceof Pro_TermData_Integer){
-                  T2 = 'i';
-                  I2 = ((Pro_TermData_Integer)data2).value;
-                  Tv = (T1 == 'i' ? 'i': T1 == 'r' ? 'r' : ' ');
-                } else if(data2 instanceof Pro_TermData_Real) {
-                  T2 = 'r';
-                  R2 = ((Pro_TermData_Real)data2).value;
-                  Tv = (T1 == 'i' ? 'r': T1 == 'r' ? 'r' : ' ');
-                } else if(data2 instanceof Pro_TermData_Char) {
-                  T2 = 'c';
-                  C2 = ((Pro_TermData_Char)data2).value;
-                  Tv = (T1 == 'c' ? 'c': ' ');
-                } else if(data2 instanceof Pro_TermData_String) {
-                  T2 = 's';
-                  S2 = (Pro_TermData_String)data2;
-                  Tv = (T1 == 's' ? 's': ' ');
-                } else if(data2 instanceof Pro_TermData_Compound && 
-                    (((Pro_TermData_Compound)data2).arity == 0)) {
-                  T2 = 'y';
-                  N2 = ((Pro_TermData_Compound)data2).name;
-//                  Tv = (T1 == 'y' ? 's': ' ');
-                  Tv = (T1 == 'y' ? 'y': ' ');
-                } else {
-                  Tv = ' ';
-                }
-                if(Tv != ' ') {
-                  if(Tv == 'r') { // real comparison
-                    if(T1 == 'i') {
-                      R1 = I1;
-                    }
-                    if(T2 == 'i') {
-                      R2 = I2;
-                    }
-                    switch(Op) {
-                      case '>': Bv = (R1 > R2); break;
-                      case '<': Bv = (R1 < R2); break;
-                      case 'G': Bv = (R1 >= R2); break;
-                      case 'L': Bv = (R1 <= R2); break;
-                      case 'N': Bv = (R1 != R2); break;
-                      default: Tv = ' '; // No result for others
-                    }
-                  } else if(Tv == 'i') { // integer comparison
-                    switch(Op) {
-                      case '>': Bv = (I1 > I2); break;
-                      case '<': Bv = (I1 < I2); break;
-                      case 'G': Bv = (I1 >= I2); break;
-                      case 'L': Bv = (I1 <= I2); break;
-                      case 'N': Bv = (I1 != I2); break;
-                      default: Tv = ' '; // No result for others
-                    }
-                  } else if(Tv == 'c') { // character comparison
-                    switch(Op) {
-                      case '>': Bv = (C1 > C2); break;
-                      case '<': Bv = (C1 < C2); break;
-                      case 'G': Bv = (C1 >= C2); break;
-                      case 'L': Bv = (C1 <= C2); break;
-                      case 'N': Bv = (C1 != C2); break;
-                      default: Tv = ' '; // No result for others
-                    }
-                  } else if(Tv == 's') { // string comparison
-//                    I1 = S1.compareTo(S2);
-                    I1 = Pro_TermData_String.compare_strings(S1, S2);
-                    switch(Op) {
-                      case '>': Bv = (I1 > 0); break;
-                      case '<': Bv = (I1 < 0); break;
-                      case 'G': Bv = (I1 >= 0); break;
-                      case 'L': Bv = (I1 <= 0); break;
-                      case 'N': Bv = (I1 != 0); break;
-                      default: Tv = ' '; // No result for others
-                    }
-                  } else if(Tv == 'y') { // string comparison
-                    I1 = N1.compareTo(N2);
-                    switch(Op) {
-                      case '>': Bv = (I1 > 0); break;
-                      case '<': Bv = (I1 < 0); break;
-                      case 'G': Bv = (I1 >= 0); break;
-                      case 'L': Bv = (I1 <= 0); break;
-                      case 'N': Bv = (I1 != 0); break;
-                      default: Tv = ' '; // No result for others
-                    }
-                  }
-                }
-                
-              }
-              if (Tv != ' ') {
-                Pred.forward = Bv;
-              } else {
-                Pred.forward = false;
-              }
-              if (Pred.forward) {
-                // result = new Pred(); 
-              }
-            } else {
-              op_found = false;
-            }
+            op_found = false;
           }
         } break;
         case 3: {

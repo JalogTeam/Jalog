@@ -9,6 +9,16 @@ public class Pred__eq_ extends Pred
   public Pro_Term Left;
   public Pro_Term Right;
 
+  public static Pred first_call(Pro_TermData_Compound data) {
+
+// Debug_times.enter(2);
+    Pred__eq_ result = new Pred__eq_(data);
+// Debug_times.leave(2);
+    result.call();
+
+    return result;
+  }
+
   Pred__eq_(Pro_TermData_Compound data)
   {
  
