@@ -51,7 +51,8 @@ public class Ops
     new Name_Class(">=", Pred__cmpr_.class),
     new Name_Class("<=", Pred__cmpr_.class),
     new Name_Class("!=", Pred__cmpr_.class),
-
+    new Name_Class("consult_data", Pred_consult_data.class),
+//    new Name_Class("concat", Pred_concat.class),
   };
 
   static Hashtable<String, Method> builtIns = 
@@ -133,39 +134,6 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
           }
           
         } break;
-        case 2: {
-
-          // =/2
-
-          if(name.equals("=")){
-System.out.println("*** old =");
-// Debug_times.enter(2);
-            result = new Pred__eq_(data);
-// Debug_times.leave(2);
-            result.call();
-         
-
-          // consult_data/2
-
-          } else if(name.equals("consult_data")){ 
-              // consult(String filename) - (i)
-            filename = data.subterm[0].image();
-            Pro_Term filter_list = data.subterm[1];
-            String[] filter = ((Pro_TermData_List)filter_list.data). 
-                toStringList();
-// System.out.println("\n--Consulting data \"" + filename + "\" filter[0]: " + filter[0]);
-            Consult.consult_file(filename, filter);
-//System.out.println("\n--Consulted data \"" + filename + "\"--");
-            if(Consult.exit_value != null) { // bad file
-              Pred.exception = true;
-              Pred.exit_value = Consult.exit_value;
-            }
-            
-
-          } else {
-            op_found = false;
-          }
-        } break;
         case 3: {
           
           // trap/3
@@ -181,9 +149,10 @@ System.out.println("*** old =");
             ((Pred_trap)result).exit_var = data.subterm[1];
             ((Pred_trap)result).catch_body = Pro_Term.m_list(catch_items);
           
-          // concat/3
+          //  /3
 
           } else if (name.equals("concat")){
+// System.out.println("*** old concat");
             Pro_Term left_term = data.subterm[0].getRealNode();
             Pro_Term right_term = data.subterm[1].getRealNode();
             Pro_Term result_term = data.subterm[2].getRealNode();

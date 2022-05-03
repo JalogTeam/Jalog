@@ -2,8 +2,12 @@ Uutta
 =====
 
 
-Projektitilanne 2021-10-26
+Projektitilanne 2022-05-03
 ==========================
+Muuta ihmeteltävää
+------------------
+Yritettiin vaihtaa Pred_concat'issa Pred__eq_:n käyttö suoraan unifikaattorin kutsuksi, mutta ei saatu toimimaan.
+
 
 Ennen riliisiä
 --------------
