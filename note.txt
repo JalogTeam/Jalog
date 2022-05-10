@@ -8,6 +8,8 @@ Muuta ihmeteltävää
 ------------------
 Yritettiin vaihtaa Pred_concat'issa Pred__eq_:n käyttö suoraan unifikaattorin kutsuksi, mutta ei saatu toimimaan.
 
+Systemaattinen menettely, jos built-in predikaatissa on väärä määrä parametreja.
+
 
 Ennen riliisiä
 --------------

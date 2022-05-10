@@ -54,6 +54,7 @@ public class Ops
     new Name_Class("consult_data", Pred_consult_data.class),
     new Name_Class("concat", Pred_concat.class),
     new Name_Class("trap", Pred_trap.class),
+    new Name_Class("substring", Pred_substring.class),
   };
 
   static Hashtable<String, Method> builtIns = 
@@ -78,19 +79,8 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
     Pro_TermData_Compound data = (Pro_TermData_Compound) pred_call.getData();
     String name = data.name;
     int arity = data.arity;
-    boolean op_found = true;
-    
-    Pro_TermData data1, data2, data3, data4;
+    boolean op_found = false;
 
-    char Op;
-    double R1 = 0.0, R2 = 0.0;
-    long I1 = 0, I2 = 0;
-    char T1, T2, Tv, C1 = ' ', C2 = ' ';
-    String N1 = "", N2 = "";
-    Pro_TermData_String S1 = null, S2 = null;
-    boolean Bv = false;
-    String filename;
-    boolean found = false;
     Method cur_pred_make_method;
     
     if(!(data instanceof Pro_TermData_Compound)){
@@ -103,6 +93,7 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
 
     cur_pred_make_method = builtIns.get(name);
     if (cur_pred_make_method != null) {
+      op_found = true;
 // System.out.println("*** cur_pred_make_method got");
       try {
         result = (Pred)cur_pred_make_method.invoke(null, data);
@@ -111,121 +102,6 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
 // System.out.println("*** cur_pred_make_method exception: " + e);
       }
 
-    } else {
-      
-      switch (arity) {
-
-        case 1: {
-          
-          data1 = data.subterm[0].getData();
-
-// BEGIN TEMPORARY
-
-          // z_/1          
-          if(name.equals("z_")){
-
-            Pred.z_request = true;
-            // result = new Pred(); // **
-            
-
-// END TEMPORARY
-
-          } else {
-            op_found = false;
-          }
-          
-        } break;
-        case 3: {
-          
-          // trap/3
-
-          if(name.equals("trap")){
-            
-System.out.println("****** old trap ******");            
-            
-            Pro_Term[] items = {data.subterm[0]};
-            Pro_Term[] catch_items = {data.subterm[2]};
-// Debug_times.enter(2);
-            result = new Pred_trap();
-// Debug_times.leave(2);
-
-            result.called_body = Pro_Term.m_list(items);
-            ((Pred_trap)result).exit_var = data.subterm[1];
-            ((Pred_trap)result).catch_body = Pro_Term.m_list(catch_items);
-          
-
-          } else {
-            op_found = false;
-          }
-          
-        } break;
-        case 4: {
-
-          data1 = data.subterm[0].getData();
-          data2 = data.subterm[1].getData();
-          data3 = data.subterm[2].getData();
-          data4 = data.subterm[3].getData();
- 
-          // substring/4
-
-          if(name.equals("substring")){
-            // substring(Str_in,Pos,Len,Str_out)
-            
-// data1 must be string!
-// ---------------------
-/*            
-System.out.println("** substring: " + 
-"\n   data1=" + data1 + 
-"\n   data2=" + data2 + 
-"\n   data3=" + data3 + 
-"\n   data4=" + data4); 
-*/            
-            if ( (data1 == null) || (data1.typename != Jalog.STRING) ) {
-              Pred.forward = false;
-            } else if ( data2 != null) {
-            
-              
-              long pos = Pro_Term.eval_integer(data.subterm[1]);
-              long len = Pro_Term.eval_integer(data.subterm[2]);
-              
-//            Pro_Term pos = data.subterm[1];
-//            Pro_Term len = data.subterm[2];
-              Pro_Term str_out = data.subterm[3];
-   
-              Pro_Term so = Pro_Term.m_string_substring(
-                  (Pro_TermData_String)data1,
-                  pos, len);
-//                ((Pro_TermData_Integer)pos.data).value,
-//                ((Pro_TermData_Integer)len.data).value);
-              
-              Pro_Term[] to_be_compared = {so, str_out};            
-              Pro_TermData_Compound compare_data = 
-                  new Pro_TermData_Compound("=", to_be_compared);
-Pro_Term.debug = 0;
-              result = new Pred__eq_(compare_data);
-              result.call();
-Pro_Term.debug = 0;
-
-            } else {
-              if (data4 instanceof Pro_TermData_String) {
-                result = new Pred_substring(data);
-                if(Pred.forward) result.call();
-              }
-            }
-          } else {
-             op_found = false;
-          }
-               
-        } break;
-        
-        
-        
-        default: {
-          op_found = false;
-        } break;
-        
-      }
-      
     }
     
     if (!op_found) {
@@ -235,8 +111,6 @@ Pro_Term.debug = 0;
 // Debug_times.enter(2);
       result = new Pred_fetch_(pred_call);
 // Debug_times.leave(2);
-// System.out.println("  Ops.call_forward 2 " + result);
-//      result.call();
 // System.out.println("  Ops.call_forward 3");
 // System.out.println("  Ops.call_forward EXIT");
 // Debug_times.leave(3);

@@ -4,11 +4,52 @@ package io.github.JalogTeam.jalog;
 
 import java.io.*;
 
+// substring(Str_in,Pos,Len,Str_out)
+
+
 public class Pred_substring extends Pred
 {
   private Pro_TermData_String Str_in, Str_out;
   private Pro_Term Pos, Len;
   private long end_pos, cur_pos;
+
+  public static Pred first_call(Pro_TermData_Compound data) {
+
+    Pred result = null;
+    Pro_Term str_in_term = data.subterm[0].getRealNode();
+    Pro_Term pos_term = data.subterm[1].getRealNode();
+    Pro_Term len_term = data.subterm[2].getRealNode();
+    Pro_Term str_out_term = data.subterm[3].getRealNode();
+
+    if ( (str_in_term.data == null) || 
+        (str_in_term.data.typename != Jalog.STRING) ) 
+    {
+      Pred.forward = false;
+    } else if ( pos_term.data != null) {
+            
+              
+      long pos = Pro_Term.eval_integer(pos_term);
+      long len = Pro_Term.eval_integer(len_term);
+   
+      Pro_Term so = Pro_Term.m_string_substring(
+          (Pro_TermData_String)(str_in_term.data), pos, len);
+              
+      Pro_Term[] to_be_compared = {so, str_out_term};            
+      Pro_TermData_Compound compare_data = 
+          new Pro_TermData_Compound("=", to_be_compared);
+Pro_Term.debug = 0;
+      result = new Pred__eq_(compare_data);
+      result.call();
+Pro_Term.debug = 0;
+
+    } else {
+      if (str_out_term.data instanceof Pro_TermData_String) {
+        result = new Pred_substring(data);
+        if(Pred.forward) result.call();
+      }
+    }
+    return result;
+  }
 
   Pred_substring(Pro_TermData_Compound data)
   {
