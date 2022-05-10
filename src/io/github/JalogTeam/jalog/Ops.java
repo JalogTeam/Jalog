@@ -53,6 +53,7 @@ public class Ops
     new Name_Class("!=", Pred__cmpr_.class),
     new Name_Class("consult_data", Pred_consult_data.class),
     new Name_Class("concat", Pred_concat.class),
+    new Name_Class("trap", Pred_trap.class),
   };
 
   static Hashtable<String, Method> builtIns = 
@@ -139,6 +140,9 @@ if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == f
           // trap/3
 
           if(name.equals("trap")){
+            
+System.out.println("****** old trap ******");            
+            
             Pro_Term[] items = {data.subterm[0]};
             Pro_Term[] catch_items = {data.subterm[2]};
 // Debug_times.enter(2);
