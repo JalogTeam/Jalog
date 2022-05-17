@@ -9,11 +9,14 @@ public class Pred
   static boolean forward;
   static boolean cutting;
   static boolean exception;
+  static boolean op_found;
   static Pro_Term exit_value;
 
 // TEMPORARY!
   static boolean z_request;
-  
+/* #arity_info_test           
+  public static final int z_number = 1;
+*/  
 
   public static Pro_Trail trail;
 

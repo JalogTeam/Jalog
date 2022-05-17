@@ -6,9 +6,14 @@ Projektitilanne 2022-05-03
 ==========================
 Muuta ihmeteltävää
 ------------------
+Systemaattinen menettely, jos built-in predikaatissa on väärä määrä parametreja.
+
 Yritettiin vaihtaa Pred_concat'issa Pred__eq_:n käyttö suoraan unifikaattorin kutsuksi, mutta ei saatu toimimaan.
 
-Systemaattinen menettely, jos built-in predikaatissa on väärä määrä parametreja.
+Ops'in hashtableen avaimeksi valmiiksi tehty hash-int, suorituksen nopeuttamiseksi.
+
+Konsultoitaessa hyvä tunnista built-init, antaa niille hash-koodit ja tehdä sama
+myös database-predikaateille.
 
 
 Ennen riliisiä

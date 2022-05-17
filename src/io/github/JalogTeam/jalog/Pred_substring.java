@@ -9,6 +9,9 @@ import java.io.*;
 
 public class Pred_substring extends Pred
 {
+/* #arity_info_test           
+public static final int z_number = 5;  
+*/  
   private Pro_TermData_String Str_in, Str_out;
   private Pro_Term Pos, Len;
   private long end_pos, cur_pos;
