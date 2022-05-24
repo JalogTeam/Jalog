@@ -55,6 +55,12 @@ koe4c :- write("koe4c: "),
     write("Ok"), 
     nl.
 
+% substring wrong length
+koe4d :- write("koe4d: "),
+    not(substring("ABCDEF", Pos, 3, "BCDE")), % substring fails
+    write("Ok"), 
+    nl.
+
 koe5 :- write("koe5: "), concat("ABC", "DEF", A), 
     substring(A, 1, 4, "BCDE"), 
     write("Ok"), nl.  % should get "Ok" 
@@ -272,6 +278,7 @@ koe10 :- writeln("koe10 end").
 :- koe4a.
 :- koe4b.
 :- koe4c.
+:- koe4d.
 :- koe5.
 :- koe6.
 :- koe7.

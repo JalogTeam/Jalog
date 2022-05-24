@@ -35,6 +35,11 @@ public class Pro_Term
     return unify2(pn2, pBack, Mark);
   }
   
+  public boolean unify(Pro_Term pn2, Pro_Trail pBack)
+  {
+    return unify2(pn2, pBack, null);
+  }
+  
   public boolean match(Pro_Term pn2)
   {
     return unify2(pn2, null, null);

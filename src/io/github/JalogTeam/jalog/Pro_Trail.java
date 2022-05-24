@@ -13,8 +13,10 @@ public class Pro_Trail
   
   void mark(Pro_TrailMark Mark)// = pBack.top;
   {
-    Mark.marked = top_item;
+    if (Mark != null) {
+      Mark.marked = top_item;
               // System.out.println("Trail.mark: " + Mark.marked);
+    }
   }
 
 
