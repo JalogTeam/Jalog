@@ -11,7 +11,8 @@ public class Pred_assertz extends Pred
 
     Pro_Term term0 = data.subterm[0];
 
-    if(term0.getData() instanceof Pro_TermData_Compound) {
+    Pro_TermData data0 = term0.getData();
+    if((data0 instanceof Pro_TermData_Compound) && !((Pro_TermData_Compound)data0).name.equals(":-")) {
       Database.assertz(term0);
     } else {
       Pred.forward = false;

@@ -47,6 +47,7 @@ public class Ops
     new Name_Class("consult_dir", Pred_consult_dir.class, 1),
     new Name_Class("dump_", Pred_dump_.class, 1),
     new Name_Class("assertz", Pred_assertz.class, 1),
+    new Name_Class("assert", Pred_assertz.class, 1),
     new Name_Class("not", Pred_not.class, 1),
     new Name_Class("bound", Pred_bound.class, 1),
     new Name_Class("free", Pred_free.class, 1),

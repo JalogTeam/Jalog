@@ -1,12 +1,18 @@
-koe1 a: *** Unknown predicate: data/1
-;
+*Yes*
+*Yes*
+*Yes*
+koe1 a: ;
 koe1 b: ;
 koe1 c:  10 20 40;
 *Yes*
 koe2 alku
-assertoitu
-  oho!
-  Wow!
-l�ytyi
+ei löytynyt
+*Yes*
+koe3 a: ;
+koe3 b: ;
+koe3 c:  10 20 40;
+*Yes*
+koe4 alku
+ei löytynyt
 *Yes*
 Exit status: 0 ; 
