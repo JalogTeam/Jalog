@@ -51,6 +51,7 @@ public class Ops
     new Name_Class("not", Pred_not.class, 1),
     new Name_Class("bound", Pred_bound.class, 1),
     new Name_Class("free", Pred_free.class, 1),
+    new Name_Class("findall", Pred_findall.class, 3),
     new Name_Class("is_integer", Pred_is_integer.class, 1),
     new Name_Class("is_real", Pred_is_real.class, 1),
     new Name_Class("is_char", Pred_is_char.class, 1),

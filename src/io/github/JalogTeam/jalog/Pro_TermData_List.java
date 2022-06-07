@@ -55,8 +55,17 @@ public class Pro_TermData_List extends Pro_TermData
           Pro_TermData_List next_data = (Pro_TermData_List)(next.getData());
           if(next_data != EMPTY)
           {
-            results += ("," + next_data.t1.toString());
-            next = next_data.t2.getRealNode();
+            if(next_data.t1 != null) {
+              results += ("," + next_data.t1.toString());
+            } else {
+              results += ", #null#";
+            }
+            if(next_data.t2 != null) {            
+              next = next_data.t2.getRealNode();
+            } else {
+              next = null;
+              results += "| #null#";
+            }
           }
           else
           {
