@@ -12,65 +12,6 @@ import java.lang.reflect.Method;
 
 public class Ops
 {
-  private static class Name_Class {
-    String name;
-    Class pred_class;
-    int min_arity;
-    int max_arity;
-    
-    Name_Class(String name, Class pred_class, int min_arity, int max_arity) {
-      this.name = name;
-      this.pred_class = pred_class;
-      this.min_arity = min_arity;
-      this.max_arity = max_arity;
-    }
-    
-    Name_Class(String name, Class pred_class, int arity) {
-      this(name, pred_class, arity, arity);
-    }
-    
-    Name_Class(String name, Class pred_class) {
-      this(name, pred_class, 0, Integer.MAX_VALUE);
-    }
-  };
-
-  static Name_Class[] built_in_preds = {
-    new Name_Class("foreach_", Pred_foreach_.class, 2),
-    new Name_Class("exit", Pred_exit.class, 0, 1),
-    new Name_Class("write", Pred_write.class),
-    new Name_Class("writeln", Pred_writeln.class),
-    new Name_Class("writeq", Pred_writeq.class),
-    new Name_Class("cut_", Pred_cut_.class, 0),
-    new Name_Class("nl", Pred_writeln.class, 0),
-    new Name_Class("fail", Pred_fail.class, 0),
-    new Name_Class("consult", Pred_consult.class, 1),
-    new Name_Class("consult_dir", Pred_consult_dir.class, 1),
-    new Name_Class("dump_", Pred_dump_.class, 1),
-    new Name_Class("assertz", Pred_assertz.class, 1),
-    new Name_Class("assert", Pred_assertz.class, 1),
-    new Name_Class("not", Pred_not.class, 1),
-    new Name_Class("bound", Pred_bound.class, 1),
-    new Name_Class("free", Pred_free.class, 1),
-    new Name_Class("findall", Pred_findall.class, 3),
-    new Name_Class("is_integer", Pred_is_integer.class, 1),
-    new Name_Class("is_real", Pred_is_real.class, 1),
-    new Name_Class("is_char", Pred_is_char.class, 1),
-    new Name_Class("is_string", Pred_is_string.class, 1),
-    new Name_Class("is_compound", Pred_is_compound.class, 1),
-    new Name_Class("is_list", Pred_is_list.class, 1),
-    new Name_Class("dynamic", Pred_dynamic.class, 1),
-    new Name_Class("=", Pred__eq_.class, 2),
-    new Name_Class(">", Pred__cmpr_.class, 2),
-    new Name_Class("<", Pred__cmpr_.class, 2),
-    new Name_Class(">=", Pred__cmpr_.class, 2),
-    new Name_Class("<=", Pred__cmpr_.class, 2),
-    new Name_Class("!=", Pred__cmpr_.class, 2),
-    new Name_Class("consult_data", Pred_consult_data.class, 2),
-    new Name_Class("concat", Pred_concat.class, 3),
-    new Name_Class("trap", Pred_trap.class, 3),
-    new Name_Class("substring", Pred_substring.class, 4),
-  };
-
   private static class BuiltInInfo {
     Method make_method;
     int min_arity;
@@ -82,8 +23,8 @@ public class Ops
       new Hashtable<String, BuiltInInfo>(100);
   static {
     try {
-      for (int i = 0; i < built_in_preds.length; i++) {
-        Name_Class built_in_pred = built_in_preds[i];
+      for (int i = 0; i < BuiltIns.list.length; i++) {
+        ClassInfo built_in_pred = BuiltIns.list[i];
         built_in_info = new BuiltInInfo();
         built_in_info.make_method = built_in_pred.pred_class.
             getMethod("first_call", Pro_TermData_Compound.class);

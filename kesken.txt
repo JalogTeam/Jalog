@@ -1,5 +1,24 @@
 Kesken
+======
+Selitettävät kirjastot
+----------------------
+(Parametri- ja muuttujamäärittelyt)
+Pro_TermData_Compound
+Pro_Term
+Pro_Trail
+Pro_TrailMark
+Pred
+Pro_TermData + kaikki alityypit
 
+(Pred-alkuisista pisteet)
+Database
+ConsultedFiles
+Consult
+Database_FactClass
+
+
+
+----------------------
 Pro_Term.java
   tarkista kaikki Pro_TermData_simple
   

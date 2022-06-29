@@ -50,6 +50,10 @@ public class Pred
     called_body = null;
   }
 
+  public static Pred first_call(Pro_TermData_Compound data) {
+    return null;
+  }
+  
   public void call()
   {
 // System.out.println("Pred.call");
