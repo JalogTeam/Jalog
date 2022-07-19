@@ -452,7 +452,6 @@ public class Jalog
       
       throw new Exit(exit_status);
     }
-//    Pred.trail.backtrack(I.Mark); // clear variables
     return retval;
   }
 }

@@ -1,5 +1,8 @@
 Kesken
 ======
+Tiedosto: Pro_Term_class_doc.html - Method Summary valmis
+Method Detail aloittamatta.
+
 Selitettävät kirjastot
 ----------------------
 (Parametri- ja muuttujamäärittelyt)

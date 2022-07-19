@@ -1,22 +1,24 @@
-koe1: 'A'|
+koe1: |'A'|
 *Yes*
-koe2: a('b','c')d|
+koe2: |a('b','c')d|
 *Yes*
-koe3: 1234567890|
+koe3: |1234567890|
 *Yes*
-koe4a: []|
+koe4a: |[]|
 *Yes*
-koe4b: ['a']|
+koe4b: |['a']|
 *Yes*
-koe4c: ['a','b']|
+koe4c: |['a','b']|
 *Yes*
-koe4d: ['c','d']|
+koe4d: |['c','d']|
 *Yes*
-koe4e: ['e','f','g','h']|
+koe4e: |['e','f','g','h']|
 *Yes*
-koe4f: ['c',[],'d']|
+koe4f: |['c',[],'d']|
 *Yes*
-koe5: 3.14159|
+koe4g: |['c',[]|'d']|
+*Yes*
+koe5: |3.14159|
 *Yes*
 koe6a: |""|
 *Yes*
@@ -24,10 +26,10 @@ koe6b: |"string"|
 *Yes*
 koe7a: |_1|
 *Yes*
-koe7b: |_2|
+koe7b: |_2|_2|
 *Yes*
-koe10: 'a''b'|
+koe10: |'a''b'|
 *Yes*
-koe11: |
+koe11: ||
 *Yes*
 Exit status: 0 ; 

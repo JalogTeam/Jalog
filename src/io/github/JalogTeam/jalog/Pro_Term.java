@@ -28,6 +28,7 @@ public class Pro_Term
     lastId++;
     Id = lastId;
     this.data = data;
+    printId = 0; // until printed
   }
 
   public boolean unify(Pro_Term pn2, Pro_Trail pBack, Pro_TrailMark Mark)

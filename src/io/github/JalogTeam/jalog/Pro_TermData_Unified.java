@@ -13,7 +13,7 @@ public class Pro_TermData_Unified extends Pro_TermData
   
   public String toString()
   {
-      return "{" + pValue.toString() + "}";
+      return pValue.toString();
   }
   
   public String image()
