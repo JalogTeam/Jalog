@@ -6,6 +6,8 @@ Projektitilanne 2022-05-03
 ==========================
 Muuta ihmetelt‰v‰‰
 ------------------
+Pro_Term.java: funktion compval nimi voisi olla ehk‰ kuvaavampi. Funktiota k‰ytet‰‰n muuhunkin kuin lausekkeen laskemiseen.
+
 Systemaattinen menettely, jos built-in predikaatissa on v‰‰r‰ m‰‰r‰ parametreja.
 
 Yritettiin vaihtaa Pred_concat'issa Pred__eq_:n k‰yttˆ suoraan unifikaattorin kutsuksi, mutta ei saatu toimimaan.
