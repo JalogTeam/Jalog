@@ -8,6 +8,8 @@ public abstract class Pro_TermData
 {
   public String typename;
   
+  public abstract String toString();
+
   public String image()
   {
     return toString();
@@ -17,6 +19,6 @@ public abstract class Pro_TermData
   {
     return this;
   }
-
+  
 } // end class Pro_TermData
 
