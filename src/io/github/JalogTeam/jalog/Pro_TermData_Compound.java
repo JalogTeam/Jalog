@@ -14,11 +14,37 @@ public class Pro_TermData_Compound extends Pro_TermData
   
   static final int MAX_DEPTH = 1000;
   
+  private final Pro_Term[] no_subterms = {};
+  
+  Pro_TermData_Compound(String iniName)
+  {
+    name = iniName;
+    arity = 0;
+    typename = Jalog.SYMBOL;
+    subterm = no_subterms;
+  }
+
   Pro_TermData_Compound(String iniName, Pro_Term[] iniSubterm)
   {
     name = iniName;
-    arity = (byte)(iniSubterm.length);
-    typename = (arity == 0 ? Jalog.SYMBOL : Jalog.COMPOUND);
+    if (iniSubterm != null) {
+      arity = (byte)(iniSubterm.length);
+      typename = (arity == 0 ? Jalog.SYMBOL : Jalog.COMPOUND);
+      subterm = iniSubterm;
+    } else {
+      arity = 0;
+      typename = Jalog.SYMBOL;
+      subterm = no_subterms;
+    }
+  }
+
+  Pro_TermData_Compound(String iniName, Pro_Term sub)
+  {
+    Pro_Term[] iniSubterm = {sub};
+    
+    name = iniName;
+    arity = (byte)1;
+    typename = Jalog.COMPOUND;
     
     subterm = iniSubterm;
   }
