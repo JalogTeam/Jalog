@@ -12,7 +12,7 @@ public class Pro_TermData_List extends Pro_TermData
   public static final Pro_TermData_List EMPTY;
   static { EMPTY = new Pro_TermData_List(null,null);}
 
-  Pro_TermData_List(Pro_Term head, Pro_Term tail)
+  public Pro_TermData_List(Pro_Term head, Pro_Term tail)
   {
     typename = Jalog.LIST;
     t1 = head;

@@ -1,7 +1,11 @@
 Kesken
 ======
-Tiedosto: Pro_Term_class_doc.html - Method Summary valmis
-Method Detail aloittamatta.
+
+Huom!
+-----
+
+* Pro_TermData_Char'in toString ei ehkä selviä kontrollimerkeistä kunnialla.
+
 
 Selitettävät kirjastot
 ----------------------
@@ -22,6 +26,12 @@ Database_FactClass
 
 
 ----------------------
+Pro_TermData
+  typename - jos laittaisi final'iksi
+
+  Alityypeissä data-arvo final'iksi - asetetaan konstruktorissa           
+  
+
 Pro_Term.java
   tarkista kaikki Pro_TermData_simple
   
