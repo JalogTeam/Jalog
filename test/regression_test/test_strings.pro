@@ -7,7 +7,8 @@
 
 % substring(Str_in,Pos,Len,Str_out)
 
-koe1 :- write("koe1: "), substring("ABCDEF", 2, 3, A), writeq(A),nl. % should get "CDE"
+koe1 :- write("koe1: "), substring("ABCDEF", 2, 3, A), writeq(A),
+    write(" |", A, "|"), nl. % should get "CDE"
 
 koe2 :- write("koe2: "), concat("ABC", "DEF", A), writeq(A), nl. % should get "ABCCDE"
 koe3 :- write("koe3.a: "), concat("ABC", "DEF", "ABCDXF"), write("Error"), !, 
