@@ -11,7 +11,7 @@ public class Pro_TermData_String_concat extends Pro_TermData_String
   Pro_TermData_String_concat(Pro_TermData_String left, 
       Pro_TermData_String right)
   {
-    super(CONCATENATED, left.len + right.len);
+    super(left.len + right.len);
 
     this.left = left;
     this.right = right;
@@ -41,9 +41,9 @@ public class Pro_TermData_String_concat extends Pro_TermData_String
       start = 0;
     }
     // viimeinen indeksi this.start + this.len
-    if (start > this.start + this.len) len = 0;
-    if (start + len > this.start + this.len) 
-        len = this.start + this.len - start;
+    if (start > this.len) len = 0;
+    if (start + len > this.len) 
+        len = this.len - start;
     if(len > 0) {
       if (start + len < left.len) {
         return left.substring(start, len);
@@ -69,9 +69,9 @@ public class Pro_TermData_String_concat extends Pro_TermData_String
       start = 0;
     }
     // viimeinen indeksi this.start + this.len
-    if (start > this.start + this.len) len = 0;
-    if (start + len > this.start + this.len) 
-        len = this.start + this.len - start;
+    if (start > this.len) len = 0;
+    if (start + len > this.len) 
+        len = this.len - start;
     if(len > 0) {
       if (start + len < left.len) {
         left.appendSubstring(buffer, start, len);
@@ -87,6 +87,15 @@ public class Pro_TermData_String_concat extends Pro_TermData_String
   public String structure() {
     return "c(" + len + "," + left.structure() + "," + 
         right.structure() + ")";
+  }
+
+  protected void get_string_part(long p)
+  {
+    if (p < left.len) {
+      left.get_string_part(p);
+    } else {
+      right.get_string_part(p - left.len);
+    }
   }
   
 } // end class Pro_TermData_String_concat

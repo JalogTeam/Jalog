@@ -9,7 +9,7 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
  
   Pro_TermData_String_simple(String iniVal)
   {
-    super(SIMPLE, iniVal.length());
+    super(iniVal.length());
     
     this.value = iniVal;
   }
@@ -26,7 +26,8 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
   {
     return value;
   }
-  
+ 
+ 
   public String substring(long req_start, long req_len) {
     long start = req_start;
     long len = req_len;
@@ -34,7 +35,7 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
       len = len + start;
       start = 0;
     }
-
+// System.out.println("### simple substring");
     if (start > this.len) len = 0;
     if (start + len > this.len) len = this.len - start;
     if(len > 0) {
@@ -43,25 +44,39 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
       return "";
     }
   }
+
+
   
   protected void appendSubstring(StringBuilder buffer, long req_start, 
       long req_len) {
     long start = req_start;
     long len = req_len;
+
     if (start < 0) {
       len = len + start;
       start = 0;
     }
-    if (start > this.start + this.len) len = 0;
-    if (start + len > this.start + this.len) 
-        len = this.start + this.len - start;
+    if (start > this.len) len = 0;
+    if (start + len > this.len) 
+        len = this.len - start;
     if(len > 0) {
       buffer.append(value, (int)start, (int)(start + len));
     }
   }
+
       
   public String structure() {
     return "s(" + len + ",|" + value + "|)";
+  }
+
+  protected void get_string_part(long p)
+  {
+    Pro_TermData_String_concat cs;
+
+    string_found = value;
+    start_pos = p;
+    part_len = len - start_pos;
+      
   }
   
 } // end class Pro_TermData_String_simple

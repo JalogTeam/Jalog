@@ -7,7 +7,7 @@ public class Pro_TermData_String_substring
 {
   public final Pro_TermData_String base_string; // substring
   public final long start; // substring
- 
+
   static private long true_len( long base_len, long req_start, long req_len) {
     long len = req_len;
     long start = req_start;
@@ -30,7 +30,7 @@ public class Pro_TermData_String_substring
   Pro_TermData_String_substring(Pro_TermData_String base_string,
       long req_start, long req_len)
   {
-    super(SUBSTRING, true_len(base_string.len, req_start, req_len));
+    super(true_len(base_string.len, req_start, req_len));
 
     long start = req_start;
     
@@ -62,9 +62,6 @@ public class Pro_TermData_String_substring
     long len = req_len;
     long max_len;
     
-// System.out.println("** substring(" + req_start + ", " + req_len + ")");
-// System.out.println("** base_string.len = " + base_string.len);
-// System.out.println("** base_string.image() = |" + base_string.image() + "|");
     if (start < 0) {
       len = len + start;
       start = 0;
@@ -100,7 +97,14 @@ public class Pro_TermData_String_substring
   public String structure() {
     return "ss(" + len + "," + base_string.structure() + "," + start + ")";
   }
+
+  protected void get_string_part(long p)
+  {
+    base_string.get_string_part(p + start);
+    if (part_len > len - p) part_len = len - p;
+  }
   
+ 
 
 } // end class Pro_TermData_String_substring
 
