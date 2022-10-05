@@ -6,7 +6,7 @@ public class Pro_TermData_Integer extends Pro_TermData
 {
   public long value;
   
-  Pro_TermData_Integer(long iniVal)
+  public Pro_TermData_Integer(long iniVal)
   {
     typename = Jalog.INTEGER;
     value = iniVal;

@@ -1,6 +1,7 @@
 Uutta
 =====
-
+Miten isot ja pienet real-numerot tulostuvat ja miten ne
+luetaan sisälle? Testitapaukset tehtävä.
 
 Projektitilanne 2022-05-03
 ==========================

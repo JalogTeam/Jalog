@@ -5,16 +5,31 @@ package io.github.JalogTeam.jalog;
 public class Pro_TermData_String_concat extends Pro_TermData_String
 {
   
-  public final Pro_TermData_String left; // concat
-  public final Pro_TermData_String right; // concat
+  public Pro_TermData_String left; // concat
+  public Pro_TermData_String right; // concat
 
-  Pro_TermData_String_concat(Pro_TermData_String left, 
-      Pro_TermData_String right)
+  public static Pro_TermData_String make(Pro_TermData_String left, 
+      Pro_TermData_String right)  
   {
-    super(left.len + right.len);
-
-    this.left = left;
-    this.right = right;
+    long len = left.len + right.len;
+    Pro_TermData_String ans;
+    
+    if (len > 0) {
+      if (left.len == 0) {
+        ans = right;
+      } else if (right.len == 0) {
+        ans = left;
+      } else {
+        ans = new Pro_TermData_String_concat();
+        ans.init(len);
+        ((Pro_TermData_String_concat)ans).left = left;
+        ((Pro_TermData_String_concat)ans).right = right;
+      }
+    } else {
+      ans = Pro_TermData_String_simple.empty;
+    }
+    
+    return ans;
   }
 
   public String toString()

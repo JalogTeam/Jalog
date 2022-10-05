@@ -12,9 +12,7 @@ public class Pro_Term
   static long lastPrintId = 0;
   
   protected Pro_TermData data;
-//  public Pro_TermData data;
   public long Id, printId;
-  
   
   Pro_Term()
   {
@@ -282,17 +280,6 @@ if(debug>0) System.out.println("* unify2: end " + success);
     
     return (data == null ? Jalog.OPEN : data.typename);
   }
-/*
-  public long getIntegerValue() {
-    String type = getType();
-    
-    if(type == Jalog.INTEGER) {
-      return ((Pro_TermData_Integer)getData()).value;
-    } else {
-      return 0;
-    }
-  }
-*/
   
   public void clearData()
   {
@@ -305,7 +292,6 @@ if(debug>0) System.out.println("* unify2: end " + success);
     a.data = new Pro_TermData_Integer(iniVal);
     return a;
   }
-  
 
   static public Pro_Term m_real(double iniVal)
   {
@@ -313,7 +299,6 @@ if(debug>0) System.out.println("* unify2: end " + success);
     a.data = new Pro_TermData_Real(iniVal);
     return a;
   }
-  
 
   static public Pro_Term m_char(char iniVal)
   {
@@ -321,33 +306,29 @@ if(debug>0) System.out.println("* unify2: end " + success);
     a.data = new Pro_TermData_Char(iniVal);
     return a;
   }
-  
 
   static public Pro_Term m_string(String iniVal)
   {
     Pro_Term a = new Pro_Term();
-    a.data = new Pro_TermData_String_simple(iniVal);
+    a.data = Pro_TermData_String_simple.make(iniVal);
     return a;
   }
-  
 
   static public Pro_Term m_string_substring(Pro_TermData_String base_string,
       long req_start, long req_len)
   {
     Pro_Term a = new Pro_Term();
-    a.data = new Pro_TermData_String_substring(base_string, req_start, req_len);
+    a.data = Pro_TermData_String_substring.make(base_string, req_start, req_len);
     return a;
   }
-  
 
   static public Pro_Term m_string_concat(Pro_TermData_String left, 
       Pro_TermData_String right)
   {
     Pro_Term a = new Pro_Term();
-    a.data = new Pro_TermData_String_concat(left, right);
+    a.data = Pro_TermData_String_concat.make(left, right);
     return a;
   }
-  
 
   static public Pro_Term m_open()
   {
@@ -355,7 +336,6 @@ if(debug>0) System.out.println("* unify2: end " + success);
     a.data = null;
     return a;
   }
-  
 
   static public Pro_Term m_unified(Pro_Term iniVal)
   {
@@ -363,7 +343,6 @@ if(debug>0) System.out.println("* unify2: end " + success);
     a.data = new Pro_TermData_Unified(iniVal);
     return a;
   }
-  
 
   static public Pro_Term m_list(Pro_Term[] iniVal, Pro_Term tail)
   {
@@ -378,7 +357,6 @@ if(debug>0) System.out.println("* unify2: end " + success);
       return tail;
     }
   }
-  
 
   public static final Pro_Term EMPTY_LIST;
   static { EMPTY_LIST = new Pro_Term();
@@ -390,7 +368,6 @@ if(debug>0) System.out.println("* unify2: end " + success);
     a.data = Pro_TermData_List.make(iniVal,Pro_Term.EMPTY_LIST);
     return a;
   }
-  
 
   static public Pro_Term m_compound(String iniName, Pro_Term[] iniSubterm)
   {
@@ -459,20 +436,6 @@ if(debug>0) System.out.println("* unify2: end " + success);
             if(Tv == 'i') {data = new Pro_TermData_Integer(Iv);}
             else if(Tv == 'r') {data = new Pro_TermData_Real(Rv);}
           }
-
-
-
-
-
-/*
-          if(compData.name.equals("-")) {
-            Pro_Term tmp1 = new Pro_Term(); tmp1.compval(compData.subterm[0]);
-            if(tmp1.data instanceof Pro_TermData_Integer) {
-              data = new Pro_TermData_Integer(
-                  -((Pro_TermData_Integer)tmp1.data).value);
-            }
-          }
-*/
 //          System.out.println("data='" + data.toString()+"'");        
         } else if (compData.arity == 2) {
 //          System.out.println("compData='" + compData.toString()+"'");
@@ -546,14 +509,10 @@ if(debug>0) System.out.println("* unify2: end " + success);
             }
           }
 //          System.out.println("data='" + data.toString()+"'");
-
         }
-        
-
       }
-
-
     }
+
   }
   
   public static long eval_integer(Pro_Term p) {
@@ -610,7 +569,6 @@ if(debug>0) System.out.println("* unify2: end " + success);
     }
   }
 
-
   public Pro_Term copy()
   {
     Hashtable variable_map = new Hashtable(100);
@@ -645,110 +603,5 @@ if(debug>0) System.out.println("* unify2: end " + success);
     return new_this;
   }
 
-/*
-  private boolean compare_strings(Pro_TermData_String s1, 
-      Pro_TermData_String s2) 
-  {
-    long p = 0;
-    boolean result = true;
-    String string1_found;
-    long start_pos1, len1;
-    int i;
-    long max_len;
-// System.out.println("____________");    
-// System.out.println("CS:  s1.structure=" + s1.structure());
-// System.out.println("CS:  s2.structure=" + s2.structure());
-
-    if (s1.len == s2.len) {
-      while (result && (p < s1.len)) {
-// System.out.println("\nCS: p = " + p);
-// System.out.println("CS: to get_string_part, p = " + p + ", s1 = \"" + s1 + "\"");
-        get_string_part(p, s1);
-// System.out.println("CS: from get_string_part, string_found = \"" + string_found + "\", start_pos = " + start_pos + ", len = " + len);
-        string1_found = string_found;
-        start_pos1 = start_pos;
-        len1 = len;
-// System.out.println("\nCS: to get_string_part, p = " + p + ", s2 = \"" + s2 + "\"");
-        get_string_part(p, s2);
-// System.out.println("CS: from get_string_part, string_found = \"" + string_found + "\", start_pos = " + start_pos + ", len = " + len);
-        if (len > len1) {
-          len = len1;
-        }
-        for ( i = 0; (i < len) && result; i++) {
-          result = string1_found.charAt((int)start_pos1 + i) == 
-                   string_found.charAt((int)start_pos + i);
-        }                
-        p = p + len;
-// System.out.println("CS: result = " + result + ", p = " + p);
-      }          
-    } else {
-      result =  false;
-    }
-// System.out.println("CS: result = " + result);    
-// System.out.println("____________");    
-    return result;      
-  }
-
-  
-  String string_found;
-  long start_pos, len;
-String indent = "";
-
-  private void get_string_part(long p, Pro_TermData_String s)
-  {
-    Pro_TermData_String_substring ss;
-    Pro_TermData_String_concat cs;
-// System.out.println(indent + "_____");
-// System.out.println(indent + "GSP: p = " + p + ", s = " + s.structure());    
-indent += "  ";
-
-    switch (s.tag) {
-      case Pro_TermData_String.SIMPLE : {
-        string_found = ((Pro_TermData_String_simple)s).value;
-        start_pos = p;
-        len = s.len - start_pos;
-// System.out.println(indent + "GSP/SIMPLE: string_found = \"" + string_found + "\", start_pos = " + start_pos + ", len = " + len);
-      }; break;
-      case Pro_TermData_String.SUBSTRING : {
-// System.out.println(indent + "GSP/SUBSTRING: ");
-        ss = (Pro_TermData_String_substring)s;
-// System.out.println(indent + "GSP/SUBSTRING ss: base_string = \"" + ss.base_string + "\", start = " + ss.start + ", len = " + ss.len);
-        get_string_part(p + ss.start, ss.base_string);
-// System.out.println(indent + "GSP/SUBSTRING: string_found = \"" + string_found + "\", start_pos = " + start_pos + ", len = " + len);
-//        if (len > ss.len - start_pos) len = s.len;
-        if (len > ss.len - p) len = s.len - p;
-// System.out.println(indent + "GSP/SUBSTRING: len = " + len);
-        
-      }; break;
-      case Pro_TermData_String.CONCATENATED : {
-        cs = (Pro_TermData_String_concat)s;
-        if (p < cs.left.len) {
-// System.out.println(indent + "GSP/CONCATENATED left: ");
-          get_string_part(p, cs.left);
-        } else {
-// System.out.println(indent + "GSP/CONCATENATED right: ");
-          get_string_part(p - cs.left.len, cs.right);
-        }
-      }; break;
-    }
-
-// System.out.println(indent + "GSP: string_found=|" + string_found + "|," +
-// "start_pos=" + start_pos + ",len=" + len);
-indent = indent.substring(2);
-// System.out.println(indent + "_____");
-
-  }
-*/
-/*
-  public String typename() {
-    Pro_TermData data = getData();
-    
-    if (data == null) {
-      return "null";
-    } else {
-      return data.getClass().getName();
-    }
-  }
-*/
 } // end class Pro_Term
 

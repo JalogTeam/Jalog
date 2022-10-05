@@ -5,8 +5,8 @@ package io.github.JalogTeam.jalog;
 public class Pro_TermData_String_substring 
     extends Pro_TermData_String
 {
-  public final Pro_TermData_String base_string; // substring
-  public final long start; // substring
+  public Pro_TermData_String base_string; // substring
+  public long start; // substring
 
   static private long true_len( long base_len, long req_start, long req_len) {
     long len = req_len;
@@ -27,22 +27,28 @@ public class Pro_TermData_String_substring
     return len;     
   }
 
-  Pro_TermData_String_substring(Pro_TermData_String base_string,
-      long req_start, long req_len)
+  public static Pro_TermData_String make(Pro_TermData_String base_string,
+      long req_start, long req_len)  
   {
-    super(true_len(base_string.len, req_start, req_len));
-
-    long start = req_start;
+    long len = true_len(base_string.len, req_start, req_len);
+    Pro_TermData_String ans;
     
-    this.base_string = base_string;
-// !! These must fit inside of the base string. Add test! !!
-
-    if (start < 0) {
-      start = 0;
+    if (len > 0) {
+      ans = new Pro_TermData_String_substring();
+      ans.init(len);
+      ((Pro_TermData_String_substring)ans).base_string = base_string;
+      if (req_start < 0) {
+        ((Pro_TermData_String_substring)ans).start = 0;
+      } else {
+        ((Pro_TermData_String_substring)ans).start = req_start;
+      }
+    } else {
+      ans = Pro_TermData_String_simple.empty;
     }
-    this.start = start;
-   }
-  
+    
+    return ans;
+  }
+
   public String toString()
   {
     String temp = new String(image());
@@ -103,8 +109,6 @@ public class Pro_TermData_String_substring
     base_string.get_string_part(p + start);
     if (part_len > len - p) part_len = len - p;
   }
-  
- 
 
 } // end class Pro_TermData_String_substring
 

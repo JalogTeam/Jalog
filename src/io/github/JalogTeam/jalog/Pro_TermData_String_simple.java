@@ -5,13 +5,28 @@ package io.github.JalogTeam.jalog;
 public class Pro_TermData_String_simple extends Pro_TermData_String
 {
   
-  public final String value; // simple
- 
-  Pro_TermData_String_simple(String iniVal)
+  public String value; // simple
+  
+  public static Pro_TermData_String_simple empty = 
+      new Pro_TermData_String_simple();
+  static {
+    empty.init(0);
+    empty.value = "";
+  }
+
+  public static Pro_TermData_String make(String iniVal)
   {
-    super(iniVal.length());
+    Pro_TermData_String_simple ans;
+
+    if(iniVal.length() > 0) {
+      ans = new Pro_TermData_String_simple();
+      ans.init(iniVal.length());
+      ans.value = iniVal;
+    } else {
+      ans = empty;
+    }
     
-    this.value = iniVal;
+    return ans;
   }
 
   public String toString()
@@ -26,7 +41,6 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
   {
     return value;
   }
- 
  
   public String substring(long req_start, long req_len) {
     long start = req_start;
@@ -44,8 +58,6 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
       return "";
     }
   }
-
-
   
   protected void appendSubstring(StringBuilder buffer, long req_start, 
       long req_len) {
@@ -63,7 +75,6 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
       buffer.append(value, (int)start, (int)(start + len));
     }
   }
-
       
   public String structure() {
     return "s(" + len + ",|" + value + "|)";

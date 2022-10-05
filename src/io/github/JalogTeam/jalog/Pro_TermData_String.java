@@ -16,9 +16,15 @@ package io.github.JalogTeam.jalog;
 public abstract class Pro_TermData_String extends Pro_TermData
 {
 
-  public final long len;
+  public long len;
   
-  Pro_TermData_String(long len) {
+/*
+  protected Pro_TermData_String(long len) {
+    this.typename = Jalog.STRING;
+    this.len = len;
+  }
+*/
+  public void init(long len) {
     this.typename = Jalog.STRING;
     this.len = len;
   }
@@ -28,11 +34,9 @@ public abstract class Pro_TermData_String extends Pro_TermData
   public abstract String image();
   
   public abstract String substring(long start, long len);
-
   
   protected abstract void appendSubstring(StringBuilder buffer, long start, 
       long len);
-
       
   public abstract String structure(); // Debugging tool
   

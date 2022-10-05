@@ -16,7 +16,7 @@ public class Pro_TermData_Compound extends Pro_TermData
   
   private final Pro_Term[] no_subterms = {};
   
-  Pro_TermData_Compound(String iniName)
+  public Pro_TermData_Compound(String iniName)
   {
     name = iniName;
     arity = 0;
@@ -24,7 +24,7 @@ public class Pro_TermData_Compound extends Pro_TermData
     subterm = no_subterms;
   }
 
-  Pro_TermData_Compound(String iniName, Pro_Term[] iniSubterm)
+  public Pro_TermData_Compound(String iniName, Pro_Term[] iniSubterm)
   {
     name = iniName;
     if (iniSubterm != null) {
@@ -38,7 +38,7 @@ public class Pro_TermData_Compound extends Pro_TermData
     }
   }
 
-  Pro_TermData_Compound(String iniName, Pro_Term sub)
+  public Pro_TermData_Compound(String iniName, Pro_Term sub)
   {
     Pro_Term[] iniSubterm = {sub};
     
@@ -49,7 +49,7 @@ public class Pro_TermData_Compound extends Pro_TermData
     subterm = iniSubterm;
   }
 
-  Pro_TermData_Compound(String iniName, Pro_Term left, Pro_Term right)
+  public Pro_TermData_Compound(String iniName, Pro_Term left, Pro_Term right)
   {
     Pro_Term[] iniSubterm = {left, right};
     

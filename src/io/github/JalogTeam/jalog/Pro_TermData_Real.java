@@ -6,7 +6,7 @@ public class Pro_TermData_Real extends Pro_TermData
 {
   public double value;
   
-  Pro_TermData_Real(double iniVal)
+  public Pro_TermData_Real(double iniVal)
   {
     typename = Jalog.REAL;
     value = iniVal;
