@@ -29,6 +29,7 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
     return ans;
   }
 
+/*
   public String toString()
   {
     String temp = new String(value);
@@ -36,6 +37,7 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
     temp = temp.replaceAll("\\\"","\\\\\\\"");
     return "\"" + temp + "\"";
   }
+*/
 
   public String image()
   {

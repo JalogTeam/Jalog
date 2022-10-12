@@ -230,8 +230,8 @@ public class JalogSyntax extends io.github.JalogTeam.parser.SimpleSyntax
               case 'x':
               case 'u':
               case 'U': {
-                c = 0;
                 int end = p + (c == 'x' ? 2 : c == 'u' ? 4 : 8);
+                c = 0;
                 if (end > n) end = n;
                 while (p < end) {
                   char d = img.charAt(p);
@@ -273,6 +273,7 @@ public class JalogSyntax extends io.github.JalogTeam.parser.SimpleSyntax
     return ans;
   }
 
+/*
   public static String quote(String val, char quote) {
     String ans;
     if (val == null) {
@@ -313,14 +314,67 @@ public class JalogSyntax extends io.github.JalogTeam.parser.SimpleSyntax
     }
     return ans;
   }
+*/
+
+  public static String quote(String val, char quote) {
+    String ans;
+    if (val == null) {
+      ans = "null";
+    } else {
+      StringBuilder buf = new StringBuilder(val.length()+10);
+      buf.append(quote);
+      int n = val.length();
+      for (int i = 0; i < n; i++) {
+        int c = val.codePointAt(i);
+        if (c > 0xFFFF) {
+          i++;
+        }
+        buf.append(encode(c, quote));
+      }
+      buf.append(quote);
+      ans = buf.toString();
+    }
+    return ans;
+  }
+
+  private static String encode(int c, char quote) {
+
+    String ans;
+    if (c > 0xFFFF) {
+      ans = (String.format((Locale)null,"\\U%08X", c));
+    } else if (c == '\b') {
+      ans = ("\\b");
+    } else if (c == '\t') {
+      ans = ("\\t");
+    } else if (c == '\n') {
+      ans = ("\\n");
+    } else if (c == '\f') {
+      ans = ("\\f");
+    } else if (c == '\r') {
+      ans = ("\\r");
+    } else if (c == '\\') {
+      ans = ("\\\\");
+    } else if (c == quote) {
+      ans = ("\\" + quote);
+    } else if (c == '?') {
+      ans = ("\\?");
+    } else if (c > 0x1F && c < 0x7F) {
+      ans = "" + ((char)c);
+    } else if (c < 0x100) {
+      ans = (String.format((Locale)null,"\\x%02X",c));
+    } else {
+      ans = (String.format((Locale)null,"\\u%04X",c));
+    }
+    return ans;
+  }
 
   public static String quote(String val) {
     return quote(val, '"');
   }
 
   public static String quote(int val, char quote) {
-    int[] vals = { val };
-    return quote(new String(vals, 0, 1), quote);
+    return quote + encode(val, quote) + quote;
+//    return quote(new String(vals, 0, 1), quote);
   }
 
   public static String quote(int val) {

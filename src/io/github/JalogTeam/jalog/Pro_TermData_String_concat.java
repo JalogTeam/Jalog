@@ -32,6 +32,7 @@ public class Pro_TermData_String_concat extends Pro_TermData_String
     return ans;
   }
 
+/*
   public String toString()
   {
     String temp = new String(image());
@@ -39,6 +40,7 @@ public class Pro_TermData_String_concat extends Pro_TermData_String
     temp = temp.replaceAll("\\\"","\\\\\\\"");
     return "\"" + temp + "\"";
   }
+*/
 
   public String image()
   {

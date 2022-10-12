@@ -14,7 +14,7 @@ public class Pro_TermData_Char extends Pro_TermData
   
   public String toString()
   {
-    return "'" + value + "'";
+    return JalogSyntax.quote((int)value, '\'');
   }
 
   public String image()

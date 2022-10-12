@@ -1,5 +1,25 @@
 koe1: |'A'|
 *Yes*
+koe1a: |'\n'|
+*Yes*
+koe1b: |'\''|
+*Yes*
+koe1c: |'\\'|
+*Yes*
+koe1d: |'\x1F'|
+*Yes*
+koe1e: |'\x7F'|
+*Yes*
+koe1f: |'\x00'|
+*Yes*
+koe1g: |'\x07'|
+*Yes*
+koe1h: |'\x80'|
+*Yes*
+koe1i: |'\u0100'|
+*Yes*
+koe1j: |'\uFFFF'|
+*Yes*
 koe2: |a('b','c')d|
 *Yes*
 koe3: |1234567890|
@@ -23,6 +43,10 @@ koe5: |3.14159|
 koe6a: |""|
 *Yes*
 koe6b: |"string"|
+*Yes*
+koe6c: |"A\n'\\\x1F\x7F\x00\x07\x80\u0100\uFFFFB"|"B"|
+*Yes*
+koe6d: |"A\U00103456B"|"B"|
 *Yes*
 koe7a: |_1|
 *Yes*

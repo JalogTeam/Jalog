@@ -29,8 +29,10 @@ public abstract class Pro_TermData_String extends Pro_TermData
     this.len = len;
   }
   
-  public abstract String toString();
-
+  public String toString() {
+    return JalogSyntax.quote(image(), '"');
+  }
+  
   public abstract String image();
   
   public abstract String substring(long start, long len);
