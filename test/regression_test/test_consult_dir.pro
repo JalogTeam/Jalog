@@ -5,7 +5,7 @@
 koe1 :- writeln("consult_dir test"), fail.
 koe1 :- consult_dir(Dir), assertz(parent_dir(Dir)), writeln("koe1 Dir: ", Dir),
         fail.
-koe1 :- consult_dir("test_dir"), fail.
+koe1 :- concat("test", "_dir", TestName), consult_dir(TestName), fail.
 koe1 :- consult_dir(Dir), writeln("koe1 changed Dir: ", Dir), fail.
 koe1 :- write("koe1 a: "), data(X), write(' ', X), fail.
 koe1 :- writeln(';'), fail.

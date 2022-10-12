@@ -30,11 +30,11 @@ public class TestInterface
     String string_value;
     double real_value;
     char char_value;
-    Jalog.Term in_int, out_int, 
+    Jalog.Term in_int, out_int, in_start, in_len,
         in_symbol, out_symbol, 
         in_real, out_real,
         in_char, out_char,
-        in_string, out_string,
+        in_string, in_string2, out_string,
         in_list, out_list,
         in_compound, out_compound,
         in_open, out_open,
@@ -165,6 +165,7 @@ public class TestInterface
 
     System.out.println("string test");
     in_string = Jalog.string("template");
+    in_string2 = Jalog.string(" more");
     out_string = Jalog.open();
     out_comment = Jalog.open();
     
@@ -184,6 +185,55 @@ public class TestInterface
         print_comment(out_comment);
       } else {
          System.out.println("test_string_fail");
+       
+      }
+    } catch (Jalog.Exit e) {
+      System.out.println("Exit " + e);
+    }
+    System.out.println();
+
+    in_start = Jalog.integer(1);
+    in_len = Jalog.integer(5);
+    out_string = Jalog.open();
+    try {
+      if (myJalog.call("test_string_substring", in_string, in_start, in_len,
+          out_string))
+      {
+        System.out.println("test_string_substring_success");
+        type = out_string.getType();
+        System.out.println("out_string of type " + type);
+        if (type == Jalog.STRING) {
+          string_value = out_string.getStringValue();
+          System.out.println("out_string = \"" + string_value + "\"");
+        } else {
+          System.out.println("out_string bad");
+        }
+
+      } else {
+         System.out.println("test_string_substring_fail");
+       
+      }
+    } catch (Jalog.Exit e) {
+      System.out.println("Exit " + e);
+    }
+    System.out.println();
+
+    out_string = Jalog.open();
+    try {
+      if (myJalog.call("test_string_concat", in_string, in_string2, out_string))
+      {
+        System.out.println("test_string_concat_success");
+        type = out_string.getType();
+        System.out.println("out_string of type " + type);
+        if (type == Jalog.STRING) {
+          string_value = out_string.getStringValue();
+          System.out.println("out_string = \"" + string_value + "\"");
+        } else {
+          System.out.println("out_string bad");
+        }
+
+      } else {
+         System.out.println("test_string_concat_fail");
        
       }
     } catch (Jalog.Exit e) {

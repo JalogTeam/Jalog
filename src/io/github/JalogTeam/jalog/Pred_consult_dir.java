@@ -14,7 +14,7 @@ public class Pred_consult_dir extends Pred
     String filename;
     
     if(data1 instanceof Pro_TermData_String) {
-      filename = ((Pro_TermData_String_simple)data1).image();
+      filename = data1.image();
       Consult.set_consult_dir(filename);
     } else if(data1 == null) {
       filename = Consult.get_consult_dir(); 

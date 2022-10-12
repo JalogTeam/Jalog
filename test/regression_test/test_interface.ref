@@ -34,6 +34,14 @@ out_string = "match"
 out_comment of type string
 out_comment = OK
 
+test_string_substring_success
+out_string of type string
+out_string = "empla"
+
+test_string_concat_success
+out_string of type string
+out_string = "template more"
+
 list test
 test_list_success
 out_list of type list

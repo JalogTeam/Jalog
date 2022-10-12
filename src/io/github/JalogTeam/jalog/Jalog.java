@@ -215,11 +215,14 @@ public class Jalog
       String type = getType();
       
       if(type == Jalog.STRING) {
-        return ((Pro_TermData_String_simple)getData()).value;
+        return image();
       } else {
         return null;
       }
     }
+
+
+
 
     public Term[] getElements() {
       Term[] result;

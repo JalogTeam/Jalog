@@ -24,6 +24,12 @@ test_string("whatever", "is open", "NOK?").
 test_string("template", "match", "OK").
 test_string(X, "fallback", "NOK").
 
+test_string_concat(A, B, R) :-
+  concat(A, B, R).
+  
+test_string_substring(S, B, L, R) :-
+  substring(S, B, L, R).
+
 % list
 test_list([3, 4], [1, 2], "Virhe!").
 test_list([3], [2, 9], "Virhe2!").
