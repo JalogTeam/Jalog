@@ -78,7 +78,7 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
     }
   }
       
-  public String structure() {
+  public String structure() { // for debugging
     return "s(" + len + ",|" + value + "|)";
   }
 

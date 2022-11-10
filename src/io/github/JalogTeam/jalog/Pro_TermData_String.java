@@ -24,7 +24,7 @@ public abstract class Pro_TermData_String extends Pro_TermData
     this.len = len;
   }
 */
-  public void init(long len) {
+  protected void init(long len) {
     this.typename = Jalog.STRING;
     this.len = len;
   }

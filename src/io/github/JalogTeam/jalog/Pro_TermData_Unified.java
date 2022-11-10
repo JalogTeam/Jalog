@@ -6,9 +6,10 @@ public class Pro_TermData_Unified extends Pro_TermData
 {
   public Pro_Term pValue;
 
-  Pro_TermData_Unified(Pro_Term iniVal)
+  public Pro_TermData_Unified(Pro_Term target)
   {
-    pValue = iniVal;
+    pValue = target;
+    typename = null;
   }
   
   public String toString()
