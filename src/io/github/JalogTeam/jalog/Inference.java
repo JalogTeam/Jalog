@@ -167,7 +167,6 @@ if(Debug > 0) System.out.println("\n Inference: cut passed");
               current.pcall.prev = null; // no backtracking behind this point
               // Pred.cutting is assumed to have been set
               // Can be optimized, specially tail recursion
-
             } else {          // normal primitive
               // should be ready
 if(Debug > 0)              System.out.println("\n Inference: primitive called");

@@ -23,7 +23,6 @@ public static final int z_number = 5;
     Pro_Term pos_term = data.subterm[1].getRealNode();
     Pro_Term len_term = data.subterm[2].getRealNode();
     Pro_Term str_out_term = data.subterm[3].getRealNode();
-    Pro_TrailMark Mark;
 
     if ( (str_in_term.data == null) || 
         (str_in_term.data.typename != Jalog.STRING) ) 

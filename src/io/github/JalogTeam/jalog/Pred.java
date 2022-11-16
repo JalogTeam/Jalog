@@ -6,30 +6,30 @@ import java.io.*;
 
 public class Pred
 {
-  static boolean forward;
-  static boolean cutting;
-  static boolean exception;
-  static boolean op_found;
-  static Pro_Term exit_value;
-
+  public Pro_Term called_body /*_item*/; // Kirjoitetaan kun 
+  public boolean cut;       // is cut primitive
+  public static boolean cutting;
+  public static boolean exception;
+  public static Pro_Term exit_value;
+  public static boolean forward;
+  public Pro_TrailMark Mark;
+  public static boolean op_found;
+  public static Pro_Trail trail;
+                                                             
 // TEMPORARY!
   static boolean z_request;
 /* #arity_info_test           
   public static final int z_number = 1;
 */  
 
-  public static Pro_Trail trail;
 
   Pred prev;
   Pro_Term body_item; // this and rest in list
 //  boolean primitive; // is primitive predicate
-  boolean cut;       // is cut primitive
 
-  Pro_TrailMark Mark;
 
 // called predicate control
   Activation sub_activation;
-  Pro_Term called_body /*_item*/; // Kirjoitetaan kun tiedetaan
 
   static {
     forward = true;
@@ -41,7 +41,7 @@ public class Pred
     z_request = false;
   }
 
-  Pred(){
+  public Pred(){
     Mark = new Pro_TrailMark();
     prev = null;
 //    primitive = true;
