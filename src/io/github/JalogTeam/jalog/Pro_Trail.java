@@ -65,7 +65,7 @@ public class Pro_Trail
     
     for(current_item = top_item; current_item != null; current_item = current_item.prev)
     {
-      System.out.println("    top-" + i + ": " + current_item.item.Id);
+      System.out.println("    top-" + i + ": " + current_item.item.Id + " " + current_item.item);
       i ++;
     }
   }

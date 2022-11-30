@@ -9,4 +9,14 @@ koe4:  3;
 *Yes*
 koe5: ;
 *Yes*
+koe6: e(L) 
+d: 1 , L=[2,3]
+
+d: 3 , L=[]
+
+d: 5 , L=[7,8,9]
+
+end koe6: LL=[[2,3],[],[7,8,9]]
+*Yes*
+koe7: *No*
 Exit status: 0 ; 

@@ -11,8 +11,8 @@ public class Inference // extends Pred
    
   public Pro_Term exit_value = null;
 
-    Activation current;
-    Pro_TrailMark Mark;
+  Activation current;
+  Pro_TrailMark Mark;
 
   Inference()
   {

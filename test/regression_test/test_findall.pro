@@ -9,12 +9,20 @@ a(3).
 c(1, 2).
 c(1, 3).
 c(5, 7).
+c(5, 8).
 c(5, 9).
 
-d(1, L) :- findall(I, c(1, I), L), write("\nd: 1, L=", L).
-d(5, L) :- findall(I, c(5, I), L), write("\nd: 5, L=", L).
+d(1).
+d(3).
+d(5).
 
-koe6  :- findall(x(M, N), d(M, N), L), write("\nL=", L, "\n"). 
+e(L) :- write("e(L) "), d(A), findall(B, c(A, B), L),
+        write("\nd: ", A," , L=", L), nl.
+
+koe6 :- write("koe6: "), findall(L, e(L), LL), 
+        write("\nend koe6: LL=", LL, "\n"). 
+
+koe7 :- write("koe7: "), findall(r(I, J), c(I, J), L), write(' ', L), fail.
 
 koe1 :- write("koe1: "), findall(X, a(X), L), write(' ', L), fail.
 koe1 :- writeln(';').
@@ -38,3 +46,4 @@ koe5 :- writeln(';').
 :- koe4.
 :- koe5.
 :- koe6.
+:- koe7.
