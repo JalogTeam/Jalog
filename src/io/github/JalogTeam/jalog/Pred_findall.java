@@ -56,8 +56,10 @@ public class Pred_findall extends Pred
     if(forward) { // call succeeded, add new item
 // System.out.println("* A1");     
 // System.out.println("  findall post_call work_list_last.t2=" + work_list_last.t2);  
+//      work_list_last.t2 = new Pro_Term(new Pro_TermData_List(
+//          new Pro_Term(variable_term.getData()), Pro_Term.EMPTY_LIST));
       work_list_last.t2 = new Pro_Term(new Pro_TermData_List(
-          new Pro_Term(variable_term.getData()), Pro_Term.EMPTY_LIST));
+          new Pro_Term(variable_term.copy().getData()), Pro_Term.EMPTY_LIST));
 // System.out.println("* A2");     
 // System.out.println("  findall post_call work_list_last.t2=" + work_list_last.t2);  
       work_list_last = (Pro_TermData_List)work_list_last.t2.data;

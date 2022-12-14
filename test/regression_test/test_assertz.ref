@@ -1,6 +1,7 @@
 *Yes*
 *Yes*
 *Yes*
+*Yes*
 koe1 a: ;
 koe1 b: ;
 koe1 c:  10 20 40;
@@ -14,5 +15,22 @@ koe3 c:  10 20 40;
 *Yes*
 koe4 alku
 ei löytynyt
+*Yes*
+koe5 a: ;
+koe5 b: 
+ (1,k(2))
+ (1,k(2)) (1,k(15))
+ (1,k(2)) (1,k(15)) (4,k(2))
+ (1,k(2)) (1,k(15)) (4,k(2)) (4,k(15))
+koe5 c:  (1,k(2)) (1,k(15)) (4,k(2)) (4,k(15));
+*Yes*
+koe6 alku
+assertoitu
+
+koe6 a:  (1,k(2)) (1,k(15)) (4,k(2)) (4,k(15)) (_1,k(_1));
+
+koe6 b:  (4,k(2)) (4,k(15)) (4,k(4));
+
+koe6 c:  (3,k(3));
 *Yes*
 Exit status: 0 ; 

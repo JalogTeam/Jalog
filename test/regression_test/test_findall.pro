@@ -12,18 +12,6 @@ c(5, 7).
 c(5, 8).
 c(5, 9).
 
-d(1).
-d(3).
-d(5).
-
-e(L) :- write("e(L) "), d(A), findall(B, c(A, B), L),
-        write("\nd: ", A," , L=", L), nl.
-
-koe6 :- write("koe6: "), findall(L, e(L), LL), 
-        write("\nend koe6: LL=", LL, "\n"). 
-
-koe7 :- write("koe7: "), findall(r(I, J), c(I, J), L), write(' ', L), fail.
-
 koe1 :- write("koe1: "), findall(X, a(X), L), write(' ', L), fail.
 koe1 :- writeln(';').
 
@@ -39,6 +27,21 @@ koe4 :- writeln(';').
 koe5 :- write("koe5: "), findall(X, a(X), [Y]), write(" ERROR ", Y), fail.
 koe5 :- writeln(';').
 
+d(1).
+d(3).
+d(5).
+
+% e(L) :- write("e(L) "), d(A), findall(B, c(A, B), L),
+%         write("\nd: ", A," , L=", L), nl.
+
+e(L) :- write("e(L) "), d(A), findall(B, c(A, B), M), L = l(A, M),
+        write("\nd: ", A," , L=", L), nl.
+
+koe6 :- write("koe6: "), findall(L, e(L), LL), 
+        write("\nend koe6: LL=", LL, "\n"). 
+
+koe7 :- write("koe7: "), findall(r(I, J), c(I, J), L), !, writeln(' ', L), fail.
+koe7 :- writeln("Ok").
 
 :- koe1.
 :- koe2.
