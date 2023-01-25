@@ -10,13 +10,14 @@ koe4:  3;
 koe5: ;
 *Yes*
 koe6: e(L) 
-d: 1 , L=[2,3]
+d: 1 , L=l(1,[2,3])
 
-d: 3 , L=[]
+d: 3 , L=l(3,[])
 
-d: 5 , L=[7,8,9]
+d: 5 , L=l(5,[7,8,9])
 
-end koe6: LL=[[2,3],[],[7,8,9]]
+end koe6: LL=[l(1,[2,3]),l(3,[]),l(5,[7,8,9])]
 *Yes*
-koe7: *No*
+koe7: Ok
+*Yes*
 Exit status: 0 ; 

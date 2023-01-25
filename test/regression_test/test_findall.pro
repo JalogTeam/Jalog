@@ -31,9 +31,6 @@ d(1).
 d(3).
 d(5).
 
-% e(L) :- write("e(L) "), d(A), findall(B, c(A, B), L),
-%         write("\nd: ", A," , L=", L), nl.
-
 e(L) :- write("e(L) "), d(A), findall(B, c(A, B), M), L = l(A, M),
         write("\nd: ", A," , L=", L), nl.
 

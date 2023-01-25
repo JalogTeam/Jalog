@@ -11,7 +11,7 @@ public class Pro_Trail
 
   Pro_Trail_Item top_item;
   
-  void mark(Pro_TrailMark Mark)// = pBack.top;
+  public void mark(Pro_TrailMark Mark)// = pBack.top;
   {
     if (Mark != null) {
       Mark.marked = top_item;
@@ -20,7 +20,7 @@ public class Pro_Trail
   }
 
 
-  void append(Pro_Term pn)
+  public void append(Pro_Term pn)
   {
     Pro_Trail_Item new_top_item;
 // Debug_times.enter(22); 
@@ -35,7 +35,7 @@ public class Pro_Trail
 // System.out.println("Trail.append: " + pn);
   }
   
-  void backtrack( /*Pro_Trail pBack,*/ Pro_TrailMark Mark){
+  public void backtrack( /*Pro_Trail pBack,*/ Pro_TrailMark Mark){
     Pro_Term pn2;
 // Debug_times.enter(20); 
               // System.out.println("Trail.backtrack mark: " + Mark.marked);
@@ -55,7 +55,7 @@ public class Pro_Trail
 // Debug_times.leave(20); 
   }
 
-  void dump(String header)
+  public void dump(String header)
   {
     int i = 0;
     Pro_Trail_Item current_item = top_item;
