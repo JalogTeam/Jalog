@@ -1,4 +1,4 @@
-// Pred.java
+// Pred_cut_.java
 
 package io.github.JalogTeam.jalog;
 
@@ -12,7 +12,6 @@ public class Pred_cut_ extends Pred
 
   Pred_cut_(){
     cut = true;
-
   }
 
   public void call()

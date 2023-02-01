@@ -75,10 +75,12 @@ if(Debug > 0) System.out.println("\nInference B: first_call " + new_body_item_da
               new_pred = new Pred(); // Null does not work in backtrack. 
             }
 // TEMPORARY!
+/*
             if(Pred.z_request) {
               Pred.z_request = false;
               System.out.print("<" + current + ">");
             }
+*/
             if(new_pred != null) {  // **
               new_pred.body_item = new_body_item;
               new_pred.prev = current.pcall;

@@ -6,21 +6,33 @@ import java.io.*;
 
 public class Pred
 {
-  public Pro_Term called_body /*_item*/; // Kirjoitetaan kun 
-  public boolean cut;       // is cut primitive
   public static boolean cutting;
   public static boolean exception;
   public static Pro_Term exit_value;
   public static boolean forward;
-  public Pro_TrailMark Mark;
   public static boolean op_found;
   public static Pro_Trail trail;
-                                                             
 // TEMPORARY!
-  static boolean z_request;
+//  static boolean z_request;
 /* #arity_info_test           
   public static final int z_number = 1;
 */  
+  static {
+    forward = true;
+    cutting = false;
+    exception = false;
+    exit_value = null;
+    trail = new Pro_Trail();
+// TEMPORARY!
+//    z_request = false;
+  }
+
+  
+  
+  public Pro_Term called_body /*_item*/; // Kirjoitetaan kun 
+  public boolean cut;       // is cut primitive
+  public Pro_TrailMark Mark;
+                                                             
 
 
   Pred prev;
@@ -31,17 +43,7 @@ public class Pred
 // called predicate control
   Activation sub_activation;
 
-  static {
-    forward = true;
-    cutting = false;
-    exception = false;
-    exit_value = null;
-    trail = new Pro_Trail();
-// TEMPORARY!
-    z_request = false;
-  }
-
-  public Pred(){
+  protected Pred(){
     Mark = new Pro_TrailMark();
     prev = null;
 //    primitive = true;
