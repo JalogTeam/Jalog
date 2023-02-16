@@ -34,8 +34,7 @@ public class Pred_trap extends Pred
 
   public void post_call()
   {
-    super.post_call();
-
+    called_body = null;
 //System.out.print("<Pred_trap 1>");
     if(!catched) {
 //System.out.print("<Pred_trap 11>");
@@ -55,13 +54,11 @@ public class Pred_trap extends Pred
       } else if(!forward) {  // failed
 //System.out.print("<Pred_trap 112>");
         sub_activation = null;
-        called_body = null;
       }
     } else {
 //System.out.print("<Pred_trap 12>");
       forward = false;
       sub_activation = null;
-      called_body = null;
     }
 //System.out.print("<Pred_trap z>");
   }
