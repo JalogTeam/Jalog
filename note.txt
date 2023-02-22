@@ -1,6 +1,8 @@
 Uutta
 =====
 
+Muuttuja Pred.exception on turha. Tarkoitukseen voi k‰ytt‰‰
+Pred.exit_value -muuttujaa.
 
 Miten isot ja pienet real-numerot tulostuvat ja miten ne
 luetaan sis‰lle? Testitapaukset teht‰v‰.
