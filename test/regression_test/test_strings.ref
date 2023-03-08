@@ -184,4 +184,34 @@ koe10
 koe10 success xyz
 koe10 end
 *Yes*
+koe11a
+koe11a success 'A' = 'A'
+koe11a end
+*Yes*
+koe11b
+koe11b success 'A' = "A"
+koe11b end
+*Yes*
+koe11c
+koe11c success A = A
+koe11c end
+*Yes*
+koe11d
+koe11d end
+*Yes*
+koe11e
+koe11e end
+*Yes*
+koe11f
+koe11f end
+*Yes*
+koe11g
+koe11g end
+*Yes*
+koe11h
+koe11h end
+*Yes*
+koe11i
+koe11i end
+*Yes*
 Exit status: 0 ; 

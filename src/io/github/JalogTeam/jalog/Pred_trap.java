@@ -10,7 +10,7 @@ import java.io.*;
 public class Pred_trap extends Pred
 {
   boolean catched;
-  Activation prev_trap_activation;
+  Activation prev_trap_activation; // used in Inference
   Pro_Term exit_var;
   Pro_Term catch_body;
 
@@ -19,15 +19,16 @@ public class Pred_trap extends Pred
 
     Pro_Term[] items = {data.subterm[0]};
 
-      Pro_Term[] catch_items = {data.subterm[2]};
+    Pro_Term[] catch_items = {data.subterm[2]};
 
 // Debug_times.enter(2);
-      Pred_trap result = new Pred_trap();
+    Pred_trap result = new Pred_trap();
 // Debug_times.leave(2);
     result.called_body = Pro_Term.m_list(items);
 
-      result.exit_var = data.subterm[1];
-      result.catch_body = Pro_Term.m_list(catch_items);
+    result.exit_var = data.subterm[1];
+    result.catch_body = Pro_Term.m_list(catch_items);
+    result.catched = false;
 
     return result;
   }

@@ -270,7 +270,70 @@ koe10 :- writeln("koe10"),
     fail.
     
 koe10 :- writeln("koe10 end").
-    
+
+koe11a :- writeln("koe11a"),
+    str_char("A", X),
+    write("koe11a success 'A' = "), writeq(X), nl,
+    fail.
+
+koe11a :- writeln("koe11a end").
+
+koe11b :- writeln("koe11b"),
+    str_char(X, 'A'),
+    write("koe11b success 'A' = "), writeq(X), nl,
+    fail.
+
+koe11b :- writeln("koe11b end").
+
+koe11c :- writeln("koe11c"),
+    str_char("A", 'A'),
+    write("koe11c success A = A"), nl,
+    fail.
+
+koe11c :- writeln("koe11c end").
+
+koe11d :- writeln("koe11d"),
+    str_char("A", 'B'),
+    write("koe11d BAD success 'A' = 'B'"), nl,
+    fail.
+
+koe11d :- writeln("koe11d end").
+
+koe11e :- writeln("koe11e"),
+    str_char("", X),
+    write("koe11e BAD success '' = "), writeq(X), nl,
+    fail.
+
+koe11e :- writeln("koe11e end").
+
+koe11f :- writeln("koe11f"),
+    str_char("AB", X),
+    write("koe11f BAD success 'AB' = "), writeq(X), nl,
+    fail.
+
+koe11f :- writeln("koe11f end").
+
+koe11g :- writeln("koe11g"),
+    str_char(15, X),
+    write("koe11g BAD success 15 = "), writeq(X), nl,
+    fail.
+
+koe11g:- writeln("koe11g end").
+
+koe11h :- writeln("koe11h"),
+    str_char(X, 42),
+    write("koe11h BAD success 42 = "), writeq(X), nl,
+    fail.
+
+koe11h:- writeln("koe11h end").
+
+koe11i :- writeln("koe11i"),
+    str_char(X, Y),
+    write("koe11i BAD success "), writeq(X), write(" = "), writeq(Y), nl,
+    fail.
+
+koe11i:- writeln("koe11i end").
+ 
 % Test main
 
 :- koe1.
@@ -288,3 +351,13 @@ koe10 :- writeln("koe10 end").
 :- koe8.
 :- koe9.
 :- koe10.
+:- koe11a.
+:- koe11b.
+:- koe11c.
+:- koe11d.
+:- koe11e.
+:- koe11f.
+:- koe11g.
+:- koe11h.
+:- koe11i.
+

@@ -1,5 +1,8 @@
 Uutta
 =====
+Voiko ja onko syyt‰ koodata trap siten, ettei inferencen tarvitse tunnistaa
+sit‰. Huom: Pred_Trap.prev_trap_activation 
+Nyt ei exceptionia voi ottaa kiinni muussa kuin trap-predikaatissa.
 
 Muuttuja Pred.exception on turha. Tarkoitukseen voi k‰ytt‰‰
 Pred.exit_value -muuttujaa.

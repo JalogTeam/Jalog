@@ -34,6 +34,7 @@ public class BuiltIns
     new ClassInfo("is_string", Pred_is_string.class, 1),
     new ClassInfo("nl", Pred_writeln.class, 0),
     new ClassInfo("not", Pred_not.class, 1),
+    new ClassInfo("str_char", Pred_str_char.class, 2),
     new ClassInfo("substring", Pred_substring.class, 4),
     new ClassInfo("trap", Pred_trap.class, 3),
     new ClassInfo("write", Pred_write.class),
