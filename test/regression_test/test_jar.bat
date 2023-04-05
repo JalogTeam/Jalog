@@ -8,6 +8,7 @@ REM 1.4 tests
 
 call do_test_jar.bat test_strings
 call do_test_jar.bat test_findall
+call do_test_jar.bat test_member
 
 REM regression tests
 

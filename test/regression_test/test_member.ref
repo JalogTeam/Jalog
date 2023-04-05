@@ -1,0 +1,23 @@
+koe1: begin
+  testing: 1 [3,1,4]
+  SUCCESS: 1 [3,1,4]
+koe1: end
+*Yes*
+koe2: begin
+  testing: 5 [3,1,4]
+koe2: end
+*Yes*
+koe3: begin
+  testing: 5 [3,1,_1,4,_2]
+  SUCCESS: 5 [3,1,5,4,_2]
+  SUCCESS: 5 [3,1,_1,4,5]
+koe3: end
+*Yes*
+koe4: begin
+  testing: 5 [3,1,_3,4,_4|_5]
+  SUCCESS: 5 [3,1,5,4,_4|_5]
+  SUCCESS: 5 [3,1,_3,4,5|_5]
+  SUCCESS: 5 [3,1,_3,4,_4,5|_6]
+koe4: end
+*Yes*
+Exit status: 0 ; 

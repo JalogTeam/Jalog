@@ -32,6 +32,7 @@ public class BuiltIns
     new ClassInfo("is_list", Pred_is_list.class, 1),
     new ClassInfo("is_real", Pred_is_real.class, 1),
     new ClassInfo("is_string", Pred_is_string.class, 1),
+    new ClassInfo("member", Pred_member.class, 2),
     new ClassInfo("nl", Pred_writeln.class, 0),
     new ClassInfo("not", Pred_not.class, 1),
     new ClassInfo("str_char", Pred_str_char.class, 2),
