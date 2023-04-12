@@ -20,4 +20,54 @@ koe4: begin
   SUCCESS: 5 [3,1,_3,4,_4,5|_6]
 koe4: end
 *Yes*
+koe5: begin
+  testing: 7 [7|_7]
+  SUCCESS: 7 [7|_7]
+  SUCCESS: 7 [7,7|_8]
+koe5: end
+*Yes*
+koe5: begin
+  testing: 1 [1]
+  SUCCESS: 1 [1]
+koe5: end
+*Yes*
+koe6: begin
+  testing: 1 [0,1]
+  SUCCESS: 1 [0,1]
+koe6: end
+*Yes*
+koe7: begin
+  testing: 1 [_9]
+  SUCCESS: 1 [1]
+koe7: end
+*Yes*
+koe8: begin
+  testing: 1 []
+koe8: end
+*Yes*
+koe9: begin
+  testing: _10 [_11]
+  SUCCESS: _11 [_11]
+koe9: end
+*Yes*
+koe10: begin
+  testing: _12 [3,1,_13,4,_14|_15]
+  SUCCESS: 3 [3,1,_13,4,_14|_15]
+  SUCCESS: 1 [3,1,_13,4,_14|_15]
+  SUCCESS: _13 [3,1,_13,4,_14|_15]
+  SUCCESS: 4 [3,1,_13,4,_14|_15]
+  SUCCESS: _14 [3,1,_13,4,_14|_15]
+  SUCCESS: _12 [3,1,_13,4,_14,_12|_16]
+koe10: end
+*Yes*
+koe11: begin
+  testing: 5 _17
+  SUCCESS: 5 [5|_18]
+koe11: end
+*Yes*
+koe12: begin
+  testing: _19 _20
+  SUCCESS: _19 [_19|_21]
+koe12: end
+*Yes*
 Exit status: 0 ; 

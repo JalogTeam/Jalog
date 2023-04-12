@@ -32,12 +32,8 @@ public class Pred_member extends Pred
 */    
     if (list_param.data == null) { // (i,o)(o,o)
       Pro_Term[] e_array = {elem_param};
-System.out.println("Pred_member.first_call A " + " " + elem_param + " " );  
-      Pro_Term lista = Pro_Term.m_list(e_array, null);
-System.out.println("Pred_member.first_call B " + " " + lista);  
+      Pro_Term lista = Pro_Term.m_list(e_array, Pro_Term.m_open());
       forward = lista.unify(list_param, trail);
-System.out.println("Pred_member.first_call C " + " " + forward + " " +
-lista + " " + list_param);  
     } else { // (i,i) (o,i)
       if (list_param.data.typename == Jalog.LIST) {
         
@@ -65,8 +61,6 @@ lista + " " + list_param);
     Pro_Term current_head;
     Pro_Term current_tail;
 
-System.out.println("Pred_member.call A " + forward + " " + elem + " " +
-current_data);  
     if(!forward){
       trail.backtrack(Mark);
     }
@@ -74,12 +68,9 @@ current_data);
     
     while((!forward) && (current_data != null) && (current_data != Pro_TermData_List.EMPTY) &&
         (current_data.typename == Jalog.LIST)) {
-System.out.println("Pred_member.call B " + clause_number + " " + forward + " " + elem + " " +
-current_data);  
       previous_data = current_data; 
       current_head = ((Pro_TermData_List)current_data).t1.getRealNode();
       current_tail = ((Pro_TermData_List)current_data).t2.getRealNode();
-System.out.println("Pred_member.call C current_tail: " + current_tail);  
       switch (clause_number) {
         case 1: {
 // Clause 1: member1(E, [E|_]).
@@ -105,63 +96,7 @@ System.out.println("Pred_member.call C current_tail: " + current_tail);
           current_data = null;
         }
       }
-/*      
-      forward = current_head.unify(elem, trail, Mark);
-
-      
-      if (forward) { // if success prepare for
-        if (current_tail.data != null) { // bound(Tail)?
-          current_data = current_tail.data;
-        } else {
-          
-        }
-      } else {
-        if (current_tail.data != null) { // bound(Tail)?
-          current_data = current_tail.data;
-System.out.println("Pred_member.call D current_data: " + current_data);  
-        } else {
-          current_tail.data = new Pro_TermData_List(elem, Pro_Term.m_open());
-          trail.append(current_tail);
-          forward = true;
-          current_data = Pro_TermData_List.EMPTY;
-System.out.println("Pred_member.call E current_data: " + current_data);  
-        }
-        
-      }
-
-*/
-
-
-
-/*
-
-      current_tail.data = new Pro_TermData_List(elem, Pro_Term.m_open());
-
-
-
-      if (current_tail.data != null) {
-        current_data = current_tail.data;
-      } else {
-        complete = true;
-        forward = true;
-        current_tail.data = new Pro_TermData_List(elem, Pro_Term.m_open());
-        current_data = Pro_TermData_List.EMPTY;
-      }
-
-      if (current_tail.data != null) {
-        forward = ((Pro_TermData_List)current_data).t1.unify(elem, trail, Mark);
-      
-        current_data = current_tail.data;
-      } else {
-      
-        forward = true;
-        current_tail.data = new Pro_TermData_List(elem, Pro_Term.m_open());
-        current_data = Pro_TermData_List.EMPTY;
-      }
-*/      
     }
-System.out.println("Pred_member.call Z " + forward + " " + elem + " " +
-current_data);  
   }
 
 }

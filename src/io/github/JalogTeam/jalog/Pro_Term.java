@@ -139,52 +139,40 @@ if(debug>0) System.out.println("  2: " + (pn2/*.data*/));
         {
           Pro_TermData_Compound pt1 = ((Pro_TermData_Compound)pn1.data);
           Pro_TermData_Compound pt2 = ((Pro_TermData_Compound)pn2.data);
-// System.out.println("\n1 Comparing: " + pt1 + " and " + pt2);
           if (pt1 == pt2)
           {
             success = true;
-// System.out.println("\n1.1  Unexpected success");
           } else if((pt1.name.equals(pt2.name)) &&
                  (pt1.arity == pt2.arity))
           {
             int i;
-// System.out.println("\n1.2  Names and arities Ok");
             
             success = true;
             i = 0;
             while(success && (i < pt1.arity))
             {
-// System.out.println("\n2 Comparing: " + pt1.subterm[i] + " and " + pt2.subterm[i]);
               success = pt1.subterm[i].unify2(
                       pt2.subterm[i],pBack,garbage);
-// System.out.println("\n3   Result: " + success);
               i++;
             }
           } 
           else 
           {
-// System.out.println("\n4  Names and arities differ");
-// System.out.println("  pt1:" + pt1.name + "/" + pt1.arity);
-// System.out.println("  pt2:" + pt2.name + "/" + pt2.arity);
             success = false;
           }
         } 
         else 
         {
-// System.out.println("\n5  Other not compound");
           success = false;
         }
       }
       else if (pn1.data instanceof Pro_TermData_String)
       {
-// System.out.println("A");
         if (pn2.data instanceof Pro_TermData_String)
         {
-// System.out.println("B");
           success = Pro_TermData_String.compare_strings(
               (Pro_TermData_String)pn1.data, 
               (Pro_TermData_String)pn2.data) == 0;
-// System.out.println("C success=" + success);
         }
       }
       else if (pn1.data instanceof Pro_TermData_List)
@@ -365,6 +353,7 @@ if(debug>0) System.out.println("* unify2: end " + success);
   static public Pro_Term m_list(Pro_Term[] iniVal)
   {
     Pro_Term a = new Pro_Term();
+
     a.data = Pro_TermData_List.make(iniVal,Pro_Term.EMPTY_LIST);
     return a;
   }
@@ -385,7 +374,6 @@ if(debug>0) System.out.println("* unify2: end " + success);
     String OpName;
     
     term = term.getRealNode();
-//          System.out.println("term='" + term.toString()+"'");        
     data = term.data; // does not compute yet
     if(term.data == null) {
       data = new Pro_TermData_Unified(term);
@@ -396,7 +384,6 @@ if(debug>0) System.out.println("* unify2: end " + success);
 /* What about overflow? */
 
         if (compData.arity == 1) {
-//          System.out.println("compData='" + compData.toString()+"'");
 
           OpName = compData.name;
           Op = ' ';
@@ -436,9 +423,7 @@ if(debug>0) System.out.println("* unify2: end " + success);
             if(Tv == 'i') {data = new Pro_TermData_Integer(Iv);}
             else if(Tv == 'r') {data = new Pro_TermData_Real(Rv);}
           }
-//          System.out.println("data='" + data.toString()+"'");        
         } else if (compData.arity == 2) {
-//          System.out.println("compData='" + compData.toString()+"'");
 
           OpName = compData.name;
           Op = ' ';
@@ -508,7 +493,6 @@ if(debug>0) System.out.println("* unify2: end " + success);
               
             }
           }
-//          System.out.println("data='" + data.toString()+"'");
         }
       }
     }
@@ -572,7 +556,6 @@ if(debug>0) System.out.println("* unify2: end " + success);
   public Pro_Term copy()
   {
     Hashtable variable_map = new Hashtable(100);
-//System.out.println("New db map " + toString() + " ****");
   
     return copy(variable_map);
 
@@ -582,14 +565,12 @@ if(debug>0) System.out.println("* unify2: end " + success);
   {
     Pro_Term source = getRealNode();
     Pro_Term new_this = (Pro_Term) variable_map.get(source);
-//System.out.println("copy: " + source + "->" + new_this + " ****");
     if(new_this == null) {
       if(source.data != null) {
         Pro_TermData new_data = source.data.copy(variable_map);
         { 
           new_this = new Pro_Term();
           new_this.data = new_data;
-//System.out.println("case 4 ****");
         }  
       } else {
         // New open variable
@@ -597,9 +578,7 @@ if(debug>0) System.out.println("* unify2: end " + success);
         new_this.data = null;
       }
       variable_map.put(source, new_this);
-//System.out.println("case 5 new mapping ****");
     }
-//System.out.println("case 5 " + source.Id + "->" + new_this.Id + " ****");
     return new_this;
   }
 
