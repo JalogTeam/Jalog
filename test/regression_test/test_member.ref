@@ -70,4 +70,8 @@ koe12: begin
   SUCCESS: _19 [_19|_21]
 koe12: end
 *Yes*
+koe13: begin
+  testing: _22 15
+koe13: end
+*Yes*
 Exit status: 0 ; 

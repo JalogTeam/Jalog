@@ -21,5 +21,9 @@ koe(T, _, _) :- writeln(T, ": end").
 :- koe("koe10", Z, [3,1,X,4,Y|_]).
 :- koe("koe11", 5, Z).
 :- koe("koe12", X, Y).
-
+:- koe("koe13", X, 15). % not list
+:- L1 = L2, writeln("koe14: ", L1, " ", L2),
+   koe("koe14a", 5, L1),
+   koe("koe14b", X, L2),
+   writeln("koe14Z: ", L1, " ", L2).
 

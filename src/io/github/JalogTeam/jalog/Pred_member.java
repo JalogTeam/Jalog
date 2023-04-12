@@ -35,20 +35,18 @@ public class Pred_member extends Pred
       Pro_Term lista = Pro_Term.m_list(e_array, Pro_Term.m_open());
       forward = lista.unify(list_param, trail);
     } else { // (i,i) (o,i)
-      if (list_param.data.typename == Jalog.LIST) {
+      Pro_TermData first_data = (Pro_TermData_List)list_param.getData();
+      if (first_data.typename == Jalog.LIST) {
+        forward = true; // no backtrack in first call
         
-        Pro_TermData first_data = (Pro_TermData_List)list_param.getData();
-        if (first_data.typename == Jalog.LIST) {
-          state = new Pred_member();
-          state.current_data = first_data;
-          state.elem = elem_param;
-          state.clause_number = 1;
+        state = new Pred_member();
+        state.current_data = first_data;
+        state.elem = elem_param;
+        state.clause_number = 1;
 
-          trail.mark(state.Mark);
-
-          
-          state.call();
-        }
+        trail.mark(state.Mark);
+        
+        state.call();
       }
     }
     
@@ -61,7 +59,7 @@ public class Pred_member extends Pred
     Pro_Term current_head;
     Pro_Term current_tail;
 
-    if(!forward){
+    if(!forward) { // not executed in first call
       trail.backtrack(Mark);
     }
     forward = false;
