@@ -169,7 +169,7 @@ public class Database
           {
             head = ((Pro_TermData_Compound)(temp_term.getData())).subterm[0];
           }
-          if(head.unify(filter, Pred.trail, Mark)) {
+          if(filter.unify(head, Pred.trail, Mark)) {
 // System.out.println("Database.fetch: " + temp_term);
 
             return temp_term;

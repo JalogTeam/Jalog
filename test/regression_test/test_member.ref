@@ -26,31 +26,31 @@ koe5: begin
   SUCCESS: 7 [7,7|_8]
 koe5: end
 *Yes*
-koe5: begin
+koe6: begin
   testing: 1 [1]
   SUCCESS: 1 [1]
-koe5: end
-*Yes*
-koe6: begin
-  testing: 1 [0,1]
-  SUCCESS: 1 [0,1]
 koe6: end
 *Yes*
 koe7: begin
-  testing: 1 [_9]
-  SUCCESS: 1 [1]
+  testing: 1 [0,1]
+  SUCCESS: 1 [0,1]
 koe7: end
 *Yes*
 koe8: begin
-  testing: 1 []
+  testing: 1 [_9]
+  SUCCESS: 1 [1]
 koe8: end
 *Yes*
 koe9: begin
-  testing: _10 [_11]
-  SUCCESS: _11 [_11]
+  testing: 1 []
 koe9: end
 *Yes*
 koe10: begin
+  testing: _10 [_11]
+  SUCCESS: _11 [_11]
+koe10: end
+*Yes*
+koe11: begin
   testing: _12 [3,1,_13,4,_14|_15]
   SUCCESS: 3 [3,1,_13,4,_14|_15]
   SUCCESS: 1 [3,1,_13,4,_14|_15]
@@ -58,20 +58,24 @@ koe10: begin
   SUCCESS: 4 [3,1,_13,4,_14|_15]
   SUCCESS: _14 [3,1,_13,4,_14|_15]
   SUCCESS: _12 [3,1,_13,4,_14,_12|_16]
-koe10: end
-*Yes*
-koe11: begin
-  testing: 5 _17
-  SUCCESS: 5 [5|_18]
 koe11: end
 *Yes*
 koe12: begin
-  testing: _19 _20
-  SUCCESS: _19 [_19|_21]
+  testing: 5 _17
+  SUCCESS: 5 [5|_18]
 koe12: end
 *Yes*
 koe13: begin
-  testing: _22 15
+  testing: _19 _20
+  SUCCESS: _19 [_19|_21]
 koe13: end
+*Yes*
+koe14: begin
+  testing: _22 15
+koe14: end
+*Yes*
+koe15: _23 _23
+koe15a: X=_24 L1=[5|_25] L2=[5|_25]
+koe15b: X=5 L1=[5|_25] L2=[5|_25]
 *Yes*
 Exit status: 0 ; 
