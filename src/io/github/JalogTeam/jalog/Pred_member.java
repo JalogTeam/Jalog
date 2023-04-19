@@ -7,13 +7,9 @@ public class Pred_member extends Pred
 {
   
   Pro_TermData current_data; // hopefully a list
-  Pro_TermData previous_data; // a list
   Pro_Term elem;
   boolean complete;
   int clause_number;
-  
-  
-  
   
   public static Pred first_call(Pro_TermData_Compound params) {
 
@@ -27,31 +23,34 @@ public class Pred_member extends Pred
 
     forward = false; // default fail
 /*
-    Identify flow pattern and act accordingly.
+    Identify flow pattern and data types, and act accordingly.
     _param.data == null means an open variable.
 */    
     if (list_param.data == null) { // (i,o)(o,o)
+      // Backtrack cannot produce another result, state = null
+    
+      // generate result data
       Pro_Term[] e_array = {elem_param};
       Pro_Term lista = Pro_Term.m_list(e_array, Pro_Term.m_open());
+      
+      // unify result data to parameter
       forward = lista.unify(list_param, trail);
     } else { // (i,i) (o,i)
-      Pro_TermData first_data = (Pro_TermData_List)list_param.getData();
-      if (first_data.typename == Jalog.LIST) {
-        forward = true; // no backtrack in first call
-        
+      Pro_TermData list_data = (Pro_TermData_List)list_param.getData();
+      if (list_data.typename == Jalog.LIST) {
+        // Backtrack may produce another result, state = new object
         state = new Pred_member();
-        state.current_data = first_data;
+        state.current_data = list_data;
         state.elem = elem_param;
         state.clause_number = 1;
 
-        trail.mark(state.Mark);
+        trail.mark(state.Mark); // set backtrack point
         
-        state.call();
+        state.call(); // the first result is generated the same way as other
+                      // results
       }
     }
-    
     return state;
-    
   }
   
   public void call()
@@ -59,26 +58,23 @@ public class Pred_member extends Pred
     Pro_Term current_head;
     Pro_Term current_tail;
 
-    if(!forward) { // not executed in first call
-      trail.backtrack(Mark);
-    }
+    trail.backtrack(Mark);
     forward = false;
     
-    while((!forward) && (current_data != null) && (current_data != Pro_TermData_List.EMPTY) &&
-        (current_data.typename == Jalog.LIST)) {
-      previous_data = current_data; 
+    while((!forward) && (current_data != null) && 
+        (current_data != Pro_TermData_List.EMPTY) &&
+        (current_data.typename == Jalog.LIST)) 
+    {
       current_head = ((Pro_TermData_List)current_data).t1.getRealNode();
       current_tail = ((Pro_TermData_List)current_data).t2.getRealNode();
       switch (clause_number) {
         case 1: {
 // Clause 1: member1(E, [E|_]).
-
           forward = current_head.unify(elem, trail, Mark);
           clause_number = 2;
         } break;
         case 2: {
 // Clause 2: member1(E, [_|L]) :- bound(L), !, member1(E, L).
-
           if (current_tail.data != null) { // bound(L)
             current_data = current_tail.data;
             clause_number = 1;
