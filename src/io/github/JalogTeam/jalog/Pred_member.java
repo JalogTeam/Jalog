@@ -5,7 +5,7 @@ package io.github.JalogTeam.jalog;
 
 public class Pred_member extends Pred
 {
-  
+  // This data is used when backtracking to enable finding the next solution.
   Pro_TermData current_data; // hopefully a list
   Pro_Term elem;
   boolean complete;
@@ -15,18 +15,16 @@ public class Pred_member extends Pred
 
     Pred_member state = null;
 
-/*
-    Parameters to local variables:
-*/    
+    // Parameters to local variables:
     Pro_Term elem_param = params.subterm[0].getRealNode();
     Pro_Term list_param = params.subterm[1].getRealNode();
 
     forward = false; // default fail
-/*
-    Identify flow pattern and data types, and act accordingly.
-    _param.data == null means an open variable.
-*/    
-    if (list_param.data == null) { // (i,o)(o,o)
+
+    // Identify flow pattern and data types, and act accordingly.
+  
+    String typename = list_param.getType();
+    if (typename == Jalog.OPEN) { // (i,o)(o,o)
       // Backtrack cannot produce another result, state = null
     
       // generate result data
@@ -36,8 +34,9 @@ public class Pred_member extends Pred
       // unify result data to parameter
       forward = lista.unify(list_param, trail);
     } else { // (i,i) (o,i)
-      Pro_TermData list_data = (Pro_TermData_List)list_param.getData();
-      if (list_data.typename == Jalog.LIST) {
+      if (typename == Jalog.LIST) {
+        Pro_TermData_List list_data = 
+            (Pro_TermData_List)list_param.getData();
         // Backtrack may produce another result, state = new object
         state = new Pred_member();
         state.current_data = list_data;
