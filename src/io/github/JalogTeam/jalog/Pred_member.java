@@ -8,7 +8,6 @@ public class Pred_member extends Pred
   // This data is used when backtracking to enable finding the next solution.
   Pro_TermData current_data; // hopefully a list
   Pro_Term elem;
-  boolean complete;
   int clause_number;
   
   public static Pred first_call(Pro_TermData_Compound params) {

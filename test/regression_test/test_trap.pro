@@ -11,7 +11,19 @@ koe3 :- write("koe3: "),trap(fail, X, write("trapped ", X)),
     write(" OK"), nl, !.
 koe3 :- write(" fail"), nl.
 
+koe4sub(1).
+koe4sub(2).
+koe4sub(3).
+
+koe4 :- writeln("koe4:"),trap(koe4sub(A), X, writeln("trapped ", X)), 
+    writeln(" A=", A), fail.
+koe4 :- write("koe4: done"), nl.
+
+koe5 :- write("koe5: "),trap(exit(1), 2, write("trapped")), write(" OK"), nl, !.
+koe5 :- write(" fail"), nl.
 
 :- koe1.
 :- koe2.
 :- koe3.
+:- koe4.
+:- koe5.

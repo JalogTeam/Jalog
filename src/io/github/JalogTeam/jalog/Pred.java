@@ -41,7 +41,7 @@ public class Pred
 
 
 // called predicate control
-  Activation sub_activation;
+  public Activation sub_activation;
 
   protected Pred(){
     Mark = new Pro_TrailMark();

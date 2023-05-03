@@ -4,4 +4,12 @@ koe2: writing  OK
 *Yes*
 koe3:  fail
 *Yes*
+koe4:
+ A=1
+ A=2
+ A=3
+koe4: done
+*Yes*
+koe5:  fail
+*Yes*
 Exit status: 0 ; 

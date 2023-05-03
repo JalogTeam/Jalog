@@ -10,11 +10,11 @@ public class Pred_not extends Pred
 
     Pro_Term[] items = {data.subterm[0]};
 // Debug_times.enter(2);
-    Pred_not result = new Pred_not();
+    Pred_not state = new Pred_not();
 // Debug_times.leave(2);
-    result.called_body = Pro_Term.m_list(items);
+    state.called_body = Pro_Term.m_list(items);
 
-    return result;
+    return state;
   }
 
   public void post_call()
