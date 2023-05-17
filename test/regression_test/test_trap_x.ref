@@ -1,4 +1,4 @@
-koe1: trapped 1 fail
+koe1: trap_x_ed 1 OK
 *Yes*
 koe2: writing  OK
 *Yes*
@@ -11,6 +11,12 @@ koe4:
 koe4: done
 *Yes*
 koe5:  fail
+*Yes*
+koe6:
+ A=1
+ A=2
+ A=3
+koe6: done
 *Yes*
 koe7:  koe7 trapped Y=2 koe7 fail
 *Yes*

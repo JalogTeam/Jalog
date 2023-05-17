@@ -16,9 +16,9 @@ public class Chain
     } else {
       first.prev = item;
     }
-    first = item;
     item.prev = null;
     item.next = first;
+    first = item;
   }
 
   public void addLast(Chain_Item item)
@@ -28,9 +28,9 @@ public class Chain
     } else {
       last.next = item;
     }
-    last = item;
     item.next = null;
     item.prev = last;
+    last = item;
   }
 
   public void remove(Chain_Item item)

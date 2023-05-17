@@ -1,0 +1,12 @@
+*Yes*
+*Yes*
+asserta test
+koe1 a: ;
+koe1 b: ;
+koe1 c:  40 20 10;
+asserta test end
+*Yes*
+koe2 alku
+ei löytynyt
+*Yes*
+Exit status: 0 ; 
