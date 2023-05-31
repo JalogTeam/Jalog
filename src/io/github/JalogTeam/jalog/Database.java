@@ -5,18 +5,6 @@ package io.github.JalogTeam.jalog;
 import java.io.*;
 import java.util.*;
 
-class Database_FactClass // Name/Arity
-{
-  DB_Cursor last_cursor;
-  Chain facts;
-
-  Database_FactClass()
-  {
-    last_cursor = null;
-    facts = new Chain();
-  }
-}
-
 class Fact_Chain_Item extends Chain_Item
 {
 //  Pro_Term term;
@@ -84,7 +72,7 @@ public class Database
         
   }
 
-  static void define_by_string(String key) {
+  static Database_FactClass define_by_string(String key) {
     Database_FactClass factClass;
     
     factClass = (Database_FactClass) db.get(key);
@@ -92,6 +80,7 @@ public class Database
       factClass = new Database_FactClass();
       db.put(key,factClass);
     } 
+    return factClass;
   }
   
   static void asserta(Pro_Term x)
@@ -104,32 +93,38 @@ public class Database
     asserty(x, true);
   }
   
-  static Pro_Term retract(Pro_Term x)
+  static Pro_Term retract(Pro_Term filter, Pro_TrailMark Mark)
   {
-    return null;
-  }
+//    return null;
+    Pro_Term unified_clause;
+    DB_Cursor prev_item;
+    Database_FactClass factClass;
 
-/* MALLI  
-  static Pro_Term fetch(Database_FactClass factClass, DB_Cursor prev_item, Pro_Term filter)
-  {
-    if (prev_item.current_item == null) {
-      prev_item.current_item = factClass.facts.first;
-    } else {
-      prev_item.current_item = prev_item.current_item.next;
+    Pro_TermData_Compound data = (Pro_TermData_Compound)filter.getData();
+ 
+    String name = data.name;
+    byte arity = data.arity;
+ 
+    String key = name + "/" + Integer.toString(arity);
+    factClass = (Database_FactClass) Database.db.get(key);
+    if((factClass != null) && factClass.dynamic) {
+      prev_item = new DB_Cursor();
+      Pred.trail.mark(Mark);
+      unified_clause = Database.fetch(factClass, prev_item, filter, Mark, true);
+
+      if(unified_clause != null) {
+        factClass.facts.remove(prev_item.current_item);
+      }
+    } else { // nothing in database, fail
+      unified_clause = null;
     }
-    if (prev_item.current_item == null) {
-      return null;
-    } else {
-      // New term and copy data to it
-      Pro_Term temp_term = new Pro_Term();
-      temp_term.data = prev_item.current_item.data;
-      return temp_term.copy();
-    }
+
+    return unified_clause;
+
   }
-*/
 
   static Pro_Term fetch(Database_FactClass factClass, DB_Cursor prev_item,
-      Pro_Term filter, Pro_TrailMark Mark)
+      Pro_Term filter, Pro_TrailMark Mark, boolean fact_only)
   {
 //System.out.println("Database.fetch(" + factClass+ "," + prev_item+ "," + filter+ "," +  Mark+ ")");
     if (prev_item == null) {
@@ -145,34 +140,37 @@ public class Database
         prev_item.current_item = ((Fact_Chain_Item)(prev_item.current_item)).next;
       }
 //System.out.println("Database.fetch: prev_item.current_item: " + prev_item.current_item);
-       if (prev_item.current_item == null) {
+      if (prev_item.current_item == null) {
 // System.out.println("Database.fetch: *null*");
         return null;
-      } else {
+      } else if (!prev_item.current_item.deleted) {
         // New term and copy data to it
         Pro_TermData_Compound compo = (Pro_TermData_Compound)
                 (((Fact_Chain_Item) prev_item.current_item).data);
-        Pro_Term temp_term = new Pro_Term(compo);
-        Pro_Term head = temp_term;
+        if (compo != null) {
+          
+          Pro_Term temp_term = new Pro_Term(compo);
+          Pro_Term head = temp_term;
 
-        String name = compo.name;
-        byte arity = compo.arity;
-        is_rule = false;
-        if((name.equals("if_") || name.equals(":-")) && arity == 2) {
-          head = compo.subterm[0];
-          is_rule = true;
-        }
-        if(filter.match(head)){
-          temp_term = temp_term.copy(); // copy result for returning
-          head = temp_term;
-          if(is_rule)
-          {
-            head = ((Pro_TermData_Compound)(temp_term.getData())).subterm[0];
+          String name = compo.name;
+          byte arity = compo.arity;
+          is_rule = false;
+          if((name.equals("if_") || name.equals(":-")) && arity == 2) {
+            head = compo.subterm[0];
+            is_rule = true;
           }
-          if(filter.unify(head, Pred.trail, Mark)) {
-// System.out.println("Database.fetch: " + temp_term);
+          if(filter.match(head)){
+            temp_term = temp_term.copy(); // copy result for returning
+            head = temp_term;
+            if(is_rule)
+            {
+              head = ((Pro_TermData_Compound)(temp_term.getData())).subterm[0];
+            }
+            if(filter.unify(head, Pred.trail, Mark)) {
+  // System.out.println("Database.fetch: " + temp_term);
 
-            return temp_term;
+              return temp_term;
+            }
           }
         }
       }

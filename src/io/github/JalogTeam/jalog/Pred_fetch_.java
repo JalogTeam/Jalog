@@ -26,7 +26,8 @@ public class Pred_fetch_ extends Pred
     if(factClass != null) {
       prev_item = new DB_Cursor();
       trail.mark(Mark);
-      unified_clause = Database.fetch(factClass, prev_item, calling_term, Mark);
+      unified_clause = Database.fetch(factClass, prev_item, calling_term, Mark,
+          false);
 // System.out.println("Pred_fetch_ unified_clause = " + unified_clause);
 
 
@@ -101,7 +102,8 @@ public class Pred_fetch_ extends Pred
 // System.out.println("Pred_fetch_.post_call cutting");
       } else {
 // Debug_times.enter(12); 
-        unified_clause = Database.fetch(factClass, prev_item, calling_term, Mark);
+        unified_clause = Database.fetch(factClass, prev_item, calling_term, 
+            Mark, false);
 // Debug_times.leave(12); 
 // System.out.println("Pred_fetch_.post_call unified_clause = " + unified_clause);
       }

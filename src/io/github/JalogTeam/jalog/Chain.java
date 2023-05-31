@@ -11,7 +11,7 @@ public class Chain
 
   public void addFirst(Chain_Item item)
   {
-    if(first == null) {
+    if(first == null) {  // now empty
       last = item;
     } else {
       first.prev = item;
@@ -19,6 +19,7 @@ public class Chain
     item.prev = null;
     item.next = first;
     first = item;
+    item.deleted = false;
   }
 
   public void addLast(Chain_Item item)
@@ -31,6 +32,7 @@ public class Chain
     item.next = null;
     item.prev = last;
     last = item;
+    item.deleted = false;
   }
 
   public void remove(Chain_Item item)
@@ -45,6 +47,7 @@ public class Chain
     } else {
       item.next.prev = item.prev;
     }
+    item.deleted = true;
   }
 
 }
