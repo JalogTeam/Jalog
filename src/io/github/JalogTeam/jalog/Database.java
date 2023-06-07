@@ -21,8 +21,10 @@ public class Database
   
   static void asserty(Pro_Term x, boolean last)
   {
+    boolean is_rule = false;
     Database_Table factClass;
     Pro_TermData data = x.getData();
+    
     if(data instanceof Pro_TermData_Compound) {
       Pro_TermData_Compound compo = (Pro_TermData_Compound)data;
       String name = compo.name;
@@ -30,20 +32,21 @@ public class Database
       if((name.equals("if_") || name.equals(":-")) && arity == 2) {
         Pro_Term head = compo.subterm[0];
         Pro_Term body = compo.subterm[1];
+        is_rule = true;  // not to be stored as dynamic
 
         Pro_TermData headdata = head.getData();
         if(headdata instanceof Pro_TermData_Compound) {
-          Pro_TermData_Compound headcompo = (Pro_TermData_Compound)headdata;
+          Pro_TermData_Compound headcompo = (Pro_TermData_Compound)headdata; 
           name = headcompo.name;
           arity = headcompo.arity;
         } else {
-          System.out.println("*** Error: assert: wrong head Pro_TermData class: " + 
+          System.err.println("\n*** Error: assert: wrong head Pro_TermData class: " + 
               headdata.getClass().getName());
         }
 
         Pro_TermData bodydata = body.getData();
         if(!(bodydata instanceof Pro_TermData_List)) {
-          System.out.println("*** Error: assert: wrong body Pro_TermData class: " + 
+          System.err.println("\n*** Error: assert: wrong body Pro_TermData class: " + 
               bodydata.getClass().getName());
         }
       }
@@ -55,19 +58,22 @@ public class Database
         db.put(key,factClass);
       } 
       // factClass Ok
-      
-      Fact_Chain_Item item = new Fact_Chain_Item();
- 
-      Pro_Term saveterm = x.copy();
-      item.data = (Pro_TermData_Compound) saveterm.getData();
-      if(last) {
-        factClass.facts.addLast(item);
+      if (!(is_rule && factClass.dynamic)) {
+        factClass.has_rules |= is_rule;
+        Fact_Chain_Item item = new Fact_Chain_Item();
+   
+        Pro_Term saveterm = x.copy();
+        item.data = (Pro_TermData_Compound) saveterm.getData();
+        if(last) {
+          factClass.facts.addLast(item);
+        } else {
+          factClass.facts.addFirst(item);
+        }
       } else {
-        factClass.facts.addFirst(item);
+        System.err.println("\n*** Error: assert: Dynamic rule not allowed: " + key);
       }
-
     } else {
-      System.out.println("*** Error: assert: wrong Pro_TermData class: " + data.getClass().getName());
+      System.err.println("\n*** Error: assert: wrong Pro_TermData class: " + data.getClass().getName());
     } 
         
   }
@@ -196,6 +202,10 @@ public class Database
         out.write(key);
         out.newLine();
         factClass = (Database_Table) db.get(key);
+        out.write("  has_rules: " + factClass.has_rules);
+        out.newLine();
+        out.write("  dynamic: " + factClass.dynamic);
+        out.newLine();
         for(currentItem = (Fact_Chain_Item)factClass.facts.first; 
             currentItem != null; currentItem = (Fact_Chain_Item)currentItem.next) {
           out.write("  " + currentItem.data.image());
@@ -208,7 +218,7 @@ public class Database
 
       out.close();
     } catch (IOException e) {
-      System.out.println("*** Error: dump: IOException " + e);
+      System.err.println("\n*** Error: dump: IOException " + e);
     } 
   }
   

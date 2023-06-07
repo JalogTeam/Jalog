@@ -55,7 +55,7 @@ public class Pred_fetch_ extends Pred
     } else { // nothing in database, fail
       forward = false;
 //      if(!key.equals("comline_arg/3")) { // TODO: Skip, if dynamic
-        System.out.println("*** Unknown predicate: " + key);
+        System.err.println("*** Unknown predicate: " + key);
 //      }
     }
   } // Pred_fetch_
@@ -71,7 +71,7 @@ public class Pred_fetch_ extends Pred
       trail.backtrack(Mark);
 // System.out.println("Pred_fetch_.call, backtrack " + calling_term);
     } else {
- System.out.println("*** ERROR: Pred_fetch_.call, forward == true !");
+ System.err.println("*** ERROR: Pred_fetch_.call, forward == true !");
     }
 // ???    cutting = false;
   }
@@ -85,7 +85,7 @@ public class Pred_fetch_ extends Pred
     called_body = null;
 
     if(prev_item == null) {
-      System.out.println("*** ERROR: Pred_fetch_.post_call, EXTRA CALL ! ***");
+      System.err.println("*** ERROR: Pred_fetch_.post_call, EXTRA CALL ! ***");
       throw new Error(" Boo ");
     }
     if(forward){

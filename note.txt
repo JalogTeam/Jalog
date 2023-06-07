@@ -1,5 +1,9 @@
 Uutta
 =====
+Pannaan käännösvirheet estämään ohjelman suoritus.
+Katsotaan ajoaikaiset virheet, että toimitaan asianmukaisesti: trap jne. 
+standardoidut virhekoodit. Ks. Turbo Prolog.
+
 Voiko ja onko syytä koodata trap siten, ettei inferencen tarvitse tunnistaa
 sitä. Huom: Pred_Trap.prev_trap_activation 
 Nyt ei exceptionia voi ottaa kiinni muussa kuin trap-predikaatissa.

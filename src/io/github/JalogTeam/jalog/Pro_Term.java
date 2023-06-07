@@ -54,7 +54,7 @@ public class Pro_Term
     boolean success = false;
     double rvalue;
 
-if(debug>0) System.out.println("* unify2: begin");
+if(debug>0) System.err.println("* unify2: begin");
     if(pBack != null)
     {
       pBack.mark(Mark);// = pBack.top;
@@ -63,8 +63,8 @@ if(debug>0) System.out.println("* unify2: begin");
 
     pn1 = getRealNode();
     pn2 = pn2.getRealNode();
-if(debug>0) System.out.println("  1: " + (pn1/*.data*/));
-if(debug>0) System.out.println("  2: " + (pn2/*.data*/));
+if(debug>0) System.err.println("  1: " + (pn1/*.data*/));
+if(debug>0) System.err.println("  2: " + (pn2/*.data*/));
     
     if (pn1 == pn2)
     {
@@ -239,7 +239,7 @@ if(debug>0) System.out.println("  2: " + (pn2/*.data*/));
         }
       }
     }
-if(debug>0) System.out.println("* unify2: end " + success);
+if(debug>0) System.err.println("* unify2: end " + success);
  
     return success;
   } // end unify

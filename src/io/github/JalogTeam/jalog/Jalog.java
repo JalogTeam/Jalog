@@ -84,15 +84,15 @@ public class Jalog
           int exit_code = (int)((Pro_TermData_Integer)exit_data).value;
           System.exit(exit_code);
         } else {
-          System.out.println("Abnormal termination: " + exit_data);
+          System.err.println("Abnormal termination: " + exit_data);
         }
       }
     } else if(show_help){
-      System.out.println("Parameters: <compiler_options> <program_name> <program_arguments>");
-      System.out.println("  <compiler_options>");
-      System.out.println("      -v Show version information");
-      System.out.println("  <program_name> - complete file name - no default extensions");
-      System.out.println("  <program_arguments> - as the program needs them");
+      System.err.println("Parameters: <compiler_options> <program_name> <program_arguments>");
+      System.err.println("  <compiler_options>");
+      System.err.println("      -v Show version information");
+      System.err.println("  <program_name> - complete file name - no default extensions");
+      System.err.println("  <program_arguments> - as the program needs them");
     }
       
     

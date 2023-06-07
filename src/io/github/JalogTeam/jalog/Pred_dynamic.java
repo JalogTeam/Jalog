@@ -14,7 +14,12 @@ public class Pred_dynamic extends Pred
     if(data1 instanceof Pro_TermData_String) {
       String key = ((Pro_TermData_String)data1).image();
       factClass = Database.define_by_string(key);
-      factClass.dynamic = true;
+      if (factClass.has_rules) {
+        System.err.println("*** Error: " + key + 
+            " cannot be dynamic because it has rules.");
+      } else {
+        factClass.dynamic = true;
+      }
     } else {
       System.err.println("*** Error: dynamic: Argument must be a " +
           "string containing functor/arity");

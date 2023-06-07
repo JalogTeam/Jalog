@@ -4,6 +4,9 @@ Kesken
 Huom!
 -----
 
+* Vahditaan, etta assert ja retract predikaatteja käytetään vain dynamic-
+  määriteltyihin faktoihin.
+
 * Pro_TermData_Char'in toString ei ehkä selviä kontrollimerkeistä kunnialla.
 
 

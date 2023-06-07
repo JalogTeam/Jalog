@@ -13,3 +13,15 @@ b.
 b("heippa").
 :- writeln("I "), b(X), writeln("J "), writeln(X), fail. % should write "heippa"
 
+:- writeln("K Rule cannot be made dynamic.").
+c :- writeln("K Hei!").
+:- dynamic("c/0"), writeln("ERROR dynamic rule shouldn't exist").
+:- writeln("K done").
+
+:- writeln("L Dynamic predicate cannot accept a rule.").
+b("jee") :- writeln("L Hei, hei!").
+:- writeln("L "), b(X), writeln(X), fail.
+:- writeln("L done").
+
+
+

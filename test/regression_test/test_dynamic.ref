@@ -23,4 +23,20 @@ I
 J 
 heippa
 *No*
+K Rule cannot be made dynamic.
+*Yes*
+*** Error: c/0 cannot be dynamic because it has rules.
+ERROR dynamic rule shouldn't exist
+*Yes*
+K done
+*Yes*
+L Dynamic predicate cannot accept a rule.
+*Yes*
+
+*** Error: assert: Dynamic rule not allowed: b/1
+L 
+heippa
+*No*
+L done
+*Yes*
 Exit status: 0 ; 

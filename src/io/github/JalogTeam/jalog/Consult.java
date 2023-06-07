@@ -93,7 +93,7 @@ public class Consult
         input =
           new InputStreamReader(is, "UTF-8");
       } catch (Exception e) {
-        System.out.println("*** Error: " + e);
+        System.err.println("\n*** Error: " + e);
         input = null;
         exit_value = Pro_Term.m_integer(1); // File not found
       }
@@ -106,7 +106,7 @@ public class Consult
 // System.out.println("B");
         input = new FileReader(fileName.substring(name_start_pos));
       } catch (Exception e) {
-        System.out.println("*** Error: " + e);
+        System.err.println("\n*** Error: " + e);
         input = null;
         exit_value = Pro_Term.m_integer(1); // File not found
       }
@@ -148,7 +148,7 @@ public class Consult
 //        file1 = new BufferedReader(new FileReader(FileName));
         file1 = new BufferedReader(input);
       } catch (Exception e) {
-        System.out.println("*** Error: " + e);
+        System.err.println("\n*** Error: " + e);
         file1 = null;
         exit_value = Pro_Term.m_integer(1); // File not found
       }
@@ -158,7 +158,7 @@ public class Consult
             line = file1.readLine();
             LineNmbr = LineNmbr + 1;
           } catch (Exception e) {
-            System.out.println("*** Error: " + e);
+            System.err.println("\n*** Error: " + e);
             line = null;
           }
   // System.out.println("");
@@ -245,9 +245,9 @@ public class Consult
           if(I.exit_value == null)
           {
             if(Pred.forward){
-              System.out.println("*Yes*");
+              System.err.println("*Yes*");
             } else {
-              System.out.println("*No*");
+              System.err.println("*No*");
             }
           } else {
             /* Exception! */
@@ -255,7 +255,7 @@ public class Consult
           }
           Pred.trail.backtrack(I.Mark); // clear variables
         } else {
-          if(data.subterm[0] != null) {
+          if(data.subterm[0] != null) { // We have head!
             if(data.subterm[1].getData() == Pro_TermData_List.EMPTY) {
               Database.assertz(data.subterm[0]);
             } else {

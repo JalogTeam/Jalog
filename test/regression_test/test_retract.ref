@@ -1,17 +1,33 @@
 *Yes*
-*Yes*
 koe1 a: ;
 koe1 b: ;
 koe1 c: C 10
 koe1 d: D 20;
+ 40 retracted successfully.
 koe1 end
 *Yes*
 koe2 a: ;
 koe2 b: 
-  40
   100
   110
   120
+koe2 c: 
 koe2 end
+*Yes*
+koe3: rule cannot be retracted
+clause
+ clause found
+  retracting clause
+koe3: searching clause
+clause
+ clause found again, OK
+koe3 end
+*Yes*
+koe4: nondynamic fact cannot be retracted
+ fact found
+  retracting fact
+koe4: searching fact
+ fact found again, OK
+koe4 end
 *Yes*
 Exit status: 0 ; 

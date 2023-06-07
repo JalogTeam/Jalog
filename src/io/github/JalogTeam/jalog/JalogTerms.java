@@ -251,7 +251,7 @@ public class JalogTerms
       } else {
         
         Error = ERROR_INTERNAL;
-System.out.println("*** Unknown action: " + action);             
+System.err.println("*** Unknown action: " + action);             
       }
       if (Error != 0) {
         action = Syntax.COMPLETE;

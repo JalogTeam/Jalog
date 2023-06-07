@@ -60,12 +60,12 @@ public class Pro_Trail
     int i = 0;
     Pro_Trail_Item current_item = top_item;
 
-    System.out.println(header);
-    System.out.println("  items=");
+    System.err.println(header);
+    System.err.println("  items=");
     
     for(current_item = top_item; current_item != null; current_item = current_item.prev)
     {
-      System.out.println("    top-" + i + ": " + current_item.item.Id + " " + current_item.item);
+      System.err.println("    top-" + i + ": " + current_item.item.Id + " " + current_item.item);
       i ++;
     }
   }

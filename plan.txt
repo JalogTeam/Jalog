@@ -1,5 +1,21 @@
 Plan for future development
 ===========================
+
+2.0 Changes
+-----------
+
+1: To differentiate compile-time and run-time operations and to make it clear
+   that run-time changes to program is not allowed
+   
+  - consult facts to be renamed to consult
+  - old consult to be renamed to include
+  - include and dynamic are allowed only in directives 
+  - only dynamic facts can be consulted
+  - only dynamic facts can be asserted and retracted  
+  
+2. If compile time errors occur, new files will be included, but program shall
+   not be started.
+
 String manipulation 1.4.0
 -------------------------
 1:'([a-z]|[A-Z])+'
