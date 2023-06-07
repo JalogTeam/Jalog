@@ -6,7 +6,7 @@ import java.io.*;
 
 public class Pred_fetch_ extends Pred
 {
-  Database_FactClass factClass;
+  Database_Table factClass;
   DB_Cursor prev_item;
   Pro_Term calling_term;
   Inference I;
@@ -22,7 +22,7 @@ public class Pred_fetch_ extends Pred
     byte arity = data.arity;
  
     String key = name + "/" + Integer.toString(arity);
-    factClass = (Database_FactClass) Database.db.get(key);
+    factClass = (Database_Table) Database.db.get(key);
     if(factClass != null) {
       prev_item = new DB_Cursor();
       trail.mark(Mark);

@@ -9,7 +9,7 @@ public class Pred_dynamic extends Pred
   public static Pred first_call(Pro_TermData_Compound data) {
 
     Pro_TermData data1 = data.subterm[0].getData();
-    Database_FactClass factClass;
+    Database_Table factClass;
 
     if(data1 instanceof Pro_TermData_String) {
       String key = ((Pro_TermData_String)data1).image();

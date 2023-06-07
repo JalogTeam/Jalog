@@ -34,7 +34,6 @@ call do_test_jar.bat test_not
 call do_test_jar.bat test_bound
 call do_test_jar.bat test_free
 call do_test_jar.bat test_trap
-call do_test_jar.bat test_trap_x
 call do_test_jar.bat test_exit_0
 call do_test_jar.bat test_exit_1
 call do_test_jar.bat test_exit_1p1

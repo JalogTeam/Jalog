@@ -21,7 +21,7 @@ public class Database
   
   static void asserty(Pro_Term x, boolean last)
   {
-    Database_FactClass factClass;
+    Database_Table factClass;
     Pro_TermData data = x.getData();
     if(data instanceof Pro_TermData_Compound) {
       Pro_TermData_Compound compo = (Pro_TermData_Compound)data;
@@ -49,9 +49,9 @@ public class Database
       }
       String key = name + "/" + Integer.toString(arity);
 
-      factClass = (Database_FactClass) db.get(key);
+      factClass = (Database_Table) db.get(key);
       if(factClass == null) {
-        factClass = new Database_FactClass();
+        factClass = new Database_Table();
         db.put(key,factClass);
       } 
       // factClass Ok
@@ -72,12 +72,12 @@ public class Database
         
   }
 
-  static Database_FactClass define_by_string(String key) {
-    Database_FactClass factClass;
+  static Database_Table define_by_string(String key) {
+    Database_Table factClass;
     
-    factClass = (Database_FactClass) db.get(key);
+    factClass = (Database_Table) db.get(key);
     if(factClass == null) {
-      factClass = new Database_FactClass();
+      factClass = new Database_Table();
       db.put(key,factClass);
     } 
     return factClass;
@@ -98,7 +98,7 @@ public class Database
 //    return null;
     Pro_Term unified_clause;
     DB_Cursor prev_item;
-    Database_FactClass factClass;
+    Database_Table factClass;
 
     Pro_TermData_Compound data = (Pro_TermData_Compound)filter.getData();
  
@@ -106,7 +106,7 @@ public class Database
     byte arity = data.arity;
  
     String key = name + "/" + Integer.toString(arity);
-    factClass = (Database_FactClass) Database.db.get(key);
+    factClass = (Database_Table) Database.db.get(key);
     if((factClass != null) && factClass.dynamic) {
       prev_item = new DB_Cursor();
       Pred.trail.mark(Mark);
@@ -123,7 +123,7 @@ public class Database
 
   }
 
-  static Pro_Term fetch(Database_FactClass factClass, DB_Cursor prev_item,
+  static Pro_Term fetch(Database_Table factClass, DB_Cursor prev_item,
       Pro_Term filter, Pro_TrailMark Mark, boolean fact_only)
   {
 //System.out.println("Database.fetch(" + factClass+ "," + prev_item+ "," + filter+ "," +  Mark+ ")");
@@ -181,7 +181,7 @@ public class Database
   {
     try
     {
-      Database_FactClass factClass;
+      Database_Table factClass;
       Fact_Chain_Item currentItem;
 
       BufferedWriter out = new BufferedWriter(new FileWriter(filename));
@@ -195,7 +195,7 @@ public class Database
         key = (String) keys.nextElement();
         out.write(key);
         out.newLine();
-        factClass = (Database_FactClass) db.get(key);
+        factClass = (Database_Table) db.get(key);
         for(currentItem = (Fact_Chain_Item)factClass.facts.first; 
             currentItem != null; currentItem = (Fact_Chain_Item)currentItem.next) {
           out.write("  " + currentItem.data.image());
