@@ -16,6 +16,18 @@ Plan for future development
 2. If compile time errors occur, new files will be included, but program shall
    not be started.
 
+1.4 Changes
+-----------
+
+* Muutetaan virheilmoitukset System.err -> Jalog.err
+
+* Jos annetaan, tai pitäisi antaa virheilmoitus, niin -> Poikkeus!
+
+* Yritetään saada virheilmoitukset niistä, jotka nyt feilaavat hiljaisesti.
+
+* only dynamic facts can be asserted and retracted  
+
+
 String manipulation 1.4.0
 -------------------------
 1:'([a-z]|[A-Z])+'

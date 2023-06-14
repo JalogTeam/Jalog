@@ -7,6 +7,7 @@ if not x==x%jalog_errors% (
 REM 1.4 tests
 
 call do_test_jar.bat test_retract
+call do_test_jar.bat test_retractall
 call do_test_jar.bat test_strings
 call do_test_jar.bat test_findall
 call do_test_jar.bat test_member

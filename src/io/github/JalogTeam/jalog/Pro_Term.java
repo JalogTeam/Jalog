@@ -518,6 +518,11 @@ if(debug>0) System.err.println("* unify2: end " + success);
     return result;
   }
   
+  public String getIndicator()
+  {
+    return (data != null ? data.getIndicator() : "<null>");
+  }
+
   public String toString()
   {
     if(data == null)

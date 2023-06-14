@@ -8,6 +8,13 @@ public abstract class Pro_TermData
 {
   public String typename;
   
+  public String getIndicator()
+  {
+    return "<" + typename + ">";
+  }
+
+
+
   public abstract String toString();
 
   public String image()

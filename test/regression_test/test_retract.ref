@@ -1,4 +1,5 @@
 *Yes*
+*Yes*
 koe1 a: ;
 koe1 b: ;
 koe1 c: C 10
@@ -18,6 +19,7 @@ koe3: rule cannot be retracted
 clause
  clause found
   retracting clause
+*** cannot retract non-dynamic clause/0
 koe3: searching clause
 clause
  clause found again, OK
@@ -26,8 +28,16 @@ koe3 end
 koe4: nondynamic fact cannot be retracted
  fact found
   retracting fact
+*** cannot retract non-dynamic fact/0
 koe4: searching fact
  fact found again, OK
 koe4 end
+*Yes*
+koe5: 
+*** cannot retract non-dynamic datay/1
+koe5 end
+*Yes*
+koe6: 
+koe6 end
 *Yes*
 Exit status: 0 ; 

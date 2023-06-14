@@ -63,6 +63,11 @@ public class Pro_TermData_Compound extends Pro_TermData
 // to detect loops
 static int depth = 0;
   
+  public String getIndicator()
+  {
+    return name + "/" + arity;
+  }
+
   public String toString()
   {
 depth ++;

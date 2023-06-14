@@ -41,11 +41,27 @@ public class Pred_retract extends Pred
   public void call()
   {
     // This is called on backtrack
+    int status;
 
     trail.backtrack(Mark);
     forward = false; // default fail
 
-    forward = (Database.retract(param_1, Mark) != null);
+    status = Database.retract(param_1, Mark);
+    switch (status) {
+      case Database.SUCCEEDED: {
+        forward = true;
+      } break;
+      case Database.NOT_DYNAMIC: {
+        System.err.println("*** cannot retract non-dynamic " + 
+            param_1.getIndicator()); 
+      } break;
+      /* Not needed
+      default: {
+        
+      } break;
+      */
+    }
+      
           
   }
 }

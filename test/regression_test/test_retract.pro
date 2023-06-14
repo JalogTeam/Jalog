@@ -1,6 +1,7 @@
 % retract - test
 
 :- dynamic("data/1").
+:- dynamic("dataz/0").
 
 clause :- writeln("clause").
 
@@ -49,7 +50,22 @@ koe4 :- writeln("koe4: searching fact"),
   fact, writeln(" fact found again, OK"), fail.
 koe4 :- writeln("koe4 end").
   
+  
+koe5 :- writeln("koe5: "), retract(datay(_)), writeln("  retracted"),
+  datay(X), writeln("  ", X), fail.
+koe5 :- writeln("koe5 end").
+
+koe6 :- writeln("koe6: "), retract(dataz), writeln("  retracted"),
+  dataz, writeln("  <found>"), fail.
+koe6 :- writeln("koe6 end").
+
+
+
+  
+  
 :- koe1.
 :- koe2.
 :- koe3.
 :- koe4.
+:- koe5.
+:- koe6.

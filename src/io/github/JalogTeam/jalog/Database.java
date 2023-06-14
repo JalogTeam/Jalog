@@ -15,6 +15,10 @@ public class Database
 {
   static Hashtable db;
   
+  static final int SUCCEEDED = 1;
+  static final int FAILED = 2;
+  static final int NOT_DYNAMIC = 3;
+  
   static{
     db = new Hashtable(100);  
   }
@@ -99,9 +103,10 @@ public class Database
     asserty(x, true);
   }
   
-  static Pro_Term retract(Pro_Term filter, Pro_TrailMark Mark)
+  static int retract(Pro_Term filter, Pro_TrailMark Mark)
   {
 //    return null;
+    int status;
     Pro_Term unified_clause;
     DB_Cursor prev_item;
     Database_Table factClass;
@@ -120,12 +125,15 @@ public class Database
 
       if(unified_clause != null) {
         factClass.facts.remove(prev_item.current_item);
+        status = SUCCEEDED;
+      } else {
+        status = FAILED;
       }
-    } else { // nothing in database, fail
-      unified_clause = null;
+    } else { // not dynamic
+      status = NOT_DYNAMIC;
     }
 
-    return unified_clause;
+    return status;
 
   }
 
