@@ -332,8 +332,50 @@ koe11i :- writeln("koe11i"),
     write("koe11i BAD success "), writeq(X), write(" = "), writeq(Y), nl,
     fail.
 
-koe11i:- writeln("koe11i end").
- 
+koe11i :- writeln("koe11i end").
+
+koe12 :- writeln("koe12"),
+    upper_lower("AbCd7@", A), writeln("  |", A, "|"),
+    writeln("koe12 end"),!.
+koe12 :- writeln("koe12 error").
+
+koe13 :- writeln("koe13"),
+    upper_lower(A, "AbCd7@"), writeln("  |", A, "|"),
+    writeln("koe13 end"),!.
+koe13 :- writeln("koe13 error").
+
+koe14 :- writeln("koe14"),
+    upper_lower("ABcd7@", "AbCd7@"), writeln("  Ok"),
+    writeln("koe14 end"),!.
+koe14 :- writeln("koe14 error").
+
+koe14 :- writeln("koe14"),
+    upper_lower("ABcd7@", "AbCd7@"), writeln("  Ok"),
+    writeln("koe14 end"),!.
+koe14 :- writeln("koe14 error").
+
+koe15 :- writeln("koe15"),
+    upper_lower("ABcd7@", "AbCd8@"), writeln("  Bad 1"), fail.
+koe15 :- upper_lower("7", 7), writeln("  Bad 2"), fail.
+koe15 :- upper_lower(7, "7"), writeln("  Bad 3"), fail.
+koe15 :- upper_lower(_, _), writeln("  Bad 4"), fail.
+koe15 :- writeln("koe15 end").
+
+koe16 :- writeln("koe16"),
+    /* Å Ä Ö PII */
+    upper_lower("\xc5\xc4\xd6\u03a0", A), write("  |"), 
+    writeq(A), writeln("|"),
+    writeln("koe16 end").
+koe16 :- writeln("koe16 error").
+    
+koe17 :- writeln("koe17"),
+    /* Å Ä Ö PII */
+    upper_lower("\xc5\xc4\xd6\u03a0", "\xE5\xE4\xF6\u03C0"), 
+    writeln("koe17 Ok end").
+koe17 :- writeln("koe17 error").
+    
+
+
 % Test main
 
 :- koe1.
@@ -360,4 +402,9 @@ koe11i:- writeln("koe11i end").
 :- koe11g.
 :- koe11h.
 :- koe11i.
-
+:- koe12.
+:- koe13.
+:- koe14.
+:- koe15.
+:- koe16.
+:- koe17.

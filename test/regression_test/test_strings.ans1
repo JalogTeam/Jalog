@@ -1,0 +1,162 @@
+koe1: "CDE"
+*Yes*
+koe2: _1
+*Yes*
+koe3.a: Ok
+koe3.b: Ok
+*Yes*
+koe4a1: 
+* A="BCDEFG"
+* B="DEF"
+koe4a2: 
+koe4a3: 
+* A="BCDEFG"
+* B="DEF"
+Ok
+*Yes*
+koe4b: Ok
+*Yes*
+koe4c: Ok
+*Yes*
+koe5: *No*
+koe6: *No*
+koe7: +++ |CDEF|234|
++++ |CD|EF234|
+---|_2|_3|
+testcmp: _4<_5
+testcmp: _6<=_7
+testcmp: _8=_9
+yes
+testcmp: _10>=_11
+testcmp: _12>_13
+testcmp: _14<>_15
+--- vv ---
+testcmp: _16<_17
+testcmp: _18<=_19
+testcmp: _20=_21
+yes
+testcmp: _22>=_23
+testcmp: _24>_25
+testcmp: _26<>_27
+koe7 done
+*Yes*
+koe7a: +++ |CDEF|234|
++++ |CD|EF23Y|
+---|_28|_29|
+testcmp: _30<_31
+testcmp: _32<=_33
+testcmp: _34=_35
+yes
+testcmp: _36>=_37
+testcmp: _38>_39
+testcmp: _40<>_41
+--- vv ---
+testcmp: _42<_43
+testcmp: _44<=_45
+testcmp: _46=_47
+yes
+testcmp: _48>=_49
+testcmp: _50>_51
+testcmp: _52<>_53
+koe7 done
+*Yes*
+koe7b: +++ |CDEF|234|
++++ |CD|EF23|
+---|_54|_55|
+testcmp: _56<_57
+testcmp: _58<=_59
+testcmp: _60=_61
+yes
+testcmp: _62>=_63
+testcmp: _64>_65
+testcmp: _66<>_67
+--- vv ---
+testcmp: _68<_69
+testcmp: _70<=_71
+testcmp: _72=_73
+yes
+testcmp: _74>=_75
+testcmp: _76>_77
+testcmp: _78<>_79
+koe7 done
+*Yes*
+koe8: (o,o,o)
+koe8: (i,o,o)
+koe8: (o,i,o)
+koe8: (o,o,i)
+koe8: 
+1a: V|ABCD|_80|ABCDEFGH|
+1a: ^|ABCD|EFGH|ABCDEFGH|
+1b: V|ABCD|_81|_82|
+1c: V|ABCD|_83|_84|
+1d: V|ABCD|_85|ABCDEFGH|
+1d: ^|ABCD|EFGH|ABCDEFGH|
+1e: V|_86|ABCD|EFGHABCD|
+1e: ^|EFGH|ABCD|EFGHABCD|
+1f: -|ABCD|_87|_88|
+1g: -|ABCD|_89|_90|
+1h: -|ABCD|_91|EFGHABCD|
+2a: V|_92|_93|ABCDEFGH|
+2b: V|_94|_95|_96|
+2c: V|_97|_98|_99|
+2d: V|_100|_101|ABCDEFGH|
+2e: V|_102|_103|EFGHABCD|
+2f: -|_104|_105|_106|
+2g: -|_107|_108|_109|
+2h: -|_110|_111|EFGHABCD|
+3a: V|ABCD|_112|ABCDEFGH|
+3a: ^|ABCD|EFGH|ABCDEFGH|
+3b: V|ABCD|_113|_114|
+3c: V|ABCD|_115|_116|
+3d: V|ABCD|_117|ABCDEFGH|
+3d: ^|ABCD|EFGH|ABCDEFGH|
+3e: V|_118|ABCD|EFGHABCD|
+3e: ^|EFGH|ABCD|EFGHABCD|
+3f: -|ABCD|_119|_120|
+3g: -|ABCD|_121|_122|
+3h: -|ABCD|_123|EFGHABCD|
+4a: -|ABCX|_124|ABCDEFGH|
+4b: -|ABCX|_125|_126|
+4c: -|ABCX|_127|_128|
+4d: -|ABCX|_129|ABCDEFGH|
+4e: -|_130|ABCX|EFGHABCD|
+4f: -|ABCX|_131|_132|
+4g: -|ABCX|_133|_134|
+4h: -|ABCX|_135|EFGHABCD|
+5a: -|_136|_137|ABCDEFGH|
+5b: -|_138|_139|_140|
+5c: -|_141|_142|_143|
+5d: -|_144|_145|ABCDEFGH|
+5e: -|_146|_147|EFGHABCD|
+5f: -|_148|_149|_150|
+5g: -|_151|_152|_153|
+5h: -|_154|_155|EFGHABCD|
+6a: -|_156|_157|ABCDEFGH|
+6b: -|_158|_159|_160|
+6c: -|_161|_162|_163|
+6d: -|_164|_165|ABCDEFGH|
+6e: -|_166|_167|EFGHABCD|
+6f: -|_168|_169|_170|
+6g: -|_171|_172|_173|
+6h: -|_174|_175|EFGHABCD|
+7a: -|ABCX|_176|ABCDEFGH|
+7b: -|ABCX|_177|_178|
+7c: -|ABCX|_179|_180|
+7d: -|ABCX|_181|ABCDEFGH|
+7e: -|_182|ABCX|EFGHABCD|
+7f: -|ABCX|_183|_184|
+7g: -|ABCX|_185|_186|
+7h: -|ABCX|_187|EFGHABCD|
+*Yes*
+koe9: 
+koe9 success 3,3
+koe9 success 5,3
+koe9 end
+*Yes*
+koe10
+koe10 success abc
+koe10
+koe10 success xyz
+koe10 end
+*Yes*
+Exit status: 0 ; 

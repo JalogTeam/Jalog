@@ -5,7 +5,7 @@ Plan for future development
 -----------
 
 1: To differentiate compile-time and run-time operations and to make it clear
-   that run-time changes to program is not allowed
+   that run-time changes to program are not allowed
    
   - consult facts to be renamed to consult
   - old consult to be renamed to include
@@ -16,6 +16,9 @@ Plan for future development
 2. If compile time errors occur, new files will be included, but program shall
    not be started.
 
+3. What about including (optional) Turbo Prolog like type declarations to reveal
+   inconsistencies in compile time.
+   
 1.4 Changes
 -----------
 

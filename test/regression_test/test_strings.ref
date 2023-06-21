@@ -214,4 +214,26 @@ koe11h end
 koe11i
 koe11i end
 *Yes*
+koe12
+  |abcd7@|
+koe12 end
+*Yes*
+koe13
+  |ABCD7@|
+koe13 end
+*Yes*
+koe14
+  Ok
+koe14 end
+*Yes*
+koe15
+koe15 end
+*Yes*
+koe16
+  |"\xE5\xE4\xF6\u03C0"|
+koe16 end
+*Yes*
+koe17
+koe17 Ok end
+*Yes*
 Exit status: 0 ; 
