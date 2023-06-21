@@ -373,6 +373,22 @@ koe17 :- writeln("koe17"),
     upper_lower("\xc5\xc4\xd6\u03a0", "\xE5\xE4\xF6\u03C0"), 
     writeln("koe17 Ok end").
 koe17 :- writeln("koe17 error").
+
+koe18 :- writeln("koe18"),
+    writeln("  A: "), str_len("", A), writeln("    ", A), fail.
+koe18 :- writeln("  B: "), 
+    str_len("f", A), writeln("    ", A), fail.
+koe18 :- writeln("  C: "), 
+    str_len("d\u03a0", A), writeln("    ", A), fail.
+koe18 :- writeln("  D: "), 
+    str_len("muuttujanimi", A), writeln("    ", A), fail.
+koe18 :- writeln("  E: "), 
+    str_len("testi", 5), writeln("    Ok"), fail.
+koe18 :- writeln("  F: "), 
+    str_len("testi", 6), writeln("    Error"), fail.
+koe18 :- writeln("  G: "), 
+    str_len(testi, A), writeln("    Error: ", A), fail.
+koe18 :- writeln("koe18 end").
     
 
 
@@ -408,3 +424,4 @@ koe17 :- writeln("koe17 error").
 :- koe15.
 :- koe16.
 :- koe17.
+:- koe18.

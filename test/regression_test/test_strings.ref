@@ -236,4 +236,19 @@ koe16 end
 koe17
 koe17 Ok end
 *Yes*
+koe18
+  A: 
+    0
+  B: 
+    1
+  C: 
+    2
+  D: 
+    12
+  E: 
+    Ok
+  F: 
+  G: 
+koe18 end
+*Yes*
 Exit status: 0 ; 
