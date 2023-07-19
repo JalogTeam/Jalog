@@ -12,8 +12,10 @@
         suoraan argumenttistringi.
 */
 package io.github.JalogTeam.jalog;
+import io.github.JalogTeam.parser.*;
 
 public abstract class Pro_TermData_String extends Pro_TermData
+    implements VirtualString
 {
 
   public long len;
@@ -24,8 +26,17 @@ public abstract class Pro_TermData_String extends Pro_TermData
     this.len = len;
   }
 */
+
+  public long length() {
+    return len;
+  }
+  
+  public abstract char charAt(long index);
+
+  public abstract long indexOf(String str, long fromIndex);
+  
   protected void init(long len) {
-    this.typename = Jalog.STRING;
+    this.typename = Typenames.STRING;
     this.len = len;
   }
   
@@ -35,7 +46,7 @@ public abstract class Pro_TermData_String extends Pro_TermData
   
   public abstract String image();
   
-  public abstract String substring(long start, long len);
+  public abstract String fragment(long start, long len);
   
   protected abstract void appendSubstring(StringBuilder buffer, long start, 
       long len);

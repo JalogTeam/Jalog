@@ -266,7 +266,7 @@ if(debug>0) System.err.println("* unify2: end " + success);
   {
     Pro_TermData data = getRealNode().data;
     
-    return (data == null ? Jalog.OPEN : data.typename);
+    return (data == null ? Typenames.OPEN : data.typename);
   }
   
   public void clearData()

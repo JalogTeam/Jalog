@@ -24,7 +24,7 @@ public abstract class Parser
   public abstract void setLine(String line);
       // call with null when no more lines
 
-  public abstract void moveTo(int nextPos);
+  public abstract void moveTo(long nextPos);
 
   public abstract void advance();
 

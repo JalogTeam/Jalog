@@ -12,15 +12,15 @@ public abstract class SimpleParser extends Parser
 {
   // line being parsed
   public String line = null; // line to be parsed
-  public int lineLen = 0; // length of line
+  public long lineLen = 0; // length of line
 
   // syntax error description
-  public int errPos = -1;
+  public long errPos = -1;
 
   // last token description
   public String tokenType;
-  public int tokenPos = 0; // position where the token starts
-  public int nextPos = 0; // next position after the end of the token
+  public long tokenPos = 0; // position where the token starts
+  public long nextPos = 0; // next position after the end of the token
   // subclasses may define more description fields
 
   // scanner
@@ -65,7 +65,8 @@ public abstract class SimpleParser extends Parser
   }
 
   public void setLine(String line) {
-    scanner.setLine(line);
+// System.out.println("===== SimpleParser.setLine: " + line);
+    scanner.setScannerLine(JavaString.make(line));
     errPos = -1;
     tokenType = scanner.tokenType;
     tokenPos = scanner.tokenPos;
@@ -73,7 +74,7 @@ public abstract class SimpleParser extends Parser
     action = tokenType;
   }
 
-  public void moveTo(int nextPos) {
+  public void moveTo(long nextPos) {
     scanner.moveTo(nextPos);
     errPos = -1;
     tokenType = Syntax.SOL;

@@ -39,12 +39,28 @@ public class Pro_TermData_String_simple extends Pro_TermData_String
   }
 */
 
+  public char charAt(long index) {
+    if (index < value.length()) {
+      return value.charAt((int)index);
+    } else {
+      throw new IndexOutOfBoundsException();
+    }
+  }
+
+  public long indexOf(String str, long fromIndex) {
+    if (fromIndex < value.length()) {
+      return value.indexOf(str, (int)fromIndex);
+    } else {
+      return -1;
+    }
+  }
+
   public String image()
   {
     return value;
   }
  
-  public String substring(long req_start, long req_len) {
+  public String fragment(long req_start, long req_len) {
     long start = req_start;
     long len = req_len;
     if (start < 0) {

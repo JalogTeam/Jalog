@@ -20,11 +20,11 @@ public abstract class Scanner
   */
 
   public final Syntax syntax;
-
+  public VirtualString line = null;
   // token description
   public String tokenType = Syntax.EOL;
-  public int tokenPos = 0; // position where the token starts
-  public int nextPos = 1; // next position after the token
+  public long tokenPos = 0; // position where the token starts
+  public long nextPos = 1; // next position after the token
   // subclasses may define more description fields
 
   public abstract String getToken();
@@ -39,16 +39,18 @@ public abstract class Scanner
       // should keep the current line and scan position
   }
 
-  public void setLine(String line) {
+  public void setScannerLine(VirtualString line) {
       // should be called when tokenType == Syntax.EOL
       // call with null when no more lines
       // subclasses should override
+// System.out.println("===== Scanner.setScannerLine: " + line);
+    this.line = line;
     this.tokenType = Syntax.SOL;
     this.tokenPos = -1;
     this.nextPos = 0;
   }
 
-  public void moveTo(int nextPos) {
+  public void moveTo(long nextPos) {
       // set starting position for the next advance
     this.tokenType = Syntax.SOL;
     this.tokenPos = -1;

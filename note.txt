@@ -1,5 +1,10 @@
 Uutta
 =====
+
+Muutetaan Pro_Term.m_string_concat ja .m_string_substring käsittelemään Pro_Term parametreja. Nykyinen interface on tökerö.
+Pitäisikö .m_string_substring parametrit olla (first_index, end_index)?
+Tarvitaanko .m_string_substring ja .m_string_concat -funkitoita lainkaan?
+
 Pannaan käännösvirheet estämään ohjelman suoritus.
 Katsotaan ajoaikaiset virheet, että toimitaan asianmukaisesti: trap jne. 
 standardoidut virhekoodit. Ks. Turbo Prolog.

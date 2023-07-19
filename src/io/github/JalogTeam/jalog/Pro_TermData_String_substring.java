@@ -49,6 +49,21 @@ public class Pro_TermData_String_substring
     return ans;
   }
 
+  public char charAt(long index) {
+    if ((index < 0) || (index >= len)) throw new IndexOutOfBoundsException();
+    return base_string.charAt(start + index);
+  }
+
+  public long indexOf(String str, long fromIndex) {
+    long ans = base_string.indexOf(str, fromIndex + start);
+    ans = ans - start;
+    if ((ans < 0) || ((ans + str.length()) > len)) {
+      ans = -1;
+    }
+    return ans;
+  }
+
+
 /*
   public String toString()
   {
@@ -61,10 +76,10 @@ public class Pro_TermData_String_substring
 
   public String image()
   {
-    return base_string.substring(start, len);
+    return base_string.fragment(start, len);
   }
   
-  public String substring(long req_start, long req_len)
+  public String fragment(long req_start, long req_len)
   {
     long start = req_start;
     long len = req_len;
@@ -79,7 +94,7 @@ public class Pro_TermData_String_substring
     if((len > 0) && (max_len > 0)) {
       if (len > max_len)  len = max_len;
   
-      return base_string.substring((int)(start + this.start), (int)len);
+      return base_string.fragment((int)(start + this.start), (int)len);
     } else {
       return "";
     }

@@ -32,6 +32,40 @@ public class Pro_TermData_String_concat extends Pro_TermData_String
     return ans;
   }
 
+  public char charAt(long index) {
+    char ans;
+    if ((index < 0) || (index >= len)) throw new IndexOutOfBoundsException();
+    if (index < left.len) {
+      ans = left.charAt(index);
+    } else {
+      ans = right.charAt(index - left.len);
+    }
+    return ans;
+  }
+
+  public long indexOf(String str, long fromIndex) {
+    long ans = -1;
+    
+    if (fromIndex < left.len) {
+    
+    
+      ans = left.indexOf(str, fromIndex);
+      
+      if (ans < 0) {
+        for (long i = fromIndex; (i < left.len) && (ans < 0); i++) {
+          ans = i;
+          for (int j = 0; (j < str.length()) && (ans == i); j++) {
+            if (charAt(i + j) != str.charAt(j)) ans = -1;
+          }
+        }
+      }
+    }
+    if (ans < 0) {
+      ans = left.len + right.indexOf(str, fromIndex - left.len);
+    }
+    return ans;
+  }
+
 /*
   public String toString()
   {
@@ -44,10 +78,10 @@ public class Pro_TermData_String_concat extends Pro_TermData_String
 
   public String image()
   {
-    return this.substring(0, len);
+    return this.fragment(0, len);
   }
   
-  public String substring(long req_start, long req_len)
+  public String fragment(long req_start, long req_len)
   {   
     long start = req_start;
     long len = req_len;
@@ -63,9 +97,9 @@ public class Pro_TermData_String_concat extends Pro_TermData_String
         len = this.len - start;
     if(len > 0) {
       if (start + len < left.len) {
-        return left.substring(start, len);
+        return left.fragment(start, len);
       } else if(start >= left.len) {
-        return right.substring(start - left.len , len);
+        return right.fragment(start - left.len , len);
       } else {
         buffer = new StringBuilder((int)len);
         left.appendSubstring(buffer, start, left.len - start);

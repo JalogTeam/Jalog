@@ -20,7 +20,7 @@ public class Pro_TermData_Compound extends Pro_TermData
   {
     name = iniName;
     arity = 0;
-    typename = Jalog.SYMBOL;
+    typename = Typenames.SYMBOL;
     subterm = no_subterms;
   }
 
@@ -29,11 +29,11 @@ public class Pro_TermData_Compound extends Pro_TermData
     name = iniName;
     if (iniSubterm != null) {
       arity = (byte)(iniSubterm.length);
-      typename = (arity == 0 ? Jalog.SYMBOL : Jalog.COMPOUND);
+      typename = (arity == 0 ? Typenames.SYMBOL : Typenames.COMPOUND);
       subterm = iniSubterm;
     } else {
       arity = 0;
-      typename = Jalog.SYMBOL;
+      typename = Typenames.SYMBOL;
       subterm = no_subterms;
     }
   }
@@ -44,7 +44,7 @@ public class Pro_TermData_Compound extends Pro_TermData
     
     name = iniName;
     arity = (byte)1;
-    typename = Jalog.COMPOUND;
+    typename = Typenames.COMPOUND;
     
     subterm = iniSubterm;
   }
@@ -55,7 +55,7 @@ public class Pro_TermData_Compound extends Pro_TermData
     
     name = iniName;
     arity = (byte)2;
-    typename = Jalog.COMPOUND;
+    typename = Typenames.COMPOUND;
     
     subterm = iniSubterm;
   }

@@ -29,7 +29,7 @@ public class Pred_str_char extends Pred
         Pro_TermData_String s1 = (Pro_TermData_String)string_param.data;
         if (s1.len == 1) { // only length 1 is possible
           // compute result_value for char_param
-          c = s1.substring(0, 1).charAt(0);
+          c = s1.fragment(0, 1).charAt(0);
 
           Pro_Term result_value = Pro_Term.m_char(c);
           

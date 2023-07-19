@@ -8,7 +8,7 @@ public class Pro_TermData_Char extends Pro_TermData
   
   public Pro_TermData_Char(char iniVal)
   {
-    typename = Jalog.CHARACTER;
+    typename = Typenames.CHARACTER;
     value = iniVal;
   }
   

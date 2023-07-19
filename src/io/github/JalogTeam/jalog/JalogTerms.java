@@ -10,7 +10,7 @@ import java.util.Hashtable;
 public class JalogTerms
 {
   public int Error = 0;
-  public int ErrorPos = 0; 
+  public long ErrorPos = 0; 
   public static final int ERROR_INTERNAL = 1;
   public static final int ERROR_SYNTAX = 2;
   public static final int ERROR_OVERFLOW = 3;
@@ -251,7 +251,7 @@ public class JalogTerms
       } else {
         
         Error = ERROR_INTERNAL;
-System.err.println("*** Unknown action: " + action);             
+// System.err.println("*** Unknown action: " + action);             
       }
       if (Error != 0) {
         action = Syntax.COMPLETE;
@@ -268,8 +268,8 @@ System.err.println("*** Unknown action: " + action);
   {
     Error = 0;
     ErrorPos = 0;
+// System.out.println("JalogTerms.SetLine: " + line);
     Pr1.setLine(line);
-// System.out.println("SetLine: " + line);
     EOF = (line == null);
   }
 

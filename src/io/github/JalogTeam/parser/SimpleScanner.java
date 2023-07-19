@@ -22,32 +22,30 @@ public abstract class SimpleScanner extends Scanner
   public static final String EOF = SimpleSyntax.EOF;
 
   // line being scanned
-  public String line = ""; // line to be scanned
-  public int lineLen = 0; // length of line
+  public long lineLen = 0; // length of line
 
   protected SimpleScanner(SimpleSyntax syntax) {
     super(syntax);
     this.syntax = syntax;
-    line = "";
+    line = null;
     lineLen = 0;
   }
 
   public String getToken() {
     if (line != null) {
-      int fst = tokenPos;
+      long fst = tokenPos;
       if (tokenPos < 0) fst = 0;
-      int lst = nextPos;
+      long lst = nextPos;
       if (lst > lineLen) lst = lineLen;
       if (fst <= lst) {
-        return line.substring(fst, lst);
+        return line.fragment(fst, lst - fst);
       }
     }
     return "";
   }
 
-  public void setLine(String line) {
-    super.setLine(line);
-    this.line = line;
+  public void setScannerLine(VirtualString line) {
+    super.setScannerLine(line);
     lineLen = (line != null ? line.length() : 0);
   }
 
@@ -59,7 +57,7 @@ public abstract class SimpleScanner extends Scanner
       tokenType = EOF;
       return;
     }
-    int scanPos = nextPos;
+    long scanPos = nextPos;
     tokenType = ERR;
     tokenPos = scanPos;
     int state = START;

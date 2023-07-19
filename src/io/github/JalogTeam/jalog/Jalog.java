@@ -327,14 +327,14 @@ public class Jalog
   
 // Fields: typenames
   
-  public static final String OPEN = "open";
-  public static final String INTEGER = "integer";
-  public static final String SYMBOL = "symbol";
-  public static final String REAL = "real";
-  public static final String CHARACTER = "character";
-  public static final String STRING = "string";
-  public static final String LIST = "list";
-  public static final String COMPOUND = "compound";
+  public static final String OPEN = Typenames.OPEN;
+  public static final String INTEGER =  Typenames.INTEGER;
+  public static final String SYMBOL =  Typenames.SYMBOL;
+  public static final String REAL =  Typenames.REAL;
+  public static final String CHARACTER =  Typenames.CHARACTER;
+  public static final String STRING =  Typenames.STRING;
+  public static final String LIST =  Typenames.LIST;
+  public static final String COMPOUND =  Typenames.COMPOUND;
 
 // Methods
   public static InputStream getResourceAsStream(String fileName) throws IOException {
