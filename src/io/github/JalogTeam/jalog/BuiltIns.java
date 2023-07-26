@@ -27,6 +27,7 @@ public class BuiltIns
     new ClassInfo("findall", Pred_findall.class, 3),
     new ClassInfo("foreach_", Pred_foreach_.class, 2),
     new ClassInfo("free", Pred_free.class, 1),
+    new ClassInfo("fronttoken", Pred_fronttoken.class, 3),
     new ClassInfo("is_char", Pred_is_char.class, 1),
     new ClassInfo("is_compound", Pred_is_compound.class, 1),
     new ClassInfo("is_integer", Pred_is_integer.class, 1),

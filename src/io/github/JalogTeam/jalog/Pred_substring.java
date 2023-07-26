@@ -34,7 +34,7 @@ public static final int z_number = 5;
       long pos = Pro_Term.eval_integer(pos_term);
       long len = Pro_Term.eval_integer(len_term);
    
-      Pro_Term so = Pro_Term.m_string_substring(
+      Pro_Term so = Pro_Term.m_string_fragment(
           (Pro_TermData_String)(str_in_term.data), pos, len);
 
       forward = so.unify(str_out_term, trail);

@@ -48,13 +48,13 @@ public class Pred_example extends Pred
     } else if (left_term.data != null && result_term.data != null) {
       len_left = ((Pro_TermData_String)left_term.data).len;
       len = ((Pro_TermData_String)result_term.data).len;
-      left_part = Pro_Term.m_string_substring(
+      left_part = Pro_Term.m_string_fragment(
           (Pro_TermData_String)result_term.data, 0, len_left);
       result = new Pred__eq_(
           new Pro_TermData_Compound("=", left_term, left_part));
       result.call();
       if (Pred.forward) {
-        right_part = Pro_Term.m_string_substring(
+        right_part = Pro_Term.m_string_fragment(
             (Pro_TermData_String)result_term.data, len_left, 
             len - len_left);
         result = new Pred__eq_(
@@ -64,14 +64,14 @@ public class Pred_example extends Pred
     } else if (right_term.data != null && result_term.data != null) {
       len_right = ((Pro_TermData_String)right_term.data).len;
       len = ((Pro_TermData_String)result_term.data).len;
-      right_part = Pro_Term.m_string_substring(
+      right_part = Pro_Term.m_string_fragment(
           (Pro_TermData_String)result_term.data, len - len_right, 
           len_right);
       result = new Pred__eq_(
           new Pro_TermData_Compound("=", right_term, right_part));
       result.call();
       if (Pred.forward) {
-        left_part = Pro_Term.m_string_substring(
+        left_part = Pro_Term.m_string_fragment(
             (Pro_TermData_String)result_term.data, 0, len - len_right);
         result = new Pred__eq_(
             new Pro_TermData_Compound("=", left_term, left_part));

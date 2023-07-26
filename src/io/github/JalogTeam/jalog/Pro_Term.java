@@ -302,7 +302,7 @@ if(debug>0) System.err.println("* unify2: end " + success);
     return a;
   }
 
-  static public Pro_Term m_string_substring(Pro_TermData_String base_string,
+  static public Pro_Term m_string_fragment(Pro_TermData_String base_string,
       long req_start, long req_len)
   {
     Pro_Term a = new Pro_Term();
