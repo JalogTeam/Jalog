@@ -1,0 +1,65 @@
+koe1: " \"hei\" "
+char: ' '
+rest:  "\"hei\" "
+"\"hei\" "
+char: '"'
+rest:  "hei\" "
+"hei\" "
+char: 'h'
+rest:  "ei\" "
+"ei\" "
+char: 'e'
+rest:  "i\" "
+"i\" "
+char: 'i'
+rest:  "\" "
+"\" "
+char: '"'
+rest:  " "
+" "
+char: ' '
+rest:  ""
+""
+test1 failed
+*Yes*
+koe3: ""
+test1 failed
+*Yes*
+koe4: "funk"
+char: 'f'
+rest:  "unk"
+"unk"
+char: 'u'
+rest:  "nk"
+"nk"
+char: 'n'
+rest:  "k"
+"k"
+char: 'k'
+rest:  ""
+""
+test1 failed
+*Yes*
+koe5: " I="
+char: ' '
+rest:  "I="
+"I="
+char: 'I'
+rest:  "="
+"="
+char: '='
+rest:  ""
+""
+test1 failed
+*Yes*
+koe6: "B"
+*Yes*
+koe7: koe7 failed -- OK
+*Yes*
+koe8: 'A'
+*Yes*
+koe9: koe9 failed -- OK
+*Yes*
+koe10: "AB"
+*Yes*
+Exit status: 0 ; 

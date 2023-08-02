@@ -119,4 +119,14 @@ test1 failed
 ""
 test1 failed
 *Yes*
+koe8: "B"
+*Yes*
+koe9: koe9 failed -- OK
+*Yes*
+koe10: "-"
+*Yes*
+koe11: koe11 failed -- OK
+*Yes*
+koe12: "-B"
+*Yes*
 Exit status: 0 ; 
