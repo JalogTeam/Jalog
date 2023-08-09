@@ -201,6 +201,16 @@ public class Jalog
       }
     }
 
+    public char getCharValue() {
+      String type = getType();
+      
+      if(type == Jalog.CHAR) {
+        return ((Pro_TermData_Char)getData()).value;
+      } else {
+        return '\uFFFF';
+      }
+    }
+
     public char getCharacterValue() {
       String type = getType();
       
@@ -331,6 +341,7 @@ public class Jalog
   public static final String INTEGER =  Typenames.INTEGER;
   public static final String SYMBOL =  Typenames.SYMBOL;
   public static final String REAL =  Typenames.REAL;
+  public static final String CHAR =  Typenames.CHAR;
   public static final String CHARACTER =  Typenames.CHARACTER;
   public static final String STRING =  Typenames.STRING;
   public static final String LIST =  Typenames.LIST;
