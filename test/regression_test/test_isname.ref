@@ -1,0 +1,137 @@
+"" is not name.
+*Yes*
+"_" is name.
+*Yes*
+":" is not name.
+*Yes*
+"A" is name.
+*Yes*
+"@" is not name.
+*Yes*
+"~" is not name.
+*Yes*
+"/" is not name.
+*Yes*
+":" is not name.
+*Yes*
+"[" is not name.
+*Yes*
+"^" is not name.
+*Yes*
+"`" is not name.
+*Yes*
+"{" is not name.
+*Yes*
+"0" is not name.
+*Yes*
+"9" is not name.
+*Yes*
+"Z" is name.
+*Yes*
+"a" is name.
+*Yes*
+"z" is name.
+*Yes*
+"_x" is name.
+*Yes*
+":x" is not name.
+*Yes*
+"Ax" is name.
+*Yes*
+"@x" is not name.
+*Yes*
+"~x" is not name.
+*Yes*
+"/x" is not name.
+*Yes*
+":x" is not name.
+*Yes*
+"[x" is not name.
+*Yes*
+"^x" is not name.
+*Yes*
+"`x" is not name.
+*Yes*
+"{x" is not name.
+*Yes*
+"0x" is not name.
+*Yes*
+"9x" is not name.
+*Yes*
+"Zx" is name.
+*Yes*
+"ax" is name.
+*Yes*
+"zx" is name.
+*Yes*
+"x_" is name.
+*Yes*
+"x:" is not name.
+*Yes*
+"xA" is name.
+*Yes*
+"x@" is not name.
+*Yes*
+"x~" is not name.
+*Yes*
+"x/" is not name.
+*Yes*
+"x:" is not name.
+*Yes*
+"x[" is not name.
+*Yes*
+"x^" is not name.
+*Yes*
+"x`" is not name.
+*Yes*
+"x{" is not name.
+*Yes*
+"x0" is name.
+*Yes*
+"x9" is name.
+*Yes*
+"xZ" is name.
+*Yes*
+"xa" is name.
+*Yes*
+"xz" is name.
+*Yes*
+"x_y" is name.
+*Yes*
+"x:y" is not name.
+*Yes*
+"xAy" is name.
+*Yes*
+"x@y" is not name.
+*Yes*
+"x~y" is not name.
+*Yes*
+"x/y" is not name.
+*Yes*
+"x:y" is not name.
+*Yes*
+"x[y" is not name.
+*Yes*
+"x^y" is not name.
+*Yes*
+"x`y" is not name.
+*Yes*
+"x{y" is not name.
+*Yes*
+"x0y" is name.
+*Yes*
+"x9y" is name.
+*Yes*
+"xZy" is name.
+*Yes*
+"xay" is name.
+*Yes*
+"xzy" is name.
+*Yes*
+"Variable#1" is not name.
+*Yes*
+"Variable_$" is not name.
+*Yes*
+"Variable_1" is name.
+*Yes*
+Exit status: 0 ; 

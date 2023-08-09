@@ -14,6 +14,7 @@ call do_test_jar.bat test_frontstr
 call do_test_jar.bat test_fronttoken
 call do_test_jar.bat test_findall
 call do_test_jar.bat test_member
+call do_test_jar.bat test_isname
 
 REM regression tests
 
