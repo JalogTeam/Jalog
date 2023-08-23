@@ -20,6 +20,13 @@ koe4c: Ok
 *Yes*
 koe4d: Ok
 *Yes*
+koe4e: 
+  Pos = 0, Len = 2
+  Pos = 4, Len = 2
+  Pos = 7, Len = 2
+  Pos = 10, Len = 2
+  no more
+*Yes*
 koe5: Ok
 *Yes*
 koe6: Ok
@@ -250,5 +257,37 @@ koe18
   F: 
   G: 
 koe18 end
+*Yes*
+koe19z:  failed: Ok
+*Yes*
+koe19: Ok
+*Yes*
+koe19a:  failed: Ok
+*Yes*
+koe19b: 
+  no more
+*Yes*
+koe19c: 
+  Pos = 2
+  no more
+*Yes*
+koe19d: 
+  Pos = 0
+  Pos = 4
+  Pos = 7
+  Pos = 10
+  no more
+*Yes*
+koe19e: 
+  Pos = 2
+  Pos = 4
+  no more
+*Yes*
+koe19f: 
+  Pos = 0
+  Pos = 1
+  Pos = 2
+  Pos = 3
+  no more
 *Yes*
 Exit status: 0 ; 

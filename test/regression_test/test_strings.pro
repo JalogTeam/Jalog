@@ -62,6 +62,11 @@ koe4d :- write("koe4d: "),
     write("Ok"), 
     nl.
 
+koe4e :- write("koe4e: "), nl, substring("CDABCDECDFCD", Pos, Len, "CD"), 
+    write("  Pos = ", Pos, ", Len = ", Len), nl, fail. 
+koe4e :- write("  no more"), nl.
+
+
 koe5 :- write("koe5: "), concat("ABC", "DEF", A), 
     substring(A, 1, 4, "BCDE"), 
     write("Ok"), nl.  % should get "Ok" 
@@ -390,6 +395,39 @@ koe18 :- writeln("  G: "),
     str_len(testi, A), writeln("    Error: ", A), fail.
 koe18 :- writeln("koe18 end").
     
+% searchstring(SourceStr, SearchStr, Pos)
+
+koe19z :- write("koe19z: "), searchstring("ABCDEF", "CDE", 1), !, write("bad Ok"), 
+    nl.  % should fail 
+koe19z :- write(" failed: Ok"), nl.
+
+koe19 :- write("koe19: "), searchstring("ABCDEF", "CDE", 2), !, write("Ok"), 
+    nl.  % should get "Ok" 
+koe19 :- write(" failed"), nl.
+
+koe19a :- write("koe19a: "), searchstring("ABCDEF", "CDE", 3), write("bad Ok"), 
+    nl.  % should get "Ok" 
+koe19a :- write(" failed: Ok"), nl.
+
+koe19b :- write("koe19b: "), nl, searchstring("ABCDEF", "XYZ", Pos), 
+    write("  Pos = ", Pos), nl, fail. 
+koe19b :- write("  no more"), nl.
+
+koe19c :- write("koe19c: "), nl, searchstring("ABCDEF", "CD", Pos), 
+    write("  Pos = ", Pos), nl, fail. 
+koe19c :- write("  no more"), nl.
+
+koe19d :- write("koe19d: "), nl, searchstring("CDABCDECDFCD", "CD", Pos), 
+    write("  Pos = ", Pos), nl, fail. 
+koe19d :- write("  no more"), nl.
+
+koe19e :- write("koe19e: "), nl, searchstring("ABCDCDCCEFCD", "CDC", Pos), 
+    write("  Pos = ", Pos), nl, fail. 
+koe19e :- write("  no more"), nl.
+
+koe19f :- write("koe19f: "), nl, searchstring("ABC", "", Pos), 
+    write("  Pos = ", Pos), nl, fail. 
+koe19f :- write("  no more"), nl.
 
 
 % Test main
@@ -401,6 +439,7 @@ koe18 :- writeln("koe18 end").
 :- koe4b.
 :- koe4c.
 :- koe4d.
+:- koe4e.
 :- koe5.
 :- koe6.
 :- koe7.
@@ -425,3 +464,13 @@ koe18 :- writeln("koe18 end").
 :- koe16.
 :- koe17.
 :- koe18.
+:- koe19z.
+:- koe19.
+:- koe19a.
+:- koe19b.
+:- koe19c.
+:- koe19d.
+:- koe19e.
+:- koe19f.
+
+

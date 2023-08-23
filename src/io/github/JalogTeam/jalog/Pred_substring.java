@@ -9,9 +9,6 @@ import java.io.*;
 
 public class Pred_substring extends Pred
 {
-/* #arity_info_test           
-public static final int z_number = 5;  
-*/  
   private Pro_TermData_String Str_in, Str_out;
   private Pro_Term Pos, Len;
   private long end_pos, cur_pos;
@@ -59,7 +56,7 @@ public static final int z_number = 5;
     
     end_pos = Str_in.len - Str_out.len;
     
-    cur_pos = 0;
+    cur_pos = -1;
     
     forward = Len.unify(Pro_Term.m_integer(Str_out.len), trail, Mark);
 
@@ -75,12 +72,12 @@ public static final int z_number = 5;
     
     
     while ((cur_pos < end_pos) && !forward) {
-      forward = Pro_TermData_String.contains_at(Str_in, cur_pos, Str_out);
       cur_pos++;      
+      forward = Pro_TermData_String.contains_at(Str_in, cur_pos, Str_out);
     }
 
     if (forward) {
-      forward = Pos.unify(Pro_Term.m_integer(cur_pos - 1), trail, Mark);
+      forward = Pos.unify(Pro_Term.m_integer(cur_pos), trail, Mark);
     }
      
   }
