@@ -429,6 +429,33 @@ koe19f :- write("koe19f: "), nl, searchstring("ABC", "", Pos),
     write("  Pos = ", Pos), nl, fail. 
 koe19f :- write("  no more"), nl.
 
+koe20 :- write("koe20: "), nl, searchchar("", 'x', Pos),
+    write("  Pos = ", Pos), nl, fail. 
+koe20 :- write("  no more"), nl.
+
+koe20a :- write("koe20a: "), nl, searchchar("xaxxbx", 'x', Pos),
+    write("  Pos = ", Pos), nl, fail. 
+koe20a :- write("  no more"), nl.
+
+koe20b :- write("koe20b: "), nl, searchchar("abc", C, -1),
+    write("  C = '", C, "'"), nl, fail. 
+koe20b :- write("  no more"), nl.
+
+koe20c :- write("koe20c: "), nl, searchchar("abc", C, 0),
+    write("  C = '", C, "'"), nl, fail. 
+koe20c :- write("  no more"), nl.
+
+koe20d :- write("koe20d: "), nl, searchchar("abc", C, 1),
+    write("  C = '", C, "'"), nl, fail. 
+koe20d :- write("  no more"), nl.
+
+koe20e :- write("koe20e: "), nl, searchchar("abc", C, 2),
+    write("  C = '", C, "'"), nl, fail. 
+koe20e :- write("  no more"), nl.
+
+koe20f :- write("koe20f: "), nl, searchchar("abc", C, 3),
+    write("  C = '", C, "'"), nl, fail. 
+koe20f :- write("  no more"), nl.
 
 % Test main
 
@@ -472,5 +499,11 @@ koe19f :- write("  no more"), nl.
 :- koe19d.
 :- koe19e.
 :- koe19f.
-
+:- koe20.
+:- koe20a.
+:- koe20b.
+:- koe20c.
+:- koe20d.
+:- koe20e.
+:- koe20f.
 

@@ -290,4 +290,32 @@ koe19f:
   Pos = 3
   no more
 *Yes*
+koe20: 
+  no more
+*Yes*
+koe20a: 
+  Pos = 0
+  Pos = 2
+  Pos = 3
+  Pos = 5
+  no more
+*Yes*
+koe20b: 
+  no more
+*Yes*
+koe20c: 
+  C = 'a'
+  no more
+*Yes*
+koe20d: 
+  C = 'b'
+  no more
+*Yes*
+koe20e: 
+  C = 'c'
+  no more
+*Yes*
+koe20f: 
+  no more
+*Yes*
 Exit status: 0 ; 
