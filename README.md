@@ -1,43 +1,116 @@
-# Jalog
 
-*An interpreter for a Prolog-like language with Java-like arithmetic written in Java*
+Jalog
+=====
 
-Jalog makes artificial intelligence available to a wide variety of devices and applications.
+_An interpreter for a Prolog-like language with Java-like arithmetic written in Java_
 
-**Version** 1.3.0 2021-08-17 Android compatible
+> Prolog is a logic programming language associated with artificial intelligence and computational linguistics. [\[Wikipedia\]](https://en.wikipedia.org/wiki/Prolog)
+
+Jalog makes traditional artificial intelligence techniques available to a wide variety of devices and applications.
+
+**Version** 1.4 2023-09-07
+
+[Other versions](../versions.html)
+
 ### Authors
-Mikko Levanto<br>
-Ari Okkonen
-## Usage
+
+Mikko Levanto  
+[Ari Okkonen](https://www.linkedin.com/in/ariokkonen/) [ari.okkonen@gmail.com](mailto:ari.okkonen@gmail.com)
+
+Download
+--------
+
+In order to use Jalog you need [Java runtime environment (JRE)](https://www.oracle.com/technetwork/java/javase/downloads/index.html).
+
+Get Jalog interpreter: [Download JAR](jalog.jar)
+
+Usage
+-----
+
 ### Stand-alone Jalog
-<pre>
-X:><b>java -jar jalog.jar</b> <i>Parameters</i>
-<i>Parameters</i>: &lt;compiler_options> &lt;program_name> &lt;program_arguments>
-  &lt;compiler_options>
+
+X:>**java -jar jalog.jar** _Parameters_
+_Parameters_: <compiler\_options> <program\_name> <program\_arguments>
+  <compiler\_options>
       -v Show version information
-  &lt;program_name> - complete file name - no default extensions
-  &lt;program_arguments> - as the program needs them
-</pre>
+  <program\_name> - complete file name - no default extensions
+  <program\_arguments> - as the program needs them
+
 ### Integrated Jalog
+
 A Jalog program can be called from a Java program. The purpose of this arrangement is to facilitate using Java for the input and output including the user interface, and the Prolog like language for problem solving and planning purposes.
 
-## Intended use
+[Interface documentation](Jalog_class_doc.html)
+
+Demo example with Java main program and called Jalog program:
+
+[Jalog Sudoku Example](sudoku_demo/sudoku_example.html)
+
+Demo examples about Android integration:
+
+[Simple interfacing example](https://github.com/JalogTeam/Jalog_Android_MinimalDemo)  
+[Android integration of the Sudoku example](https://github.com/JalogTeam/Jalog_Android_SudokuSolver)
+
+Intended use
+------------
 
 Jalog gives ability to use [Prolog](https://en.wikipedia.org/wiki/Prolog) style reasoning whereever [Java](https://en.wikipedia.org/wiki/Java_%28programming_language%29) can be used. Prolog helps the programmer to concentrate on the problem instead of the solution algorithm. Examples: finding routes, solving puzzles like Sudoku, ...
 
-## Documentation
+See examples in [`test`](https://github.com/JalogTeam/Jalog/tree/master/test) directory for implemented features.
 
-Find documentation pages [here](https://jalogteam.github.io/).
+Jalog language
+--------------
 
-See examples in `test` directory for reference.
+[Annotated animated execution example](Jalog_animation.html) - This shows step by step what happens when a Prolog program runs.
 
-----------
+[Jalog Quick Reference](Jalog_quick_reference.html) - Built in predicates explained.
+
+[Jalog Language Reference](Jalog_language_reference.html) - Lays out the elements and the syntax of the language.
+
+Other resources
+---------------
+
+[Prolog material](https://cseweb.ucsd.edu/~goguen/courses/130w04/prolog.html) by [Prof. Joseph Goguen](https://cseweb.ucsd.edu/~goguen/)
+
+License
+-------
+
+Jalog is distributed under [**The MIT License**](https://opensource.org/licenses/MIT)
+
+Copyright (c) 2019 JalogTeam: Mikko Levanto, Ari Okkonen
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+* * *
+
 ### Version history
-**1.3.0** 2021-08-17 Android compatible
+
+**1.4** 2023-09-07 More built-in predicates
+
+**1.3** 2021-08-17 Integration to Android supported.
+
+**1.1.0** 2021-02-02 More options for consult.
 
 **1.0.0** 2020-08-25 First release
 
-**0.4** 2019-08-06 Build system for jar file: build_jar.bat.
+**0.4** 2019-08-06 Build system for jar file: build\_jar.bat.
 
 **0.3** 2019-07-24 Interface test completed and integrated to regression test.
 

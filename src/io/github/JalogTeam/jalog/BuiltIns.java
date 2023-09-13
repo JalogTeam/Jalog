@@ -49,7 +49,7 @@ public class BuiltIns
     new ClassInfo("str_len", Pred_str_len.class, 2),
     new ClassInfo("substring", Pred_substring.class, 4),
     new ClassInfo("trap", Pred_trap.class, 3),
-    new ClassInfo("upper_lower", Pred_upper_lower.class, 2),    
+    new ClassInfo("upper_lower", Pred_upper_lower.class, 2),
     new ClassInfo("write", Pred_write.class),
     new ClassInfo("writeln", Pred_writeln.class),
     new ClassInfo("writeq", Pred_writeq.class),

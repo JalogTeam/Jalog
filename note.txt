@@ -1,3 +1,9 @@
+Problem
+=======
+
+Pred_substring ei tarkasta, onko Len kiinnitetty, kun Pos on 
+kiinnitetty. Tarkastettava!
+
 Uutta
 =====
 
