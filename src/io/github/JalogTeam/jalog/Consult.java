@@ -7,7 +7,7 @@ import java.io.*;
 public class Consult
 {
   static Pro_Term exit_value = null;
-  static private boolean consult_use_res = false;
+  static boolean consult_use_res = false;
   static private String base_dirname = "file:" + 
       (new File("")).getAbsolutePath();
   static private String consult_dirname = base_dirname;
@@ -78,7 +78,7 @@ public class Consult
     File infile = null;    
     
     Reader input = null;
-
+/*
     String fileName = identify(raw_fileName);
 // System.out.println("Consult.consult_file: filter: '" + filter + "', fileName: \"" + fileName + "\"\n");
     
@@ -114,8 +114,11 @@ public class Consult
     }
     
 // System.out.println("input: " + input);
+*/
+FileManager.openread(raw_fileName, raw_fileName, consult_dirname, consult_use_res);
+input = FileManager.open_files.get(raw_fileName).reader;
 
-    if(input != null) run(input, filter, fileName);
+    if(input != null) run(input, filter, raw_fileName);
     
   }
 
