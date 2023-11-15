@@ -43,7 +43,29 @@ public class Jalog
   private static int instance_count = 0;
   private static int arg_index = 1;
 
-  public static void main(String args[])
+public static void main(String args[])
+{
+String current_line = null;
+
+FileManager.openread("inputfile", "file:x.pro");
+System.out.println(FileManager.open_files.toString());
+FileManager.readdevice("inputfile");
+System.out.println("current_readdevice=" + FileManager.open_files.toString());
+System.out.println("file contents:\n----");
+boolean go = true;
+while(go) {
+  current_line = FileManager.readln();
+  if (current_line != null) {
+    System.out.println(current_line + "#" + current_line.length()); 
+  } else {
+    go = false;
+  }
+}
+System.out.println("----");
+}
+  
+
+  public static void _main(String args[])
   { 
     int i;
     boolean show_help = true;
@@ -94,7 +116,6 @@ public class Jalog
       System.err.println("  <program_name> - complete file name - no default extensions");
       System.err.println("  <program_arguments> - as the program needs them");
     }
-      
     
   }
   

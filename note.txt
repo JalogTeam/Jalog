@@ -4,6 +4,9 @@ Problem
 Pred_substring ei tarkasta, onko Len kiinnitetty, kun Pos on 
 kiinnitetty. Tarkastettava!
 
+Mites. Pystyykö consult_stringlist -predikaatilla muuttamaan
+ohjelmaa ajoaikana? Ei pitäisi.
+
 Uutta
 =====
 
