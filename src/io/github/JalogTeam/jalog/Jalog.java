@@ -43,18 +43,21 @@ public class Jalog
   private static int instance_count = 0;
   private static int arg_index = 1;
 
-public static void main(String args[])
+public static void main_(String args[])
 {
 String current_line = null;
 
 FileManager.openread("inputfile", "file:x.pro");
 System.out.println(FileManager.open_files.toString());
+System.out.println(" --  52 exit_value = " + FileManager.exit_value);
 FileManager.readdevice("inputfile");
+System.out.println(" --  54 exit_value = " + FileManager.exit_value);
 System.out.println("current_readdevice=" + FileManager.open_files.toString());
 System.out.println("file contents:\n----");
 boolean go = true;
-while(go) {
+for (int i = 1; i<4; i++) {
   current_line = FileManager.readln();
+System.out.println(" --  60 exit_value = " + FileManager.exit_value);
   if (current_line != null) {
     System.out.println(current_line + "#" + current_line.length()); 
   } else {
@@ -62,10 +65,68 @@ while(go) {
   }
 }
 System.out.println("----");
+
+FileManager.openread("input2file", "file:y.txt");
+System.out.println(" --  70 exit_value = " + FileManager.exit_value);
+System.out.println(FileManager.open_files.toString());
+
+  current_line = FileManager.readln();
+System.out.println(" --  74 exit_value = " + FileManager.exit_value);
+  if (current_line != null) {
+    System.out.println(current_line + "#" + current_line.length()); 
+  } else {
+    go = false;
+  }
+
+System.out.println("----");
+
+
+FileManager.readdevice("input2file");
+System.out.println(" --  85 exit_value = " + FileManager.exit_value);
+
+for (int i = 1; i<4; i++) {
+  current_line = FileManager.readln();
+System.out.println(" --  89 exit_value = " + FileManager.exit_value);
+  if (current_line != null) {
+    System.out.println(current_line + "#" + current_line.length()); 
+  } else {
+    go = false;
+  }
+}
+System.out.println("----");
+
+int i= 1;
+while (go) {
+if ( i == 0) {FileManager.closefile("inputfile");System.out.println(" -- 100 exit_value = " + FileManager.exit_value);
+}
+i--;
+
+go = false;
+FileManager.readdevice("inputfile");
+System.out.println(" -- 106 exit_value = " + FileManager.exit_value);
+  current_line = FileManager.readln();
+System.out.println(" -- 108 exit_value = " + FileManager.exit_value);
+  if (current_line != null) {
+    System.out.println("1: " + current_line + "#" + current_line.length());
+    go = true;    
+  } else {
+  }
+
+FileManager.readdevice("input2file");
+System.out.println(" -- 116 exit_value = " + FileManager.exit_value);
+  current_line = FileManager.readln();
+System.out.println(" -- 118 exit_value = " + FileManager.exit_value);
+  if (current_line != null) {
+    System.out.println("2: " + current_line + "#" + current_line.length());
+    go = true;    
+  } else {
+  }
+}
+System.out.println("----");
 }
   
 
-  public static void _main(String args[])
+  public static void main(String args[])
   { 
     int i;
     boolean show_help = true;

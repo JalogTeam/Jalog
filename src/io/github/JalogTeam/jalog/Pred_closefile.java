@@ -1,11 +1,10 @@
-// Pred_openread.java
+// Pred_closefile.java
       // openread(String symbolic_filename, String filename) - (i,i)
 
 package io.github.JalogTeam.jalog;
 
-public class Pred_openread extends Pred
+public class Pred_closefile extends Pred
 {
-
 public static boolean x = true;
   public static Pred first_call(Pro_TermData_Compound data) {
 if(x)throw new Error();

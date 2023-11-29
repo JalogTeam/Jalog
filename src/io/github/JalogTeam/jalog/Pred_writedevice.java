@@ -1,9 +1,9 @@
-// Pred_openread.java
+// Pred_writedevice.java
       // openread(String symbolic_filename, String filename) - (i,i)
 
 package io.github.JalogTeam.jalog;
 
-public class Pred_openread extends Pred
+public class Pred_writedevice extends Pred
 {
 
 public static boolean x = true;

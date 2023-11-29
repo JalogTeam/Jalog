@@ -4,6 +4,11 @@ if not x==x%jalog_errors% (
   exit /B
 )
 
+REM 1.5 tests
+
+call do_test_jar.bat test_openread
+
+
 REM 1.4 tests
 
 call do_test_jar.bat test_retract

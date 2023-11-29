@@ -10,7 +10,7 @@ public class FileManager {
     return Jalog.class.getClassLoader().getResourceAsStream(fileName);
   }
 */
-  static int exit_value = 0;
+  public static int exit_value = 0;
   static public FileInfo current_readdevice = null;
   
   public static class FileInfo {  // Opened file
@@ -54,7 +54,8 @@ public class FileManager {
     File infile = null;
     String result = name;
     boolean use_res;
-    
+System.out.println("FileManager.identify name: " + name);    
+    exit_value = 0;
     if (name.startsWith("res:")) {
       // Ok
 //    } else if (name.startsWith("file:")) {
@@ -86,15 +87,29 @@ public class FileManager {
         }
       }
     }
-System.out.println("identify path=" + result);
+System.out.println("FileManager.identify path=" + result);
     return result;
   }
 
   
-  public static void closefile() {
+  public static void closefile(String symbolic_filename) {
+    FileInfo fi = open_files.get(symbolic_filename);
+    exit_value = 0;
+    if(fi != null) {
+      if (fi.reader != null) {
+        try {
+          fi.reader.close();
+        } catch (IOException e) {
+        }
+      }
+      if (fi.writer != null) {
+      }
+      open_files.remove(symbolic_filename);
+    }
   }
 
   public static void openread(String symbolic_filename, String raw_filename) {
+    exit_value = 0;
     openread(symbolic_filename, raw_filename, "", false);
   }
   
@@ -103,9 +118,13 @@ System.out.println("identify path=" + result);
     exit_value = 0;
     int root_type = 0; // 1-file, 2-resource
     int name_start_pos = 0;  
+
+System.out.println("FileManager.openread consult_dirname=" + consult_dirname);    
+    
+    closefile(symbolic_filename); // old attachment closed, if open
     
     File infile = null;    
-consult_dirname = "file:";    
+//consult_dirname = "file:";    
     Reader input = null;
 
     String fileName = identify(raw_filename, consult_dirname, consult_use_res);
@@ -160,34 +179,43 @@ System.out.println("A0 " + (is==null?"is==null":"is/=null"));
   }
   
   public static void openwrite() {
+    exit_value = 0;
   }
   
   public static void readdevice(String symbolic_filename) {
     FileInfo fi = open_files.get(symbolic_filename);
+    exit_value = 0;
     if((fi != null) && (fi.reader != null)) {
       current_readdevice = open_files.get(symbolic_filename);
     } else {
       exit_value = 1011; // attempt to assign input device to unopended file
+      current_readdevice = null;
     }
   }
   
   public static void writedevice() {
+    exit_value = 0;
   }
   
   public static String readln() {
+    exit_value = 0;
     try {
       return current_readdevice.reader.readLine();
-    } catch(IOException e) {
+    } catch(Exception e) {
+      exit_value = 1018;
       return null;
     }
   }
   
   public static void writeln() {
+    exit_value = 0;
   }
   
   public static void write() {
+    exit_value = 0;
   }
   
   public static void writeq() {
+    exit_value = 0;
   }
 }
