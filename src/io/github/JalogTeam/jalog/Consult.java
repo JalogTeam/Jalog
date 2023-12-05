@@ -114,15 +114,9 @@ public class Consult
     }
     
 */
-System.out.println("input: " + input);
-System.out.println("Consult.consult_file 118: identify(raw_filename) = " + identify(raw_fileName));
-FileManager.openread(raw_fileName, raw_fileName, consult_dirname, consult_use_res);
-System.out.println("Consult.consult_file 120: raw_fileName: '" + raw_fileName + "'" + "exit_value: '" + FileManager.exit_value + "'");
-System.out.println("Consult.consult_file 121: FileManager.open_files: '" + FileManager.open_files + "'");
-System.out.println("Consult.consult_file 122: FileManager.open_files.get(raw_fileName): '" + FileManager.open_files.get(raw_fileName) + "'");
+    FileManager.openread(raw_fileName, raw_fileName, consult_dirname, consult_use_res);
 
-input = FileManager.open_files.get(raw_fileName).reader;
-System.out.println("Consult.consult_file 125: input: '" + input + "'");
+    input = FileManager.open_files.get(raw_fileName).reader;
 
     if(input != null) run(input, filter, raw_fileName);
     

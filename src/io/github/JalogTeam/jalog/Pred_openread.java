@@ -23,7 +23,6 @@ System.out.println("Pred_openread.first_call 3");
       
       if(FileManager.exit_value != 0) {
         Pred.exit_value = Pro_Term.m_integer(FileManager.exit_value);
-        Pred.exception = true; // EXCEPTION!
       }
     } else {
       Pred.exit_value = Pro_Term.m_integer(1020); 

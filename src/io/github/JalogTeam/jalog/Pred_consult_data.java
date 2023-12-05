@@ -27,7 +27,7 @@ public class Pred_consult_data extends Pred
 */
     Consult.consult_file(filename, filter);
     if(Consult.exit_value != null) { // bad file
-      Pred.exception = true;
+//      Pred.exception = true;
       Pred.exit_value = Consult.exit_value;
     }
 //              ConsultedFiles.pop(); No double consulting

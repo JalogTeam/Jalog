@@ -524,7 +524,8 @@ System.out.println("----");
     Pro_Term body = Pro_Term.m_list(predcall);
     
     Pred.forward = true;
-    Pred.exception = false;
+//    Pred.exception = false;
+    Pred.exit_value = null;
     
     I.run_body(body);
     
