@@ -49,11 +49,13 @@ public class FileManager {
   }
 */
   // identify returns absolute path prefixed with 'file:' or 'res:'
+  // In consult: current_dir = consult_dir, otherwise = current_dir.
   static public String identify(String name, String current_dir, 
       boolean consult_use_res) {
     File infile = null;
     String result = name;
     boolean use_res;
+    boolean is_absolute = false;
 System.out.println("FileManager.identify name: " + name);    
     exit_value = 0;
     if (name.startsWith("res:")) {
@@ -67,24 +69,30 @@ System.out.println("FileManager.identify name: " + name);
       } else {
         use_res = consult_use_res; // Consult!
       }
+      is_absolute = name.startsWith("/"); 
       if((!use_res) && (File.separatorChar != '/')) {
         name = name.replace('/', File.separatorChar);
       }
-      infile = new File(name);
-      if (infile.isAbsolute()) {
+System.out.println("FileManager.identify 74 name=" + name);
+      if (!is_absolute) is_absolute = (new File(name)).isAbsolute();
+System.out.println("FileManager.identify 76 is_absolute=" + is_absolute);
+      if (is_absolute) {
         result = "file:" + name;
+System.out.println("FileManager.identify 78 absolute result=" + result);
       } else if (use_res){
         if (current_dir != null) {
           result = current_dir + "/" + name;
         } else {
           result = "res:" + name;
         }
+System.out.println("FileManager.identify 85 use_res result=" + result);
       } else { // relative file path
         if (current_dir != null) {
           result = current_dir + File.separatorChar + name;
         } else {
           result = "file:" + name;
         }
+System.out.println("FileManager.identify 92 default result=" + result);
       }
     }
 System.out.println("FileManager.identify path=" + result);
@@ -169,7 +177,9 @@ System.out.println("A0 " + (is==null?"is==null":"is/=null"));
         FileManager.FileInfo fi = 
             new FileManager.FileInfo(symbolic_filename, raw_filename, 
             buffered_input, null);
+System.out.println("FileManager.openread: symbolic_filename, fi=" + symbolic_filename + ", " + fi);
         open_files.put(symbolic_filename, fi);
+System.out.println("FileManager.openread: open_files=" + open_files);
       } catch (UnsupportedEncodingException e) {
         throw new Error(e);
       }
@@ -183,13 +193,28 @@ System.out.println("A0 " + (is==null?"is==null":"is/=null"));
   }
   
   public static void readdevice(String symbolic_filename) {
+System.out.println("# FileManager.readdevice: open_files=" + open_files);    
     FileInfo fi = open_files.get(symbolic_filename);
     exit_value = 0;
+System.out.println("# FileManager.readdevice: symbolic_filename=\"" + symbolic_filename + "\" fi=" + fi);  
     if((fi != null) && (fi.reader != null)) {
       current_readdevice = open_files.get(symbolic_filename);
+System.out.println("# FileManager.readdevice: " + current_readdevice.symbolic_name);      
     } else {
       exit_value = 1011; // attempt to assign input device to unopended file
+System.out.println("# FileManager.readdevice: exit=1011");      
       current_readdevice = null;
+    }
+  }
+  
+  public static String get_readdevice() {
+    exit_value = 0;
+    if (current_readdevice != null) {
+System.out.println("# FileManager.get_readdevice: " + current_readdevice.symbolic_name);      
+      return current_readdevice.symbolic_name;
+    } else {
+System.out.println("# FileManager.get_readdevice: null");      
+      return "null";
     }
   }
   
