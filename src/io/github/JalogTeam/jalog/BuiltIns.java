@@ -44,7 +44,7 @@ public class BuiltIns
     new ClassInfo("openread", Pred_openread.class, 2),
     new ClassInfo("openwrite", Pred_openwrite.class, 2),
     new ClassInfo("readdevice", Pred_readdevice.class, 1),
-    new ClassInfo("readline", Pred_readline.class, 1),
+    new ClassInfo("readln", Pred_readln.class, 1),
     new ClassInfo("retract", Pred_retract.class, 1),
     new ClassInfo("retractall", Pred_retractall.class, 1),
     new ClassInfo("searchchar", Pred_searchchar.class, 3),

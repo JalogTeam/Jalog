@@ -1,0 +1,5 @@
+| reading: file:/x.pro  success
+*Yes*
+| reading: file:/z.pro  trapped: 2002
+*No*
+Exit status: 0 ; 

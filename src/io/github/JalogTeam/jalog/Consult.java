@@ -78,42 +78,6 @@ public class Consult
     File infile = null;    
     
     Reader input = null;
-/*
-    String fileName = identify(raw_fileName);
-// System.out.println("Consult.consult_file: filter: '" + filter + "', fileName: \"" + fileName + "\"\n");
-    
-    if (fileName.startsWith("res:")) {
-      root_type = 2; // resource
-      name_start_pos = 4;
-      
-      try {
-// System.out.println("A " + fileName);
-        InputStream is = Jalog.getResourceAsStream(fileName.substring(name_start_pos));
-// System.out.println("A0 " + (is==null?"is==null":"is/=null"));
-        input =
-          new InputStreamReader(is, "UTF-8");
-      } catch (Exception e) {
-        System.err.println("\n*** Error: " + e);
-        input = null;
-        exit_value = Pro_Term.m_integer(1); // File not found
-      }
-      
-    } else if (fileName.startsWith("file:")) {
-      root_type = 1; // file
-      name_start_pos = 5;
-      
-      try {
-// System.out.println("B");
-        input = new FileReader(fileName.substring(name_start_pos));
-      } catch (Exception e) {
-        System.err.println("\n*** Error: " + e);
-        input = null;
-        exit_value = Pro_Term.m_integer(1); // File not found
-      }
-      
-    }
-    
-*/
     FileManager.openread(raw_fileName, raw_fileName, consult_dirname, consult_use_res);
 
     input = FileManager.open_files.get(raw_fileName).reader;

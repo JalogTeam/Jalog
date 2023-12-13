@@ -43,6 +43,7 @@ public class Jalog
   private static int instance_count = 0;
   private static int arg_index = 1;
 
+/*
 public static void main_(String args[])
 {
 String current_line = null;
@@ -124,7 +125,7 @@ System.out.println(" -- 118 exit_value = " + FileManager.exit_value);
 }
 System.out.println("----");
 }
-  
+*/  
 
   public static void main(String args[])
   { 
@@ -136,7 +137,7 @@ System.out.println("----");
     Command_Line.set(args);
  
 
-/* Settings based on command line options */
+// /* Settings based on command line options 
     for(i=0;i<Command_Line.env_labels.length;i++){
       String Label = Command_Line.env_labels[i];
       if(Label.equals("v")) {
@@ -149,7 +150,7 @@ System.out.println("----");
       
       myJalog = new Jalog();
       
-      /* Command line options for the program */
+//      /* Command line options for the program 
 
       Database.define_by_string("comline_arg/3"); // Avoid error messages
                                      // if no command line arguments      
@@ -160,7 +161,7 @@ System.out.println("----");
       
       Consult.consult_file(Command_Line.program_name, null);
       if(Consult.exit_value != null) {
-        /* We got exceptional exit */
+//        /* We got exceptional exit 
 //        Pro_TermData exit_data = Consult.exit_value.data;
         Pro_TermData exit_data = Consult.exit_value.getData();
         if(exit_data instanceof Pro_TermData_Integer) {

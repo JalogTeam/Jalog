@@ -1,27 +1,20 @@
 // Pred_closefile.java
-      // openread(String symbolic_filename, String filename) - (i,i)
+      // closefile(String symbolic_filename) - (i)
 
 package io.github.JalogTeam.jalog;
 
 public class Pred_closefile extends Pred
 {
-public static boolean x = true;
   public static Pred first_call(Pro_TermData_Compound data) {
-if(x)throw new Error();
-    if((data.subterm[0].getType() != Typenames.OPEN) &&
-        (data.subterm[1].getType() != Typenames.OPEN)) {
+    String symbolic_filename;
+    Pro_Term symbolic_filename_term;
     
-      String symbolic_filename = data.subterm[0].getData().image();
-      String filename = data.subterm[1].getData().image();
-    
-      FileManager.openread(symbolic_filename, filename);
+    if(data.subterm[0].getType() != Typenames.OPEN) {
       
-      if(FileManager.exit_value != 0) {
-        Pred.exit_value = Pro_Term.m_integer(FileManager.exit_value);
-      }
-    } else {
-      Pred.exit_value = Pro_Term.m_integer(1020); 
-          // Free variables are not allowed here
+      symbolic_filename = data.subterm[0].getData().image();
+// System.out.println("*** Pred_closefile 1, symbolic_filename = \"" + symbolic_filename + "\"");    
+      FileManager.closefile(symbolic_filename);
+      
     }
     return null;
   }

@@ -8,13 +8,12 @@ public class Pred_readdevice extends Pred
   static Pro_Term[] empty = {};
   public static Pred first_call(Pro_TermData_Compound data) {
     String symbolic_filename;
-//    FileManager.FileInfo current_readdevice;
     Pro_Term symbolic_filename_term;
     
     if(data.subterm[0].getType() != Typenames.OPEN) {
       
       symbolic_filename = data.subterm[0].getData().image();
-System.out.println("*** Pred_readdevice 1, symbolic_filename = \"" + symbolic_filename + "\"");    
+// System.out.println("*** Pred_readdevice 1, symbolic_filename = \"" + symbolic_filename + "\"");    
       FileManager.readdevice(symbolic_filename);
       
       if(FileManager.exit_value != 0) {
@@ -23,19 +22,9 @@ System.out.println("*** Pred_readdevice 1, symbolic_filename = \"" + symbolic_fi
     } else {
       
       symbolic_filename = FileManager.get_readdevice();
-System.out.println("*** Pred_readdevice 2, symbolic_filename = \"" + symbolic_filename + "\"");    
+// System.out.println("*** Pred_readdevice 2, symbolic_filename = \"" + symbolic_filename + "\"");    
       symbolic_filename_term = Pro_Term.m_compound(symbolic_filename, empty);
       forward = data.subterm[0].unify(symbolic_filename_term, trail); 
-/*      
-      if (FileManager.current_readdevice != null) {
-        
-        symbolic_file
-        Pro_Term.m_compound(FileManager.current_readdevice, empty);
-
-        forward = frontchar.unify(symbolic_filename_param, trail);        
-          // Free variables are not allowed here
-      } else {
-*/        
     }
     return null;
   }

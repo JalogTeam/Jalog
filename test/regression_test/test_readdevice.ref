@@ -1,0 +1,8 @@
+| reading: file:/x.pro  opened
+  readdevice = null
+  readdevice = input1
+  success
+*Yes*
+| reading: file:/z.pro  openread trapped: 2002
+*No*
+Exit status: 0 ; 
