@@ -13,6 +13,11 @@ public class FileManager {
   public static int exit_value = 0;
   static public FileInfo current_readdevice = null;
   
+  public static Vector<String> read_control_list = new Vector<String>();
+  public static Vector<String> write_control_list = new Vector<String>();
+  public static Vector<String> append_control_list = new Vector<String>();
+//  public static Vector<String> modify_control_list = new Vector<String>();
+  
   public static class FileInfo {  // Opened file
     public String symbolic_name = null;
     public String path = null;
@@ -154,20 +159,22 @@ public class FileManager {
       }
       
     } else if (fileName.startsWith("file:")) {
-      root_type = 1; // file
-      name_start_pos = 5;
-      
-      try {
+      if (permitted(read_control_list, fileName)) { 
+
+        root_type = 1; // file
+        name_start_pos = 5;
         
-        /*FileInputStream f*/is = new FileInputStream(
-            fileName.substring(name_start_pos));
-/*        input = new InputStreamReader(
-            fis,  "UTF-8");
-*/        
-      } catch (Exception e) {
-        is = null;
+        try {
+          
+          /*FileInputStream f*/is = new FileInputStream(
+              fileName.substring(name_start_pos));
+  /*        input = new InputStreamReader(
+              fis,  "UTF-8");
+  */        
+        } catch (Exception e) {
+          is = null;
+        }
       }
-      
     }
     if (is != null){
       try {
@@ -188,8 +195,62 @@ public class FileManager {
     }
   }
   
-  public static void openwrite() {
+  public static void openwrite(String symbolic_filename, String raw_filename) {
     exit_value = 0;
+    int root_type = 0; // 1-file, 2-resource
+    int name_start_pos = 0;  
+
+// System.out.println("FileManager.openread consult_dirname=" + consult_dirname);    
+    
+    closefile(symbolic_filename); // old attachment closed, if open
+    
+    File outfile = null;    
+//consult_dirname = "file:";    
+    Writer output = null;
+
+    String fileName = identify(raw_filename, "", false);
+// System.out.println("openread fileName=" + fileName);    
+    OutputStream os = null;
+    if (fileName.startsWith("file:")) {
+      if (permitted(write_control_list, fileName)) { 
+
+        root_type = 1; // file
+        name_start_pos = 5;
+        
+        try {
+          
+          /*FileInputStream f*/os = new FileOutputStream(
+              fileName.substring(name_start_pos));
+  /*        input = new InputStreamReader(
+              fis,  "UTF-8");
+  */        
+        } catch (Exception e) {
+          os = null;
+        }
+      }
+    }
+    if (os != null){
+      try {
+        
+        
+        Writer out = new BufferedWriter(new OutputStreamWriter(System.out));
+        
+        
+        output = new OutputStreamWriter(os, "UTF-8");
+        BufferedWriter buffered_output = 
+            new BufferedWriter(output);
+        FileManager.FileInfo fi = 
+            new FileManager.FileInfo(symbolic_filename, raw_filename, 
+            null, buffered_output);
+// System.out.println("FileManager.openread: symbolic_filename, fi=" + symbolic_filename + ", " + fi);
+        open_files.put(symbolic_filename, fi);
+// System.out.println("FileManager.openread: open_files=" + open_files);
+      } catch (UnsupportedEncodingException e) {
+        throw new Error(e);
+      }
+    } else {
+      exit_value = 2002; // Impossible to open
+    }
   }
   
   public static void readdevice(String symbolic_filename) {
@@ -242,5 +303,62 @@ public class FileManager {
   
   public static void writeq() {
     exit_value = 0;
+  }
+  
+  public static boolean permitted(Vector<String> control_list, String path) {
+    int size = control_list.size();
+    boolean found = false;
+    for (int i = 0; (i < size) && !found; i++) {
+      found = path.startsWith(control_list.elementAt(i));
+    }
+    return found;
+  }
+
+  public static void permit_write(String path) {
+    String fileName = identify(path, "", false);
+
+    if (fileName.startsWith("file:")) {
+      if (write_control_list.indexOf(path) < 0) {
+        write_control_list.add(fileName);
+      }
+
+      if (append_control_list.indexOf(path) < 0) {
+        append_control_list.add(fileName);
+      }
+    }
+  }
+    
+  public static void permit_read(String path) {
+    String fileName = identify(path, "", false);
+
+    if (fileName.startsWith("file:") && (read_control_list.indexOf(path) < 0)) {
+      read_control_list.add(fileName);
+    }
+  }
+
+  public static void permit_modify(String path) {
+    String fileName = identify(path, "", false);
+
+    if (fileName.startsWith("file:")) {
+      if (write_control_list.indexOf(path) < 0) {
+        write_control_list.add(fileName);
+      }
+
+      if (read_control_list.indexOf(path) < 0) {
+        read_control_list.add(fileName);
+      }
+
+      if (append_control_list.indexOf(path) < 0) {
+        append_control_list.add(fileName);
+      }
+    }
+  }
+  
+  public static void permit_append(String path) {
+    String fileName = identify(path, "", false);
+
+    if (fileName.startsWith("file:") && (append_control_list.indexOf(path) < 0)) {
+      append_control_list.add(fileName);
+    }
   }
 }

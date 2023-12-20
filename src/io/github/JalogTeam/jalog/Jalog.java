@@ -143,9 +143,36 @@ System.out.println("----");
       if(Label.equals("v")) {
         System.out.println(id_string);
         show_help = false; 
+      } else if (Label.equals("r")) {
+        FileManager.permit_read(Command_Line.env_values[i]);
+      } else if (Label.equals("w")) {
+        FileManager.permit_write(Command_Line.env_values[i]);
+      } else if (Label.equals("m")) {
+        FileManager.permit_modify(Command_Line.env_values[i]);
+      } else if (Label.equals("a")) {
+        FileManager.permit_append(Command_Line.env_values[i]);
       }
     }
-
+    
+/*
+System.out.println("read_control_list:");
+for(i=0; i < FileManager.read_control_list.size(); i++) {
+  System.out.println("  " + i + ": " + FileManager.read_control_list.elementAt(i));
+}
+  
+System.out.println("write_control_list:");
+for(i=0; i < FileManager.write_control_list.size(); i++) {
+  System.out.println("  " + i + ": " + FileManager.write_control_list.elementAt(i));
+}
+  
+System.out.println("append_control_list:");
+for(i=0; i < FileManager.append_control_list.size(); i++) {
+  System.out.println("  " + i + ": " + FileManager.append_control_list.elementAt(i));
+}
+  
+System.out.println("");
+*/
+  
     if(Command_Line.program_name != null) {
       
       myJalog = new Jalog();
