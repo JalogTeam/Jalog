@@ -144,13 +144,13 @@ System.out.println("----");
         System.out.println(id_string);
         show_help = false; 
       } else if (Label.equals("r")) {
-        FileManager.permit_read(Command_Line.env_values[i]);
+        Permissions.permit(Permissions.READ, Command_Line.env_values[i]);
       } else if (Label.equals("w")) {
-        FileManager.permit_write(Command_Line.env_values[i]);
+        Permissions.permit(Permissions.WRITE, Command_Line.env_values[i]);
       } else if (Label.equals("m")) {
-        FileManager.permit_modify(Command_Line.env_values[i]);
+        Permissions.permit(Permissions.MODIFY, Command_Line.env_values[i]);
       } else if (Label.equals("a")) {
-        FileManager.permit_append(Command_Line.env_values[i]);
+        Permissions.permit(Permissions.APPEND, Command_Line.env_values[i]);
       }
     }
     
@@ -178,15 +178,21 @@ System.out.println("");
       myJalog = new Jalog();
       
 //      /* Command line options for the program 
+      String abs_program_name = Consult.identify(Command_Line.program_name);
 
+      Permissions.permit(Permissions.READ, Consult.identify(""));
+          // Permission to reaad any file in current working directory ???
+          
       Database.define_by_string("comline_arg/3"); // Avoid error messages
                                      // if no command line arguments      
       for(i=0;i<Command_Line.appl_labels.length;i++){
         set_comline_arg(Command_Line.appl_labels[i],
             Command_Line.appl_values[i]);
       }
-      
-      Consult.consult_file(Command_Line.program_name, null);
+// String consult_dir = File.
+// System.out.println("Jalog.main 189 Command_Line.program_name: " + Command_Line.program_name);
+      Permissions.permit_parent(Permissions.READ, abs_program_name);
+      Consult.consult_file(abs_program_name, null);
       if(Consult.exit_value != null) {
 //        /* We got exceptional exit 
 //        Pro_TermData exit_data = Consult.exit_value.data;

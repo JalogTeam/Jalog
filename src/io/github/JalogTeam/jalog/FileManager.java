@@ -12,10 +12,8 @@ public class FileManager {
 */
   public static int exit_value = 0;
   static public FileInfo current_readdevice = null;
+  static public FileInfo current_writedevice = null;
   
-  public static Vector<String> read_control_list = new Vector<String>();
-  public static Vector<String> write_control_list = new Vector<String>();
-  public static Vector<String> append_control_list = new Vector<String>();
 //  public static Vector<String> modify_control_list = new Vector<String>();
   
   public static class FileInfo {  // Opened file
@@ -61,7 +59,8 @@ public class FileManager {
     String result = name;
     boolean use_res;
     boolean is_absolute = false;
-// System.out.println("FileManager.identify name: " + name);    
+// System.out.println("FileManager.identify name: " + name); 
+    if ("".equals(current_dir)) current_dir = null;   
     exit_value = 0;
     if (name.startsWith("res:")) {
       // Ok
@@ -90,17 +89,19 @@ public class FileManager {
         } else {
           result = "res:" + name;
         }
-// System.out.println("FileManager.identify 85 use_res result=" + result);
+// System.out.println("FileManager.identify 94 use_res result=" + result);
       } else { // relative file path
         if (current_dir != null) {
+// System.out.println("FileManager.identify 97 current_dir=" + current_dir);
           result = current_dir + File.separatorChar + name;
         } else {
           result = "file:" + name;
         }
-// System.out.println("FileManager.identify 92 default result=" + result);
+// System.out.println("FileManager.identify 102 default result=" + result);
       }
     }
 // System.out.println("FileManager.identify path=" + result);
+//System.out.println("FileManager.identify 107 name = " + name + "; parent = " +new File(name).getParent());
     return result;
   }
 
@@ -159,7 +160,9 @@ public class FileManager {
       }
       
     } else if (fileName.startsWith("file:")) {
-      if (permitted(read_control_list, fileName)) { 
+// System.out.println("FileManager.openread 163");
+      if (Permissions.permitted(Permissions.READ, fileName)) { 
+// System.out.println("FileManager.openread 165 permitted");
 
         root_type = 1; // file
         name_start_pos = 5;
@@ -176,6 +179,7 @@ public class FileManager {
         }
       }
     }
+// System.out.println("FileManager.openread 182 is==null " + (is==null?"not ":"") + "found");
     if (is != null){
       try {
         input = new InputStreamReader(is, "UTF-8");
@@ -212,7 +216,7 @@ public class FileManager {
 // System.out.println("openread fileName=" + fileName);    
     OutputStream os = null;
     if (fileName.startsWith("file:")) {
-      if (permitted(write_control_list, fileName)) { 
+      if (Permissions.permitted(Permissions.WRITE, fileName)) { 
 
         root_type = 1; // file
         name_start_pos = 5;
@@ -253,18 +257,33 @@ public class FileManager {
     }
   }
   
-  public static void readdevice(String symbolic_filename) {
+  public static void set_readdevice(String symbolic_filename) {
 // System.out.println("# FileManager.readdevice: open_files=" + open_files);    
     FileInfo fi = open_files.get(symbolic_filename);
     exit_value = 0;
 // System.out.println("# FileManager.readdevice: symbolic_filename=\"" + symbolic_filename + "\" fi=" + fi);  
     if((fi != null) && (fi.reader != null)) {
-      current_readdevice = open_files.get(symbolic_filename);
+      current_readdevice = fi;
 // System.out.println("# FileManager.readdevice: " + current_readdevice.symbolic_name);      
     } else {
       exit_value = 1011; // attempt to assign input device to unopended file
 // System.out.println("# FileManager.readdevice: exit=1011");      
       current_readdevice = null;
+    }
+  }
+  
+  public static void set_writedevice(String symbolic_filename) {
+// System.out.println("# FileManager.readdevice: open_files=" + open_files);    
+    FileInfo fi = open_files.get(symbolic_filename);
+    exit_value = 0;
+// System.out.println("# FileManager.readdevice: symbolic_filename=\"" + symbolic_filename + "\" fi=" + fi);  
+    if((fi != null) && (fi.writer != null)) {
+      current_writedevice = fi;
+// System.out.println("# FileManager.readdevice: " + current_readdevice.symbolic_name);      
+    } else {
+      exit_value = 1012; // attempt to assign output device to unopended file
+// System.out.println("# FileManager.writedevice: exit=1012");      
+      current_writedevice = null;
     }
   }
   
@@ -279,8 +298,15 @@ public class FileManager {
     }
   }
   
-  public static void writedevice() {
+  public static String get_writedevice() {
     exit_value = 0;
+    if (current_writedevice != null) {
+// System.out.println("# FileManager.get_readdevice: " + current_readdevice.symbolic_name);      
+      return current_writedevice.symbolic_name;
+    } else {
+// System.out.println("# FileManager.get_readdevice: null");      
+      return "null";
+    }
   }
   
   public static String readln() {
@@ -304,7 +330,7 @@ public class FileManager {
   public static void writeq() {
     exit_value = 0;
   }
-  
+/*  
   public static boolean permitted(Vector<String> control_list, String path) {
     int size = control_list.size();
     boolean found = false;
@@ -330,10 +356,12 @@ public class FileManager {
     
   public static void permit_read(String path) {
     String fileName = identify(path, "", false);
-
+System.out.println("FileManager.permit_read: " + fileName);
     if (fileName.startsWith("file:") && (read_control_list.indexOf(path) < 0)) {
+System.out.println("FileManager.permit_read read_control_list: " + read_control_list);
       read_control_list.add(fileName);
     }
+System.out.println("FileManager.permit_read finally read_control_list: " + read_control_list);
   }
 
   public static void permit_modify(String path) {
@@ -361,4 +389,5 @@ public class FileManager {
       append_control_list.add(fileName);
     }
   }
+*/
 }

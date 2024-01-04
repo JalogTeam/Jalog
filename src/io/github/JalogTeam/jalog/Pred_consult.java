@@ -40,7 +40,7 @@ public class Pred_consult extends Pred
         Pred.exit_value = Consult.exit_value;
       }
 //              ConsultedFiles.pop(); No double consulting
-// System.out.print("\n--Consulting \"" + filename + "\"-- Finished\n");
+// System.out.print("\n--Consulting \"" + filename + "\" Pred.exit_malue=" + Pred.exit_value +" -- Finished\n");
     }
     // result = new Pred(); // **
     return null;

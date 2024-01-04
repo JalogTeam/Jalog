@@ -12,7 +12,12 @@ public class Consult
       (new File("")).getAbsolutePath();
   static private String consult_dirname = base_dirname;
 
-  
+
+  static public String identify(String name) {
+    return FileManager.identify(name, consult_dirname, consult_use_res);
+  }
+
+/*  
   // identify returns absolute path prefixed with 'file:' or 'res:'
   static public String identify(String name) {
     File infile = null;
@@ -52,6 +57,7 @@ public class Consult
     }
     return result;
   }
+*/
 
   static public void set_consult_dir(String dirname) {
     if (dirname.startsWith("res:")) {
@@ -61,7 +67,11 @@ public class Consult
       consult_use_res = false;
       consult_dirname = dirname;
     } else {
+      consult_dirname = FileManager.identify(dirname, consult_dirname,
+          consult_use_res);
+/*
       consult_dirname = identify(dirname);
+*/
       consult_use_res = dirname.startsWith("res:");
     }
   }
@@ -75,15 +85,23 @@ public class Consult
 // System.out.println("Consult.consult_file: filter: '" + filter + "', raw_fileName: \"" + raw_fileName + "\"");
     int root_type = 0; // 1-file, 2-resource
     int name_start_pos = 0;  
-    File infile = null;    
+    File infile = null;  
+    FileManager.FileInfo info; 
+    exit_value = null;    
     
     Reader input = null;
     FileManager.openread(raw_fileName, raw_fileName, consult_dirname, consult_use_res);
-
-    input = FileManager.open_files.get(raw_fileName).reader;
-
-    if(input != null) run(input, filter, raw_fileName);
-    
+    if (FileManager.exit_value != 0) {
+      exit_value = Pro_Term.m_integer(FileManager.exit_value); 
+    } else {
+      
+      info = FileManager.open_files.get(raw_fileName);
+  // System.out.println("Consult.consult_file: info: '" + info);
+      if (info != null) {
+        input = info.reader;
+        if(input != null) run(input, filter, raw_fileName);
+      }
+    }
   }
 
   static void consult_stringlist(String[] lines, String[] filter, String name) { 
