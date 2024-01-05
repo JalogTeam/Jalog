@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Permissions {
 
-  static final int READ = 1;
+  public static final int READ = 1;
   static final int WRITE = 2;
   static final int MODIFY = 3; // = READ & WRITE
   static final int APPEND = 4;
@@ -41,9 +41,13 @@ public class Permissions {
   private static boolean has_permission(Vector<String> control_list, String path) {
     int size = control_list.size();
     boolean found = false;
+// boolean found = true;
     for (int i = 0; (i < size) && !found; i++) {
       found = path.startsWith(control_list.elementAt(i));
     }
+if (!found) {
+  System.out.println("*** " + path + " has no permission in " + control_list);
+}
     return found;
   }
   

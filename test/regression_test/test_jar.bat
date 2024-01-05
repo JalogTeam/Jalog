@@ -6,9 +6,9 @@ if not x==x%jalog_errors% (
 
 REM 1.5 tests
 
-call do_test_jar.bat test_openread
-call do_test_jar.bat test_readdevice
-call do_test_jar.bat test_readln
+call do_test_jar_w_option.bat "-r=/" test_openread
+call do_test_jar_w_option.bat "-r=/" test_readdevice
+call do_test_jar_w_option.bat "-r=/" test_readln
 
 
 REM 1.4 tests

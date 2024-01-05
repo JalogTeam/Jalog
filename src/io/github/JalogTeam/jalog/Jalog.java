@@ -42,7 +42,19 @@ public class Jalog
       
   private static int instance_count = 0;
   private static int arg_index = 1;
+  
+  public class permission {
+    public static final int READ = Permissions.READ;
+    public static final int WRITE = Permissions.WRITE;
+    public static final int MODIFY = Permissions.MODIFY; // = READ & WRITE
+    public static final int APPEND = Permissions.APPEND;
+  }
 
+  public void permit_access(int permission, String name) {
+    String abs_name = Consult.identify(name);
+
+    Permissions.permit(permission, abs_name);
+  }    
 /*
 public static void main_(String args[])
 {
@@ -139,18 +151,22 @@ System.out.println("----");
 
 // /* Settings based on command line options 
     for(i=0;i<Command_Line.env_labels.length;i++){
-      String Label = Command_Line.env_labels[i];
-      if(Label.equals("v")) {
+      String label = Command_Line.env_labels[i];
+      String value = Command_Line.env_values[i];
+      String abs_filename = Consult.identify(value);
+
+// System.out.println("* Compiler option: " + label + "=" + abs_filename);      
+      if(label.equals("v")) {
         System.out.println(id_string);
         show_help = false; 
-      } else if (Label.equals("r")) {
-        Permissions.permit(Permissions.READ, Command_Line.env_values[i]);
-      } else if (Label.equals("w")) {
-        Permissions.permit(Permissions.WRITE, Command_Line.env_values[i]);
-      } else if (Label.equals("m")) {
-        Permissions.permit(Permissions.MODIFY, Command_Line.env_values[i]);
-      } else if (Label.equals("a")) {
-        Permissions.permit(Permissions.APPEND, Command_Line.env_values[i]);
+      } else if (label.equals("r")) {
+        Permissions.permit(Permissions.READ, abs_filename);
+      } else if (label.equals("w")) {
+        Permissions.permit(Permissions.WRITE, abs_filename);
+      } else if (label.equals("m")) {
+        Permissions.permit(Permissions.MODIFY, abs_filename);
+      } else if (label.equals("a")) {
+        Permissions.permit(Permissions.APPEND, abs_filename);
       }
     }
     

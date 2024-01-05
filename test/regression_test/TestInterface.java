@@ -25,6 +25,8 @@ public class TestInterface
     int i;
     String type;
     System.out.println(id_string);
+    myJalog.permit_access(Jalog.permission.READ, "");       // # TEST
+//        "test_java_if.pro");                              // # TEST
     myJalog.consult_file("test_java_if.pro");
     long int_value;
     String string_value;
