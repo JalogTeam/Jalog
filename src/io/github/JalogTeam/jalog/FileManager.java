@@ -13,6 +13,9 @@ public class FileManager {
   public static int exit_value = 0;
   static public FileInfo current_readdevice = null;
   static public FileInfo current_writedevice = null;
+  static private String base_dir = "file:" + 
+      (new File("")).getAbsolutePath();
+  static private String current_dir = base_dir;
   
 //  public static Vector<String> modify_control_list = new Vector<String>();
   
@@ -20,10 +23,10 @@ public class FileManager {
     public String symbolic_name = null;
     public String path = null;
     public BufferedReader reader = null;
-    public Writer writer = null;  // vai BufferedWriter
+    public BufferedWriter writer = null;  // vai BufferedWriter
     
     public FileInfo(String newsymbolic_name, String newpath, 
-        BufferedReader newreader, Writer newwriter) {
+        BufferedReader newreader, BufferedWriter newwriter) {
       symbolic_name = newsymbolic_name;
       path = newpath;
       reader = newreader;
@@ -52,15 +55,15 @@ public class FileManager {
   }
 */
   // identify returns absolute path prefixed with 'file:' or 'res:'
-  // In consult: current_dir = consult_dir, otherwise = current_dir.
-  static public String identify(String name, String current_dir, 
+  // In consult: dir = consult_dir, otherwise = dir.
+  static public String identify(String name, String dir, 
       boolean consult_use_res) {
     File infile = null;
     String result = name;
     boolean use_res;
     boolean is_absolute = false;
 // System.out.println("FileManager.identify name: " + name); 
-    if ("".equals(current_dir)) current_dir = null;   
+    if ("".equals(dir)) dir = current_dir; // null;   
     exit_value = 0;
     if (name.startsWith("res:")) {
       // Ok
@@ -84,16 +87,16 @@ public class FileManager {
         result = "file:" + name;
 // System.out.println("FileManager.identify 78 absolute result=" + result);
       } else if (use_res){
-        if (current_dir != null) {
-          result = current_dir + "/" + name;
+        if (dir != null) {
+          result = dir + "/" + name;
         } else {
           result = "res:" + name;
         }
 // System.out.println("FileManager.identify 94 use_res result=" + result);
       } else { // relative file path
-        if (current_dir != null) {
-// System.out.println("FileManager.identify 97 current_dir=" + current_dir);
-          result = current_dir + File.separatorChar + name;
+        if (dir != null) {
+// System.out.println("FileManager.identify 97 dir=" + dir);
+          result = dir + File.separatorChar + name;
         } else {
           result = "file:" + name;
         }
@@ -117,8 +120,20 @@ public class FileManager {
         }
       }
       if (fi.writer != null) {
+        try {
+          fi.writer.close();
+        } catch (IOException e) {
+          exit_value = 2001; // Cannot execute a write operation
+        }
       }
       open_files.remove(symbolic_filename);
+    }
+  }
+  
+  public static void closeAllFiles() {
+    for (Enumeration<String> k = open_files.keys() ; k.hasMoreElements() ;) {
+         //System.out.println(e.nextElement());
+      closefile(k.nextElement());
     }
   }
 
@@ -235,11 +250,6 @@ public class FileManager {
     }
     if (os != null){
       try {
-        
-        
-        Writer out = new BufferedWriter(new OutputStreamWriter(System.out));
-        
-        
         output = new OutputStreamWriter(os, "UTF-8");
         BufferedWriter buffered_output = 
             new BufferedWriter(output);
@@ -274,16 +284,29 @@ public class FileManager {
   
   public static void set_writedevice(String symbolic_filename) {
 // System.out.println("# FileManager.readdevice: open_files=" + open_files);    
-    FileInfo fi = open_files.get(symbolic_filename);
     exit_value = 0;
-// System.out.println("# FileManager.readdevice: symbolic_filename=\"" + symbolic_filename + "\" fi=" + fi);  
-    if((fi != null) && (fi.writer != null)) {
-      current_writedevice = fi;
-// System.out.println("# FileManager.readdevice: " + current_readdevice.symbolic_name);      
+    if ((current_writedevice != null) && 
+        (current_writedevice.writer != null)) 
+    {
+      try {
+        current_writedevice.writer.flush();
+      } catch (Exception e) {
+        exit_value = 2001; // cannot execute write operation
+      }
+    }
+    if (symbolic_filename.equals("screen")) {
+       current_writedevice = null;
     } else {
-      exit_value = 1012; // attempt to assign output device to unopended file
+      FileInfo fi = open_files.get(symbolic_filename);
+// System.out.println("# FileManager.readdevice: symbolic_filename=\"" + symbolic_filename + "\" fi=" + fi);  
+      if((fi != null) && (fi.writer != null)) {
+        current_writedevice = fi;
+// System.out.println("# FileManager.readdevice: " + current_readdevice.symbolic_name);      
+      } else {
+        exit_value = 1012; // attempt to assign output device to unopended file
 // System.out.println("# FileManager.writedevice: exit=1012");      
-      current_writedevice = null;
+        current_writedevice = null;
+      }
     }
   }
   
@@ -305,7 +328,7 @@ public class FileManager {
       return current_writedevice.symbolic_name;
     } else {
 // System.out.println("# FileManager.get_readdevice: null");      
-      return "null";
+      return "screen";
     }
   }
   
@@ -314,23 +337,41 @@ public class FileManager {
     try {
       return current_readdevice.reader.readLine();
     } catch(Exception e) {
-      exit_value = 1018;
+      exit_value = 2006; // cannot execute a read operation
       return null;
     }
   }
   
-  public static void writeln() {
+  public static void write(String line) {
     exit_value = 0;
+    try {
+      if (current_writedevice == null) {
+        Jalog.out.print(line);
+      } else {
+        current_writedevice.writer.write(line);
+      }
+    } catch(Exception e) {
+      exit_value = 2001; // cannot execute a write operation
+    }
   }
-  
-  public static void write() {
+   
+  public static void nl() {
     exit_value = 0;
+    try {
+      if (current_writedevice == null) {
+        Jalog.out.println();
+      } else {
+        current_writedevice.writer.newLine();
+      }
+    } catch(Exception e) {
+      exit_value = 2001; // cannot execute a write operation
+    }
   }
-  
+/*  
   public static void writeq() {
     exit_value = 0;
   }
-/*  
+  
   public static boolean permitted(Vector<String> control_list, String path) {
     int size = control_list.size();
     boolean found = false;

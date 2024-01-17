@@ -153,20 +153,23 @@ System.out.println("----");
     for(i=0;i<Command_Line.env_labels.length;i++){
       String label = Command_Line.env_labels[i];
       String value = Command_Line.env_values[i];
-      String abs_filename = Consult.identify(value);
 
 // System.out.println("* Compiler option: " + label + "=" + abs_filename);      
       if(label.equals("v")) {
         System.out.println(id_string);
         show_help = false; 
-      } else if (label.equals("r")) {
-        Permissions.permit(Permissions.READ, abs_filename);
-      } else if (label.equals("w")) {
-        Permissions.permit(Permissions.WRITE, abs_filename);
-      } else if (label.equals("m")) {
-        Permissions.permit(Permissions.MODIFY, abs_filename);
-      } else if (label.equals("a")) {
-        Permissions.permit(Permissions.APPEND, abs_filename);
+      } else { //  path options
+        String abs_filename = Consult.identify(value);
+        
+        if (label.equals("r")) {
+          Permissions.permit(Permissions.READ, abs_filename);
+        } else if (label.equals("w")) {
+          Permissions.permit(Permissions.WRITE, abs_filename);
+        } else if (label.equals("m")) {
+          Permissions.permit(Permissions.MODIFY, abs_filename);
+        } else if (label.equals("a")) {
+          Permissions.permit(Permissions.APPEND, abs_filename);
+        }
       }
     }
     
@@ -209,6 +212,7 @@ System.out.println("");
 // System.out.println("Jalog.main 189 Command_Line.program_name: " + Command_Line.program_name);
       Permissions.permit_parent(Permissions.READ, abs_program_name);
       Consult.consult_file(abs_program_name, null);
+      FileManager.closeAllFiles();
       if(Consult.exit_value != null) {
 //        /* We got exceptional exit 
 //        Pro_TermData exit_data = Consult.exit_value.data;

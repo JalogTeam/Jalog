@@ -9,6 +9,8 @@ REM 1.5 tests
 call do_test_jar_w_option.bat "-r=/" test_openread
 call do_test_jar_w_option.bat "-r=/" test_readdevice
 call do_test_jar_w_option.bat "-r=/" test_readln
+call do_test_jar_w_option.bat "-w=test_dir/" test_openwrite
+call do_test_jar_w_option.bat "-w=test_dir/" test_writedevice
 
 
 REM 1.4 tests

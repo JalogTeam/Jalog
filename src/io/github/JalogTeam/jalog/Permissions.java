@@ -6,9 +6,9 @@ import java.util.*;
 public class Permissions {
 
   public static final int READ = 1;
-  static final int WRITE = 2;
-  static final int MODIFY = 3; // = READ & WRITE
-  static final int APPEND = 4;
+  public static final int WRITE = 2;
+  public static final int MODIFY = 3; // = READ & WRITE
+  public static final int APPEND = 4;
 
   private static Vector<String> read_control_list = new Vector<String>();
   private static Vector<String> write_control_list = new Vector<String>();
