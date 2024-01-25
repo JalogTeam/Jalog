@@ -12,6 +12,10 @@ call do_test_jar_w_option.bat "-r=/" test_readln
 call do_test_jar_w_option.bat "-w=test_dir/" test_openwrite
 call do_test_jar_w_option.bat "-w=test_dir/" test_writedevice
 
+call do_test_write_to_file.bat
+call do_test_write_to_files.bat
+call do_test_append_to_file.bat
+
 
 REM 1.4 tests
 

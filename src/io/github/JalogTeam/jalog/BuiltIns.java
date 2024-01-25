@@ -41,6 +41,7 @@ public class BuiltIns
     new ClassInfo("member", Pred_member.class, 2),
     new ClassInfo("nl", Pred_writeln.class, 0),
     new ClassInfo("not", Pred_not.class, 1),
+    new ClassInfo("openappend", Pred_openappend.class, 2),
     new ClassInfo("openread", Pred_openread.class, 2),
     new ClassInfo("openwrite", Pred_openwrite.class, 2),
     new ClassInfo("readdevice", Pred_readdevice.class, 1),

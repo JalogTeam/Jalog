@@ -214,7 +214,19 @@ public class FileManager {
     }
   }
   
-  public static void openwrite(String symbolic_filename, String raw_filename) {
+  public static void openwrite(String symbolic_filename, String raw_filename) 
+  {
+    openwrite(symbolic_filename, raw_filename, false);
+  }
+  
+  public static void openappend(String symbolic_filename, String raw_filename) 
+  {
+    openwrite(symbolic_filename, raw_filename, true);
+  }
+
+  public static void openwrite(String symbolic_filename, String raw_filename, 
+      boolean append) 
+  {
     exit_value = 0;
     int root_type = 0; // 1-file, 2-resource
     int name_start_pos = 0;  
@@ -228,7 +240,7 @@ public class FileManager {
     Writer output = null;
 
     String fileName = identify(raw_filename, "", false);
-// System.out.println("openread fileName=" + fileName);    
+// System.out.println("openwrite fileName=" + fileName);    
     OutputStream os = null;
     if (fileName.startsWith("file:")) {
       if (Permissions.permitted(Permissions.WRITE, fileName)) { 
@@ -237,9 +249,10 @@ public class FileManager {
         name_start_pos = 5;
         
         try {
+// System.out.println("openwrite append=" + append);    
           
           /*FileInputStream f*/os = new FileOutputStream(
-              fileName.substring(name_start_pos));
+              fileName.substring(name_start_pos), append);
   /*        input = new InputStreamReader(
               fis,  "UTF-8");
   */        
