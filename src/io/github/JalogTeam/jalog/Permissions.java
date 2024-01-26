@@ -45,9 +45,11 @@ public class Permissions {
     for (int i = 0; (i < size) && !found; i++) {
       found = path.startsWith(control_list.elementAt(i));
     }
+/*
 if (!found) {
   System.out.println("*** " + path + " has no permission in " + control_list);
 }
+*/
     return found;
   }
   

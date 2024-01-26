@@ -243,7 +243,8 @@ public class FileManager {
 // System.out.println("openwrite fileName=" + fileName);    
     OutputStream os = null;
     if (fileName.startsWith("file:")) {
-      if (Permissions.permitted(Permissions.WRITE, fileName)) { 
+      if (Permissions.permitted(Permissions.WRITE, fileName) ||
+          (append && Permissions.permitted(Permissions.APPEND, fileName))) { 
 
         root_type = 1; // file
         name_start_pos = 5;

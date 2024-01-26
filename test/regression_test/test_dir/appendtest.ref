@@ -1,2 +1,5 @@
 before append
 appended
+Text with -w option
+appended
+Text with -a option

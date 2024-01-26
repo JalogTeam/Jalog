@@ -21,8 +21,14 @@ koe_write_lines([Line|RestLines]) :-
     !,
     koe_write_lines(RestLines).
 koe_write_lines([]).
-        
+
+get_argument_text(Argtext) :-
+    comline_arg(N, "text", Value),
+    Argtext = [Value].
+get_argument_text([]).
         
 
 errorhandler(T, E) :- writedevice(screen), writeln("  ", T, " trapped: ", E).
-:- koe1("test_dir/appendtest.txt", ["appended"]).
+
+:-  get_argument_text(Argtext),
+    koe1("test_dir/appendtest.txt", ["appended"|Argtext]).
