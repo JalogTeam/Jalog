@@ -16,6 +16,8 @@ call do_test_write_to_file.bat
 call do_test_write_to_files.bat
 call do_test_append_to_file.bat
 
+call do_test_jar_w_option.bat "-r=test_dir/" test_existfile
+
 
 REM 1.4 tests
 

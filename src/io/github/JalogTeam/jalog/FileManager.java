@@ -137,6 +137,42 @@ public class FileManager {
     }
   }
 
+  public static boolean existfile(String raw_filename) {
+    boolean ans;
+    exit_value = 0;
+    String fileName = identify(raw_filename, "", false);
+    if (fileName.startsWith("file:")) {
+      if (Permissions.permitted(Permissions.READ, fileName) ||
+          Permissions.permitted(Permissions.WRITE, fileName) ||
+          Permissions.permitted(Permissions.APPEND, fileName) ||
+          Permissions.permitted(Permissions.MODIFY, fileName)) 
+      { 
+/*
+System.out.println("existfile(" + fileName + ") : permitted");
+System.out.println("  READ: " + Permissions.permitted(Permissions.READ, fileName));
+System.out.println("  WRITE: " + Permissions.permitted(Permissions.WRITE, fileName));
+System.out.println("  APPEND: " + Permissions.permitted(Permissions.APPEND, fileName));
+System.out.println("  MODIFY: " + Permissions.permitted(Permissions.MODIFY, fileName));
+*/
+        fileName = fileName.substring(5);
+
+        File f = new File(fileName);
+        ans = f.exists() && !f.isDirectory();
+      } else {
+// System.out.println("existfile(" + raw_filename + ") : not permitted");
+        exit_value = 2002; // impossible to open - illegal request
+        ans = false;
+      }
+    } else {
+// System.out.println("existfile(" + raw_filename + ") : resource");
+      fileName = fileName.substring(4);
+      ans = Jalog.class.getResource(fileName) != null;
+    }
+    
+    return ans;
+  }
+  
+
   public static void openread(String symbolic_filename, String raw_filename) {
     exit_value = 0;
     openread(symbolic_filename, raw_filename, "", false);

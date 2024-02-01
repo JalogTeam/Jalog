@@ -1,0 +1,17 @@
+koe1(res:/test_write.pro)
+  - found
+*Yes*
+koe1(res:/testeioo.pro)
+  - not found
+*Yes*
+koe1(file:test_dir/appendtest.ref)
+  - found
+*Yes*
+koe1(file:test_dir/nonexistent.ref)
+  - not found
+*Yes*
+koe1(file:d:/x.pro)
+  ERROR: 2002
+  - not found
+*Yes*
+Exit status: 0 ; 
