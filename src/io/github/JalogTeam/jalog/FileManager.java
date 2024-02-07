@@ -316,6 +316,21 @@ System.out.println("  MODIFY: " + Permissions.permitted(Permissions.MODIFY, file
       exit_value = 2002; // Impossible to open
     }
   }
+
+  public static void deletefile(String raw_filename) {
+    String fileName = identify(raw_filename, "", false);
+    
+    exit_value = 2003; // Default: Impossible to erase
+    if (fileName.startsWith("file:") &&
+        Permissions.permitted(Permissions.WRITE, fileName)) 
+    {
+      File myFile = new File(fileName.substring(5)); 
+      
+      if (myFile.delete()) { 
+        exit_value = 0; // Success: Possible to erase
+      } 
+    }
+  } 
   
   public static void set_readdevice(String symbolic_filename) {
 // System.out.println("# FileManager.readdevice: open_files=" + open_files);    
