@@ -27,6 +27,7 @@ public class BuiltIns
     new ClassInfo("existfile", Pred_existfile.class, 1),
     new ClassInfo("exit", Pred_exit.class, 0, 1),
     new ClassInfo("fail", Pred_fail.class, 0),
+    new ClassInfo("file_str", Pred_file_str.class, 2),
     new ClassInfo("findall", Pred_findall.class, 3),
     new ClassInfo("foreach_", Pred_foreach_.class, 2),
     new ClassInfo("free", Pred_free.class, 1),

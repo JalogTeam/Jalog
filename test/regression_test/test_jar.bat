@@ -19,6 +19,8 @@ call do_test_deletefile.bat
 
 call do_test_jar_w_option.bat "-r=test_dir/" test_existfile
 
+call do_test_jar.bat test_file_str
+
 REM 1.4 tests
 
 call do_test_jar.bat test_retract
