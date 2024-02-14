@@ -23,7 +23,7 @@ public class BuiltIns
     new ClassInfo("cut_", Pred_cut_.class, 0),
     new ClassInfo("deletefile", Pred_deletefile.class, 1),
     new ClassInfo("dump_", Pred_dump_.class, 1),
-    new ClassInfo("dynamic", Pred_dynamic.class, 1),
+    new ClassInfo("dynamic", Pred_dynamic.class, 1, 2),
     new ClassInfo("existfile", Pred_existfile.class, 1),
     new ClassInfo("exit", Pred_exit.class, 0, 1),
     new ClassInfo("fail", Pred_fail.class, 0),
