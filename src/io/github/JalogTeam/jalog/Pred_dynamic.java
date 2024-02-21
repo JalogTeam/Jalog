@@ -22,7 +22,7 @@ public class Pred_dynamic extends Pred
         Pred.forward = false;
       }
     } else {
-      databaseName = "";
+      databaseName = Database.DEFAULTDB;
     }
     
     if (Pred.forward) {    

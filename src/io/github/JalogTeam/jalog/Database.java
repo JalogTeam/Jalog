@@ -18,6 +18,7 @@ public class Database
   static final int SUCCEEDED = 1;
   static final int FAILED = 2;
   static final int NOT_DYNAMIC = 3;
+  static final String DEFAULTDB = "dbasedom";
   
   static{
     db = new Hashtable(100);  
@@ -117,12 +118,12 @@ public class Database
   
   static void asserta(Pro_Term x)
   {
-    asserty(x, false, "");
+    asserty(x, false, DEFAULTDB);
   }
   
   static void assertz(Pro_Term x)
   {
-    asserty(x, true, "");
+    asserty(x, true, DEFAULTDB);
   }
   
   static void asserta(Pro_Term x, String databaseName)
