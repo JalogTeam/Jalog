@@ -51,6 +51,7 @@ public class BuiltIns
     new ClassInfo("readln", Pred_readln.class, 1),
     new ClassInfo("retract", Pred_retract.class, 1),
     new ClassInfo("retractall", Pred_retractall.class, 1),
+    new ClassInfo("save", Pred_save.class, 1, 2),
     new ClassInfo("searchchar", Pred_searchchar.class, 3),
     new ClassInfo("searchstring", Pred_searchstring.class, 3),
     new ClassInfo("str_char", Pred_str_char.class, 2),

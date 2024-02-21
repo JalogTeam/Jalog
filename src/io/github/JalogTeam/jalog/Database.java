@@ -5,14 +5,15 @@ package io.github.JalogTeam.jalog;
 import java.io.*;
 import java.util.*;
 
-class Fact_Chain_Item extends Chain_Item
-{
-//  Pro_Term term;
-  Pro_TermData_Compound data;
-}
 
 public class Database
 {
+  static class Fact_Chain_Item extends Chain_Item
+  {
+  //  Pro_Term term;
+    Pro_TermData_Compound data;
+  }
+
   static Hashtable db;
   
   static final int SUCCEEDED = 1;
@@ -99,31 +100,38 @@ public class Database
   static Database_Table define_by_string(String key, String databaseName) {
     Database_Table factClass;
 
+// System.out.println("# define_by_string(" + key + ", " + databaseName + ")");
     factClass = (Database_Table) db.get(key);
     if(factClass == null) {
       factClass = new Database_Table();
-      factClass.setName(databaseName);
+      if (databaseName != null) factClass.setName(databaseName);
       db.put(key,factClass);
     } else {
-      if (!factClass.checkName(databaseName)) {
-      
-        System.err.println("\n*** Error: databaseName conflict: " + 
-            "fact: " + key + ", database attempted: " + databaseName + 
-            ", should be: " + factClass.databaseName);
-        factClass = null; // Error
+      if (databaseName != null) { 
+        if (factClass.databaseName == null) {
+          factClass.setName(databaseName);
+        } else if (!factClass.checkName(databaseName)) {
+          System.err.println("\n*** Error: databaseName conflict: " + 
+              "fact: " + key + ", database attempted: " + databaseName + 
+              ", should be: " + factClass.databaseName);
+          factClass = null; // Error
+        }
       }
     }
+// System.out.println("# define_by_string -> " + factClass + " - " + 
+// (factClass != null ? factClass.databaseName : "null"));
+
     return factClass;
   }
   
   static void asserta(Pro_Term x)
   {
-    asserty(x, false, DEFAULTDB);
+    asserty(x, false, null);
   }
   
   static void assertz(Pro_Term x)
   {
-    asserty(x, true, DEFAULTDB);
+    asserty(x, true, null);
   }
   
   static void asserta(Pro_Term x, String databaseName)

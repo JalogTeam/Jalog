@@ -15,7 +15,8 @@ b("heippa").
 
 :- writeln("K Rule cannot be made dynamic.").
 c :- writeln("K Hei!").
-:- dynamic("c/0"), writeln("ERROR dynamic rule shouldn't exist").
+:- trap(dynamic("c/0"), E, writeln("K: status=", E)),
+     writeln("ERROR dynamic rule shouldn't exist").
 :- writeln("K done").
 
 :- writeln("L Dynamic predicate cannot accept a rule.").

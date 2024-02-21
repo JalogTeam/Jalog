@@ -17,6 +17,8 @@ call do_test_write_to_files.bat
 call do_test_append_to_file.bat
 call do_test_deletefile.bat
 
+call do_test_save.bat
+
 call do_test_jar_w_option.bat "-r=test_dir/" test_existfile
 
 call do_test_jar.bat test_file_str
@@ -71,6 +73,7 @@ call do_test_redirect.bat test_redirect
 call do_test_resource.bat test_resource resources/testdata.pro
 call do_test_resource.bat test_subresource resources/testdata.pro resources/sub/testdata.pro
 REM final report
+
 echo.
 java -jar ..\..\jalog.jar -v
 echo.

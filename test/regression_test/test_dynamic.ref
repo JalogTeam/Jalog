@@ -26,8 +26,8 @@ heippa
 K Rule cannot be made dynamic.
 *Yes*
 *** Error: c/0 cannot be dynamic because it has rules.
-ERROR dynamic rule shouldn't exist
-*Yes*
+K: status=9999
+*No*
 K done
 *Yes*
 L Dynamic predicate cannot accept a rule.
