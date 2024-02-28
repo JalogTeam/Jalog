@@ -64,14 +64,19 @@ public abstract class SimpleParser extends Parser
     state = initState;
   }
 
-  public void setLine(String line) {
+  public void setLine(VirtualString vline) {
 // System.out.println("===== SimpleParser.setLine: " + line);
-    scanner.setScannerLine(JavaString.make(line));
+    scanner.setScannerLine(vline);
     errPos = -1;
     tokenType = scanner.tokenType;
     tokenPos = scanner.tokenPos;
     nextPos = scanner.nextPos;
     action = tokenType;
+  }
+
+  public void setLine(String line) {
+// System.out.println("===== SimpleParser.setLine: " + line);
+    setLine(JavaString.make(line));
   }
 
   public void moveTo(long nextPos) {
