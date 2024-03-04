@@ -28,7 +28,8 @@ public class Pred_substring extends Pred
     } else if ( pos_term.data != null) {
             
               
-      long pos = Pro_Term.eval_integer(pos_term);
+//      long pos = Pro_Term.eval_integer(pos_term);
+      long pos = Pro_Term.eval_integer(pos_term) - 1; // Prolog indexing from 1
       long len = Pro_Term.eval_integer(len_term);
    
       Pro_Term so = Pro_Term.m_string_fragment(
@@ -77,7 +78,8 @@ public class Pred_substring extends Pred
     }
 
     if (forward) {
-      forward = Pos.unify(Pro_Term.m_integer(cur_pos), trail, Mark);
+//      forward = Pos.unify(Pro_Term.m_integer(cur_pos), trail, Mark);
+      forward = Pos.unify(Pro_Term.m_integer(cur_pos + 1), trail, Mark);
     }
      
   }

@@ -7,7 +7,7 @@
 
 % substring(Str_in,Pos,Len,Str_out)
 
-koe1 :- write("koe1: "), substring("ABCDEF", 2, 3, A), writeq(A),
+koe1 :- write("koe1: "), substring("ABCDEF", 3, 3, A), writeq(A),
     write(" |", A, "|"), nl. % should get "CDE"
 
 koe2 :- write("koe2: "), concat("ABC", "DEF", A), writeq(A), nl. % should get "ABCCDE"
@@ -17,41 +17,41 @@ koe3 :- write("Ok"), nl, fail.
 koe3 :- write("koe3.b: "), concat("ABC", "DEF", "ABCDEF"), write("Ok"), 
     nl. % should get "Ok"
 
-koe4 :- write("koe4: "), substring("ABCDEF", 2, 3, "CDE"), write("Ok"), 
+koe4 :- write("koe4: "), substring("ABCDEF", 3, 3, "CDE"), write("Ok"), 
     nl.  % should get "Ok" 
 
 % 
 koe4a :- writeln("koe4a1: "),
-    substring("ABCDEFGH", 1, 6, A), % BCDEFG
+    substring("ABCDEFGH", 2, 6, A), % BCDEFG
     write("* A="), writeq(A), nl,
-    substring(A, 2, 3, B),  % DEF
+    substring(A, 3, 3, B),  % DEF
     write("* B="), writeq(B), nl,
-    substring(A, 2, 3, "DEX"), write("Error"), 
+    substring(A, 3, 3, "DEX"), write("Error"), 
     nl.  % shouldn't get here
 % 
 koe4a :- write("koe4a2: "),
-    substring("ABCDEFGH", 1, 6, A), % BCDEFG
+    substring("ABCDEFGH", 2, 6, A), % BCDEFG
     nl,
-    substring(A, 2, 3, "XEF"), write("Error"), 
+    substring(A, 3, 3, "XEF"), write("Error"), 
     nl.  % shouldn't get here
 
 koe4a :- write("koe4a3: "),
-    substring("ABCDEFGH", 1, 6, A), % BCDEFG
+    substring("ABCDEFGH", 2, 6, A), % BCDEFG
     nl, write("* A="), writeq(A), nl,
-    substring(A, 2, 3, B), write("* B="), writeq(B), nl,
-    substring(A, 2, 3, "DEF"), write("Ok"), 
+    substring(A, 3, 3, B), write("* B="), writeq(B), nl,
+    substring(A, 3, 3, "DEF"), write("Ok"), 
     nl.  % should get "Ok" 
 
 % substring past original string
 koe4b :- write("koe4b: "),
-    substring("ABC", 1, 3, A), % BC
+    substring("ABC", 2, 3, A), % BC
     A = "BC",
     write("Ok"), 
     nl.
 
 % substring negative index
 koe4c :- write("koe4c: "),
-    substring("ABC", -1, 3, A), % AB
+    substring("ABC", 0, 3, A), % AB
     A = "AB",
     write("Ok"), 
     nl.
@@ -68,10 +68,10 @@ koe4e :- write("  no more"), nl.
 
 
 koe5 :- write("koe5: "), concat("ABC", "DEF", A), 
-    substring(A, 1, 4, "BCDE"), 
+    substring(A, 2, 4, "BCDE"), 
     write("Ok"), nl.  % should get "Ok" 
 
-koe6 :- write("koe6: "), concat("ABC", "DEF", A), substring(A, 1, 4, B),
+koe6 :- write("koe6: "), concat("ABC", "DEF", A), substring(A, 2, 4, B),
     concat(B, A, "BCDEABCDEF"),
     write("Ok"), nl.  % should get "Ok" 
 
@@ -109,11 +109,11 @@ testcmp(_, _).
 
 koe7 :- write("koe7: "),
     AS1 = "ABCDEF", AS2 = "123456",
-    substring(AS1, 2, 4, AT1), substring(AS2, 1, 3, AT2),
+    substring(AS1, 3, 4, AT1), substring(AS2, 2, 3, AT2),
     writeln("+++ |", AT1, "|", AT2, "|"),
     concat(AT1, AT2, AU),
     BS1 = "XCDM", BS2 = "REF234Z",
-    substring(BS1, 1, 2, BT1), substring(BS2, 1, 5, BT2),
+    substring(BS1, 2, 2, BT1), substring(BS2, 2, 5, BT2),
     writeln("+++ |", BT1, "|", BT2, "|"),
     concat(BT1, BT2, BU),
     writeln("---|", AU, "|", BU, "|"),
@@ -124,11 +124,11 @@ koe7 :- write("koe7: "),
 
 koe7a :- write("koe7a: "),
     AS1 = "ABCDEF", AS2 = "123456",
-    substring(AS1, 2, 4, AT1), substring(AS2, 1, 3, AT2),
+    substring(AS1, 3, 4, AT1), substring(AS2, 2, 3, AT2),
     writeln("+++ |", AT1, "|", AT2, "|"),
     concat(AT1, AT2, AU),
     BS1 = "XCDM", BS2 = "REF23YZ",
-    substring(BS1, 1, 2, BT1), substring(BS2, 1, 5, BT2),
+    substring(BS1, 2, 2, BT1), substring(BS2, 2, 5, BT2),
     writeln("+++ |", BT1, "|", BT2, "|"),
     concat(BT1, BT2, BU),
     writeln("---|", AU, "|", BU, "|"),
@@ -139,11 +139,11 @@ koe7a :- write("koe7a: "),
 
 koe7b :- write("koe7b: "),
     AS1 = "ABCDEF", AS2 = "123456",
-    substring(AS1, 2, 4, AT1), substring(AS2, 1, 3, AT2),
+    substring(AS1, 3, 4, AT1), substring(AS2, 2, 3, AT2),
     writeln("+++ |", AT1, "|", AT2, "|"),
     concat(AT1, AT2, AU),
     BS1 = "XCDM", BS2 = "REF23YZ",
-    substring(BS1, 1, 2, BT1), substring(BS2, 1, 4, BT2),
+    substring(BS1, 2, 2, BT1), substring(BS2, 2, 4, BT2),
     writeln("+++ |", BT1, "|", BT2, "|"),
     concat(BT1, BT2, BU),
     writeln("---|", AU, "|", BU, "|"),
@@ -186,7 +186,7 @@ koe8g1 :-
     fail.
     
 koe8g1 :-
-    substring("1ABCD2", 1, 4, B),
+    substring("1ABCD2", 2, 4, B),
     koe8g2("3", "V", B),
     fail.
     
@@ -205,7 +205,7 @@ koe8g1 :-
     fail.
     
 koe8g1 :-
-    substring("1ABCX2", 1, 4, B),
+    substring("1ABCX2", 2, 4, B),
     koe8g2("7", "-", B),
     fail.
     
@@ -226,7 +226,7 @@ koe8g2(I, V, A) :-
     fail.
 
 koe8g2(I, V, A) :-
-    substring("7ABCDEFGH9", 1, 8, R),
+    substring("7ABCDEFGH9", 2, 8, R),
     koe8g3(I, "d", V, A, _, R),    % "EFGH"
     fail.
 
@@ -246,7 +246,7 @@ koe8g2(I, _, A) :-
     fail.
 
 koe8g2(I, _, A) :-
-    substring("7EFGHABCD9", 1, 8, R),
+    substring("7EFGHABCD9", 2, 8, R),
     koe8g3(I, "h", "-", A, _, R),    % "EFGH"
     fail.
 
@@ -397,15 +397,15 @@ koe18 :- writeln("koe18 end").
     
 % searchstring(SourceStr, SearchStr, Pos)
 
-koe19z :- write("koe19z: "), searchstring("ABCDEF", "CDE", 1), !, write("bad Ok"), 
+koe19z :- write("koe19z: "), searchstring("ABCDEF", "CDE", 2), !, write("bad Ok"), 
     nl.  % should fail 
 koe19z :- write(" failed: Ok"), nl.
 
-koe19 :- write("koe19: "), searchstring("ABCDEF", "CDE", 2), !, write("Ok"), 
+koe19 :- write("koe19: "), searchstring("ABCDEF", "CDE", 3), !, write("Ok"), 
     nl.  % should get "Ok" 
 koe19 :- write(" failed"), nl.
 
-koe19a :- write("koe19a: "), searchstring("ABCDEF", "CDE", 3), write("bad Ok"), 
+koe19a :- write("koe19a: "), searchstring("ABCDEF", "CDE", 4), write("bad Ok"), 
     nl.  % should get "Ok" 
 koe19a :- write(" failed: Ok"), nl.
 
@@ -437,23 +437,23 @@ koe20a :- write("koe20a: "), nl, searchchar("xaxxbx", 'x', Pos),
     write("  Pos = ", Pos), nl, fail. 
 koe20a :- write("  no more"), nl.
 
-koe20b :- write("koe20b: "), nl, searchchar("abc", C, -1),
+koe20b :- write("koe20b: "), nl, searchchar("abc", C, 0),
     write("  C = '", C, "'"), nl, fail. 
 koe20b :- write("  no more"), nl.
 
-koe20c :- write("koe20c: "), nl, searchchar("abc", C, 0),
+koe20c :- write("koe20c: "), nl, searchchar("abc", C, 1),
     write("  C = '", C, "'"), nl, fail. 
 koe20c :- write("  no more"), nl.
 
-koe20d :- write("koe20d: "), nl, searchchar("abc", C, 1),
+koe20d :- write("koe20d: "), nl, searchchar("abc", C, 2),
     write("  C = '", C, "'"), nl, fail. 
 koe20d :- write("  no more"), nl.
 
-koe20e :- write("koe20e: "), nl, searchchar("abc", C, 2),
+koe20e :- write("koe20e: "), nl, searchchar("abc", C, 3),
     write("  C = '", C, "'"), nl, fail. 
 koe20e :- write("  no more"), nl.
 
-koe20f :- write("koe20f: "), nl, searchchar("abc", C, 3),
+koe20f :- write("koe20f: "), nl, searchchar("abc", C, 4),
     write("  C = '", C, "'"), nl, fail. 
 koe20f :- write("  no more"), nl.
 

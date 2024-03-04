@@ -194,7 +194,7 @@ public class TestInterface
     }
     System.out.println();
 
-    in_start = Jalog.integer(1);
+    in_start = Jalog.integer(2);
     in_len = Jalog.integer(5);
     out_string = Jalog.open();
     try {
