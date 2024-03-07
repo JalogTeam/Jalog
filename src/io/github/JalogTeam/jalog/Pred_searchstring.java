@@ -46,7 +46,7 @@ public class Pred_searchstring extends Pred
         result.call();
       } else if (pos_term_type == Typenames.INTEGER) {
         forward = Pro_TermData_String.contains_at(source_str_data, 
-            ((Pro_TermData_Integer)(pos_term.data)).value, search_str_data);
+            ((Pro_TermData_Integer)(pos_term.data)).value - 1, search_str_data);
       }
     }
     return result;
@@ -67,7 +67,7 @@ public class Pred_searchstring extends Pred
     }
 
     if (forward) {
-      forward = pos_term.unify(Pro_Term.m_integer(cur_pos), trail, Mark);
+      forward = pos_term.unify(Pro_Term.m_integer(cur_pos + 1), trail, Mark);
     }
      
   }

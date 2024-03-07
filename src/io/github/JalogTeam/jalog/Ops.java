@@ -42,7 +42,7 @@ public class Ops
   { // Entered always forward==true
 // Debug_times.enter(3);
     Pred result = null;
-if(!Pred.forward) System.out.println("*** Internal error: Ops.call, forward == false");
+if(!Pred.forward) System.err.println("*** Internal error: Ops.call, forward == false");
 
     Pro_TermData_Compound data = (Pro_TermData_Compound) pred_call.getData();
     String name = data.name;

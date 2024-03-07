@@ -21,10 +21,10 @@ koe4c: Ok
 koe4d: Ok
 *Yes*
 koe4e: 
-  Pos = 0, Len = 2
-  Pos = 4, Len = 2
-  Pos = 7, Len = 2
-  Pos = 10, Len = 2
+  Pos = 1, Len = 2
+  Pos = 5, Len = 2
+  Pos = 8, Len = 2
+  Pos = 11, Len = 2
   no more
 *Yes*
 koe5: Ok
@@ -181,8 +181,8 @@ koe8:
 7h: -|ABCX|_56|EFGHABCD|
 *Yes*
 koe9: 
-koe9 success 3,3
-koe9 success 5,3
+koe9 success 4,3
+koe9 success 6,3
 koe9 end
 *Yes*
 koe10
@@ -268,36 +268,36 @@ koe19b:
   no more
 *Yes*
 koe19c: 
-  Pos = 2
+  Pos = 3
   no more
 *Yes*
 koe19d: 
-  Pos = 0
-  Pos = 4
-  Pos = 7
-  Pos = 10
+  Pos = 1
+  Pos = 5
+  Pos = 8
+  Pos = 11
   no more
 *Yes*
 koe19e: 
-  Pos = 2
-  Pos = 4
+  Pos = 3
+  Pos = 5
   no more
 *Yes*
 koe19f: 
-  Pos = 0
   Pos = 1
   Pos = 2
   Pos = 3
+  Pos = 4
   no more
 *Yes*
 koe20: 
   no more
 *Yes*
 koe20a: 
-  Pos = 0
-  Pos = 2
+  Pos = 1
   Pos = 3
-  Pos = 5
+  Pos = 4
+  Pos = 6
   no more
 *Yes*
 koe20b: 

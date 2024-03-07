@@ -29,7 +29,7 @@ public class Pred_searchchar extends Pred
       if (pos_term.getType() == Typenames.INTEGER) {
             
                 
-        long pos = ((Pro_TermData_Integer)(pos_term.data)).value;
+        long pos = ((Pro_TermData_Integer)(pos_term.data)).value - 1;
         char c = ((Pro_TermData_String)(source_str_term.data)).charAt(pos);
         
         forward = search_char_term.unify(Pro_Term.m_char(c), trail);
@@ -72,7 +72,7 @@ public class Pred_searchchar extends Pred
     forward = cur_pos > -1;
     
     if (cur_pos > -1) {
-      forward = Pos.unify(Pro_Term.m_integer(cur_pos), trail, Mark);
+      forward = Pos.unify(Pro_Term.m_integer(cur_pos + 1), trail, Mark);
     }
      
   }

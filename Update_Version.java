@@ -4,7 +4,7 @@ import java.text.*;
 
 public class Update_Version 
 {
-  static String version = "Jalog 1.4.0 by Ari Okkonen & Mikko Levanto ";
+  static String version = "Jalog 1.4.1 by Ari Okkonen & Mikko Levanto ";
   
   public static void main(String args[]) {
     String filename = null;
