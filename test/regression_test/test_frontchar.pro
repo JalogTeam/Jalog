@@ -19,7 +19,7 @@ koe3 :- write("koe3: "), S = "", test1(S, _).
 
 koe4 :- write("koe4: "), concat("fu", "nk", S), test2(S).
     
-koe5 :- write("koe5: "), substring(":- I=1/1. /* sdkj sdf */ 15", 2, 3, S), 
+koe5 :- write("koe5: "), substring(":- I=1/1. /* sdkj sdf */ 15", 3, 3, S), 
     test2(S).
 
 koe6 :- write("koe6: "), frontchar("AB", 'A', X), writeq(X),!,nl.

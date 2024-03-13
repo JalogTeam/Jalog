@@ -40,8 +40,10 @@ koe5 :- write("koe5: |"), writeq(3.14159), write('|'), nl.
 
 koe6a :- write("koe6a: |"), writeq(""), write('|') ,nl.
 koe6b :- write("koe6b: |"), writeq("string"), write('|') ,nl.
-koe6c :- write("koe6c: |"), S = "A\n\'\\\x1f\x7f\x00\x07\x80\u0100\uffffB", writeq(S), write('|'), substring(S, 11, 1, SS), writeq(SS), write('|') ,nl.
-koe6d :- write("koe6d: |"), S = "A\U00103456B", writeq(S), write('|'), substring(S, 3, 1, SS), writeq(SS), write('|') ,nl.
+koe6c :- write("koe6c: |"), S = "A\n\'\\\x1f\x7f\x00\x07\x80\u0100\uffffB",
+    writeq(S), write('|'), substring(S, 12, 1, SS), writeq(SS), write('|') ,nl.
+koe6d :- write("koe6d: |"), S = "A\U00103456B", writeq(S), write('|'),
+    substring(S, 4, 1, SS), writeq(SS), write('|') ,nl.
 
 koe7a :- write("koe7a: |"), writeq(A), write('|') ,nl.
 koe7b :- write("koe7b: |"), A = B, writeq(A), write('|'), writeq(B), write('|'), nl.

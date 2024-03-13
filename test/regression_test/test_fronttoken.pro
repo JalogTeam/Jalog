@@ -21,12 +21,12 @@ koe3 :- write("koe3: "), S = "", test1(S, _).
 
 koe4 :- write("koe4: "), concat("funk", "tori(256", S), test2(S).
     
-koe5 :- write("koe5: "), substring(":- I=1/1. /* sdkj sdf */ 15", 2, 23, S), 
+koe5 :- write("koe5: "), substring(":- I=1/1. /* sdkj sdf */ 15", 3, 23, S), 
     test2(S).
     
 koe6 :- write("koe6: "), test2(" 3.141 + 2.8 ").
     
-koe7 :- write("koe7: "), substring(":- I=1/1. /* sdkj sdf */ 15", 2, 16, S), 
+koe7 :- write("koe7: "), substring(":- I=1/1. /* sdkj sdf */ 15", 3, 16, S), 
     test2(S).
 
 koe8 :- write("koe8: "), fronttoken("-B", "-", X), writeq(X),!,nl.

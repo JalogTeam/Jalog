@@ -8,7 +8,7 @@ _An interpreter for a Prolog-like language with Java-like arithmetic written in 
 
 Jalog makes traditional artificial intelligence techniques available to a wide variety of devices and applications.
 
-**Version** 1.4 2023-09-07
+**Version** 1.4.1 2024-03-13
 
 [Other versions](../versions.html)
 
@@ -101,6 +101,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 * * *
 
 ### Version history
+
+**1.4.1** 2024-03-13 Indexing in strings corrected
 
 **1.4** 2023-09-07 More built-in predicates
 
