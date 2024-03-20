@@ -318,4 +318,22 @@ koe20e:
 koe20f: 
   no more
 *Yes*
+koe21b: 
+  no more
+*Yes*
+koe21c: 
+  C = 'a'
+  no more
+*Yes*
+koe21d: 
+  C = 'b'
+  no more
+*Yes*
+koe21e: 
+  C = 'c'
+  no more
+*Yes*
+koe21f: 
+  no more
+*Yes*
 Exit status: 0 ; 

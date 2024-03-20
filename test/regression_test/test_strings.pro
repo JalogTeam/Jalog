@@ -457,6 +457,33 @@ koe20f :- write("koe20f: "), nl, searchchar("abc", C, 4),
     write("  C = '", C, "'"), nl, fail. 
 koe20f :- write("  no more"), nl.
 
+
+
+
+koe21b :- write("koe21b: "), nl, subchar("abc", 0, C),
+    write("  C = '", C, "'"), nl, fail. 
+koe21b :- write("  no more"), nl.
+
+koe21c :- write("koe21c: "), nl, subchar("abc", 1, C),
+    write("  C = '", C, "'"), nl, fail. 
+koe21c :- write("  no more"), nl.
+
+koe21d :- write("koe21d: "), nl, subchar("abc", 2, C),
+    write("  C = '", C, "'"), nl, fail. 
+koe21d :- write("  no more"), nl.
+
+koe21e :- write("koe21e: "), nl, subchar("abc", 3, C),
+    write("  C = '", C, "'"), nl, fail. 
+koe21e :- write("  no more"), nl.
+
+koe21f :- write("koe21f: "), nl, subchar("abc", 4, C),
+    write("  C = '", C, "'"), nl, fail. 
+koe21f :- write("  no more"), nl.
+
+
+
+
+
 % Test main
 
 :- koe1.
@@ -506,4 +533,9 @@ koe20f :- write("  no more"), nl.
 :- koe20d.
 :- koe20e.
 :- koe20f.
+:- koe21b.
+:- koe21c.
+:- koe21d.
+:- koe21e.
+:- koe21f.
 
