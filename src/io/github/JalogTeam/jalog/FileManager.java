@@ -114,12 +114,14 @@ public class FileManager {
     exit_value = 0;
     if(fi != null) {
       if (fi.reader != null) {
+        if (fi == current_readdevice) current_readdevice = null;
         try {
           fi.reader.close();
         } catch (IOException e) {
         }
       }
       if (fi.writer != null) {
+        if (fi == current_writedevice) current_writedevice = null;
         try {
           fi.writer.close();
         } catch (IOException e) {

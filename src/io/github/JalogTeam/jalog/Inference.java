@@ -203,6 +203,7 @@ if(Debug > 0)        System.err.println("\n Inference (h): " + current );
             if(current != null) {
 if(Debug > 0)        System.err.println("\n Inference (h): " + current + ".next = " + current.next);
 if(Debug > 0)        System.err.println("\n Inference (h): " + current + ".pcall = " + current.pcall);
+if(Debug > 0)        System.err.println("\n Inference (h): " + (current.pcall != null? current.pcall.getClass().getName() : "null") );
               trap_activation = ((Pred_trap)current.pcall).prev_trap_activation;
             } else {
 //              System.err.println("\nUnhandled exception " + Pred.exit_value.image());

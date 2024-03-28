@@ -12,8 +12,9 @@ public class Pred_closefile extends Pred
     if(data.subterm[0].getType() != Typenames.OPEN) {
       
       symbolic_filename = data.subterm[0].getData().image();
-// System.out.println("*** Pred_closefile 1, symbolic_filename = \"" + symbolic_filename + "\"");    
+// System.err.println("*** Pred_closefile 1, symbolic_filename = \"" + symbolic_filename + "\"");    
       FileManager.closefile(symbolic_filename);
+// System.err.println("*** Pred_closefile 2, exit_value = \"" + FileManager.exit_value + "\"");    
       
     }
     return null;

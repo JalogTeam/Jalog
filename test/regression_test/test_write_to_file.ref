@@ -2,4 +2,8 @@
   opened
   success
 *Yes*
+| writing: test_dir/writetest3a.txt
+  opened
+  success
+*Yes*
 Exit status: 0 ; 

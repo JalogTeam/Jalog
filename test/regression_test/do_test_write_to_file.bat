@@ -8,9 +8,12 @@ if ERRORLEVEL 1 (
 )
 fc test_dir\writetest3.txt test_dir\writetest3.ref
 if ERRORLEVEL 1 (
-  echo test_write_to_file : Errorlevel %ERRORLEVEL%
+  echo test_write_to_file compare writetest3 : Errorlevel %ERRORLEVEL%
   set /A jalog_errors=%jalog_errors%+1
-) else (
-REM
+)
+fc test_dir\writetest3a.txt test_dir\writetest3a.ref
+if ERRORLEVEL 1 (
+  echo test_write_to_file  compare writetest3a : Errorlevel %ERRORLEVEL%
+  set /A jalog_errors=%jalog_errors%+1
 )
 echo ----------
