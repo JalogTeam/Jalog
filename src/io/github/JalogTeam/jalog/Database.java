@@ -101,7 +101,7 @@ public class Database
     Database_Table factClass;
 
 // System.out.println("# define_by_string(" + key + ", " + databaseName + ")");
-    factClass = (Database_Table) db.get(key);
+    factClass = find_by_string(key, databaseName);
     if(factClass == null) {
       factClass = new Database_Table();
       if (databaseName != null) factClass.setName(databaseName);
@@ -120,6 +120,26 @@ public class Database
     }
 // System.out.println("# define_by_string -> " + factClass + " - " + 
 // (factClass != null ? factClass.databaseName : "null"));
+
+    return factClass;
+  }
+  
+  static Database_Table find_by_string(String key, String databaseName) { 
+    Database_Table factClass;
+
+// System.out.println("# find_by_string(" + key + ", " + databaseName + ")");
+    factClass = (Database_Table) db.get(key);
+    if(factClass == null) {
+      factClass = null; // Error
+    } else {
+      if (databaseName != null) { 
+        if (factClass.databaseName == null) {
+//          factClass.setName(databaseName);
+        } else if (!factClass.checkName(databaseName)) {
+          factClass = null; // Error
+        }
+      }
+    }
 
     return factClass;
   }

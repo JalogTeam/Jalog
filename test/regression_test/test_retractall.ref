@@ -15,14 +15,12 @@ koe3:
 koe3 end
 *Yes*
 koe4: 
-*** cannot retract non-dynamic datax/1
-  retracted
+  error: 9506
   5
 koe4 end
 *Yes*
 koe5: 
-*** cannot retract non-dynamic datay/1
-  retracted
+  error: 9506
 *** Unknown predicate: datay/1
 koe5 end
 *Yes*

@@ -1,5 +1,7 @@
 *Yes*
 *Yes*
+*Yes*
+*Yes*
 koe1 a: ;
 koe1 b: ;
 koe1 c: C 10
@@ -19,7 +21,7 @@ koe3: rule cannot be retracted
 clause
  clause found
   retracting clause
-*** cannot retract non-dynamic clause/0
+  Error: 9506
 koe3: searching clause
 clause
  clause found again, OK
@@ -28,16 +30,44 @@ koe3 end
 koe4: nondynamic fact cannot be retracted
  fact found
   retracting fact
-*** cannot retract non-dynamic fact/0
+  Error: 9506
 koe4: searching fact
  fact found again, OK
 koe4 end
 *Yes*
 koe5: 
-*** cannot retract non-dynamic datay/1
+  Error: 9506
 koe5 end
 *Yes*
 koe6: 
 koe6 end
+*Yes*
+koe11 a: ;
+koe11 b: 
+  100
+  110
+  120
+koe11 c: 
+koe11 end
+*Yes*
+koe12 a: ;
+koe12 b: 
+  100
+  110
+  120
+koe12 c: 
+koe12 d: 
+koe12 end
+*Yes*
+koe13 a: ;
+koe13 b: 
+  Error: 9506
+koe13 c: 
+  Error: 9506
+koe13 d: 
+ indent: 10
+koe13 e: 
+ data: 120
+koe13 end
 *Yes*
 Exit status: 0 ; 

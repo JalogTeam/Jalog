@@ -34,5 +34,31 @@ class Database_Table // Name/Arity
     return result;
   }
 
+  boolean retract(Pro_Term filter, Pro_TrailMark Mark)
+  {
+//    return null;
+    boolean status;
+    Pro_Term unified_clause;
+    DB_Cursor prev_item;
+    
+    if(dynamic) {
+      prev_item = new DB_Cursor();
+      Pred.trail.mark(Mark);
+      unified_clause = Database.fetch(this, prev_item, filter, Mark, true);
+
+      if(unified_clause != null) {
+        facts.remove(prev_item.current_item);
+        status = true;
+      } else {
+        status = false;
+      }
+    } else { // not dynamic
+      status = false;
+    }
+
+    return status;
+
+  }
+
 
 }
