@@ -14,7 +14,7 @@ public class Database
     Pro_TermData_Compound data;
   }
 
-  static Hashtable db;
+  static Hashtable<String, Database_Table> db;
   
   static final int SUCCEEDED = 1;
   static final int FAILED = 2;
@@ -142,6 +142,26 @@ public class Database
     }
 
     return factClass;
+  }
+
+  static Vector<Database_Table> find_dynamicFactClasses(String databaseName) {
+    Vector<Database_Table> ans = new Vector<Database_Table>();
+    Database_Table factClass;
+    Enumeration<Database_Table> elements = db.elements();
+
+    Fact_Chain_Item currentItem;
+
+    while (elements.hasMoreElements()) {
+      factClass = elements.nextElement();
+      if (factClass.dynamic) {
+        if ((databaseName == null) || (factClass.databaseName == databaseName))
+        {
+          ans.add(factClass);
+        }
+      }
+    }
+    
+    return ans;    
   }
   
   static void asserta(Pro_Term x)

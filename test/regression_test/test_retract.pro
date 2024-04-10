@@ -4,6 +4,7 @@
 :- dynamic("dataz/0").
 
 :- dynamic("indent/1", mac).
+:- dynamic("indentz/1", mac).
 :- dynamic("blank_line/1", mac).
 
 clause :- writeln("clause").
@@ -106,7 +107,21 @@ koe13 :- writeln("koe13 e: "),
   retract(data(X)), writeln(" data: ", X), fail.
 koe13 :- writeln("koe13 end").  
 
-
+koe14 :- write("koe14 a: "), 
+  assertz(indent(10)),
+  assertz(indent(11)),
+  assertz(indentz(12)),
+  assertz(data(120)),
+  assertz(data(121)),
+  writeln(';'), fail.
+koe14 :- writeln("koe14 b: "),
+  trap(retract(A, mac), Ecode, writeln("  Error: ", Ecode)),
+  writeln("  got ", A),
+  findall(X, indent(X), List), writeln("  indents found: ", List),
+  findall(X2, indentz(X2), List2), writeln("  indentzs found: ", List2),
+  findall(X3, data(X3), List3), writeln("  datas found: ", List3),
+  fail.
+koe14 :- writeln("koe14 end").
   
 :- koe1.
 :- koe2.
@@ -117,3 +132,4 @@ koe13 :- writeln("koe13 end").
 :- koe11.
 :- koe12.
 :- koe13.
+:- koe14.
