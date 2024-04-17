@@ -2,6 +2,7 @@
 *Yes*
 *Yes*
 *Yes*
+*Yes*
 koe1 a: ;
 koe1 b: ;
 koe1 c: C 10
@@ -69,5 +70,21 @@ koe13 d:
 koe13 e: 
  data: 120
 koe13 end
+*Yes*
+koe14 a: ;
+koe14 b: 
+  got indent(10)
+  indents found: [11]
+  indentzs found: [12]
+  datas found: [120,121]
+  got indent(11)
+  indents found: []
+  indentzs found: [12]
+  datas found: [120,121]
+  got indentz(12)
+  indents found: []
+  indentzs found: []
+  datas found: [120,121]
+koe14 end
 *Yes*
 Exit status: 0 ; 

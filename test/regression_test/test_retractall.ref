@@ -1,5 +1,7 @@
 *Yes*
 *Yes*
+*Yes*
+*Yes*
 koe1: 
   retracted
   10
@@ -27,5 +29,20 @@ koe5 end
 koe6: 
   retracted
 koe6 end
+*Yes*
+koe13 a: ;
+koe13 b: 
+  Error: 9506
+koe13 c: 
+  Error: 9506
+koe13 d: 
+  indents found: []
+  indentzs found: [12]
+*Yes*
+koe14 a: ;
+koe14 b: 
+  indents found: []
+  indentzs found: []
+  datas found: [120,121,120,121]
 *Yes*
 Exit status: 0 ; 

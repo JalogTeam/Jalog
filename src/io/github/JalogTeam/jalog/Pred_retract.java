@@ -18,7 +18,7 @@ public class Pred_retract extends Pred
     String indicator = null;
     Pred_retract state = null;
     Database_Table factClass;
-
+// System.err.println("* Pred_retract: first_call");
     // You may want to take parameters to local variables:
     Pro_Term first_param = params.subterm[0].getRealNode();
     Pro_Term second_param = null;
@@ -44,9 +44,17 @@ public class Pred_retract extends Pred
      
       state.factClass_index = 0;
       if (first_type == Jalog.OPEN) {
-        
+// Database.debug = 1;        
         state.factClass_list = Database.find_dynamicFactClasses(dbasename);
-        
+Database.debug = 0;  
+/*      
+if(state.factClass_list == null) {
+System.err.println("* Pred_retract: first_call state.factClass_list == null");
+} else {
+System.err.println("* Pred_retract: first_call state.factClass_list.size() == " +
+state.factClass_list.size() + ", dbasename == " + dbasename);   
+}
+*/     
       } else {
         
           
@@ -63,6 +71,7 @@ public class Pred_retract extends Pred
       }  
       
       if (state.factClass_list != null) {
+        state.factClass_count = state.factClass_list.size();
         trail.mark(state.Mark); // set backtrack point
         
         state.call(); // if the first result is computed the same way as
@@ -71,6 +80,7 @@ public class Pred_retract extends Pred
         Pred.exit_value = Pro_Term.m_integer(9506);
       }
     }
+// System.err.println("* Pred_retract: first_call return, forward = " + forward);
 
     return state;
     
@@ -81,6 +91,7 @@ public class Pred_retract extends Pred
     Database_Table factClass;
     // This is called on backtrack
 //    int status;
+// System.err.println("* Pred_retract: call");
 
     trail.backtrack(Mark);
     forward = false;
@@ -94,6 +105,7 @@ public class Pred_retract extends Pred
       }
   
     }
+// System.err.println("* Pred_retract: call return, forward = " + forward);
 
 /*
     switch (status) {

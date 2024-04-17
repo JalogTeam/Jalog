@@ -8,6 +8,7 @@ import java.util.*;
 
 public class Database
 {
+static int debug = 0;
   static class Fact_Chain_Item extends Chain_Item
   {
   //  Pro_Term term;
@@ -153,8 +154,11 @@ public class Database
 
     while (elements.hasMoreElements()) {
       factClass = elements.nextElement();
+if (debug > 0) System.err.println(" Database.find_dynamicFactClasses factClass."
++ "databaseName = " + factClass.databaseName);
       if (factClass.dynamic) {
-        if ((databaseName == null) || (factClass.databaseName == databaseName))
+        if ((databaseName == null) || 
+            (factClass.databaseName.equals( databaseName)))
         {
           ans.add(factClass);
         }
