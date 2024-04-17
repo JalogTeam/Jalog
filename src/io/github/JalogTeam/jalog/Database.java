@@ -9,6 +9,7 @@ import java.util.*;
 public class Database
 {
 static int debug = 0;
+  static int exit_value = 0;
   static class Fact_Chain_Item extends Chain_Item
   {
   //  Pro_Term term;
@@ -28,6 +29,44 @@ static int debug = 0;
   
   private static void asserty(Pro_Term x, boolean last, String databaseName)
   {
+    boolean is_rule = false;
+    Database_Table factClass;
+    Pro_TermData data = x.getData();
+    
+    exit_value = 0;
+    if(data instanceof Pro_TermData_Compound) {
+      Pro_TermData_Compound compo = (Pro_TermData_Compound)data;
+      String name = compo.name;
+      byte arity = compo.arity;
+      if((name.equals("if_") || name.equals(":-")) && arity == 2) {
+        System.err.println("\n*** Error: assert: attempt to assert code");
+      }
+      String key = name + "/" + Integer.toString(arity);
+
+      factClass = find_by_string(key, databaseName);
+      if ((factClass != null) && factClass.dynamic) {
+        Fact_Chain_Item item = new Fact_Chain_Item();
+   
+        Pro_Term saveterm = x.copy();
+        item.data = (Pro_TermData_Compound) saveterm.getData();
+        if(last) {
+          factClass.facts.addLast(item);
+        } else {
+          factClass.facts.addFirst(item);
+        }
+      } else {
+        exit_value = 9506; // The functor does not belong to the domain
+      }
+    } else {
+      exit_value = 9506; // The functor does not belong to the domain
+    } 
+        
+  }
+
+  public static void assert_rule(Pro_Term x)
+  {
+    boolean last = true;
+    String databaseName = null;
     boolean is_rule = false;
     Database_Table factClass;
     Pro_TermData data = x.getData();
@@ -98,6 +137,11 @@ static int debug = 0;
         
   }
 
+  static void make_dynamic(String key, String databaseName) {
+    Database_Table factClass = define_by_string(key, databaseName);
+    if (!factClass.has_rules) factClass.dynamic = true;
+  }
+  
   static Database_Table define_by_string(String key, String databaseName) {
     Database_Table factClass;
 

@@ -202,7 +202,7 @@ System.out.println("");
       Permissions.permit(Permissions.READ, Consult.identify(""));
           // Permission to reaad any file in current working directory ???
           
-      Database.define_by_string("comline_arg/3", "command"); // Avoid error messages
+      Database.make_dynamic("comline_arg/3", "$command"); // Avoid error messages
                                      // if no command line arguments      
       for(i=0;i<Command_Line.appl_labels.length;i++){
         set_comline_arg(Command_Line.appl_labels[i],
@@ -558,7 +558,7 @@ System.out.println("");
     in_list_content[1] = Jalog.string(label);
     in_list_content[2] = Jalog.string(value);
 
-    Database.assertz(Jalog.compound("comline_arg", in_list_content), "command");
+    Database.assertz(Jalog.compound("comline_arg", in_list_content), "$command");
   }
 
   public static void dispose() {

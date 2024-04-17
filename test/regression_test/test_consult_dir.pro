@@ -1,6 +1,7 @@
 % consult_dir - test
 
 :- dynamic("data/1").
+:- dynamic("parent_dir/1").
 
 koe1 :- writeln("consult_dir test"), fail.
 koe1 :- consult_dir(Dir), assertz(parent_dir(Dir)), writeln("koe1 Dir: ", Dir),

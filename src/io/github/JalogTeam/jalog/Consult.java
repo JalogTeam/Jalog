@@ -242,9 +242,11 @@ public class Consult
         } else {
           if(data.subterm[0] != null) { // We have head!
             if(data.subterm[1].getData() == Pro_TermData_List.EMPTY) {
-              Database.assertz(data.subterm[0]);
+//              Database.assertz(data.subterm[0]);
+              Database.assert_rule(data.subterm[0]);
             } else {
-              Database.assertz(T);
+//              Database.assertz(T);
+              Database.assert_rule(T);
             }
           }
 
