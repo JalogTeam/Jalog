@@ -1,3 +1,5 @@
+:- dynamic("case/1").
+
 case1 :- 
   consult_data("res:resources/testdata.pro", ["case/1"]),
   case(X),

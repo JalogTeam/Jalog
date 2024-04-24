@@ -135,7 +135,7 @@ public class Consult
       } catch (Exception e) {
         System.err.println("\n*** Error: " + e);
         file1 = null;
-        exit_value = Pro_Term.m_integer(1); // File not found
+        exit_value = Pro_Term.m_integer(7002); // File not found
       }
       if(file1 != null) {
         do {

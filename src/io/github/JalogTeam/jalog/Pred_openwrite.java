@@ -21,7 +21,7 @@ if(x)throw new Error();
         Pred.exit_value = Pro_Term.m_integer(FileManager.exit_value);
       }
     } else {
-      Pred.exit_value = Pro_Term.m_integer(1020); 
+      Pred.exit_value = Pro_Term.m_integer(1040); 
           // Free variables are not allowed here
     }
     return null;

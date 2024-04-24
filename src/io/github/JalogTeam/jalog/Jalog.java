@@ -202,8 +202,6 @@ System.out.println("");
       Permissions.permit(Permissions.READ, Consult.identify(""));
           // Permission to reaad any file in current working directory ???
           
-      Database.make_dynamic("comline_arg/3", "$command"); // Avoid error messages
-                                     // if no command line arguments      
       for(i=0;i<Command_Line.appl_labels.length;i++){
         set_comline_arg(Command_Line.appl_labels[i],
             Command_Line.appl_values[i]);
@@ -249,6 +247,8 @@ System.out.println("");
     } else {
       instance_count ++;
     }
+    Database.make_dynamic("comline_arg/3", "$command"); // Avoid error messages
+                                     // if no command line arguments      
     arg_index = 1;
     rm = new ResourceManager();
 //System.out.println("*  rm=" + (rm==null?"null":"not null"));
@@ -547,6 +547,14 @@ System.out.println("");
   
   static public String get_consult_dir() {
     return Consult.get_consult_dir();
+  }
+
+  static public void make_dynamic(String key, String databaseName) {
+    Database.make_dynamic(key, databaseName);
+  }
+
+  static public void make_dynamic(String key) {
+    Database.make_dynamic(key, Database.DEFAULTDB);
   }
   
   static public void set_comline_arg(String label, String value) {

@@ -77,7 +77,7 @@ state.factClass_list.size() + ", dbasename == " + dbasename);
         state.call(); // if the first result is computed the same way as
                         // other results, otherwise compute it here
       } else {
-        Pred.exit_value = Pro_Term.m_integer(9506);
+        Pred.exit_value = Pro_Term.m_integer(1407); // functor not in domain
       }
     }
 // System.err.println("* Pred_retract: first_call return, forward = " + forward);

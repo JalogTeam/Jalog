@@ -39,7 +39,7 @@ static int debug = 0;
       String name = compo.name;
       byte arity = compo.arity;
       if((name.equals("if_") || name.equals(":-")) && arity == 2) {
-        System.err.println("\n*** Error: assert: attempt to assert code");
+        exit_value = 9998;
       }
       String key = name + "/" + Integer.toString(arity);
 
@@ -55,10 +55,10 @@ static int debug = 0;
           factClass.facts.addFirst(item);
         }
       } else {
-        exit_value = 9506; // The functor does not belong to the domain
+        exit_value = 1407; // The functor does not belong to the domain
       }
     } else {
-      exit_value = 9506; // The functor does not belong to the domain
+      exit_value = 1407; // The functor does not belong to the domain
     } 
         
   }
@@ -86,12 +86,14 @@ static int debug = 0;
           name = headcompo.name;
           arity = headcompo.arity;
         } else {
+          exit_value = 9997; // Invalid head of rule
           System.err.println("\n*** Error: assert: wrong head Pro_TermData class: " + 
               headdata.getClass().getName());
         }
 
         Pro_TermData bodydata = body.getData();
         if(!(bodydata instanceof Pro_TermData_List)) {
+          exit_value = 9997; // Invalid head of rule
           System.err.println("\n*** Error: assert: wrong body Pro_TermData class: " + 
               bodydata.getClass().getName());
         }
@@ -128,10 +130,12 @@ static int debug = 0;
             factClass.facts.addFirst(item);
           }
         } else {
+          exit_value = 9999; // Rule cannot be dynamic
           System.err.println("\n*** Error: assert: Dynamic rule not allowed: " + key);
         }
       }
     } else {
+      exit_value = 9996; // Not a clause
       System.err.println("\n*** Error: assert: wrong Pro_TermData class: " + data.getClass().getName());
     } 
         
@@ -156,6 +160,7 @@ static int debug = 0;
         if (factClass.databaseName == null) {
           factClass.setName(databaseName);
         } else if (!factClass.checkName(databaseName)) {
+          exir_value = 9995; // Fact belongs to another database
           System.err.println("\n*** Error: databaseName conflict: " + 
               "fact: " + key + ", database attempted: " + databaseName + 
               ", should be: " + factClass.databaseName);

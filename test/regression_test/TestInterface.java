@@ -420,6 +420,7 @@ public class TestInterface
     
     String[] filter = {"data/1"};
 
+    myJalog.make_dynamic("data/1");
     myJalog.consult_data_file("testdata_consult_data_1.pro", filter);
     out_int = Jalog.open();
     try {
@@ -452,6 +453,7 @@ public class TestInterface
     
     String[] filter2 = {"stringdata/1"};
 
+    myJalog.make_dynamic("stringdata/1");
     myJalog.consult_data_stringlist(teststringlist1, filter2, "teststringlist1");
     out_int = Jalog.open();
     try {
