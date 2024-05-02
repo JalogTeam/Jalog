@@ -160,7 +160,7 @@ static int debug = 0;
         if (factClass.databaseName == null) {
           factClass.setName(databaseName);
         } else if (!factClass.checkName(databaseName)) {
-          exir_value = 9995; // Fact belongs to another database
+          exit_value = 9995; // Fact belongs to another database
           System.err.println("\n*** Error: databaseName conflict: " + 
               "fact: " + key + ", database attempted: " + databaseName + 
               ", should be: " + factClass.databaseName);

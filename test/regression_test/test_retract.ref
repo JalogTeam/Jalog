@@ -22,7 +22,7 @@ koe3: rule cannot be retracted
 clause
  clause found
   retracting clause
-  Error: 9506
+  Error: 1407
 koe3: searching clause
 clause
  clause found again, OK
@@ -31,13 +31,13 @@ koe3 end
 koe4: nondynamic fact cannot be retracted
  fact found
   retracting fact
-  Error: 9506
+  Error: 1407
 koe4: searching fact
  fact found again, OK
 koe4 end
 *Yes*
 koe5: 
-  Error: 9506
+  Error: 1407
 koe5 end
 *Yes*
 koe6: 
@@ -62,9 +62,9 @@ koe12 end
 *Yes*
 koe13 a: ;
 koe13 b: 
-  Error: 9506
+  Error: 1407
 koe13 c: 
-  Error: 9506
+  Error: 1407
 koe13 d: 
  indent: 10
 koe13 e: 

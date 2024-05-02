@@ -17,12 +17,12 @@ koe3:
 koe3 end
 *Yes*
 koe4: 
-  error: 9506
+  error: 1407
   5
 koe4 end
 *Yes*
 koe5: 
-  error: 9506
+  error: 1407
 *** Unknown predicate: datay/1
 koe5 end
 *Yes*
@@ -32,9 +32,9 @@ koe6 end
 *Yes*
 koe13 a: ;
 koe13 b: 
-  Error: 9506
+  Error: 1407
 koe13 c: 
-  Error: 9506
+  Error: 1407
 koe13 d: 
   indents found: []
   indentzs found: [12]

@@ -2,6 +2,7 @@
 *Yes*
 *Yes*
 *Yes*
+*Yes*
 asserta test
 koe1 a: ;
 koe1 b: ;
@@ -11,15 +12,14 @@ koe2 alku
 koe2 trap: 2200
 ei löytynyt
 *Yes*
-*Yes*
 koe3 a: ;
 koe3 b: ;
 koe3 c:  41 21;
 koe3 test end
 *Yes*
 koe4 a:  40 20 10;
-koe4 b: Error: 9506
-koe4 c: Error: 9506
+koe4 b: Error: 1407
+koe4 c: Error: 1407
 koe4 d: k3data: 41 21;
 koe4 e: data: 40 20 10;
 koe4 test end

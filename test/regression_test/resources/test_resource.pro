@@ -8,8 +8,8 @@ case1 :-
   
 case1 :- 
   writeln("---"),
-  consult("res:resources/testdata.pro"),
-  case(X),
+  consult("res:resources/testprog.pro"),
+  enquire(X),
   writeln(X),
   fail.
 

@@ -4,6 +4,7 @@
 :- dynamic("data/1").
 :- dynamic("data3/1").
 :- dynamic("data5/2").
+:- dynamic("k3data/1", mac).
 
 koe1 :- writeln("assertz test"), fail.
 koe1 :- write("koe1 a: "), data(X), write(' ', X), fail.
@@ -32,8 +33,6 @@ koe2 :- writeln("ei löytynyt").
 
 :- koe2.
  
-:- dynamic("k3data/1", mac).
-
 % assert - test
 
 koe3 :- write("koe3 a: "), data3(X), write(' ', X), fail.
