@@ -52,6 +52,8 @@ call do_test_jar.bat test_consult
 call do_test_jar.bat test_consult_again
 call do_test_jar.bat test_consult_data
 call do_test_jar.bat test_consult_data_2
+call do_test_jar.bat test_consult_data_3
+call do_test_jar.bat test_consult_data_4
 call do_test_jar.bat test_consult_dir
 call do_test_jar.bat test_asserta
 call do_test_jar.bat test_assertz

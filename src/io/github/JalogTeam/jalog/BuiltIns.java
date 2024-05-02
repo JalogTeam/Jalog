@@ -18,7 +18,7 @@ public class BuiltIns
     new ClassInfo("closefile", Pred_closefile.class, 1),
     new ClassInfo("concat", Pred_concat.class, 3),
     new ClassInfo("consult", Pred_consult.class, 1),
-    new ClassInfo("consult_data", Pred_consult_data.class, 2),
+    new ClassInfo("consult_data", Pred_consult_data.class, 1, 2),
     new ClassInfo("consult_dir", Pred_consult_dir.class, 1),
     new ClassInfo("cut_", Pred_cut_.class, 0),
     new ClassInfo("deletefile", Pred_deletefile.class, 1),

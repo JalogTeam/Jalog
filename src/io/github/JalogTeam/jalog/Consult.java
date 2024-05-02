@@ -80,7 +80,7 @@ public class Consult
     return consult_dirname;
   }
 
-  static void consult_file(String raw_fileName, String[] filter)
+  static void consult_file(String raw_fileName, String[] filter, String domain)
   {
 // System.out.println("Consult.consult_file: filter: '" + filter + "', raw_fileName: \"" + raw_fileName + "\"");
     int root_type = 0; // 1-file, 2-resource
@@ -99,7 +99,7 @@ public class Consult
   // System.out.println("Consult.consult_file: info: '" + info);
       if (info != null) {
         input = info.reader;
-        if(input != null) run(input, filter, raw_fileName);
+        if(input != null) run(input, filter, raw_fileName, domain);
       }
     }
   }
@@ -108,12 +108,14 @@ public class Consult
     // name for error messages only
     StringArrayReader input = new StringArrayReader(lines);
     
-    run(input, filter, name);
+    run(input, filter, name, null);
     
   }
   
 //  static void run(String FileName)
-  static private void run(Reader input, String[] filter, String filename) {
+  static private void run(Reader input, String[] filter, String filename,
+      String domain) 
+  {
 
 // System.out.println("Consult.run: filter: '" + filter + "', filename: \"" + 
 // filename + "\"");
@@ -181,10 +183,10 @@ public class Consult
             } else {
 //System.out.println("   Term: " + T);
 //System.out.println("");
-              if(filter == null) {
+              if((filter == null) && (domain == null)) {
                 process_clause(T);
               } else {
-                process_data(T, filter);
+                process_data(T, filter, domain);
               }
               if(exit_value != null) {
                 T = null;
@@ -257,9 +259,10 @@ public class Consult
     }
   }
 
-  private static void process_data(Pro_Term T, String[] filter) {
+  private static void process_data(Pro_Term T, String[] filter, String domain) {
     // filter: ["data/3", "x/2",...]
-    
+// NOTE: If both filter and domain are given only domain is used!  
+  
 // System.out.println("\n--Consult: process_data:" + T );
     Pro_TermData_Compound data = 
         (T != null ? (Pro_TermData_Compound) T.getData() : null);
@@ -278,12 +281,16 @@ public class Consult
       int i;
       boolean found;
       String key = name + "/" + Integer.toString(arity);
-      found = false;
 // System.out.println("\n--Consult: process_data: key = \"" + key + "\"");
-      for (i=0; (i < filter.length) && !found; i++) {
-        found = key.equals(filter[i]);
+      if (domain != null) {
+        found = (Database.find_by_string(key, domain) != null);
+      } else {
+        found = false;
+        for (i=0; (i < filter.length) && !found; i++) {
+          found = key.equals(filter[i]);
 // System.out.println("\n--Consult: process_data: filter = \"" + filter[i] + 
 // "\", found = " + found);
+        }
       }
       if(found){
         Database.assertz(data.subterm[0]);

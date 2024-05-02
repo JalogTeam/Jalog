@@ -209,7 +209,7 @@ System.out.println("");
 // String consult_dir = File.
 // System.out.println("Jalog.main 189 Command_Line.program_name: " + Command_Line.program_name);
       Permissions.permit_parent(Permissions.READ, abs_program_name);
-      Consult.consult_file(abs_program_name, null);
+      Consult.consult_file(abs_program_name, null, null);
       FileManager.closeAllFiles();
       if(Consult.exit_value != null) {
 //        /* We got exceptional exit 
@@ -524,7 +524,7 @@ System.out.println("");
   }
 
   static public void consult_file(String filename) {
-    Consult.consult_file(filename, null);
+    Consult.consult_file(filename, null, null);
   }
 
   static public void consult_stringlist(String[] lines, 
@@ -533,7 +533,11 @@ System.out.println("");
   }
 
   static public void consult_data_file(String filename, String[] filter) {
-    Consult.consult_file(filename, filter);
+    Consult.consult_file(filename, filter, null);
+  }
+
+  static public void consult_data_file(String filename, String domain) {
+    Consult.consult_file(filename, null, domain);
   }
 
   static public void consult_data_stringlist(String[] lines, String[] filter, 
