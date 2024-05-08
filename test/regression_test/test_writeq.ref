@@ -1,3 +1,4 @@
+test_writeq 
 koe1: |'A'|
 *Yes*
 koe1a: |'\n'|

@@ -7,3 +7,4 @@ data(6,8).
 data(X) :- X=7.
 data(3).
 data(5).
+data2(19).

@@ -1,3 +1,4 @@
+test_fronttoken 
 koe1: "  funktori(256,  'x',f(3),\"hei\"  "
 token: "funktori"
 rest:  "(256,  'x',f(3),\"hei\"  "

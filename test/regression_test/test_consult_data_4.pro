@@ -1,4 +1,4 @@
-% consult_data_2 - test
+% consult_data_4 - test
 koe1 :- write("koe1 a: "), data(X), write(" data:", X), fail.
 koe1 :- writeln(';'), fail.
 koe1 :- write("koe1 a2: "), data2(X), write(" data2:", X), fail.

@@ -1,3 +1,4 @@
+test_str_int 
 "" is not integer.
 *Yes*
 "-" is not integer.

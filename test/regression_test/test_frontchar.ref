@@ -1,3 +1,4 @@
+test_frontchar 
 koe1: " \"hei\" "
 char: ' '
 rest:  "\"hei\" "
