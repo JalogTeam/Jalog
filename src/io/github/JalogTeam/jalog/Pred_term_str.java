@@ -18,7 +18,7 @@ public class Pred_term_str extends Pred
 
     long len_left, len_right, len;
     Pro_TermData_Compound compare_data;
-    Pro_Term right_part, left_part;
+    Pro_Term part;
     
     if ((term_term.data != null) && (string_term.data == null)) {
       Pro_Term.m_string(term_term.toString());
@@ -26,8 +26,22 @@ public class Pred_term_str extends Pred
           trail);      
     } else if (string_term.data != null) {
       JalogTerms JT = new JalogTerms(JalogTerms.TERM);
+// System.out.println(" -- Pred_term_str string_term.data = " + string_term.data);
       JT.SetLine((Pro_TermData_String)(string_term.data));
-      forward = term_term.unify(JT.NextPart(), trail);
+      part = JT.NextPart();
+// System.out.println(" -- Pred_term_str part = " + part);
+      if (part == null) {
+        JT.SetLine((Pro_TermData_String)null); // end of text
+        part = JT.NextPart();
+// System.out.println(" -- Pred_term_str part = " + part);
+      }
+// System.out.println(" -- Pred_term_str JT.Error = " + JT.Error);
+// System.out.println(" -- Pred_term_str JT.ErrorPos = " + JT.ErrorPos);
+      if (part != null) {
+        forward = term_term.unify(part, trail);
+      } else {
+        forward = false;
+      }
     } else {
       Pred.forward = false;  
     }

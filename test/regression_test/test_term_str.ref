@@ -1,0 +1,86 @@
+test_term_str 
+alku
+*Yes*
+io string "" -> "\"\""
+*Yes*
+io string "-" -> "\"-\""
+*Yes*
+io string "+" -> "\"+\""
+*Yes*
+io string " " -> "\" \""
+*Yes*
+io integer 0 -> "0"
+*Yes*
+io integer 5 -> "5"
+*Yes*
+io integer -5 -> "-5"
+*Yes*
+io struct a(3,"k") -> "a(3,\"k\")"
+*Yes*
+io list [3,2,4] -> "[3,2,4]"
+*Yes*
+io char 'c' -> "'c'"
+*Yes*
+io real 3.141 -> "3.141"
+*Yes*
+oi string "" <- "\"\""
+*Yes*
+oi string "-" <- "\"-\""
+*Yes*
+oi string "+" <- "\"+\""
+*Yes*
+oi string " " <- "\" \""
+*Yes*
+oi integer 0 <- "0"
+*Yes*
+oi integer 5 <- "5"
+*Yes*
+oi integer 5 <- "+5"
+*Yes*
+oi integer -5 <- "-5"
+*Yes*
+oi struct a(3,"k") <- "a(3,\"k\")"
+*Yes*
+oi list [3,2,4] <- "[3,2,4]"
+*Yes*
+oi char 'c' <- "'c'"
+*Yes*
+oi real 3.141 <- "3.141"
+*Yes*
+ii string "" <-> "\"\"" true
+*Yes*
+ii string "-" <-> "\"-\"" true
+*Yes*
+ii string "+" <-> "\"+\"" true
+*Yes*
+ii string " " <-> "\" \"" true
+*Yes*
+ii string "x" <-> "\"y\"" false.
+*Yes*
+ii integer 0 <-> "0" true
+*Yes*
+ii integer 5 <-> "5" true
+*Yes*
+ii integer 5 <-> "+5" true
+*Yes*
+ii integer -5 <-> "+5" false.
+*Yes*
+ii integer 5 <-> "6" false.
+*Yes*
+ii struct a(3,"k") <-> "a(3,\"k\")" true
+*Yes*
+ii struct a(3,"k") <-> "a(3,\"h\")" false.
+*Yes*
+ii list [3,2,4] <-> "[3,2,4]" true
+*Yes*
+ii list [3,2,4] <-> "[3,5,4]" false.
+*Yes*
+ii char 'c' <-> "'c'" true
+*Yes*
+ii char 'c' <-> "'d'" false.
+*Yes*
+ii real 3.141 <-> "3.141" true
+*Yes*
+ii real 3.141 <-> "2.7" false.
+*Yes*
+Exit status: 0 ; 
