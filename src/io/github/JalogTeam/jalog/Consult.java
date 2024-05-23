@@ -149,12 +149,13 @@ public class Consult
             line = null;
           }
   // System.out.println("");
-  // System.out.println("Line: " + line);
+// System.out.println("   --- Consult Line: " + line);
           JT.SetLine(line);
           do
           {
-  // System.out.println("   ---");
+// System.out.println("   --- Consult 156");
             T = JT.NextPart();
+// System.out.println("   --- Consult 158 T = " + T);
             if(JT.Error != 0)
             {
               exit_value = Pro_Term.m_integer(1); // Syntax error

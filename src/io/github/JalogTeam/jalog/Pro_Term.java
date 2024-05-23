@@ -240,6 +240,8 @@ if(debug>0) System.err.println("  2: " + (pn2/*.data*/));
       }
     }
 if(debug>0) System.err.println("* unify2: end " + success);
+if(debug>0) System.err.println("* unify2: end pn1 = " + pn1);
+if(debug>0) System.err.println("* unify2: end pn2 = " + pn2);
  
     return success;
   } // end unify

@@ -22,6 +22,7 @@ call do_test_save.bat
 call do_test_jar_w_option.bat "-r=test_dir/" test_existfile
 
 call do_test_jar.bat test_file_str
+call do_test_jar.bat test_term_str
 
 REM 1.4 tests
 

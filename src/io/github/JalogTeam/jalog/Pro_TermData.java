@@ -8,6 +8,13 @@ public abstract class Pro_TermData
 {
   public String typename;
   
+  public boolean isExpression;
+  
+  public Pro_TermData() {
+    typename = Typenames.OPEN;
+    isExpression = false;
+  }
+
   public String getIndicator()
   {
     return "<" + typename + ">";

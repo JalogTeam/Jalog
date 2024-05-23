@@ -54,13 +54,13 @@ public class JalogTerms
   {
     
     Pro_Term result = null;
-    
+// System.out.println("   --- NextPart entry");    
     do
     {
-// // System.out.println("   ---");
+// System.out.println("   --- NextPart do");
       Pr1.advance();
       action = Pr1.action;
-// System.out.println("action: " + action);
+// System.out.println("   --- NextPart action: " + action);
 
       if (action == JalogSyntax.SYM) {
         name = Pr1.sValue();

@@ -21,6 +21,7 @@ public class BuiltIns
     new ClassInfo("consult_data", Pred_consult_data.class, 1, 2),
     new ClassInfo("consult_dir", Pred_consult_dir.class, 1),
     new ClassInfo("cut_", Pred_cut_.class, 0),
+    new ClassInfo("debug_", Pred_debug_.class,1),
     new ClassInfo("deletefile", Pred_deletefile.class, 1),
     new ClassInfo("dump_", Pred_dump_.class, 1),
     new ClassInfo("dynamic", Pred_dynamic.class, 1, 2),

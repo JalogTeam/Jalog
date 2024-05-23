@@ -17,6 +17,8 @@ public class Ops
     int min_arity;
     int max_arity;
   }
+  
+  static Pro_TrailMark Mark = new Pro_TrailMark();
 
   static BuiltInInfo built_in_info;
   static Hashtable<String, BuiltInInfo> builtIns = 
@@ -41,7 +43,9 @@ public class Ops
   static Pred first_call(Pro_Term pred_call)
   { // Entered always forward==true
 // Debug_times.enter(3);
+    Pro_Term temp_Term;
     Pred result = null;
+    
 if(!Pred.forward) System.err.println("*** Internal error: Ops.call, forward == false");
 
     Pro_TermData_Compound data = (Pro_TermData_Compound) pred_call.getData();
@@ -65,6 +69,15 @@ if(!Pred.forward) System.err.println("*** Internal error: Ops.call, forward == f
       if ((arity >= built_in_info.min_arity) && (arity <= built_in_info.max_arity)) {
         cur_pred_make_method = built_in_info.make_method;
         Pred.op_found = true;
+if(Pro_Term.debug>0) System.err.println("  Ops.first_call data.isExpression = "
++ data.isExpression);
+        
+        if (data.isExpression) {
+          temp_Term = Pro_Term.m_open();
+//          temp_Term.unify(pred_call, Pred.trail, Mark);
+          pred_call.unify(temp_Term, Pred.trail, Mark);
+          data = (Pro_TermData_Compound)temp_Term.getData();
+        }
 // System.out.println("*** cur_pred_make_method got");
         try {
           result = (Pred)cur_pred_make_method.invoke(null, data);

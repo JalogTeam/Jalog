@@ -26,9 +26,27 @@ public class Pro_TermData_Compound extends Pro_TermData
 
   public Pro_TermData_Compound(String iniName, Pro_Term[] iniSubterm)
   {
+    Pro_TermData data;
+    Pro_Term subterm_i;
+    
     name = iniName;
+    
     if (iniSubterm != null) {
       arity = (byte)(iniSubterm.length);
+      
+      if (Typenames.identifyOperator(iniName, arity) != ' ') {
+        isExpression = true;
+      }
+      for (int i = 0; (i < arity) && !isExpression; i++) {
+        subterm_i = iniSubterm[i];
+        if (subterm_i != null) {        
+          data = subterm_i.getData();
+          if (data != null) {
+            isExpression = data.isExpression;
+          }
+        }
+      }
+      
       typename = (arity == 0 ? Typenames.SYMBOL : Typenames.COMPOUND);
       subterm = iniSubterm;
     } else {
@@ -40,10 +58,22 @@ public class Pro_TermData_Compound extends Pro_TermData
 
   public Pro_TermData_Compound(String iniName, Pro_Term sub)
   {
+    Pro_TermData data;
     Pro_Term[] iniSubterm = {sub};
     
     name = iniName;
     arity = (byte)1;
+    
+    if (Typenames.identifyOperator(iniName, arity) != ' ') {
+      isExpression = true;
+    }
+    if (sub != null) {        
+      data = sub.getData();
+      if (data != null) {
+        isExpression = data.isExpression;
+      }
+    }
+    
     typename = Typenames.COMPOUND;
     
     subterm = iniSubterm;
@@ -51,10 +81,28 @@ public class Pro_TermData_Compound extends Pro_TermData
 
   public Pro_TermData_Compound(String iniName, Pro_Term left, Pro_Term right)
   {
+    Pro_TermData data;
     Pro_Term[] iniSubterm = {left, right};
     
     name = iniName;
     arity = (byte)2;
+
+    if (Typenames.identifyOperator(iniName, arity) != ' ') {
+      isExpression = true;
+    }
+    if (left != null) {        
+      data = left.getData();
+      if (data != null) {
+        isExpression = data.isExpression;
+      }
+    }
+    if (right != null) {        
+      data = right.getData();
+      if (data != null) {
+        isExpression = data.isExpression;
+      }
+    }
+
     typename = Typenames.COMPOUND;
     
     subterm = iniSubterm;

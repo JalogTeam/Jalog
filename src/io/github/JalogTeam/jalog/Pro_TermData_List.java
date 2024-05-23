@@ -14,9 +14,23 @@ public class Pro_TermData_List extends Pro_TermData
 
   public Pro_TermData_List(Pro_Term head, Pro_Term tail)
   {
+    Pro_TermData data;
+    
     typename = Typenames.LIST;
     t1 = head;
     t2 = tail;
+    if (head != null) {        
+      data = head.getData();
+      if (data != null) {
+        isExpression = data.isExpression;
+      }
+    }
+    if (tail != null) {        
+      data = tail.getData();
+      if (data != null) {
+        isExpression = data.isExpression;
+      }
+    }
   }
 
   public static Pro_TermData_List make(Pro_Term[] iniVal, Pro_Term tail)

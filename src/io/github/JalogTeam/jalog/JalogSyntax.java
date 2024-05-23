@@ -551,7 +551,7 @@ public class JalogSyntax extends io.github.JalogTeam.parser.SimpleSyntax
 //       = expr4 PLUS expr5
 //       = expr4 MINUS expr5
 
-    new ParseRule(1400,PLUS,BGN_UNOP,1500,BGN_UNOP,1401),
+    new ParseRule(1400,PLUS,BGN_UNOP,1500,END_UNOP,1401),
     new ParseRule(1400,MINUS,BGN_UNOP,1500,END_UNOP,1401),
     new ParseRule(1400,ANY,NIL,1500,NIL,1401),
 
