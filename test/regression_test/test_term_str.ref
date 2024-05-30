@@ -13,6 +13,8 @@ io integer 0 -> "0"
 *Yes*
 io integer 5 -> "5"
 *Yes*
+io integer 5 -> "5"
+*Yes*
 io integer -5 -> "-5"
 *Yes*
 io struct a(3,"k") -> "a(3,\"k\")"
@@ -22,6 +24,10 @@ io list [3,2,4] -> "[3,2,4]"
 io char 'c' -> "'c'"
 *Yes*
 io real 3.141 -> "3.141"
+*Yes*
+io symbol abc -> "abc"
+*Yes*
+io symbol abc -> "abc"
 *Yes*
 oi string "" <- "\"\""
 *Yes*
@@ -46,6 +52,10 @@ oi list [3,2,4] <- "[3,2,4]"
 oi char 'c' <- "'c'"
 *Yes*
 oi real 3.141 <- "3.141"
+*Yes*
+oi symbol abc <- "abc"
+*Yes*
+oi symbol abc <- "abc()"
 *Yes*
 ii string "" <-> "\"\"" true
 *Yes*
@@ -82,5 +92,11 @@ ii char 'c' <-> "'d'" false.
 ii real 3.141 <-> "3.141" true
 *Yes*
 ii real 3.141 <-> "2.7" false.
+*Yes*
+ii symbol abc <-> "abc" true
+*Yes*
+ii symbol abc <-> "abc()" true
+*Yes*
+ii symbol abc <-> "xyz" false.
 *Yes*
 Exit status: 0 ; 

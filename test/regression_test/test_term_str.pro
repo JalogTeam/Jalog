@@ -28,6 +28,8 @@ test_ii(_,_, _) :- writeln(" false.").
 
 :- test_io(integer, 5, _).
 
+:- test_io(integer, +5, _).
+
 :- test_io(integer, -5, _).
 
 :- test_io(struct, a(3,"k"), _).
@@ -37,6 +39,10 @@ test_ii(_,_, _) :- writeln(" false.").
 :- test_io(char, 'c', _).
 
 :- test_io(real, 3.141, _).
+
+:- test_io(symbol, abc, _).
+
+:- test_io(symbol, abc(), _).
 
 
 :- test_oi(string, _, "\"\""). %
@@ -62,6 +68,10 @@ test_ii(_,_, _) :- writeln(" false.").
 :- test_oi(char, _, "'c'").
 
 :- test_oi(real, _, "3.141").
+
+:- test_oi(symbol, _, "abc").
+
+:- test_oi(symbol, _, "abc()").
 
 
 :- test_ii(string, "", "\"\"").
@@ -99,5 +109,11 @@ test_ii(_,_, _) :- writeln(" false.").
 :- test_ii(real, 3.141, "3.141").
 
 :- test_ii(real, 3.141, "2.7"). % sb false
+
+:- test_ii(symbol, abc, "abc").
+
+:- test_ii(symbol, abc, "abc()").
+
+:- test_ii(symbol, abc, "xyz").
 
 
