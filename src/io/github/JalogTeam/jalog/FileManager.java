@@ -213,9 +213,9 @@ System.out.println("  MODIFY: " + Permissions.permitted(Permissions.MODIFY, file
       }
       
     } else if (fileName.startsWith("file:")) {
-// System.out.println("FileManager.openread 163");
+// System.out.println("FileManager.openread 216");
       if (Permissions.permitted(Permissions.READ, fileName)) { 
-// System.out.println("FileManager.openread 165 permitted");
+// System.out.println("FileManager.openread 218 permitted");
 
         root_type = 1; // file
         name_start_pos = 5;
@@ -227,7 +227,9 @@ System.out.println("  MODIFY: " + Permissions.permitted(Permissions.MODIFY, file
   /*        input = new InputStreamReader(
               fis,  "UTF-8");
   */        
+// System.out.println("FileManager.openread 230 " + (is == null ? "is == null" : "is != null"));
         } catch (Exception e) {
+// System.out.println("FileManager.openread 232 is=null");
           is = null;
         }
       }
@@ -248,6 +250,7 @@ System.out.println("  MODIFY: " + Permissions.permitted(Permissions.MODIFY, file
         throw new Error(e);
       }
     } else {
+// System.out.println("FileManager.openread: File not found");
       exit_value = 2002; // File not found
     }
   }
@@ -308,13 +311,14 @@ System.out.println("  MODIFY: " + Permissions.permitted(Permissions.MODIFY, file
         FileManager.FileInfo fi = 
             new FileManager.FileInfo(symbolic_filename, raw_filename, 
             null, buffered_output);
-// System.out.println("FileManager.openread: symbolic_filename, fi=" + symbolic_filename + ", " + fi);
+// System.out.println("FileManager.openwrite: symbolic_filename, fi=" + symbolic_filename + ", " + fi);
         open_files.put(symbolic_filename, fi);
-// System.out.println("FileManager.openread: open_files=" + open_files);
+// System.out.println("FileManager.openwrite: open_files=" + open_files);
       } catch (UnsupportedEncodingException e) {
         throw new Error(e);
       }
     } else {
+// System.out.println("FileManager.openwrite: Impossible to open, open_files=" + open_files);
       exit_value = 2002; // Impossible to open
     }
   }

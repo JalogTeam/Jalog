@@ -207,7 +207,7 @@ System.out.println("");
             Command_Line.appl_values[i]);
       }
 // String consult_dir = File.
-// System.out.println("Jalog.main 189 Command_Line.program_name: " + Command_Line.program_name);
+// System.out.println("Jalog.main 210 Command_Line.program_name: " + Command_Line.program_name);
       Permissions.permit_parent(Permissions.READ, abs_program_name);
       Consult.consult_file(abs_program_name, null, null);
       FileManager.closeAllFiles();

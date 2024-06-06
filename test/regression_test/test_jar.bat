@@ -24,6 +24,9 @@ call do_test_jar_w_option.bat "-r=test_dir/" test_existfile
 call do_test_jar.bat test_file_str
 call do_test_jar.bat test_term_str
 
+call do_test_jar.bat ..\regression_test_material\consult_test_file
+call do_test_jar.bat D:\wa\JalogTeam\Jalog\test\regression_test_material\consult_test_file_abs
+
 REM 1.4 tests
 
 call do_test_jar.bat test_retract
@@ -75,6 +78,7 @@ call do_test_interface.bat test_interface
 call do_test_redirect.bat test_redirect
 call do_test_resource.bat test_resource resources/testdata.pro resources/testprog.pro
 call do_test_resource.bat test_subresource resources/testdata.pro resources/sub/testdata.pro
+
 REM final report
 
 echo.

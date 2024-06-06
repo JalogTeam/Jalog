@@ -21,6 +21,9 @@ public class Permissions {
     if (name.startsWith("file:")) {
       if ((permission & READ) != 0) {
         ans = has_permission(read_control_list, name);
+        
+// System.out.println("* Permissions.permitted READ: name=" + name + ", ans=" + ans);        
+     
       }        
       
       if (ans && (permission & WRITE) != 0) {
@@ -57,6 +60,7 @@ if (found) {
   public static void permit(int permission, String name) {
     if (name.startsWith("file:")) {
       if ((permission & READ) != 0) {
+// System.out.println("* Permissions.permit READ: name=" + name);
         set_permission(read_control_list, name);
       }        
       if ((permission & WRITE) != 0) {
@@ -78,7 +82,8 @@ if (found) {
   
   public static void permit_parent(int permission, String name) {
     if (name.startsWith("file:")) {
-       permit(permission, new File(name.substring(5)).getParent());
+// System.out.println("* Permissions.permit_parent: name=" + name);
+       permit(permission, "file:" + new File(name.substring(5)).getParent());
     }
   }
 /*    
