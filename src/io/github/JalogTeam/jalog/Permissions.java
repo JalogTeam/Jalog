@@ -14,6 +14,7 @@ public class Permissions {
   private static Vector<String> write_control_list = new Vector<String>();
   private static Vector<String> append_control_list = new Vector<String>();
 
+// private static boolean trace_on = false;
 
   public static boolean permitted(int permission, String name) {
     boolean ans = true;
@@ -27,7 +28,10 @@ public class Permissions {
       }        
       
       if (ans && (permission & WRITE) != 0) {
+// trace_on = true;        
         ans = has_permission(write_control_list, name);
+// trace_on = false;
+// System.out.println("* Permissions.permitted WRITE: name=" + name + ", ans=" + ans);        
       }     
       
       if (ans && (permission == APPEND)) {
@@ -45,7 +49,9 @@ public class Permissions {
     int size = control_list.size();
     boolean found = false;
 // boolean found = true;
+// if (trace_on) System.out.println("path = |" + path + "|");
     for (int i = 0; (i < size) && !found; i++) {
+// if (trace_on) System.out.println("control_list element: |" + control_list.elementAt(i) + "|");
       found = path.startsWith(control_list.elementAt(i));
     }
 /*

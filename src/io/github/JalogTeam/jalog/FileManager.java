@@ -272,7 +272,7 @@ System.out.println("  MODIFY: " + Permissions.permitted(Permissions.MODIFY, file
     int root_type = 0; // 1-file, 2-resource
     int name_start_pos = 0;  
 
-// System.out.println("FileManager.openread consult_dirname=" + consult_dirname);    
+// System.out.println("FileManager.openwrite raw_filename=" + raw_filename);    
     
     closefile(symbolic_filename); // old attachment closed, if open
     

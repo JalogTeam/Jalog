@@ -43,12 +43,13 @@ public class Pred_save extends Pred
 
     if (Pred.forward) {
       FileManager.openwrite("**1", fileName);
-      
+// System.out.println("Pred_save: FileManager.exit_value = " + FileManager.exit_value);      
       if(FileManager.exit_value != 0) {
         Pred.exit_value = Pro_Term.m_integer(FileManager.exit_value);
       } else {
         Enumeration<Database_Table> e;
         String olddevice = FileManager.get_writedevice();
+// System.out.println("Pred_save: olddevice = " + olddevice);      
         FileManager.set_writedevice("**1");
         for (e = Database.db.elements() ; e.hasMoreElements() ;) {
           t = e.nextElement();

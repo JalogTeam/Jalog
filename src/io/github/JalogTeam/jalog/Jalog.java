@@ -198,6 +198,8 @@ System.out.println("");
       
 //      /* Command line options for the program 
       String abs_program_name = Consult.identify(Command_Line.program_name);
+// System.out.println("Jalog.main: Command_Line.program_name = " + Command_Line.program_name);
+// System.out.println("Jalog.main: abs_program_name = " + abs_program_name);
 
       Permissions.permit(Permissions.READ, Consult.identify(""));
           // Permission to reaad any file in current working directory ???
@@ -208,7 +210,18 @@ System.out.println("");
       }
 // String consult_dir = File.
 // System.out.println("Jalog.main 210 Command_Line.program_name: " + Command_Line.program_name);
-      Permissions.permit_parent(Permissions.READ, abs_program_name);
+      String abs_program_dir;
+      if (abs_program_name.startsWith("file:")) {
+        abs_program_dir = "file:" + 
+            new File(abs_program_name.substring(5)).getParent();
+      } else {
+        int p = abs_program_name.lastIndexOf('/');
+        if (p < 0) p = 4;
+        abs_program_dir = abs_program_name.substring(0, p);
+      }
+// System.out.println("Jalog.main: abs_program_dir = " + abs_program_dir);
+      Permissions.permit(Permissions.READ, abs_program_dir);
+      Consult.set_consult_dir(abs_program_dir);
       Consult.consult_file(abs_program_name, null, null);
       FileManager.closeAllFiles();
       if(Consult.exit_value != null) {
