@@ -1,8 +1,7 @@
 :- dynamic("case/1").
 
 case1 :- 
-  consult_dir("res:resources/sub"),
-  consult_data("testdata.pro", ["case/1"]),
+  consult_data("res:resources/sub/testdata.pro", ["case/1"]),
   case(X),
   writeln(X),
   fail.

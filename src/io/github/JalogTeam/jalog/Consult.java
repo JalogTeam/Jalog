@@ -82,7 +82,7 @@ public class Consult
 
   static void consult_file(String raw_fileName, String[] filter, String domain)
   {
-// System.out.println("Consult.consult_file: filter: '" + filter + "', raw_fileName: \"" + raw_fileName + "\"");
+// System.out.println("Consult.consult_file: filter: '" + filter + "', raw_fileName: \"" + raw_fileName + "\", domain: " + domain);
     int root_type = 0; // 1-file, 2-resource
     int name_start_pos = 0;  
     File infile = null;  

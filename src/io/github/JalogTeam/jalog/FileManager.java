@@ -161,7 +161,7 @@ System.out.println("  MODIFY: " + Permissions.permitted(Permissions.MODIFY, file
         File f = new File(fileName);
         ans = f.exists() && !f.isDirectory();
       } else {
-// System.out.println("existfile(" + raw_filename + ") : not permitted");
+// System.out.println("existfile(" + raw_filename + "), filename = " + fileName +" : not permitted");
         exit_value = 2002; // impossible to open - illegal request
         ans = false;
       }
@@ -251,6 +251,10 @@ System.out.println("  MODIFY: " + Permissions.permitted(Permissions.MODIFY, file
       }
     } else {
 // System.out.println("FileManager.openread: File not found");
+// System.out.println("  symbolic_filename = " + symbolic_filename);
+// System.out.println("  raw_filename = " + raw_filename);
+// System.out.println("  consult_dirname = " + consult_dirname);
+// System.out.println("  fileName = " + fileName);
       exit_value = 2002; // File not found
     }
   }

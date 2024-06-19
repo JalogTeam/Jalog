@@ -19,7 +19,7 @@ public class Pred_consult_data extends Pred
     String[] filter = null;
     String domain = null;
     
-    filename = data.subterm[0].image();
+    filename = FileManager.identify(data.subterm[0].image(), "", false);
 // System.out.print("\n--Consulting \"" + data.subterm[0].image() + " -> " + filename + "\"--");
     if (data2 == null) { // default database
       domain = Database.DEFAULTDB;
@@ -29,7 +29,9 @@ public class Pred_consult_data extends Pred
       filter = ((Pro_TermData_List)data2).toStringList();
     }
    
-// System.out.println("\n--Consulting data \"" + filename + "\" filter[0]: " + filter[0]);
+// System.out.println("\n--Consulting data \"" + filename + "\"" +
+// (filter != null ? " filter[0]: " + filter[0] : " filter: null " ) +
+// " domain = " + domain);
 
     Consult.consult_file(filename, filter, domain);
 
