@@ -1,38 +1,27 @@
 test_asserta 
-*Yes*
-*Yes*
-*Yes*
-*Yes*
-*Yes*
 asserta test
 koe1 a: ;
 koe1 b: ;
 koe1 c:  40 20 10;
-*Yes*
 koe2 alku
 koe2 trap: 2200
 ei löytynyt
-*Yes*
 koe3 a: ;
 koe3 b: ;
 koe3 c:  41 21;
 koe3 test end
-*Yes*
 koe4 a:  40 20 10;
 koe4 b: Error: 1407
 koe4 c: Error: 1407
 koe4 d: k3data: 41 21;
 koe4 e: data: 40 20 10;
 koe4 test end
-*Yes*
 koe5 a: ;
 koe5 b: ;
 koe5 c:  10 20 40;
-*Yes*
 koe6 alku
 Error: 2200
 ei löytynyt
-*Yes*
 koe7 a: ;
 koe7 b: 
  (1,k(2))
@@ -40,7 +29,6 @@ koe7 b:
  (4,k(2)) (1,k(15)) (1,k(2))
  (4,k(15)) (4,k(2)) (1,k(15)) (1,k(2))
 koe7 c:  (4,k(15)) (4,k(2)) (1,k(15)) (1,k(2));
-*Yes*
 koe8 alku
 assertoitu
 
@@ -49,5 +37,4 @@ koe8 a:  (_1,k(_1)) (4,k(15)) (4,k(2)) (1,k(15)) (1,k(2));
 koe8 b:  (4,k(4)) (4,k(15)) (4,k(2));
 
 koe8 c:  (3,k(3));
-*Yes*
 Exit status: 0 ; 

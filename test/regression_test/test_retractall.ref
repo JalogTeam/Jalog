@@ -1,36 +1,26 @@
 test_retractall 
-*Yes*
-*Yes*
-*Yes*
-*Yes*
 koe1: 
   retracted
   10
   30
 koe1 end
-*Yes*
 koe2: 
   retracted
 koe2 end
-*Yes*
 koe3: 
   retracted
 koe3 end
-*Yes*
 koe4: 
   error: 1407
   5
 koe4 end
-*Yes*
 koe5: 
   error: 1407
 *** Unknown predicate: datay/1
 koe5 end
-*Yes*
 koe6: 
   retracted
 koe6 end
-*Yes*
 koe13 a: ;
 koe13 b: 
   Error: 1407
@@ -39,11 +29,9 @@ koe13 c:
 koe13 d: 
   indents found: []
   indentzs found: [12]
-*Yes*
 koe14 a: ;
 koe14 b: 
   indents found: []
   indentzs found: []
   datas found: [120,121,120,121]
-*Yes*
 Exit status: 0 ; 

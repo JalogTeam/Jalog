@@ -1,9 +1,5 @@
 test_free 
-Aok*Yes*
-
-Bok*Yes*
-
-Cok*Yes*
-
-Dok*Yes*
-Exit status: 0 ; 
+Aok
+Bok
+Cok
+DokExit status: 0 ; 

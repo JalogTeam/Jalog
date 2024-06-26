@@ -1,62 +1,32 @@
 test_str_int 
 "" is not integer.
-*Yes*
 "-" is not integer.
-*Yes*
 "+" is not integer.
-*Yes*
 " " is not integer.
-*Yes*
 "0" -> 0
-*Yes*
 "5" -> 5
-*Yes*
 "+5" -> 5
-*Yes*
 "-5" -> -5
-*Yes*
 "05" -> 5
-*Yes*
 "9223372036854775807" -> 9223372036854775807
-*Yes*
 "9223372036854775808" is not integer.
-*Yes*
 "-9223372036854775807" -> -9223372036854775807
-*Yes*
 "-9223372036854775808" -> -9223372036854775808
-*Yes*
 "-9223372036854775809" is not integer.
-*Yes*
 "x56" is not integer.
-*Yes*
 "&56" is not integer.
-*Yes*
 "56x" is not integer.
-*Yes*
 "56&" is not integer.
-*Yes*
 0 -> "0"
-*Yes*
 5 -> "5"
-*Yes*
 -5 -> "-5"
-*Yes*
 9223372036854775807 -> "9223372036854775807"
-*Yes*
 -9223372036854775807 -> "-9223372036854775807"
-*Yes*
 -9223372036854775808 -> "-9223372036854775808"
-*Yes*
 "5" ? 5 YES
-*Yes*
 "5" ? 6 NO
-*Yes*
 "05" ? 5 YES
-*Yes*
 "-5" ? -5 YES
-*Yes*
 "-05" ? -5 YES
-*Yes*
 "-5" ? -6 NO
-*Yes*
 Exit status: 0 ; 

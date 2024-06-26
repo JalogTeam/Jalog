@@ -11,5 +11,4 @@ koe1: | reading: file:/x.pro
   end_of_file
   done
 readln OK;
-*Yes*
 Exit status: 0 ; 

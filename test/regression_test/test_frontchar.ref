@@ -22,10 +22,8 @@ char: ' '
 rest:  ""
 ""
 test1 failed
-*Yes*
 koe3: ""
 test1 failed
-*Yes*
 koe4: "funk"
 char: 'f'
 rest:  "unk"
@@ -40,7 +38,6 @@ char: 'k'
 rest:  ""
 ""
 test1 failed
-*Yes*
 koe5: " I="
 char: ' '
 rest:  "I="
@@ -52,15 +49,9 @@ char: '='
 rest:  ""
 ""
 test1 failed
-*Yes*
 koe6: "B"
-*Yes*
 koe7: koe7 failed -- OK
-*Yes*
 koe8: 'A'
-*Yes*
 koe9: koe9 failed -- OK
-*Yes*
 koe10: "AB"
-*Yes*
 Exit status: 0 ; 

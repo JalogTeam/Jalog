@@ -1,16 +1,10 @@
 test_retract 
-*Yes*
-*Yes*
-*Yes*
-*Yes*
-*Yes*
 koe1 a: ;
 koe1 b: ;
 koe1 c: C 10
 koe1 d: D 20;
  40 retracted successfully.
 koe1 end
-*Yes*
 koe2 a: ;
 koe2 b: 
   100
@@ -18,7 +12,6 @@ koe2 b:
   120
 koe2 c: 
 koe2 end
-*Yes*
 koe3: rule cannot be retracted
 clause
  clause found
@@ -28,7 +21,6 @@ koe3: searching clause
 clause
  clause found again, OK
 koe3 end
-*Yes*
 koe4: nondynamic fact cannot be retracted
  fact found
   retracting fact
@@ -36,14 +28,11 @@ koe4: nondynamic fact cannot be retracted
 koe4: searching fact
  fact found again, OK
 koe4 end
-*Yes*
 koe5: 
   Error: 1407
 koe5 end
-*Yes*
 koe6: 
 koe6 end
-*Yes*
 koe11 a: ;
 koe11 b: 
   100
@@ -51,7 +40,6 @@ koe11 b:
   120
 koe11 c: 
 koe11 end
-*Yes*
 koe12 a: ;
 koe12 b: 
   100
@@ -60,7 +48,6 @@ koe12 b:
 koe12 c: 
 koe12 d: 
 koe12 end
-*Yes*
 koe13 a: ;
 koe13 b: 
   Error: 1407
@@ -71,7 +58,6 @@ koe13 d:
 koe13 e: 
  data: 120
 koe13 end
-*Yes*
 koe14 a: ;
 koe14 b: 
   got indent(10)
@@ -87,5 +73,4 @@ koe14 b:
   indentzs found: []
   datas found: [120,121]
 koe14 end
-*Yes*
 Exit status: 0 ; 

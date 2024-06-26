@@ -229,6 +229,12 @@ public class Consult
 
           Pred.forward = true;
           I.run_body(data.subterm[1]);
+          if(I.exit_value != null)
+          {
+            /* Exception! */
+            exit_value = I.exit_value;
+          }
+/* 
           if(I.exit_value == null)
           {
             if(Pred.forward){
@@ -237,9 +243,10 @@ public class Consult
               System.err.println("*No*");
             }
           } else {
-            /* Exception! */
+            /* Exception! * /
             exit_value = I.exit_value;
           }
+*/
           Pred.trail.backtrack(I.Mark); // clear variables
         } else {
           if(data.subterm[0] != null) { // We have head!

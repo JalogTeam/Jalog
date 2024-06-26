@@ -5,12 +5,8 @@ koe1 b: ;
 koe1 c:  1 2 3 5;
 koe1 d: ;
 koe1 e:  1 2 3 5 6 8;
-*Yes*
 koe2
 consulted and running
-*Yes*
 consult dir = file:D:\wa\JalogTeam\Jalog\test\regression_test
-*Yes*
 consulted
-*Yes*
 Exit status: 0 ; 

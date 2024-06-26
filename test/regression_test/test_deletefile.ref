@@ -1,18 +1,14 @@
 koe1(test_dir/deletetest.txt)
   - found
-*Yes*
 koe1(deletetest.txt)
   ERROR: 2003
   - not found
-*Yes*
 koe1(res:/testeioo.pro)
   ERROR: 2003
   - not found
-*Yes*
 koe1(test_dir/soopaa.txt)
   ERROR: 2003
   - not found
-*Yes*
 Exit status: 0 ; 
 OK: Delete test_dir\deletetest.txt succeeded 
 OK: Delete deletetest.txt failed 

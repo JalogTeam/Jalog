@@ -1,8 +1,4 @@
 test_consult_data_3 
-*Yes*
-*Yes*
-*Yes*
-*Yes*
 koe1 a: ;
 koe1 a2: ;
 koe1 b: consult_data OK;
@@ -10,5 +6,4 @@ koe1 c: ;
 koe1 c2:  data:6 8;
 koe1 c3:  xyz:9;
 koe1 c4: ;
-*Yes*
 Exit status: 0 ; 
