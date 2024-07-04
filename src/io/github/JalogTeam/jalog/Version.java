@@ -3,5 +3,5 @@ package io.github.JalogTeam.jalog;
 
 public class Version {
   public static final String id_string =
-      "Jalog 1.5.x by Ari Okkonen & Mikko Levanto 2024-06-26";
+      "Jalog 1.5.x by Ari Okkonen & Mikko Levanto 2024-07-04";
 }

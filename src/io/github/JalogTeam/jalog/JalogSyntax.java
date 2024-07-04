@@ -57,9 +57,13 @@ public class JalogSyntax extends io.github.JalogTeam.parser.SimpleSyntax
   public static final String PREDICATES_ = "PREDICATES_";
 
   public static final String[] keyword = {
+    DIV_, MOD_ };
+/*
+  public static final String[] keyword = {
     AS_, CLAUSES_, CONSTANTS_, DATABASE_, DETERM_, DIV_, DOMAINS_, ELSEDEF_,
     ENDDEF_, GLOBAL_, GOAL_, IFDEF_, IFNDEF_, INCLUDE_, LANGUAGE_, MOD_,
     NONDETERM_, PREDICATES_ };
+*/
 
   // special characters and range ends
   public static final char LCF = '\u0000'; // first low control character

@@ -1,0 +1,12 @@
+test_include 
+koe1 a: *** Unknown predicate: data/1
+;
+koe1 b: ;
+koe1 c:  1 2 3 5;
+koe1 d: ;
+koe1 e:  1 2 3 5 6 8;
+koe2
+consulted and running
+consult dir = file:D:\wa\JalogTeam\Jalog\test\regression_test
+included
+Exit status: 0 ; 
