@@ -239,6 +239,14 @@ System.out.println("");
       System.err.println("Parameters: <compiler_options> <program_name> <program_arguments>");
       System.err.println("  <compiler_options>");
       System.err.println("      -v Show version information");
+      System.err.println("      -r=name - Permits reading.");
+      System.err.println("      -w=name - Permits writing.");
+      System.err.println("      -m=name - Permits modifying, reading and writing.");
+      System.err.println("      -a=name - Permits appending.");
+      System.err.println("    The name can be a file name or a diretory name. If directory, refers to all");
+      System.err.println("    files in the directory and subdirectories.");
+      System.err.println("    The = character can be replaced with the : character.");
+      System.err.println("    Multiple r, w, m, and a options are permitted.");
       System.err.println("  <program_name> - complete file name - no default extensions");
       System.err.println("  <program_arguments> - as the program needs them");
     }

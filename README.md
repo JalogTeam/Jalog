@@ -8,7 +8,7 @@ _An interpreter for a Prolog-like language with Java-like arithmetic written in 
 
 Jalog makes traditional artificial intelligence techniques available to a wide variety of devices and applications.
 
-**Version** 1.4 2023-09-07
+**Version** 1.5 2024-07-10
 
 [Other versions](../versions.html)
 
@@ -24,17 +24,53 @@ In order to use Jalog you need [Java runtime environment (JRE)](https://www.orac
 
 Get Jalog interpreter: [Download JAR](jalog.jar)
 
+New in 1.5
+----------
+
+The main addition is reading and writing of text files.
+
+### New or improved predicates
+* closefile(*SymbolicFileName*)
+* consult(*Filename*)
+* consult_data(*Filename*, *DatabaseName*)
+* consult_dir(*ConsultDirname*)
+* deletefile(*FileName*)
+* dynamic(*PredicateIndicator*, *DatabaseName*)
+* existfile(*FileName*)
+* file_str(*FileName*, *StringVariable*)
+* include(*Filename*)
+* openappend(*SymbolicFileName*, *FileName*)
+* openread(*SymbolicFileName*, *FileName*)
+* openwrite(*SymbolicFileName*, *FileName*)
+* readdevice(*SymbolicFileName*)
+* readln(*StringVariable*)
+* save(*FileName*)
+* save(*FileName*, *DatabaseName*)
+* subchar(*String*, *Position*, *Char*)
+* term_str(*Domain*, *Term*, *String*)
+* writedevice(*SymbolicFileName*)
+
 Usage
 -----
 
 ### Stand-alone Jalog
 
-X:>**java -jar jalog.jar** _Parameters_
-_Parameters_: <compiler\_options> <program\_name> <program\_arguments>
-  <compiler\_options>
-      -v Show version information
-  <program\_name> - complete file name - no default extensions
-  <program\_arguments> - as the program needs them
+X:>**java -jar jalog.jar** <compiler\_options> <program\_name> <program\_arguments>
+
+      <compiler_options>
+          -v Show version information
+          -r=name - Permits reading.
+          -w=name - Permits writing.
+          -m=name - Permits modifying, reading and writing.
+          -a=name - Permits appending.
+        The name can be a file name or a diretory name. If directory, refers to all
+        files in the directory and subdirectories.
+        The = character can be replaced with the : character.
+        Multiple r, w, m, and a options are permitted.
+      <program_name> - complete file name - no default extensions
+      <program_arguments> - as the program needs them
+
+This is shown when Jalog is run without parameters.
 
 ### Integrated Jalog
 
@@ -101,6 +137,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 * * *
 
 ### Version history
+
+**1.5** 2024-07-10 Added reading and writing of text files.
 
 **1.4** 2023-09-07 More built-in predicates
 
