@@ -1,4 +1,4 @@
-*Yes*
+test_consult_dir 
 consult_dir test
 koe1 Dir: file:D:\wa\JalogTeam\Jalog\test\regression_test
 koe1 changed Dir: file:D:\wa\JalogTeam\Jalog\test\regression_test\test_dir
@@ -7,5 +7,4 @@ koe1 b: ;
 koe1 c:  6 8;
 koe1 Dir: file:D:\wa\JalogTeam\Jalog\test\regression_test
 ;
-*Yes*
 Exit status: 0 ; 

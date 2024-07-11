@@ -6,26 +6,28 @@ import java.io.*;
 
 public class Pred
 {
-  public static boolean cutting;
-  public static boolean exception;
-  public static Pro_Term exit_value;
-  public static boolean forward;
-  public static boolean op_found;
-  public static Pro_Trail trail;
+  public static boolean cutting = false;
+//  public static boolean exception;
+  public static Pro_Term exit_value = null;
+  public static boolean forward = true;
+  public static boolean op_found = false;
+  public static Pro_Trail trail =  new Pro_Trail();
 // TEMPORARY!
 //  static boolean z_request;
 /* #arity_info_test           
   public static final int z_number = 1;
 */  
+/*
   static {
     forward = true;
     cutting = false;
-    exception = false;
+//    exception = false;
     exit_value = null;
     trail = new Pro_Trail();
 // TEMPORARY!
 //    z_request = false;
   }
+*/
 
   
   

@@ -2,10 +2,10 @@
 
 package io.github.JalogTeam.jalog;
 
-import io.github.JalogTeam.parser.Syntax;
 import java.util.Vector;
 import java.util.Stack;
 import java.util.Hashtable;
+import io.github.JalogTeam.parser.*;
 
 public class JalogTerms
 {
@@ -264,13 +264,18 @@ public class JalogTerms
     return result;
   }
  
-  public void SetLine(String line)
+  public void SetLine(VirtualString vline)
   {
     Error = 0;
     ErrorPos = 0;
 // System.out.println("JalogTerms.SetLine: " + line);
-    Pr1.setLine(line);
-    EOF = (line == null);
+    Pr1.setLine(vline);
+    EOF = (vline == null);
+  }
+
+  public void SetLine(String line)
+  {
+    SetLine(JavaString.make(line));
   }
 
 /* Replaced by SetLine(null)

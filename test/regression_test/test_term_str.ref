@@ -1,0 +1,52 @@
+test_term_str 
+alku
+io string "" -> "\"\""
+io string "-" -> "\"-\""
+io string "+" -> "\"+\""
+io string " " -> "\" \""
+io integer 0 -> "0"
+io integer 5 -> "5"
+io integer 5 -> "5"
+io integer -5 -> "-5"
+io struct a(3,"k") -> "a(3,\"k\")"
+io list [3,2,4] -> "[3,2,4]"
+io char 'c' -> "'c'"
+io real 3.141 -> "3.141"
+io symbol abc -> "abc"
+io symbol abc -> "abc"
+oi string "" <- "\"\""
+oi string "-" <- "\"-\""
+oi string "+" <- "\"+\""
+oi string " " <- "\" \""
+oi integer 0 <- "0"
+oi integer 5 <- "5"
+oi integer 5 <- "+5"
+oi integer -5 <- "-5"
+oi struct a(3,"k") <- "a(3,\"k\")"
+oi list [3,2,4] <- "[3,2,4]"
+oi char 'c' <- "'c'"
+oi real 3.141 <- "3.141"
+oi symbol abc <- "abc"
+oi symbol abc <- "abc()"
+ii string "" <-> "\"\"" true
+ii string "-" <-> "\"-\"" true
+ii string "+" <-> "\"+\"" true
+ii string " " <-> "\" \"" true
+ii string "x" <-> "\"y\"" false.
+ii integer 0 <-> "0" true
+ii integer 5 <-> "5" true
+ii integer 5 <-> "+5" true
+ii integer -5 <-> "+5" false.
+ii integer 5 <-> "6" false.
+ii struct a(3,"k") <-> "a(3,\"k\")" true
+ii struct a(3,"k") <-> "a(3,\"h\")" false.
+ii list [3,2,4] <-> "[3,2,4]" true
+ii list [3,2,4] <-> "[3,5,4]" false.
+ii char 'c' <-> "'c'" true
+ii char 'c' <-> "'d'" false.
+ii real 3.141 <-> "3.141" true
+ii real 3.141 <-> "2.7" false.
+ii symbol abc <-> "abc" true
+ii symbol abc <-> "abc()" true
+ii symbol abc <-> "xyz" false.
+Exit status: 0 ; 

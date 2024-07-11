@@ -1,0 +1,5 @@
+test_file_str 
+| reading: test_dir/testdata_consult_1.pro
+"% consult test data 1\n\ndata(6).\ndata(8).\n"
+  success
+Exit status: 0 ; 

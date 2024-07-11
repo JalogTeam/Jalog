@@ -1,2 +1,2 @@
-AB*Yes*
-Exit status: 0 ; 
+test_fail 
+ABExit status: 0 ; 

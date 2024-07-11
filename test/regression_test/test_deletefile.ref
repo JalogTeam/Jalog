@@ -1,0 +1,14 @@
+koe1(test_dir/deletetest.txt)
+  - found
+koe1(deletetest.txt)
+  ERROR: 2003
+  - not found
+koe1(res:/testeioo.pro)
+  ERROR: 2003
+  - not found
+koe1(test_dir/soopaa.txt)
+  ERROR: 2003
+  - not found
+Exit status: 0 ; 
+OK: Delete test_dir\deletetest.txt succeeded 
+OK: Delete deletetest.txt failed 

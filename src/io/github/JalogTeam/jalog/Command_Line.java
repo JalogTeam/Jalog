@@ -25,6 +25,8 @@ public class Command_Line
 // System.out.println("parse_argument: charAt(0)='" + arg.charAt(0) + "'");     
       if(arg.charAt(0) == '-') {
         i = arg.indexOf('=');
+        if(i < 0) i = arg.indexOf(':'); // also format -x:param_value can do
+            // due to Windows command line processing
 // System.out.println("parse_argument: i='" + i + "'");     
         if(i > 0) {
           label = arg.substring(1, i);

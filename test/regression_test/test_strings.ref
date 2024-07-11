@@ -1,10 +1,8 @@
+test_strings 
 koe1: "CDE" |CDE|
-*Yes*
 koe2: "ABCDEF"
-*Yes*
 koe3.a: Ok
 koe3.b: Ok
-*Yes*
 koe4a1: 
 * A="BCDEFG"
 * B="DEF"
@@ -13,24 +11,17 @@ koe4a3:
 * A="BCDEFG"
 * B="DEF"
 Ok
-*Yes*
 koe4b: Ok
-*Yes*
 koe4c: Ok
-*Yes*
 koe4d: Ok
-*Yes*
 koe4e: 
   Pos = 1, Len = 2
   Pos = 5, Len = 2
   Pos = 8, Len = 2
   Pos = 11, Len = 2
   no more
-*Yes*
 koe5: Ok
-*Yes*
 koe6: Ok
-*Yes*
 koe7: +++ |CDEF|234|
 +++ |CD|EF234|
 ---|CDEF234|CDEF234|
@@ -54,7 +45,6 @@ yes
 testcmp: "CDEF234">"CDEF234"
 testcmp: "CDEF234"<>"CDEF234"
 koe7 done
-*Yes*
 koe7a: +++ |CDEF|234|
 +++ |CD|EF23Y|
 ---|CDEF234|CDEF23Y|
@@ -78,7 +68,6 @@ yes
 testcmp: "CDEF23Y"<>"CDEF234"
 yes
 koe7 done
-*Yes*
 koe7b: +++ |CDEF|234|
 +++ |CD|EF23|
 ---|CDEF234|CDEF23|
@@ -102,7 +91,6 @@ testcmp: "CDEF23">"CDEF234"
 testcmp: "CDEF23"<>"CDEF234"
 yes
 koe7 done
-*Yes*
 koe8: (o,o,o)
 koe8: (i,o,o)
 koe8: (o,i,o)
@@ -179,70 +167,52 @@ koe8:
 7f: -|ABCX|_54|EFGHABCD|
 7g: -|ABCX|_55|EFGHABCD|
 7h: -|ABCX|_56|EFGHABCD|
-*Yes*
 koe9: 
 koe9 success 4,3
 koe9 success 6,3
 koe9 end
-*Yes*
 koe10
 koe10 success abc
 koe10
 koe10 success xyz
 koe10 end
-*Yes*
 koe11a
 koe11a success 'A' = 'A'
 koe11a end
-*Yes*
 koe11b
 koe11b success 'A' = "A"
 koe11b end
-*Yes*
 koe11c
 koe11c success A = A
 koe11c end
-*Yes*
 koe11d
 koe11d end
-*Yes*
 koe11e
 koe11e end
-*Yes*
 koe11f
 koe11f end
-*Yes*
 koe11g
 koe11g end
-*Yes*
 koe11h
 koe11h end
-*Yes*
 koe11i
 koe11i end
-*Yes*
 koe12
   |abcd7@|
 koe12 end
-*Yes*
 koe13
   |ABCD7@|
 koe13 end
-*Yes*
 koe14
   Ok
 koe14 end
-*Yes*
 koe15
 koe15 end
-*Yes*
 koe16
   |"\xE5\xE4\xF6\u03C0"|
 koe16 end
-*Yes*
 koe17
 koe17 Ok end
-*Yes*
 koe18
   A: 
     0
@@ -257,65 +227,62 @@ koe18
   F: 
   G: 
 koe18 end
-*Yes*
 koe19z:  failed: Ok
-*Yes*
 koe19: Ok
-*Yes*
 koe19a:  failed: Ok
-*Yes*
 koe19b: 
   no more
-*Yes*
 koe19c: 
   Pos = 3
   no more
-*Yes*
 koe19d: 
   Pos = 1
   Pos = 5
   Pos = 8
   Pos = 11
   no more
-*Yes*
 koe19e: 
   Pos = 3
   Pos = 5
   no more
-*Yes*
 koe19f: 
   Pos = 1
   Pos = 2
   Pos = 3
   Pos = 4
   no more
-*Yes*
 koe20: 
   no more
-*Yes*
 koe20a: 
   Pos = 1
   Pos = 3
   Pos = 4
   Pos = 6
   no more
-*Yes*
 koe20b: 
   no more
-*Yes*
 koe20c: 
   C = 'a'
   no more
-*Yes*
 koe20d: 
   C = 'b'
   no more
-*Yes*
 koe20e: 
   C = 'c'
   no more
-*Yes*
 koe20f: 
   no more
-*Yes*
+koe21b: 
+  no more
+koe21c: 
+  C = 'a'
+  no more
+koe21d: 
+  C = 'b'
+  no more
+koe21e: 
+  C = 'c'
+  no more
+koe21f: 
+  no more
 Exit status: 0 ; 

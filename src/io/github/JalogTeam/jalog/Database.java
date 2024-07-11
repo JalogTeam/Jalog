@@ -5,26 +5,68 @@ package io.github.JalogTeam.jalog;
 import java.io.*;
 import java.util.*;
 
-class Fact_Chain_Item extends Chain_Item
-{
-//  Pro_Term term;
-  Pro_TermData_Compound data;
-}
 
 public class Database
 {
-  static Hashtable db;
+static int debug = 0;
+  static int exit_value = 0;
+  static class Fact_Chain_Item extends Chain_Item
+  {
+  //  Pro_Term term;
+    Pro_TermData_Compound data;
+  }
+
+  static Hashtable<String, Database_Table> db;
   
   static final int SUCCEEDED = 1;
   static final int FAILED = 2;
   static final int NOT_DYNAMIC = 3;
+  static final String DEFAULTDB = "dbasedom";
   
   static{
     db = new Hashtable(100);  
   }
   
-  static void asserty(Pro_Term x, boolean last)
+  private static void asserty(Pro_Term x, boolean last, String databaseName)
   {
+    boolean is_rule = false;
+    Database_Table factClass;
+    Pro_TermData data = x.getData();
+    
+    exit_value = 0;
+    if(data instanceof Pro_TermData_Compound) {
+      Pro_TermData_Compound compo = (Pro_TermData_Compound)data;
+      String name = compo.name;
+      byte arity = compo.arity;
+      if((name.equals("if_") || name.equals(":-")) && arity == 2) {
+        exit_value = 9998;
+      }
+      String key = name + "/" + Integer.toString(arity);
+
+      factClass = find_by_string(key, databaseName);
+      if ((factClass != null) && factClass.dynamic) {
+        Fact_Chain_Item item = new Fact_Chain_Item();
+   
+        Pro_Term saveterm = x.copy();
+        item.data = (Pro_TermData_Compound) saveterm.getData();
+        if(last) {
+          factClass.facts.addLast(item);
+        } else {
+          factClass.facts.addFirst(item);
+        }
+      } else {
+        exit_value = 1407; // The functor does not belong to the domain
+      }
+    } else {
+      exit_value = 1407; // The functor does not belong to the domain
+    } 
+        
+  }
+
+  public static void assert_rule(Pro_Term x)
+  {
+    boolean last = true;
+    String databaseName = null;
     boolean is_rule = false;
     Database_Table factClass;
     Pro_TermData data = x.getData();
@@ -44,63 +86,155 @@ public class Database
           name = headcompo.name;
           arity = headcompo.arity;
         } else {
+          exit_value = 9997; // Invalid head of rule
           System.err.println("\n*** Error: assert: wrong head Pro_TermData class: " + 
               headdata.getClass().getName());
         }
 
         Pro_TermData bodydata = body.getData();
         if(!(bodydata instanceof Pro_TermData_List)) {
+          exit_value = 9997; // Invalid head of rule
           System.err.println("\n*** Error: assert: wrong body Pro_TermData class: " + 
               bodydata.getClass().getName());
         }
       }
       String key = name + "/" + Integer.toString(arity);
 
-      factClass = (Database_Table) db.get(key);
+//      factClass = (Database_Table) db.get(key);
+      factClass = define_by_string(key, databaseName);
+/*
       if(factClass == null) {
         factClass = new Database_Table();
+        factClass.databaseName = databaseName;
         db.put(key,factClass);
-      } 
-      // factClass Ok
-      if (!(is_rule && factClass.dynamic)) {
-        factClass.has_rules |= is_rule;
-        Fact_Chain_Item item = new Fact_Chain_Item();
-   
-        Pro_Term saveterm = x.copy();
-        item.data = (Pro_TermData_Compound) saveterm.getData();
-        if(last) {
-          factClass.facts.addLast(item);
-        } else {
-          factClass.facts.addFirst(item);
-        }
       } else {
-        System.err.println("\n*** Error: assert: Dynamic rule not allowed: " + key);
+        if ((databaseName != "") && (databaseName != factClass.databaseName)) {
+          System.err.println("\n*** Error: assert: databaseName conflict: " + 
+              "fact: " + key + ", database attempted: " + databaseName + 
+              ", should be: " + factClass.databaseName);
+          factClass = null; // Error
+        }
+      }
+*/
+      if (factClass != null) { 
+        // factClass Ok
+        if (!(is_rule && factClass.dynamic)) {
+          factClass.has_rules |= is_rule;
+          Fact_Chain_Item item = new Fact_Chain_Item();
+     
+          Pro_Term saveterm = x.copy();
+          item.data = (Pro_TermData_Compound) saveterm.getData();
+          if(last) {
+            factClass.facts.addLast(item);
+          } else {
+            factClass.facts.addFirst(item);
+          }
+        } else {
+          exit_value = 9999; // Rule cannot be dynamic
+          System.err.println("\n*** Error: assert: Dynamic rule not allowed: " + key);
+        }
       }
     } else {
+      exit_value = 9996; // Not a clause
       System.err.println("\n*** Error: assert: wrong Pro_TermData class: " + data.getClass().getName());
     } 
         
   }
 
-  static Database_Table define_by_string(String key) {
+  static void make_dynamic(String key, String databaseName) {
+    Database_Table factClass = define_by_string(key, databaseName);
+    if (!factClass.has_rules) factClass.dynamic = true;
+  }
+  
+  static Database_Table define_by_string(String key, String databaseName) {
     Database_Table factClass;
-    
-    factClass = (Database_Table) db.get(key);
+
+// System.out.println("# define_by_string(" + key + ", " + databaseName + ")");
+    factClass = find_by_string(key, databaseName);
     if(factClass == null) {
       factClass = new Database_Table();
+      if (databaseName != null) factClass.setName(databaseName);
       db.put(key,factClass);
-    } 
+    } else {
+      if (databaseName != null) { 
+        if (factClass.databaseName == null) {
+          factClass.setName(databaseName);
+        } else if (!factClass.checkName(databaseName)) {
+          exit_value = 9995; // Fact belongs to another database
+          System.err.println("\n*** Error: databaseName conflict: " + 
+              "fact: " + key + ", database attempted: " + databaseName + 
+              ", should be: " + factClass.databaseName);
+          factClass = null; // Error
+        }
+      }
+    }
+// System.out.println("# define_by_string -> " + factClass + " - " + 
+// (factClass != null ? factClass.databaseName : "null"));
+
     return factClass;
+  }
+  
+  static Database_Table find_by_string(String key, String databaseName) { 
+    Database_Table factClass;
+
+// System.out.println("# find_by_string(" + key + ", " + databaseName + ")");
+    factClass = (Database_Table) db.get(key);
+    if(factClass == null) {
+      factClass = null; // Error
+    } else {
+      if (databaseName != null) { 
+        if (factClass.databaseName == null) {
+//          factClass.setName(databaseName);
+        } else if (!factClass.checkName(databaseName)) {
+          factClass = null; // Error
+        }
+      }
+    }
+
+    return factClass;
+  }
+
+  static Vector<Database_Table> find_dynamicFactClasses(String databaseName) {
+    Vector<Database_Table> ans = new Vector<Database_Table>();
+    Database_Table factClass;
+    Enumeration<Database_Table> elements = db.elements();
+
+    Fact_Chain_Item currentItem;
+
+    while (elements.hasMoreElements()) {
+      factClass = elements.nextElement();
+if (debug > 0) System.err.println(" Database.find_dynamicFactClasses factClass."
++ "databaseName = " + factClass.databaseName);
+      if (factClass.dynamic) {
+        if ((databaseName == null) || 
+            (factClass.databaseName.equals( databaseName)))
+        {
+          ans.add(factClass);
+        }
+      }
+    }
+    
+    return ans;    
   }
   
   static void asserta(Pro_Term x)
   {
-    asserty(x, false);
+    asserty(x, false, null);
   }
   
   static void assertz(Pro_Term x)
   {
-    asserty(x, true);
+    asserty(x, true, null);
+  }
+  
+  static void asserta(Pro_Term x, String databaseName)
+  {
+    asserty(x, false, databaseName);
+  }
+  
+  static void assertz(Pro_Term x, String databaseName)
+  {
+    asserty(x, true, databaseName);
   }
   
   static int retract(Pro_Term filter, Pro_TrailMark Mark)

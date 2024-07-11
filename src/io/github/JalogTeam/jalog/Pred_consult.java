@@ -34,13 +34,13 @@ public class Pred_consult extends Pred
       ConsultedFiles.push(filename);
 */
       ConsultedFiles.put(filename, "");
-      Consult.consult_file(filename, null);
+      Consult.consult_file(filename, null, null);
       if(Consult.exit_value != null) { // bad file
-        Pred.exception = true;
+//        Pred.exception = true;
         Pred.exit_value = Consult.exit_value;
       }
 //              ConsultedFiles.pop(); No double consulting
-// System.out.print("\n--Consulting \"" + filename + "\"-- Finished\n");
+// System.out.print("\n--Consulting \"" + filename + "\" Pred.exit_malue=" + Pred.exit_value +" -- Finished\n");
     }
     // result = new Pred(); // **
     return null;

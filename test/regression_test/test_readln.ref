@@ -1,0 +1,14 @@
+koe1: | reading: file:/x.pro
+  opened
+  |LG multimediavahvistimen ongelma|
+  ||
+  |Kun virta on ollut p‰‰ll‰ jonkin aikaa, n. 10 min, rupeaa video‰‰nt‰ toistettaessa kuulumaan r‰tin‰‰. R‰tin‰ voimistuu ja varsinainen toistettava ‰‰ni h‰ipyy.|
+  ||
+  |Ongelma n‰ytt‰‰ paikantuvan ison piirilevyn alueelle, joka on l‰hell‰ laitteen oikeaa laitaa ja etupanelia. Piirilevy‰ varovasti painamalla rutina voimistuu. Mihink‰‰n komponenttiin ei ongelma n‰yt‰ erityisesti paikantuvan.|
+  ||
+  |CD-soittimen toimintaa ja ‰‰nentoistoa ongelma ei n‰yt‰ koskevan.|
+  EOF
+  end_of_file
+  done
+readln OK;
+Exit status: 0 ; 

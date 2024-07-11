@@ -39,11 +39,12 @@ public class Pred_trap extends Pred
 //System.out.print("<Pred_trap 1>");
     if(!catched) {
 //System.out.print("<Pred_trap 11>");
-      if(exception) {
+//      if(exception) {
+      if (exit_value != null) {
 //System.out.print("<Pred_trap 111>");
         // got exception
         catched = true;
-        exception = false;
+//        exception = false;
         // unify exit_value to exit_var
         if(exit_var.unify(exit_value, Pred.trail, Mark)) {
 //System.out.print("<Pred_trap 1111>");
@@ -51,6 +52,7 @@ public class Pred_trap extends Pred
           called_body = catch_body;
 
         }
+        exit_value = null;
         catch_body = null;
       } else if(!forward) {  // failed
 //System.out.print("<Pred_trap 112>");

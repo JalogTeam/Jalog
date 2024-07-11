@@ -1,42 +1,27 @@
+test_dynamic 
 A 
 *** Unknown predicate: a/0
-*No*
 B 
-*Yes*
 C 
-*No*
 D 
-*Yes*
 E 
-*No*
 F 
 *** Unknown predicate: b/2
-*No*
 G 
 *** Unknown predicate: b/0
-*No*
 b stored
-*Yes*
 H 
-*Yes*
 I 
 J 
 heippa
-*No*
 K Rule cannot be made dynamic.
-*Yes*
 *** Error: c/0 cannot be dynamic because it has rules.
-ERROR dynamic rule shouldn't exist
-*Yes*
+K: status=9999
 K done
-*Yes*
 L Dynamic predicate cannot accept a rule.
-*Yes*
 
 *** Error: assert: Dynamic rule not allowed: b/1
 L 
 heippa
-*No*
 L done
-*Yes*
 Exit status: 0 ; 

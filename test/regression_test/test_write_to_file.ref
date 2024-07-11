@@ -1,0 +1,7 @@
+| writing: test_dir/writetest3.txt
+  opened
+  success
+| writing: test_dir/writetest3a.txt
+  opened
+  success
+Exit status: 0 ; 

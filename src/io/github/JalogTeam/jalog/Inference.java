@@ -136,7 +136,8 @@ if(Debug > 0) System.err.println("\n Inference (m): ready = " + ready);
       }
 // Debug_times.leave(4); 
 
-      if (Pred.exception) {
+//      if (Pred.exception) {
+      if (Pred.exit_value != null) {
         Pred.forward = false;
         ready = true;
 
@@ -191,7 +192,8 @@ if(Debug > 0) System.err.println("\n Inference 4: current = " + current);
       } else { // failed
 // Debug_times.enter(7); 
         if ( ready ) {
-          if(!Pred.exception) {
+//          if(!Pred.exception) {
+          if (Pred.exit_value == null) {
             current = current.up;
 if(Debug > 0)        System.err.println("\n Inference (g): " + current + ".next = " + current.next);
 if(Debug > 0)        System.err.println("\n Inference (g): " + current + ".pcall = " + current.pcall);
@@ -201,6 +203,7 @@ if(Debug > 0)        System.err.println("\n Inference (h): " + current );
             if(current != null) {
 if(Debug > 0)        System.err.println("\n Inference (h): " + current + ".next = " + current.next);
 if(Debug > 0)        System.err.println("\n Inference (h): " + current + ".pcall = " + current.pcall);
+if(Debug > 0)        System.err.println("\n Inference (h): " + (current.pcall != null? current.pcall.getClass().getName() : "null") );
               trap_activation = ((Pred_trap)current.pcall).prev_trap_activation;
             } else {
 //              System.err.println("\nUnhandled exception " + Pred.exit_value.image());

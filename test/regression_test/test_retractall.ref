@@ -1,33 +1,37 @@
-*Yes*
-*Yes*
+test_retractall 
 koe1: 
   retracted
   10
   30
 koe1 end
-*Yes*
 koe2: 
   retracted
 koe2 end
-*Yes*
 koe3: 
   retracted
 koe3 end
-*Yes*
 koe4: 
-*** cannot retract non-dynamic datax/1
-  retracted
+  error: 1407
   5
 koe4 end
-*Yes*
 koe5: 
-*** cannot retract non-dynamic datay/1
-  retracted
+  error: 1407
 *** Unknown predicate: datay/1
 koe5 end
-*Yes*
 koe6: 
   retracted
 koe6 end
-*Yes*
+koe13 a: ;
+koe13 b: 
+  Error: 1407
+koe13 c: 
+  Error: 1407
+koe13 d: 
+  indents found: []
+  indentzs found: [12]
+koe14 a: ;
+koe14 b: 
+  indents found: []
+  indentzs found: []
+  datas found: [120,121,120,121]
 Exit status: 0 ; 

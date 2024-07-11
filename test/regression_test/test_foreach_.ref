@@ -1,5 +1,4 @@
+test_foreach_ 
 koe1:  1 2 3;
-*Yes*
 koe2: ;
-*Yes*
 Exit status: 0 ; 

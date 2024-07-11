@@ -57,9 +57,13 @@ public class JalogSyntax extends io.github.JalogTeam.parser.SimpleSyntax
   public static final String PREDICATES_ = "PREDICATES_";
 
   public static final String[] keyword = {
+    DIV_, MOD_ };
+/*
+  public static final String[] keyword = {
     AS_, CLAUSES_, CONSTANTS_, DATABASE_, DETERM_, DIV_, DOMAINS_, ELSEDEF_,
     ENDDEF_, GLOBAL_, GOAL_, IFDEF_, IFNDEF_, INCLUDE_, LANGUAGE_, MOD_,
     NONDETERM_, PREDICATES_ };
+*/
 
   // special characters and range ends
   public static final char LCF = '\u0000'; // first low control character
@@ -481,6 +485,9 @@ public class JalogSyntax extends io.github.JalogTeam.parser.SimpleSyntax
 
 // TERM = expr6
 
+    new ParseRule(TERM,PLUS,BGN_UNOP,1600,END_UNOP,END),
+    new ParseRule(TERM,MINUS,BGN_UNOP,1600,END_UNOP,END),
+
     new ParseRule(TERM,ANY,NIL,1600,NIL,END),
 
 // EXPR = expr3
@@ -551,7 +558,7 @@ public class JalogSyntax extends io.github.JalogTeam.parser.SimpleSyntax
 //       = expr4 PLUS expr5
 //       = expr4 MINUS expr5
 
-    new ParseRule(1400,PLUS,BGN_UNOP,1500,BGN_UNOP,1401),
+    new ParseRule(1400,PLUS,BGN_UNOP,1500,END_UNOP,1401),
     new ParseRule(1400,MINUS,BGN_UNOP,1500,END_UNOP,1401),
     new ParseRule(1400,ANY,NIL,1500,NIL,1401),
 

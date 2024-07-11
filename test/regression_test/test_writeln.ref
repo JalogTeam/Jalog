@@ -1,10 +1,8 @@
+test_writeln 
 koe1: A
 -
-*Yes*
 koe2: ab
 -
-*Yes*
 koe3: 
 -
-*Yes*
 Exit status: 0 ; 

@@ -1,48 +1,34 @@
+test_frontstr 
 koe1: ""
 frontstr: ""
 rest:  ""
-*Yes*
 koe2: ""
 test1 failed
-*Yes*
 koe3: "X"
 frontstr: ""
 rest:  "X"
-*Yes*
 koe4: "X"
 frontstr: "X"
 rest:  ""
-*Yes*
 koe5: "X"
 test1 failed
-*Yes*
 koe6: "XY"
 frontstr: ""
 rest:  "XY"
-*Yes*
 koe7: "XY"
 frontstr: "X"
 rest:  "Y"
-*Yes*
 koe8: "XY"
 frontstr: "XY"
 rest:  ""
-*Yes*
 koe9: "XY"
 test1 failed
-*Yes*
 koe10: "  funktori(256,  'x',f(3),\"hei\"  "
 frontstr: "  funktori(256,  'x',f(3),\"hei"
 rest:  "\"  "
-*Yes*
 koe11: success
-*Yes*
 koe12: fail Ok
-*Yes*
 koe13: success
-*Yes*
 koe14: fail Ok
-*Yes*
 koe15: success
-*Yes*
 Exit status: 0 ; 

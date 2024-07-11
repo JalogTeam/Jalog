@@ -42,6 +42,102 @@ public class Jalog
       
   private static int instance_count = 0;
   private static int arg_index = 1;
+  
+  public class permission {
+    public static final int READ = Permissions.READ;
+    public static final int WRITE = Permissions.WRITE;
+    public static final int MODIFY = Permissions.MODIFY; // = READ & WRITE
+    public static final int APPEND = Permissions.APPEND;
+  }
+
+  public void permit_access(int permission, String name) {
+    String abs_name = Consult.identify(name);
+
+    Permissions.permit(permission, abs_name);
+  }    
+/*
+public static void main_(String args[])
+{
+String current_line = null;
+
+FileManager.openread("inputfile", "file:x.pro");
+System.out.println(FileManager.open_files.toString());
+System.out.println(" --  52 exit_value = " + FileManager.exit_value);
+FileManager.readdevice("inputfile");
+System.out.println(" --  54 exit_value = " + FileManager.exit_value);
+System.out.println("current_readdevice=" + FileManager.open_files.toString());
+System.out.println("file contents:\n----");
+boolean go = true;
+for (int i = 1; i<4; i++) {
+  current_line = FileManager.readln();
+System.out.println(" --  60 exit_value = " + FileManager.exit_value);
+  if (current_line != null) {
+    System.out.println(current_line + "#" + current_line.length()); 
+  } else {
+    go = false;
+  }
+}
+System.out.println("----");
+
+FileManager.openread("input2file", "file:y.txt");
+System.out.println(" --  70 exit_value = " + FileManager.exit_value);
+System.out.println(FileManager.open_files.toString());
+
+  current_line = FileManager.readln();
+System.out.println(" --  74 exit_value = " + FileManager.exit_value);
+  if (current_line != null) {
+    System.out.println(current_line + "#" + current_line.length()); 
+  } else {
+    go = false;
+  }
+
+System.out.println("----");
+
+
+FileManager.readdevice("input2file");
+System.out.println(" --  85 exit_value = " + FileManager.exit_value);
+
+for (int i = 1; i<4; i++) {
+  current_line = FileManager.readln();
+System.out.println(" --  89 exit_value = " + FileManager.exit_value);
+  if (current_line != null) {
+    System.out.println(current_line + "#" + current_line.length()); 
+  } else {
+    go = false;
+  }
+}
+System.out.println("----");
+
+int i= 1;
+while (go) {
+if ( i == 0) {FileManager.closefile("inputfile");System.out.println(" -- 100 exit_value = " + FileManager.exit_value);
+}
+i--;
+
+go = false;
+FileManager.readdevice("inputfile");
+System.out.println(" -- 106 exit_value = " + FileManager.exit_value);
+  current_line = FileManager.readln();
+System.out.println(" -- 108 exit_value = " + FileManager.exit_value);
+  if (current_line != null) {
+    System.out.println("1: " + current_line + "#" + current_line.length());
+    go = true;    
+  } else {
+  }
+
+FileManager.readdevice("input2file");
+System.out.println(" -- 116 exit_value = " + FileManager.exit_value);
+  current_line = FileManager.readln();
+System.out.println(" -- 118 exit_value = " + FileManager.exit_value);
+  if (current_line != null) {
+    System.out.println("2: " + current_line + "#" + current_line.length());
+    go = true;    
+  } else {
+  }
+}
+System.out.println("----");
+}
+*/  
 
   public static void main(String args[])
   { 
@@ -53,31 +149,83 @@ public class Jalog
     Command_Line.set(args);
  
 
-/* Settings based on command line options */
+// /* Settings based on command line options 
     for(i=0;i<Command_Line.env_labels.length;i++){
-      String Label = Command_Line.env_labels[i];
-      if(Label.equals("v")) {
+      String label = Command_Line.env_labels[i];
+      String value = Command_Line.env_values[i];
+
+// System.out.println("* Compiler option: " + label + "=" + abs_filename);      
+      if(label.equals("v")) {
         System.out.println(id_string);
         show_help = false; 
+      } else { //  path options
+        String abs_filename = Consult.identify(value);
+        
+        if (label.equals("r")) {
+          Permissions.permit(Permissions.READ, abs_filename);
+        } else if (label.equals("w")) {
+          Permissions.permit(Permissions.WRITE, abs_filename);
+        } else if (label.equals("m")) {
+          Permissions.permit(Permissions.MODIFY, abs_filename);
+        } else if (label.equals("a")) {
+          Permissions.permit(Permissions.APPEND, abs_filename);
+        }
       }
     }
-
+    
+/*
+System.out.println("read_control_list:");
+for(i=0; i < FileManager.read_control_list.size(); i++) {
+  System.out.println("  " + i + ": " + FileManager.read_control_list.elementAt(i));
+}
+  
+System.out.println("write_control_list:");
+for(i=0; i < FileManager.write_control_list.size(); i++) {
+  System.out.println("  " + i + ": " + FileManager.write_control_list.elementAt(i));
+}
+  
+System.out.println("append_control_list:");
+for(i=0; i < FileManager.append_control_list.size(); i++) {
+  System.out.println("  " + i + ": " + FileManager.append_control_list.elementAt(i));
+}
+  
+System.out.println("");
+*/
+  
     if(Command_Line.program_name != null) {
       
       myJalog = new Jalog();
       
-      /* Command line options for the program */
+//      /* Command line options for the program 
+      String abs_program_name = Consult.identify(Command_Line.program_name);
+// System.out.println("Jalog.main: Command_Line.program_name = " + Command_Line.program_name);
+// System.out.println("Jalog.main: abs_program_name = " + abs_program_name);
 
-      Database.define_by_string("comline_arg/3"); // Avoid error messages
-                                     // if no command line arguments      
+      Permissions.permit(Permissions.READ, Consult.identify(""));
+          // Permission to reaad any file in current working directory ???
+          
       for(i=0;i<Command_Line.appl_labels.length;i++){
         set_comline_arg(Command_Line.appl_labels[i],
             Command_Line.appl_values[i]);
       }
-      
-      Consult.consult_file(Command_Line.program_name, null);
+// String consult_dir = File.
+// System.out.println("Jalog.main 210 Command_Line.program_name: " + Command_Line.program_name);
+      String abs_program_dir;
+      if (abs_program_name.startsWith("file:")) {
+        abs_program_dir = "file:" + 
+            new File(abs_program_name.substring(5)).getParent();
+      } else {
+        int p = abs_program_name.lastIndexOf('/');
+        if (p < 0) p = 4;
+        abs_program_dir = abs_program_name.substring(0, p);
+      }
+// System.out.println("Jalog.main: abs_program_dir = " + abs_program_dir);
+      Permissions.permit(Permissions.READ, abs_program_dir);
+      Consult.set_consult_dir(abs_program_dir);
+      Consult.consult_file(abs_program_name, null, null);
+      FileManager.closeAllFiles();
       if(Consult.exit_value != null) {
-        /* We got exceptional exit */
+//        /* We got exceptional exit 
 //        Pro_TermData exit_data = Consult.exit_value.data;
         Pro_TermData exit_data = Consult.exit_value.getData();
         if(exit_data instanceof Pro_TermData_Integer) {
@@ -91,10 +239,17 @@ public class Jalog
       System.err.println("Parameters: <compiler_options> <program_name> <program_arguments>");
       System.err.println("  <compiler_options>");
       System.err.println("      -v Show version information");
+      System.err.println("      -r=name - Permits reading.");
+      System.err.println("      -w=name - Permits writing.");
+      System.err.println("      -m=name - Permits modifying, reading and writing.");
+      System.err.println("      -a=name - Permits appending.");
+      System.err.println("    The name can be a file name or a diretory name. If directory, refers to all");
+      System.err.println("    files in the directory and subdirectories.");
+      System.err.println("    The = character can be replaced with the : character.");
+      System.err.println("    Multiple r, w, m, and a options are permitted.");
       System.err.println("  <program_name> - complete file name - no default extensions");
       System.err.println("  <program_arguments> - as the program needs them");
     }
-      
     
   }
   
@@ -113,6 +268,8 @@ public class Jalog
     } else {
       instance_count ++;
     }
+    Database.make_dynamic("comline_arg/3", "$command"); // Avoid error messages
+                                     // if no command line arguments      
     arg_index = 1;
     rm = new ResourceManager();
 //System.out.println("*  rm=" + (rm==null?"null":"not null"));
@@ -388,7 +545,7 @@ public class Jalog
   }
 
   static public void consult_file(String filename) {
-    Consult.consult_file(filename, null);
+    Consult.consult_file(filename, null, null);
   }
 
   static public void consult_stringlist(String[] lines, 
@@ -397,7 +554,11 @@ public class Jalog
   }
 
   static public void consult_data_file(String filename, String[] filter) {
-    Consult.consult_file(filename, filter);
+    Consult.consult_file(filename, filter, null);
+  }
+
+  static public void consult_data_file(String filename, String domain) {
+    Consult.consult_file(filename, null, domain);
   }
 
   static public void consult_data_stringlist(String[] lines, String[] filter, 
@@ -412,6 +573,14 @@ public class Jalog
   static public String get_consult_dir() {
     return Consult.get_consult_dir();
   }
+
+  static public void make_dynamic(String key, String databaseName) {
+    Database.make_dynamic(key, databaseName);
+  }
+
+  static public void make_dynamic(String key) {
+    Database.make_dynamic(key, Database.DEFAULTDB);
+  }
   
   static public void set_comline_arg(String label, String value) {
     Jalog.Term[] in_list_content;
@@ -422,7 +591,7 @@ public class Jalog
     in_list_content[1] = Jalog.string(label);
     in_list_content[2] = Jalog.string(value);
 
-    Database.assertz(Jalog.compound("comline_arg", in_list_content));
+    Database.assertz(Jalog.compound("comline_arg", in_list_content), "$command");
   }
 
   public static void dispose() {
@@ -442,7 +611,8 @@ public class Jalog
     Pro_Term body = Pro_Term.m_list(predcall);
     
     Pred.forward = true;
-    Pred.exception = false;
+//    Pred.exception = false;
+    Pred.exit_value = null;
     
     I.run_body(body);
     

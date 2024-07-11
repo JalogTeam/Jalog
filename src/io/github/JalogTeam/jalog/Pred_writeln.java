@@ -9,9 +9,11 @@ public class Pred_writeln extends Pred
   public static Pred first_call(Pro_TermData_Compound data) {
 
     for(int i = 0; i < data.arity; i++){
-      Jalog.out.print(data.subterm[i].image());
+//      Jalog.out.print(data.subterm[i].image());
+      FileManager.write(data.subterm[i].image());
     }
-    Jalog.out.println("");
+//    Jalog.out.println("");
+    FileManager.nl();
 
     return null;
   }

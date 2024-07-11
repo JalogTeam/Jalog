@@ -1,0 +1,9 @@
+test_consult_data_4 
+koe1 a: ;
+koe1 a2: ;
+koe1 b: consult_data OK;
+koe1 c:  data:1 data:2 data:3 data:5;
+koe1 c2: ;
+koe1 c3: ;
+koe1 c4: ;
+Exit status: 0 ; 

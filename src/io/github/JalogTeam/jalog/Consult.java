@@ -12,7 +12,12 @@ public class Consult
       (new File("")).getAbsolutePath();
   static private String consult_dirname = base_dirname;
 
-  
+
+  static public String identify(String name) {
+    return FileManager.identify(name, consult_dirname, consult_use_res);
+  }
+
+/*  
   // identify returns absolute path prefixed with 'file:' or 'res:'
   static public String identify(String name) {
     File infile = null;
@@ -52,6 +57,7 @@ public class Consult
     }
     return result;
   }
+*/
 
   static public void set_consult_dir(String dirname) {
     if (dirname.startsWith("res:")) {
@@ -61,7 +67,11 @@ public class Consult
       consult_use_res = false;
       consult_dirname = dirname;
     } else {
+      consult_dirname = FileManager.identify(dirname, consult_dirname,
+          consult_use_res);
+/*
       consult_dirname = identify(dirname);
+*/
       consult_use_res = dirname.startsWith("res:");
     }
   }
@@ -70,14 +80,17 @@ public class Consult
     return consult_dirname;
   }
 
-  static void consult_file(String raw_fileName, String[] filter)
+  static void consult_file(String raw_fileName, String[] filter, String domain)
   {
-// System.out.println("Consult.consult_file: filter: '" + filter + "', raw_fileName: \"" + raw_fileName + "\"");
+// System.out.println("Consult.consult_file: filter: '" + filter + "', raw_fileName: \"" + raw_fileName + "\", domain: " + domain);
     int root_type = 0; // 1-file, 2-resource
     int name_start_pos = 0;  
-    File infile = null;    
+    File infile = null;  
+    FileManager.FileInfo info; 
+    exit_value = null;    
     
     Reader input = null;
+<<<<<<< HEAD
 /*
     String fileName = identify(raw_fileName);
 // System.out.println("Consult.consult_file: filter: '" + filter + "', fileName: \"" + fileName + "\"\n");
@@ -85,33 +98,21 @@ public class Consult
     if (fileName.startsWith("res:")) {
       root_type = 2; // resource
       name_start_pos = 4;
+=======
+    FileManager.openread(raw_fileName, raw_fileName, consult_dirname, consult_use_res);
+    if (FileManager.exit_value != 0) {
+      exit_value = Pro_Term.m_integer(FileManager.exit_value); 
+    } else {
+>>>>>>> r1.5
       
-      try {
-// System.out.println("A " + fileName);
-        InputStream is = Jalog.getResourceAsStream(fileName.substring(name_start_pos));
-// System.out.println("A0 " + (is==null?"is==null":"is/=null"));
-        input =
-          new InputStreamReader(is, "UTF-8");
-      } catch (Exception e) {
-        System.err.println("\n*** Error: " + e);
-        input = null;
-        exit_value = Pro_Term.m_integer(1); // File not found
+      info = FileManager.open_files.get(raw_fileName);
+  // System.out.println("Consult.consult_file: info: '" + info);
+      if (info != null) {
+        input = info.reader;
+        if(input != null) run(input, filter, raw_fileName, domain);
       }
-      
-    } else if (fileName.startsWith("file:")) {
-      root_type = 1; // file
-      name_start_pos = 5;
-      
-      try {
-// System.out.println("B");
-        input = new FileReader(fileName.substring(name_start_pos));
-      } catch (Exception e) {
-        System.err.println("\n*** Error: " + e);
-        input = null;
-        exit_value = Pro_Term.m_integer(1); // File not found
-      }
-      
     }
+<<<<<<< HEAD
     
 // System.out.println("input: " + input);
 */
@@ -120,18 +121,22 @@ input = FileManager.open_files.get(raw_fileName).reader;
 
     if(input != null) run(input, filter, raw_fileName);
     
+=======
+>>>>>>> r1.5
   }
 
   static void consult_stringlist(String[] lines, String[] filter, String name) { 
     // name for error messages only
     StringArrayReader input = new StringArrayReader(lines);
     
-    run(input, filter, name);
+    run(input, filter, name, null);
     
   }
   
 //  static void run(String FileName)
-  static private void run(Reader input, String[] filter, String filename) {
+  static private void run(Reader input, String[] filter, String filename,
+      String domain) 
+  {
 
 // System.out.println("Consult.run: filter: '" + filter + "', filename: \"" + 
 // filename + "\"");
@@ -153,7 +158,7 @@ input = FileManager.open_files.get(raw_fileName).reader;
       } catch (Exception e) {
         System.err.println("\n*** Error: " + e);
         file1 = null;
-        exit_value = Pro_Term.m_integer(1); // File not found
+        exit_value = Pro_Term.m_integer(7002); // File not found
       }
       if(file1 != null) {
         do {
@@ -199,10 +204,10 @@ input = FileManager.open_files.get(raw_fileName).reader;
             } else {
 //System.out.println("   Term: " + T);
 //System.out.println("");
-              if(filter == null) {
+              if((filter == null) && (domain == null)) {
                 process_clause(T);
               } else {
-                process_data(T, filter);
+                process_data(T, filter, domain);
               }
               if(exit_value != null) {
                 T = null;
@@ -245,6 +250,12 @@ input = FileManager.open_files.get(raw_fileName).reader;
 
           Pred.forward = true;
           I.run_body(data.subterm[1]);
+          if(I.exit_value != null)
+          {
+            /* Exception! */
+            exit_value = I.exit_value;
+          }
+/* 
           if(I.exit_value == null)
           {
             if(Pred.forward){
@@ -253,16 +264,19 @@ input = FileManager.open_files.get(raw_fileName).reader;
               System.err.println("*No*");
             }
           } else {
-            /* Exception! */
+            /* Exception! * /
             exit_value = I.exit_value;
           }
+*/
           Pred.trail.backtrack(I.Mark); // clear variables
         } else {
           if(data.subterm[0] != null) { // We have head!
             if(data.subterm[1].getData() == Pro_TermData_List.EMPTY) {
-              Database.assertz(data.subterm[0]);
+//              Database.assertz(data.subterm[0]);
+              Database.assert_rule(data.subterm[0]);
             } else {
-              Database.assertz(T);
+//              Database.assertz(T);
+              Database.assert_rule(T);
             }
           }
 
@@ -273,9 +287,10 @@ input = FileManager.open_files.get(raw_fileName).reader;
     }
   }
 
-  private static void process_data(Pro_Term T, String[] filter) {
+  private static void process_data(Pro_Term T, String[] filter, String domain) {
     // filter: ["data/3", "x/2",...]
-    
+// NOTE: If both filter and domain are given only domain is used!  
+  
 // System.out.println("\n--Consult: process_data:" + T );
     Pro_TermData_Compound data = 
         (T != null ? (Pro_TermData_Compound) T.getData() : null);
@@ -294,12 +309,16 @@ input = FileManager.open_files.get(raw_fileName).reader;
       int i;
       boolean found;
       String key = name + "/" + Integer.toString(arity);
-      found = false;
 // System.out.println("\n--Consult: process_data: key = \"" + key + "\"");
-      for (i=0; (i < filter.length) && !found; i++) {
-        found = key.equals(filter[i]);
+      if (domain != null) {
+        found = (Database.find_by_string(key, domain) != null);
+      } else {
+        found = false;
+        for (i=0; (i < filter.length) && !found; i++) {
+          found = key.equals(filter[i]);
 // System.out.println("\n--Consult: process_data: filter = \"" + filter[i] + 
 // "\", found = " + found);
+        }
       }
       if(found){
         Database.assertz(data.subterm[0]);

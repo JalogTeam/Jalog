@@ -1,0 +1,3 @@
+| reading: file:/x.pro  success
+| reading: file:/z.pro  trapped: 2002
+Exit status: 0 ; 

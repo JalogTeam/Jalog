@@ -1,33 +1,18 @@
+test_write 
 koe1: A|
-*Yes*
 koe2: a(b,c)d|
-*Yes*
 koe3: 1234567890|
-*Yes*
 koe4a: []|
-*Yes*
 koe4b: [a]|
-*Yes*
 koe4c: [a,b]|
-*Yes*
 koe4d: [c,d]|
-*Yes*
 koe4e: [e,f,g,h]|
-*Yes*
 koe4f: [c,[],d]|
-*Yes*
 koe5: 3.14159|
-*Yes*
 koe6a: ||
-*Yes*
 koe6b: |string|
-*Yes*
 koe7a: |_1|
-*Yes*
 koe7b: |_2|_2|
-*Yes*
 koe10: ab|
-*Yes*
 koe11: |
-*Yes*
 Exit status: 0 ; 

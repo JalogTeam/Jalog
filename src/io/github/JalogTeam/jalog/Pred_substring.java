@@ -27,7 +27,6 @@ public class Pred_substring extends Pred
       Pred.forward = false;
     } else if ( pos_term.data != null) {
             
-              
       long pos = Pro_Term.eval_integer(pos_term) - 1; // Prolog indexing from 1
       long len = Pro_Term.eval_integer(len_term);
    

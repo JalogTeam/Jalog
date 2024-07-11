@@ -1,3 +1,4 @@
+test_fronttoken 
 koe1: "  funktori(256,  'x',f(3),\"hei\"  "
 token: "funktori"
 rest:  "(256,  'x',f(3),\"hei\"  "
@@ -38,15 +39,12 @@ rest:  "  "
 test1 failed
 ""
 test1 failed
-*Yes*
 koe2: "   "
 test1 failed
 ""
 test1 failed
-*Yes*
 koe3: ""
 test1 failed
-*Yes*
 koe4: "funktori(256"
 token: "funktori"
 rest:  "(256"
@@ -58,7 +56,6 @@ token: "256"
 rest:  ""
 ""
 test1 failed
-*Yes*
 koe5: " I=1/1. /* sdkj sdf */ "
 token: "I"
 rest:  "=1/1. /* sdkj sdf */ "
@@ -81,7 +78,6 @@ rest:  " /* sdkj sdf */ "
 test1 failed
 ""
 test1 failed
-*Yes*
 koe6: " 3.141 + 2.8 "
 token: "3.141"
 rest:  " + 2.8 "
@@ -95,7 +91,6 @@ rest:  " "
 test1 failed
 ""
 test1 failed
-*Yes*
 koe7: " I=1/1. /* sdkj "
 token: "I"
 rest:  "=1/1. /* sdkj "
@@ -118,15 +113,9 @@ rest:  " /* sdkj "
 test1 failed
 ""
 test1 failed
-*Yes*
 koe8: "B"
-*Yes*
 koe9: koe9 failed -- OK
-*Yes*
 koe10: "-"
-*Yes*
 koe11: koe11 failed -- OK
-*Yes*
 koe12: "-B"
-*Yes*
 Exit status: 0 ; 

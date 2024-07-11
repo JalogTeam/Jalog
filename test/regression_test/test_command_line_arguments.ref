@@ -1,7 +1,7 @@
+test_command_line_arguments 
 test_command_line_arguments
 comline_arg(1, "a", "b").
 comline_arg(2, "c", "").
 comline_arg(3, "", "d").
 done
-*Yes*
 Exit status: 0 ; 

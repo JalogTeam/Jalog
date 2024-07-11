@@ -1,7 +1,7 @@
 TestRedirect 0.1 by Ari Okkonen & Mikko Levanto 2021-04-27
 output_redirect test
-|teststringlist here||
-|loppu||
+|teststringlist here|
+|loppu|
 output_redirect_success
 out_int of type integer
 out_int = 5

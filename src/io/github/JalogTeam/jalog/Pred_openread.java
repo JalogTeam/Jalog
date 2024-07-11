@@ -1,49 +1,35 @@
-// Pred_consult.java
-      // consult(String filename) - (i)
+// Pred_openread.java
+      // openread(String symbolic_filename, String filename) - (i,i)
 
 package io.github.JalogTeam.jalog;
 
-import java.io.*;
-import java.util.*;
-
-public class Pred_consult extends Pred
+public class Pred_openread extends Pred
 {
-  static Hashtable ConsultedFiles = new Hashtable(100);
+
+public static boolean x = true;
 
   public static Pred first_call(Pro_TermData_Compound data) {
-
-    Pro_TermData data1 = data.subterm[0].getData();
-  
-    String filename;
-    boolean found;
+// System.out.println("Pred_openread.first_call 1");
+// if(x)throw new Error();
+// System.out.println("Pred_openread.first_call 2");
+    if((data.subterm[0].getType() != Typenames.OPEN) &&
+        (data.subterm[1].getType() != Typenames.OPEN)) {
+// System.out.println("Pred_openread.first_call 3");
     
-    filename = Consult.identify(data.subterm[0].image());
-// System.out.print("\n--Consulting \"" + data.subterm[0].image() + " -> " + filename + "\"--");
-
-    found = (ConsultedFiles.get(filename) != null);
-/*
-    int size = ConsultedFiles.size();
-    boolean found = false;
-    for(int i = 0; (i < size) && !found; i++){
-      found = filename.equals((String)ConsultedFiles.elementAt(i));
-    }
-*/
-    if(!found) {
-// System.out.print(" starting.\n");
-/*
-      ConsultedFiles.push(filename);
-*/
-      ConsultedFiles.put(filename, "");
-      Consult.consult_file(filename, null);
-      if(Consult.exit_value != null) { // bad file
-        Pred.exception = true;
-        Pred.exit_value = Consult.exit_value;
+      String symbolic_filename = data.subterm[0].getData().image();
+      String filename = data.subterm[1].getData().image();
+    
+      FileManager.openread(symbolic_filename, filename);
+      
+      if(FileManager.exit_value != 0) {
+        Pred.exit_value = Pro_Term.m_integer(FileManager.exit_value);
       }
-//              ConsultedFiles.pop(); No double consulting
-// System.out.print("\n--Consulting \"" + filename + "\"-- Finished\n");
+    } else {
+      Pred.exit_value = Pro_Term.m_integer(1040); 
+          // Free variables are not allowed here
     }
-    // result = new Pred(); // **
+// System.out.println("Pred_openread.first_call: FileManager.open_files=" + FileManager.open_files); 
+// System.out.println("Pred_openread.first_call returning");
     return null;
   }
-
 }

@@ -1,3 +1,5 @@
+:- dynamic("case/1").
+
 case1 :- 
   consult_data("res:resources/testdata.pro", ["case/1"]),
   case(X),
@@ -6,8 +8,8 @@ case1 :-
   
 case1 :- 
   writeln("---"),
-  consult("res:resources/testdata.pro"),
-  case(X),
+  consult("res:resources/testprog.pro"),
+  enquire(X),
   writeln(X),
   fail.
 

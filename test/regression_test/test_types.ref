@@ -1,142 +1,72 @@
+test_types 
 koe11: 'A'
-*Yes*
 koe12: 'A'
-*Yes*
 koe13: +('A',1)
-*Yes*
 koe14: 'A' = 'A'
-*Yes*
-koe15: *No*
-koe16: 'A' < 'B'
-*Yes*
+koe15: koe16: 'A' < 'B'
 koe1x1: 'z' is char
-*Yes*
 koe1x2: A is not char
-*Yes*
 koe1x3: "z" is not char
-*Yes*
 
-*Yes*
 koe21: a(21)
-*Yes*
 koe22: a(22)
-*Yes*
 koe23: 23
-*Yes*
 koe24: 24
-*Yes*
 koe2x1: a(21) is compound
-*Yes*
 koe2x2: A is not compound
-*Yes*
 koe2x3: [a,b] is not compound
-*Yes*
 koe2x4: a is compound
-*Yes*
 koe2y1: not a = b
-*Yes*
 koe2y2: a = a
-*Yes*
 koe2y3: not a > b
-*Yes*
 koe2y4: a < b
-*Yes*
 
-*Yes*
 koe31: 31
-*Yes*
 koe32: 32
-*Yes*
 koe33: 33
-*Yes*
 koe34: 34 = 34
-*Yes*
 koe35: 64 = $40
-*Yes*
 koe36: 36 < 37
-*Yes*
 koe37: 38 >= 37
-*Yes*
 koe38: 36 <= 37
-*Yes*
 koe39a: 36 <> 37
-*Yes*
 koe39b: 36 >< 37
-*Yes*
 koe39c: 36 != 37
-*Yes*
 koe3x1: 1 is integer
-*Yes*
 koe3x2: A is not integer
-*Yes*
 koe3x3: 1.5 is not integer
-*Yes*
 koe3x4: 1.0 is not integer
-*Yes*
 koe3x5: unified 1 is integer
-*Yes*
 
-*Yes*
 koe41: [41,42]
-*Yes*
 koe42: [42,43]
-*Yes*
 koe43: 43
-*Yes*
 koe44: 44
-*Yes*
 koe4x1: [1] is list
-*Yes*
 koe4x2: A is not list
-*Yes*
 koe4x3: a(1) is not list
-*Yes*
 koe4x4: [] is list
-*Yes*
 
-*Yes*
 koe51: 5.1
-*Yes*
 koe52: 5.2
-*Yes*
 koe53: 6.2
-*Yes*
 koe54: 5.4 = 5.4
-*Yes*
 koe56: 3.6 < 3.7
-*Yes*
 koe57: 38 >= 3.7
-*Yes*
 koe58: 38 >= 3.7
-*Yes*
 koe59: 3.6 <> 3.7
-*Yes*
 koe5x1: 1.1 is real
-*Yes*
 koe5x2: A is not real
-*Yes*
 koe5x3: 1 is not real
-*Yes*
 koe5x4: 1.0 is real
-*Yes*
 
-*Yes*
 koe61: "A"
-*Yes*
 koe62: "A"
-*Yes*
 koe64: "A" = "A"
-*Yes*
 koe65: "A" = "\u0041"
-*Yes*
 koe66: "A" < "B"
-*Yes*
 koe6x1: "A" is string
-*Yes*
 koe6x2: A is not string
-*Yes*
 koe6x3: a is not string
-*Yes*
 
-*Yes*
 Exit status: 0 ; 
