@@ -4,11 +4,13 @@ Jalog
 
 _An interpreter for a Prolog-like language with Java-like arithmetic written in Java_
 
+Jalog differs significanly from ISO Standard Prolog.
+
 > Prolog is a logic programming language associated with artificial intelligence and computational linguistics. [\[Wikipedia\]](https://en.wikipedia.org/wiki/Prolog)
 
 Jalog makes traditional artificial intelligence techniques available to a wide variety of devices and applications.
 
-**Version** 1.5 2024-07-10
+**Version** 1.5 2024-07-11
 
 [Other versions](../versions.html)
 
@@ -138,7 +140,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ### Version history
 
-**1.5** 2024-07-10 Added reading and writing of text files.
+**1.5** 2024-07-11 Added reading and writing of text files.
 
 **1.4** 2023-09-07 More built-in predicates
 
