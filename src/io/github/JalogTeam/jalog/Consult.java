@@ -90,20 +90,10 @@ public class Consult
     exit_value = null;    
     
     Reader input = null;
-<<<<<<< HEAD
-/*
-    String fileName = identify(raw_fileName);
-// System.out.println("Consult.consult_file: filter: '" + filter + "', fileName: \"" + fileName + "\"\n");
-    
-    if (fileName.startsWith("res:")) {
-      root_type = 2; // resource
-      name_start_pos = 4;
-=======
     FileManager.openread(raw_fileName, raw_fileName, consult_dirname, consult_use_res);
     if (FileManager.exit_value != 0) {
       exit_value = Pro_Term.m_integer(FileManager.exit_value); 
     } else {
->>>>>>> r1.5
       
       info = FileManager.open_files.get(raw_fileName);
   // System.out.println("Consult.consult_file: info: '" + info);
@@ -112,17 +102,6 @@ public class Consult
         if(input != null) run(input, filter, raw_fileName, domain);
       }
     }
-<<<<<<< HEAD
-    
-// System.out.println("input: " + input);
-*/
-FileManager.openread(raw_fileName, raw_fileName, consult_dirname, consult_use_res);
-input = FileManager.open_files.get(raw_fileName).reader;
-
-    if(input != null) run(input, filter, raw_fileName);
-    
-=======
->>>>>>> r1.5
   }
 
   static void consult_stringlist(String[] lines, String[] filter, String name) { 
